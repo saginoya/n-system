@@ -1,11 +1,8 @@
-import './assets/main.css'
+import { defineCustomElement } from 'vue'
 
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
-import App from './App.vue'
+// Components
+import AreaHtml from './components/AreaHtml.ce.vue'
 
-const app = createApp(App)
+const MyAreaHtml = defineCustomElement(AreaHtml)
 
-app.use(createPinia())
-
-app.mount('#app')
+customElements.define('area-html', MyAreaHtml)
