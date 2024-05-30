@@ -1,8 +1,11 @@
 import { defineCustomElement } from 'vue'
 
 // Components
-import AreaHtml from './components/AreaHtml.ce.vue'
+import LinkExternal from './components/LinkExternal.ce.vue'
+import LinkInternal from './components/LinkInternal.ce.vue'
 
-const MyAreaHtml = defineCustomElement(AreaHtml)
+const MyLinkExternal = defineCustomElement(LinkExternal)
+const MyLinkInternal = defineCustomElement(LinkInternal)
 
-customElements.define('area-html', MyAreaHtml)
+customElements.define('link-external', MyLinkExternal)
+customElements.define('link-internal', MyLinkInternal)
