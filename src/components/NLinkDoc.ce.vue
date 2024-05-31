@@ -9,3 +9,7 @@ defineProps<{
     <slot />
   </a>
 </template>
+
+<style scoped>
+@import url(../assets/css/main.css);
+</style>

@@ -1,11 +1,8 @@
 import { defineCustomElement } from 'vue'
 
 // Components
-import LinkExternal from './components/LinkExternal.ce.vue'
-import LinkInternal from './components/LinkInternal.ce.vue'
+import NLink from './components/NLink.ce.vue'
+import NLinkExternal from './components/NLinkExternal.ce.vue'
 
-const MyLinkExternal = defineCustomElement(LinkExternal)
-const MyLinkInternal = defineCustomElement(LinkInternal)
-
-customElements.define('link-external', MyLinkExternal)
-customElements.define('link-internal', MyLinkInternal)
+customElements.define('n-link', defineCustomElement(NLink))
+customElements.define('n-link-external', defineCustomElement(NLinkExternal))
