@@ -1,9 +1,17 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import type { Link } from '@/types/link'
+
+defineProps<{
+  nav?: Link[]
+}>()
+</script>
 
 <template>
-  <footer class="text-white">
-    <bl-nav-list :links="nav" row> </bl-nav-list>
-    <hr />
+  <footer class="bg-primary px-4 py-2 text-white">
+    <div v-if="nav" class="hidden lg:block">
+      <n-list-nav-row :links="nav"> </n-list-nav-row>
+      <hr />
+    </div>
     <slot />
   </footer>
 </template>

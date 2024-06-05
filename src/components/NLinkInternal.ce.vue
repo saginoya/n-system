@@ -5,7 +5,9 @@ defineProps<{
 </script>
 
 <template>
-  <a :href="href" class="text-primary"><slot /></a>
+  <a class="inline-block rounded px-2" :href>
+    <slot />
+  </a>
 </template>
 
 <style scoped>

@@ -1,0 +1,121 @@
+{
+  "siteTitle": ["2024", "NEW環境展", "地球温暖化防止展"],
+  "copyright": "Nippo Co., Ltd.",
+  "mainVisual": {
+    "top": {
+      "width": "960",
+      "height": "360",
+      "src": "/images/banners/main-visual.png",
+      "alt": "NEW環境展・地球温暖化防止展トップページ"
+    },
+    "lower": {
+      "width": "960",
+      "height": "130",
+      "src": "/images/banners/main-visual-lower.png",
+      "alt": "NEW環境展・地球温暖化防止展"
+    }
+  },
+  "navigation": {
+    "lang": [
+      {
+        "name": "Pre-registration",
+        "path": "pre-registration_eng.html",
+        "type": "external"
+      },
+      {
+        "name": "English",
+        "path": "eng2024/",
+        "type": "internal"
+      }
+    ],
+    "header": [
+      {
+        "name": "トップ",
+        "path": "./",
+        "type": "internal"
+      },
+      {
+        "name": "開催のご挨拶",
+        "path": "greeting.html",
+        "type": "internal"
+      },
+      {
+        "name": "開催概要",
+        "path": "outline.html",
+        "type": "internal"
+      },
+      {
+        "name": "出展社情報",
+        "path": "exhibitor-list.html",
+        "type": "internal"
+      },
+      {
+        "name": "会場案内図",
+        "path": "documents/venue-map.pdf",
+        "type": "doc"
+      },
+      {
+        "name": "展示会計画と出展規定",
+        "path": "rules.html",
+        "type": "internal"
+      },
+      {
+        "name": "出展分類・出展項目一覧",
+        "path": "fields-of-exhibit.html",
+        "type": "internal"
+      },
+      {
+        "name": "特設コーナー",
+        "path": "special.html",
+        "type": "internal"
+      },
+      {
+        "name": "記念セミナー",
+        "path": "seminar.html",
+        "type": "internal"
+      },
+      {
+        "name": "脱炭素フォーラム",
+        "path": "forum.html",
+        "type": "internal"
+      },
+      {
+        "name": "紙面で見る展示会",
+        "path": "newspaper.html",
+        "type": "internal"
+      },
+      {
+        "name": "写真で見る展示会",
+        "path": "photos.html",
+        "type": "internal"
+      },
+      {
+        "name": "会場アクセス",
+        "path": "access.html",
+        "type": "internal"
+      },
+      {
+        "name": "出展申込",
+        "path": "exhibition-app.html",
+        "type": "internal"
+      }
+    ],
+    "footer": [
+      {
+        "name": "日報インターネット",
+        "path": "https://www.nippo.co.jp/",
+        "type": "external"
+      },
+      {
+        "name": "ダウンロード",
+        "path": "download.html",
+        "type": "internal"
+      },
+      {
+        "name": "プライバシーポリシー",
+        "path": "privacy.html",
+        "type": "internal"
+      }
+    ]
+  }
+}

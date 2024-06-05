@@ -1,14 +1,19 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import type { GlobalNav } from '@/types/link'
+
+defineProps<{
+  titleList: string[]
+  nav: GlobalNav
+}>()
+</script>
 
 <template>
   <header class="flex flex-col gap-6 bg-primary px-4 py-2 text-white">
-    <n-title-site :titleList="title"></n-title-site>
-    <nav>
-      <bl-container-col>
-        <bl-nav-list :links="nav.header"> </bl-nav-list>
-        <bl-nav-list :links="nav.footer"> </bl-nav-list>
-        <bl-nav-list :links="nav.lang"> </bl-nav-list>
-      </bl-container-col>
+    <n-title-site :titleList="titleList"></n-title-site>
+    <nav class="flex flex-col gap-4">
+      <n-list-nav v-if="nav.header" :links="nav.header"> </n-list-nav>
+      <n-list-nav v-if="nav.footer" :links="nav.footer"> </n-list-nav>
+      <n-list-nav v-if="nav.lang" :links="nav.lang"> </n-list-nav>
     </nav>
     <slot />
   </header>

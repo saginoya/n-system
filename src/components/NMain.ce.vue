@@ -1,8 +1,10 @@
 <script setup lang="ts"></script>
 
 <template>
-  <main class="ly_main">
-    <slot />
+  <main class="px-4 py-2">
+    <div class="flex w-full max-w-screen-lg flex-col gap-2">
+      <slot />
+    </div>
   </main>
 </template>
 

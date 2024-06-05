@@ -1,26 +1,25 @@
 import { readonly, onMounted, ref } from 'vue'
-import { useJson } from '../utils/useJson.js'
-import { useLang } from './useLang.js'
+import { useJson } from '@/utils/useJson'
+import type { GlobalNav } from '@/types/link'
+import type { MainVisual } from '@/types/image'
 
-export const useConfig = () => {
-  const configSrcJa = './../json/config.json'
-  const configSrcEn = './../json/config-eng.json'
-  const { lang } = useLang()
-  const configSrc = lang.value === 'en' ? configSrcEn : configSrcJa
-
-  const siteTitle = ref()
-  const copyright = ref()
-  const navigation = ref({})
+export const useConfig = (jsonPath: string) => {
+  const siteTitle = ref<string[]>()
+  const copyright = ref<string>()
+  const mainVisual = ref<MainVisual>()
+  const navigation = ref<GlobalNav>()
   onMounted(async () => {
-    const config = await useJson(configSrc)
+    const config = await useJson(jsonPath)
     siteTitle.value = config.siteTitle
     copyright.value = config.copyright
+    mainVisual.value = config.mainVisual
     navigation.value = config.navigation
   })
 
   return {
     siteTitle: readonly(siteTitle),
     copyright: readonly(copyright),
+    mainVisual: readonly(mainVisual),
     navigation: readonly(navigation)
   }
 }

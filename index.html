@@ -5,19 +5,13 @@
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>N-System</title>
+    <link rel="stylesheet" href="/css/n-system-variables.css" />
   </head>
   <body>
-    <header>
-      <h1>N-System</h1>
-    </header>
-    <main>
-      <section>
-        <h2>リンク</h2>
-        <p><n-link href="/index.html">内部リンク</n-link></p>
-        <p><n-link-external href="https://www.nippo.co.jp/">外部リンク</n-link-external></p>
-      </section>
-    </main>
+    <n-layout-default json-path="/json/config.json" top-page>
+      <p>本文</p>
+    </n-layout-default>
+
     <script type="module" src="/src/main.ts"></script>
-    <link rel="stylesheet" href="/css/n-system-variables.css" />
   </body>
 </html>

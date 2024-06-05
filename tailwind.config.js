@@ -5,7 +5,14 @@ export default {
     extend: {
       colors: {
         primary: 'var(--color-primary)',
-        secondary: 'var(--color-secondary)'
+        secondary: 'var(--color-secondary)',
+        accent: 'var(--color-accent)',
+        exhibitionA: 'var(--color-exhibition-a)',
+        exhibitionB: 'var(--color-exhibition-b)',
+        info: 'var(--color-info)',
+        success: 'var(--color-success)',
+        error: 'var(--color-error)',
+        warning: 'var(--color-warning)'
       }
     }
   },
