@@ -8,9 +8,12 @@
     <link rel="stylesheet" href="/css/n-system-variables.css" />
   </head>
   <body>
-    <n-layout-default json-path="/json/config.json" top-page>
-      <p>本文</p>
-    </n-layout-default>
+    <noscript><iframe src="./noscript.html"></iframe></noscript>
+    <n-app json-path="/json/config.json" layout="default" top-page>
+      <n-card>
+        <n-title-lv2-page>サンプルページ</n-title-lv2-page>
+      </n-card>
+    </n-app>
 
     <script type="module" src="/src/main.ts"></script>
   </body>

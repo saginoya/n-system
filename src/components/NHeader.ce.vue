@@ -9,8 +9,8 @@ defineProps<{
 
 <template>
   <header class="flex flex-col gap-6 bg-primary px-4 py-2 text-white">
-    <n-title-site :titleList="titleList"></n-title-site>
-    <nav class="flex flex-col gap-4">
+    <n-title-lv1-site :titleList="titleList"></n-title-lv1-site>
+    <nav class="flex flex-col gap-4 overflow-y-auto">
       <n-list-nav v-if="nav.header" :links="nav.header"> </n-list-nav>
       <n-list-nav v-if="nav.footer" :links="nav.footer"> </n-list-nav>
       <n-list-nav v-if="nav.lang" :links="nav.lang"> </n-list-nav>
