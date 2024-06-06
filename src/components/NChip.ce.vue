@@ -14,8 +14,8 @@ const { bgColor } = useColor(props.color)
 </script>
 
 <template>
-  <span class="rounded-full px-2 py-1 text-white" :class="bgColor">
-    <component :is="getLinkCompName(type)" :href="href"> <slot /></component>
+  <span class="inline-block overflow-hidden rounded-full" :class="bgColor">
+    <component :is="getLinkCompName(type)" :href="href" class="text-white"> <slot /></component>
   </span>
 </template>
 
