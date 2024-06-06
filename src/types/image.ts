@@ -5,7 +5,3 @@ export type Image = {
   alt: string
   caption?: string
 }
-export type MainVisual = {
-  top: Image
-  lower: Image
-}

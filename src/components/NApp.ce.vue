@@ -1,13 +1,13 @@
 <script setup lang="ts">
 defineProps<{
   jsonPath: string
-  topPage?: boolean
+  page?: string
 }>()
 </script>
 
 <template>
   <Transition name="fade">
-    <n-layout-default :json-path="jsonPath" :top-page="topPage">
+    <n-layout-default :json-path="jsonPath" :page="page">
       <slot />
     </n-layout-default>
   </Transition>

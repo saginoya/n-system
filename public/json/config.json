@@ -2,18 +2,8 @@
   "siteTitle": ["2024", "NEW環境展", "地球温暖化防止展"],
   "copyright": "Nippo Co., Ltd.",
   "mainVisual": {
-    "top": {
-      "width": "960",
-      "height": "360",
-      "src": "/images/banners/main-visual.png",
-      "alt": "NEW環境展・地球温暖化防止展トップページ"
-    },
-    "lower": {
-      "width": "960",
-      "height": "130",
-      "src": "/images/banners/main-visual-lower.png",
-      "alt": "NEW環境展・地球温暖化防止展"
-    }
+    "top": "/images/banners/main-visual.png",
+    "lower": "/images/banners/main-visual-lower.png"
   },
   "navigation": {
     "lang": [

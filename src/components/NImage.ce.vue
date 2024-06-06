@@ -5,6 +5,7 @@ defineProps<{
   src: string
   alt: string
   caption?: string
+  cover: boolean
 }>()
 </script>
 
@@ -18,6 +19,7 @@ defineProps<{
       :src="src"
       :alt="alt"
       class="h-auto max-w-full align-top"
+      :class="{ 'object-cover': cover }"
     />
     <figcaption v-if="caption" class="leading-5" :style="{ 'max-width': width + 'px' }">
       {{ caption }}

@@ -9,10 +9,43 @@
   </head>
   <body>
     <noscript><iframe src="./noscript.html"></iframe></noscript>
-    <n-app json-path="/json/config.json" layout="default" top-page>
+    <n-app json-path="/json/config.json" layout="default" page="top">
       <n-card>
         <n-title-lv2-page>サンプルページ</n-title-lv2-page>
+        <p>ページの解説文</p>
       </n-card>
+      <section>
+        <n-title-lv3>セクションのタイトル</n-title-lv3>
+        <n-card>
+          <n-title-lv4>小見出し１</n-title-lv4>
+          <n-title-lv4>小見出し2</n-title-lv4>
+          <p>セクションの文言</p>
+          <n-title-lv4>小見出し2</n-title-lv4>
+          <p>
+            セクションの文言<n-link-internal href="./sample.html">文中のリンク</n-link-internal
+            >セクションの文言セクションの文言セクションの文言セクションの文言セクションの文言セクションの文言<n-link-external
+              href="./sample.html"
+              >文中のリンク</n-link-external
+            >セクションの文言セクションの文言セクションの文言セクションの文言セクションの文言セクションの文言セクションの文言セクションの文言セクションの文言
+          </p>
+        </n-card>
+      </section>
+      <section>
+        <n-card>
+          <n-title-lv3>セクションのタイトル</n-title-lv3>
+          <n-title-lv4>小見出し１</n-title-lv4>
+          <n-title-lv5>小見出し2</n-title-lv5>
+          <p>セクションの文言</p>
+          <n-title-lv5>小見出し2</n-title-lv5>
+          <p>
+            セクションの文言<n-link-internal href="./sample.html">文中のリンク</n-link-internal
+            >セクションの文言セクションの文言セクションの文言セクションの文言セクションの文言セクションの文言<n-link-external
+              href="./sample.html"
+              >文中のリンク</n-link-external
+            >セクションの文言セクションの文言セクションの文言セクションの文言セクションの文言セクションの文言セクションの文言セクションの文言セクションの文言
+          </p>
+        </n-card>
+      </section>
     </n-app>
 
     <script type="module" src="/src/main.ts"></script>

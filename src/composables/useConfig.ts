@@ -1,7 +1,11 @@
 import { readonly, onMounted, ref } from 'vue'
 import { useJson } from '@/utils/useJson'
 import type { GlobalNav } from '@/types/link'
-import type { MainVisual } from '@/types/image'
+
+type MainVisual = {
+  top: string
+  lower: string
+}
 
 export const useConfig = (jsonPath: string) => {
   const siteTitle = ref<string[]>()

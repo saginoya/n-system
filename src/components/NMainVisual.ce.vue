@@ -1,22 +1,16 @@
 <script setup lang="ts">
 import type { Link } from '@/types/link'
-import type { Image } from '@/types/image'
 
 defineProps<{
   nav: Link[]
-  image: Image
+  image: string
 }>()
 </script>
 
 <template>
-  <div class="flex items-center justify-center">
-    <div class="relative">
-      <n-image
-        :width="image.width"
-        :height="image.height"
-        :src="image.src"
-        :alt="image.alt"
-      ></n-image>
+  <div class="flex w-full items-center justify-center">
+    <div class="relative max-w-screen-lg">
+      <n-image width="1024px" height="360px" :src="image" alt="" cover></n-image>
       <div v-if="nav" class="absolute bottom-0 right-0 flex gap-1 px-1 py-2">
         <n-chip
           v-for="(link, index) in nav"

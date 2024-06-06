@@ -4,7 +4,7 @@ import { useDrawer } from '@/composables/useDrawer'
 
 const props = defineProps<{
   jsonPath: string
-  topPage?: boolean
+  page: 'top' | undefined
 }>()
 const { siteTitle, copyright, mainVisual, navigation } = useConfig(props.jsonPath)
 const { drawer, operateDrawer } = useDrawer()
@@ -22,7 +22,7 @@ const { drawer, operateDrawer } = useDrawer()
     <n-main-visual
       v-if="mainVisual"
       :nav="navigation?.lang"
-      :image="topPage ? mainVisual?.top : mainVisual?.lower"
+      :image="page === 'top' ? mainVisual.top : mainVisual.lower"
     >
     </n-main-visual>
     <n-global-nav v-if="navigation" :nav="navigation.header" />
@@ -30,11 +30,7 @@ const { drawer, operateDrawer } = useDrawer()
       <slot />
     </n-main>
     <n-footer :nav="navigation?.footer" class="text-center">{{ copyright }}</n-footer>
-    <n-header-tool
-      :active="drawer"
-      class="z-50 flex drop-shadow"
-      @click="operateDrawer()"
-    ></n-header-tool>
+    <n-header-tool :active="drawer" class="z-50" @click="operateDrawer()"></n-header-tool>
   </div>
 </template>
 
