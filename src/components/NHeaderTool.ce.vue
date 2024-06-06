@@ -9,7 +9,7 @@ defineProps<{
 <template>
   <button
     type="button"
-    class="fixed bottom-2 right-2 size-16 flex-col items-center justify-center rounded-full border-2 border-white/0 bg-primary text-white shadow hover:border-white/80 focus:border-white/80"
+    class="fixed bottom-2 right-2 flex size-16 flex-col items-center justify-center rounded-full border-2 border-white/0 bg-primary text-white shadow drop-shadow hover:border-white/80 focus:border-white/80"
   >
     <IconMenu v-show="!active" />
     <IconClose v-show="active" />
