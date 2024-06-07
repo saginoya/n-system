@@ -1,23 +1,12 @@
 {
-  "siteTitle": ["2024", "NEW環境展", "地球温暖化防止展"],
+  "siteTitle": ["OKINAWA", "PACK", "2025"],
   "copyright": "Nippo Co., Ltd.",
   "mainVisual": {
     "top": "/images/banners/main-visual.png",
     "lower": "/images/banners/main-visual-lower.png"
   },
   "navigation": {
-    "lang": [
-      {
-        "name": "Pre-registration",
-        "path": "pre-registration_eng.html",
-        "type": "external"
-      },
-      {
-        "name": "English",
-        "path": "eng2024/",
-        "type": "internal"
-      }
-    ],
+    "lang": [],
     "header": [
       {
         "name": "トップ",
@@ -25,7 +14,7 @@
         "type": "internal"
       },
       {
-        "name": "開催のご挨拶",
+        "name": "開催に向けて",
         "path": "greeting.html",
         "type": "internal"
       },
@@ -35,53 +24,23 @@
         "type": "internal"
       },
       {
-        "name": "出展社情報",
-        "path": "exhibitor-list.html",
-        "type": "internal"
-      },
-      {
-        "name": "会場案内図",
-        "path": "documents/venue-map.pdf",
-        "type": "doc"
-      },
-      {
-        "name": "展示会計画と出展規定",
+        "name": "出展要項",
         "path": "rules.html",
-        "type": "internal"
-      },
-      {
-        "name": "出展分類・出展項目一覧",
-        "path": "fields-of-exhibit.html",
-        "type": "internal"
-      },
-      {
-        "name": "特設コーナー",
-        "path": "special.html",
-        "type": "internal"
-      },
-      {
-        "name": "記念セミナー",
-        "path": "seminar.html",
-        "type": "internal"
-      },
-      {
-        "name": "脱炭素フォーラム",
-        "path": "forum.html",
-        "type": "internal"
-      },
-      {
-        "name": "紙面で見る展示会",
-        "path": "newspaper.html",
-        "type": "internal"
-      },
-      {
-        "name": "写真で見る展示会",
-        "path": "photos.html",
         "type": "internal"
       },
       {
         "name": "会場アクセス",
         "path": "access.html",
+        "type": "internal"
+      },
+      {
+        "name": "過去出展社一覧",
+        "path": "past-exhibitor-list.html",
+        "type": "internal"
+      },
+      {
+        "name": "広報活動",
+        "path": "publicity.html",
         "type": "internal"
       },
       {
@@ -95,16 +54,6 @@
         "name": "日報インターネット",
         "path": "https://www.nippo.co.jp/",
         "type": "external"
-      },
-      {
-        "name": "ダウンロード",
-        "path": "download.html",
-        "type": "internal"
-      },
-      {
-        "name": "プライバシーポリシー",
-        "path": "privacy.html",
-        "type": "internal"
       }
     ]
   }

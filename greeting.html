@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>N-System</title>
+    <link rel="stylesheet" href="/css/n-system-variables.css" />
+  </head>
+  <body>
+    <noscript><iframe src="./noscript.html"></iframe></noscript>
+    <n-app json-path="/json/config.json" layout="default">
+      <n-card>
+        <n-title-lv2-page>開催に向けて</n-title-lv2-page>
+      </n-card>
+      <n-card>
+        <n-title-lv3>セクションのタイトル</n-title-lv3>
+        <n-title-lv4>小見出し１</n-title-lv4>
+        <div>
+          <n-title-lv4>小見出し2</n-title-lv4>
+          <p>セクションの文言</p>
+        </div>
+        <div>
+          <n-title-lv4>小見出し2</n-title-lv4>
+          <p>
+            セクションの文言<n-link-internal href="./sample.html">文中のリンク</n-link-internal
+            >セクションの文言セクションの文言セクションの文言セクションの文言セクションの文言セクションの文言<n-link-external
+              href="./sample.html"
+              >文中のリンク</n-link-external
+            >セクションの文言セクションの文言セクションの文言セクションの文言セクションの文言セクションの文言セクションの文言セクションの文言セクションの文言
+          </p>
+        </div>
+      </n-card>
+    </n-app>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
