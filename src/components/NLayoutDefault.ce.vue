@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import NHeader from './NHeader.ce.vue'
+import NHeaderTool from './NHeaderTool.ce.vue'
+import NMainVisual from './NMainVisual.ce.vue'
+import NMain from './NMain.ce.vue'
+import NFooter from '@/components/NFooter.ce.vue'
 import { useConfig } from '@/composables/useConfig'
 import { useDrawer } from '@/composables/useDrawer'
 

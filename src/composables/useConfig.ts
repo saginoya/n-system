@@ -21,9 +21,9 @@ export const useConfig = (jsonPath: string) => {
   })
 
   return {
-    siteTitle: readonly(siteTitle),
-    copyright: readonly(copyright),
-    mainVisual: readonly(mainVisual),
-    navigation: readonly(navigation)
+    siteTitle,
+    copyright,
+    mainVisual,
+    navigation
   }
 }

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import NListNavRow from './NListNavRow.ce.vue'
 import type { Link } from '@/types/link'
 
 defineProps<{

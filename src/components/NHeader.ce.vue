@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import NTitleLv1Site from './NTitleLv1Site.ce.vue'
 import type { GlobalNav } from '@/types/link'
 
 defineProps<{

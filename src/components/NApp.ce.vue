@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import NLayoutDefault from './NLayoutDefault.ce.vue'
 defineProps<{
   jsonPath: string
-  page?: string
+  page?: 'top'
 }>()
 </script>
 
