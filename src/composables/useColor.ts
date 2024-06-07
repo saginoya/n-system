@@ -25,7 +25,28 @@ export const useColor = (color: Color) => {
   }) */
 
   const textColor = computed(() => {
-    return 'text-' + String(color)
+    switch (color) {
+      case 'primary':
+        return 'text-primary'
+      case 'secondary':
+        return 'text-secondary'
+      case 'accent':
+        return 'text-accent'
+      case 'exhibition-a':
+        return 'text-exhibition-a'
+      case 'exhibition-b':
+        return 'text-exhibition-b'
+      case 'info':
+        return 'text-info'
+      case 'success':
+        return 'text-success'
+      case 'error':
+        return 'text-error'
+      case 'warning':
+        return 'text-warning'
+      default:
+        return 'text-white'
+    }
   })
 
   const bgColor = computed<string>(() => {
@@ -37,9 +58,9 @@ export const useColor = (color: Color) => {
       case 'accent':
         return 'bg-accent'
       case 'exhibition-a':
-        return 'exhibition-a'
+        return 'bg-exhibition-a'
       case 'exhibition-b':
-        return 'exhibition-b'
+        return 'bg-exhibition-b'
       case 'info':
         return 'bg-info'
       case 'success':
