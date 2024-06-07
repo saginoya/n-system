@@ -5,6 +5,9 @@ import './assets/css/main.css'
 import NApp from './components/NApp.ce.vue'
 import NCard from './components/NCard.ce.vue'
 import NChip from './components/NChip.ce.vue'
+import NContainer1col from './components/NContainer1col.ce.vue'
+import NContainer2cols from './components/NContainer2cols.ce.vue'
+import NContainer3cols from './components/NContainer3cols.ce.vue'
 import NFooter from './components/NFooter.ce.vue'
 import NGlobalNav from './components/NGlobalNav.ce.vue'
 import NHeader from './components/NHeader.ce.vue'
@@ -18,6 +21,7 @@ import NListNav from './components/NListNav.ce.vue'
 import NListNavRow from './components/NListNavRow.ce.vue'
 import NMain from './components/NMain.ce.vue'
 import NMainVisual from './components/NMainVisual.ce.vue'
+import NSignature from './components/NSignature.ce.vue'
 import NTitleLv1Site from './components/NTitleLv1Site.ce.vue'
 import NTitleLv2Page from './components/NTitleLv2Page.ce.vue'
 import NTitleLv3 from './components/NTitleLv3.ce.vue'
@@ -27,6 +31,9 @@ import NTitleLv5 from './components/NTitleLv5.ce.vue'
 customElements.define('n-app', defineCustomElement(NApp))
 customElements.define('n-card', defineCustomElement(NCard))
 customElements.define('n-chip', defineCustomElement(NChip))
+customElements.define('n-container-1col', defineCustomElement(NContainer1col))
+customElements.define('n-container-2cols', defineCustomElement(NContainer2cols))
+customElements.define('n-container-3cols', defineCustomElement(NContainer3cols))
 customElements.define('n-footer', defineCustomElement(NFooter))
 customElements.define('n-global-nav', defineCustomElement(NGlobalNav))
 customElements.define('n-header', defineCustomElement(NHeader))
@@ -40,6 +47,7 @@ customElements.define('n-list-nav', defineCustomElement(NListNav))
 customElements.define('n-list-nav-row', defineCustomElement(NListNavRow))
 customElements.define('n-main', defineCustomElement(NMain))
 customElements.define('n-main-visual', defineCustomElement(NMainVisual))
+customElements.define('n-signature', defineCustomElement(NSignature))
 customElements.define('n-title-lv1-site', defineCustomElement(NTitleLv1Site))
 customElements.define('n-title-lv2-page', defineCustomElement(NTitleLv2Page))
 customElements.define('n-title-lv3', defineCustomElement(NTitleLv3))
