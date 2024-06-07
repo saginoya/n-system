@@ -1,7 +1,9 @@
+export type LinkType = 'internal' | 'external' | 'doc'
+
 export type Link = {
   name: string
   path: string
-  type: 'internal' | 'external' | 'doc'
+  type: LinkType
 }
 export type GlobalNav = {
   lang: Link[]
