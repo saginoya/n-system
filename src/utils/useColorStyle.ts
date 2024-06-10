@@ -1,30 +1,7 @@
-import { computed } from 'vue'
 import type { Color } from '@/types/color'
 
-// type Variant = 'outlined' | undefined
-
-export const useColor = (color: Color) => {
-  //  const background = ref()
-  //  const border = ref()
-
-  /*   const classColor = computed(() => {
-    if (variant === 'outlined') {
-      text.value = getColor()
-      background.value = 'hp_bgColor_white'
-      border.value = getBorderColor()
-    } else if (name === 'none') {
-      text.value = 'hp_color_fontDefualt'
-      background.value = getBgColor()
-      border.value = getBorderColor()
-    } else {
-      text.value = 'hp_color_white'
-      background.value = getBgColor()
-      border.value = getBorderColor()
-    }
-    return [text.value, background.value, border.value]
-  }) */
-
-  const textColor = computed(() => {
+export const useColorStyle = () => {
+  const textColor = (color: Color) => {
     switch (color) {
       case 'primary':
         return 'text-primary'
@@ -47,9 +24,9 @@ export const useColor = (color: Color) => {
       default:
         return 'text-white'
     }
-  })
+  }
 
-  const bgColor = computed<string>(() => {
+  const bgColor = (color: Color) => {
     switch (color) {
       case 'primary':
         return 'bg-primary'
@@ -72,10 +49,36 @@ export const useColor = (color: Color) => {
       default:
         return 'bg-white'
     }
-  })
+  }
+
+  const borderColor = (color: Color) => {
+    switch (color) {
+      case 'primary':
+        return 'border-primary'
+      case 'secondary':
+        return 'border-secondary'
+      case 'accent':
+        return 'border-accent'
+      case 'exhibition-a':
+        return 'border-exhibition-a'
+      case 'exhibition-b':
+        return 'border-exhibition-b'
+      case 'info':
+        return 'border-info'
+      case 'success':
+        return 'border-success'
+      case 'error':
+        return 'border-error'
+      case 'warning':
+        return 'border-warning'
+      default:
+        return 'border-white'
+    }
+  }
 
   return {
     textColor,
-    bgColor
+    bgColor,
+    borderColor
   }
 }
