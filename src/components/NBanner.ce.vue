@@ -14,30 +14,24 @@ defineProps<{
 }>()
 
 const { bgColor, borderColor } = useColorStyle()
-const { widthSize, heightSize } = useSizeStyle()
+const { widthSize } = useSizeStyle()
 const { linkTarget, linkIcon } = useLink()
 </script>
 
 <template>
   <component
     :is="href ? 'a' : 'div'"
-    class="relative block max-w-full overflow-hidden rounded border-2 font-bold text-white"
-    :class="[
-      bgColor(color),
-      borderColor(color),
-      widthSize(size),
-      heightSize(size),
-      { 'hover:opacity-50': href },
-      { 'focus:opacity-50': href }
-    ]"
+    class="group relative block aspect-[4/1] max-w-full overflow-hidden rounded border-2 font-bold text-white"
+    :class="[bgColor(color), borderColor(color), widthSize(size)]"
     :href="href ? href : null"
     :target="href && type ? linkTarget(type) : '_self'"
   >
-    <div class="flex size-full items-center justify-center">
-      <span class="flex items-center gap-1">
-        <slot />
-        <component v-if="type" :is="linkIcon(type)" />
-      </span>
+    <div
+      class="flex size-full items-center justify-center gap-1"
+      :class="[{ 'group-hover:bg-black/20': href }, { 'group-focus:bg-black/20': href }]"
+    >
+      <slot />
+      <component v-if="type" :is="linkIcon(type)" />
     </div>
     <!--     <el-banner-overlay
       v-if="placeOn"
