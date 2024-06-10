@@ -1,20 +1,18 @@
 <script setup lang="ts">
-import { useLinkComp } from '@/utils/useLinkComp'
+import NLink from './NLink.ce.vue'
 import type { Link } from '@/types/link'
 
 defineProps<{
   links: Link[]
 }>()
-
-const { getLinkCompName } = useLinkComp()
 </script>
 
 <template>
   <ul class="mx-auto flex max-w-5xl flex-wrap justify-around gap-2">
     <li v-for="(link, index) in links" :key="index">
-      <component :is="getLinkCompName(link.type)" :href="link.path" class="text-white">
+      <n-link :href="link.path" :type="link.type" class="text-white">
         {{ link.name }}
-      </component>
+      </n-link>
     </li>
   </ul>
 </template>
