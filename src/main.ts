@@ -16,13 +16,16 @@ import NHeaderTool from './components/NHeaderTool.ce.vue'
 import NImage from './components/NImage.ce.vue'
 import NLayoutDefault from './components/NLayoutDefault.ce.vue'
 import NLink from './components/NLink.ce.vue'
+import NListItemDate from './components/NListItemDate.ce.vue'
 import NListNav from './components/NListNav.ce.vue'
 import NListNavRow from './components/NListNavRow.ce.vue'
+import NListNews from './components/NListNews.ce.vue'
 import NMain from './components/NMain.ce.vue'
 import NMainVisual from './components/NMainVisual.ce.vue'
 import NSheetCentral from './components/NSheetCentral.ce.vue'
 import NSignature from './components/NSignature.ce.vue'
 import NTitleLv1Site from './components/NTitleLv1Site.ce.vue'
+import NTitleLv2Index from './components/NTitleLv2Index.ce.vue'
 import NTitleLv2Page from './components/NTitleLv2Page.ce.vue'
 import NTitleLv3 from './components/NTitleLv3.ce.vue'
 import NTitleLv4 from './components/NTitleLv4.ce.vue'
@@ -42,13 +45,16 @@ customElements.define('n-header-tool', defineCustomElement(NHeaderTool))
 customElements.define('n-image', defineCustomElement(NImage))
 customElements.define('n-layout-default', defineCustomElement(NLayoutDefault))
 customElements.define('n-link', defineCustomElement(NLink))
+customElements.define('n-list-item-date', defineCustomElement(NListItemDate))
 customElements.define('n-list-nav', defineCustomElement(NListNav))
 customElements.define('n-list-nav-row', defineCustomElement(NListNavRow))
+customElements.define('n-list-news', defineCustomElement(NListNews))
 customElements.define('n-main', defineCustomElement(NMain))
 customElements.define('n-main-visual', defineCustomElement(NMainVisual))
 customElements.define('n-sheet-central', defineCustomElement(NSheetCentral))
 customElements.define('n-signature', defineCustomElement(NSignature))
 customElements.define('n-title-lv1-site', defineCustomElement(NTitleLv1Site))
+customElements.define('n-title-lv2-index', defineCustomElement(NTitleLv2Index))
 customElements.define('n-title-lv2-page', defineCustomElement(NTitleLv2Page))
 customElements.define('n-title-lv3', defineCustomElement(NTitleLv3))
 customElements.define('n-title-lv4', defineCustomElement(NTitleLv4))
