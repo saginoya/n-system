@@ -7,8 +7,9 @@ import NBanner from './components/NBanner.ce.vue'
 import NCard from './components/NCard.ce.vue'
 import NChip from './components/NChip.ce.vue'
 import NContainer1col from './components/NContainer1col.ce.vue'
-import NContainer2cols from './components/NContainer2cols.ce.vue'
-import NContainer3cols from './components/NContainer3cols.ce.vue'
+import NContainer2col from './components/NContainer2col.ce.vue'
+import NContainer3col from './components/NContainer3col.ce.vue'
+import NContainerFlex from './components/NContainerFlex.ce.vue'
 import NFooter from './components/NFooter.ce.vue'
 import NGlobalNav from './components/NGlobalNav.ce.vue'
 import NHeader from './components/NHeader.ce.vue'
@@ -22,7 +23,7 @@ import NListNavRow from './components/NListNavRow.ce.vue'
 import NListNews from './components/NListNews.ce.vue'
 import NMain from './components/NMain.ce.vue'
 import NMainVisual from './components/NMainVisual.ce.vue'
-import NSheetCentral from './components/NSheetCentral.ce.vue'
+import NSheet from './components/NSheet.ce.vue'
 import NSignature from './components/NSignature.ce.vue'
 import NTitleLv1Site from './components/NTitleLv1Site.ce.vue'
 import NTitleLv2Index from './components/NTitleLv2Index.ce.vue'
@@ -36,8 +37,9 @@ customElements.define('n-banner', defineCustomElement(NBanner))
 customElements.define('n-card', defineCustomElement(NCard))
 customElements.define('n-chip', defineCustomElement(NChip))
 customElements.define('n-container-1col', defineCustomElement(NContainer1col))
-customElements.define('n-container-2cols', defineCustomElement(NContainer2cols))
-customElements.define('n-container-3cols', defineCustomElement(NContainer3cols))
+customElements.define('n-container-2col', defineCustomElement(NContainer2col))
+customElements.define('n-container-3col', defineCustomElement(NContainer3col))
+customElements.define('n-container-flex', defineCustomElement(NContainerFlex))
 customElements.define('n-footer', defineCustomElement(NFooter))
 customElements.define('n-global-nav', defineCustomElement(NGlobalNav))
 customElements.define('n-header', defineCustomElement(NHeader))
@@ -51,7 +53,7 @@ customElements.define('n-list-nav-row', defineCustomElement(NListNavRow))
 customElements.define('n-list-news', defineCustomElement(NListNews))
 customElements.define('n-main', defineCustomElement(NMain))
 customElements.define('n-main-visual', defineCustomElement(NMainVisual))
-customElements.define('n-sheet-central', defineCustomElement(NSheetCentral))
+customElements.define('n-sheet', defineCustomElement(NSheet))
 customElements.define('n-signature', defineCustomElement(NSignature))
 customElements.define('n-title-lv1-site', defineCustomElement(NTitleLv1Site))
 customElements.define('n-title-lv2-index', defineCustomElement(NTitleLv2Index))
