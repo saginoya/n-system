@@ -5,7 +5,7 @@ defineProps<{
   src: string
   alt: string
   caption?: string
-  cover: boolean
+  cover?: boolean
 }>()
 </script>
 
