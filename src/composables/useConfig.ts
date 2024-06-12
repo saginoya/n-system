@@ -1,4 +1,4 @@
-import { readonly, onMounted, ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useJson } from '@/utils/useJson'
 import type { GlobalNav } from '@/types/link'
 
