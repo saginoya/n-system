@@ -10,6 +10,7 @@ import NContainer1col from './components/NContainer1col.ce.vue'
 import NContainer2col from './components/NContainer2col.ce.vue'
 import NContainer3col from './components/NContainer3col.ce.vue'
 import NContainerFlex from './components/NContainerFlex.ce.vue'
+import NContainerMedia from './components/NContainerMedia.ce.vue'
 import NFooter from './components/NFooter.ce.vue'
 import NGlobalNav from './components/NGlobalNav.ce.vue'
 import NHeader from './components/NHeader.ce.vue'
@@ -40,6 +41,7 @@ customElements.define('n-container-1col', defineCustomElement(NContainer1col))
 customElements.define('n-container-2col', defineCustomElement(NContainer2col))
 customElements.define('n-container-3col', defineCustomElement(NContainer3col))
 customElements.define('n-container-flex', defineCustomElement(NContainerFlex))
+customElements.define('n-container-media', defineCustomElement(NContainerMedia))
 customElements.define('n-footer', defineCustomElement(NFooter))
 customElements.define('n-global-nav', defineCustomElement(NGlobalNav))
 customElements.define('n-header', defineCustomElement(NHeader))
