@@ -21,8 +21,13 @@ const { linkTarget, linkIcon } = useLink()
 <template>
   <component
     :is="href ? 'a' : 'div'"
-    class="group relative block aspect-[4/1] max-w-full overflow-hidden rounded border-2 font-bold text-white"
-    :class="[bgColor(color), borderColor(color), widthSize(size)]"
+    class="group relative block max-w-full overflow-hidden rounded border-2 font-bold text-white"
+    :class="[
+      bgColor(color),
+      borderColor(color),
+      widthSize(size),
+      { 'aspect-[4/1]': size !== 'free' }
+    ]"
     :href="href ? href : null"
     :target="href && type ? linkTarget(type) : '_self'"
   >
