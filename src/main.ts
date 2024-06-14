@@ -16,6 +16,13 @@ import NGlobalNav from './components/NGlobalNav.ce.vue'
 import NHeader from './components/NHeader.ce.vue'
 import NHeaderTool from './components/NHeaderTool.ce.vue'
 import NImage from './components/NImage.ce.vue'
+import NInputEmail from './components/NInputEmail.ce.vue'
+import NInputNum from './components/NInputNum.ce.vue'
+import NInputsAddress from './components/NInputsAddress.ce.vue'
+import NInputsRadio from './components/NInputsRadio.ce.vue'
+import NInputTel from './components/NInputTel.ce.vue'
+import NInputText from './components/NInputText.ce.vue'
+import NInputUrl from './components/NInputUrl.ce.vue'
 import NLayoutDefault from './components/NLayoutDefault.ce.vue'
 import NLink from './components/NLink.ce.vue'
 import NListItemDate from './components/NListItemDate.ce.vue'
@@ -24,6 +31,8 @@ import NListNavRow from './components/NListNavRow.ce.vue'
 import NListNews from './components/NListNews.ce.vue'
 import NMain from './components/NMain.ce.vue'
 import NMainVisual from './components/NMainVisual.ce.vue'
+import NMsgCheck from './components/NMsgCheck.ce.vue'
+import NMsgWarning from './components/NMsgWarning.ce.vue'
 import NSheet from './components/NSheet.ce.vue'
 import NSignature from './components/NSignature.ce.vue'
 import NTitleLv1Site from './components/NTitleLv1Site.ce.vue'
@@ -47,6 +56,13 @@ customElements.define('n-global-nav', defineCustomElement(NGlobalNav))
 customElements.define('n-header', defineCustomElement(NHeader))
 customElements.define('n-header-tool', defineCustomElement(NHeaderTool))
 customElements.define('n-image', defineCustomElement(NImage))
+customElements.define('n-input-email', defineCustomElement(NInputEmail))
+customElements.define('n-input-num', defineCustomElement(NInputNum))
+customElements.define('n-inputs-address', defineCustomElement(NInputsAddress))
+customElements.define('n-inputs-radio', defineCustomElement(NInputsRadio))
+customElements.define('n-input-tel', defineCustomElement(NInputTel))
+customElements.define('n-input-text', defineCustomElement(NInputText))
+customElements.define('n-input-url', defineCustomElement(NInputUrl))
 customElements.define('n-layout-default', defineCustomElement(NLayoutDefault))
 customElements.define('n-link', defineCustomElement(NLink))
 customElements.define('n-list-item-date', defineCustomElement(NListItemDate))
@@ -55,6 +71,8 @@ customElements.define('n-list-nav-row', defineCustomElement(NListNavRow))
 customElements.define('n-list-news', defineCustomElement(NListNews))
 customElements.define('n-main', defineCustomElement(NMain))
 customElements.define('n-main-visual', defineCustomElement(NMainVisual))
+customElements.define('n-msg-check', defineCustomElement(NMsgCheck))
+customElements.define('n-msg-warning', defineCustomElement(NMsgWarning))
 customElements.define('n-sheet', defineCustomElement(NSheet))
 customElements.define('n-signature', defineCustomElement(NSignature))
 customElements.define('n-title-lv1-site', defineCustomElement(NTitleLv1Site))

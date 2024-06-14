@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>N-System</title>
+    <link rel="stylesheet" href="/css/n-system-variables.css" />
+  </head>
+  <body>
+    <noscript><iframe src="./noscript.html"></iframe></noscript>
+    <n-app json-path="/json/config.json" layout="default">
+      <n-card>
+        <n-title-lv2-page>出展案内書（申込書）資料請求フォーム</n-title-lv2-page>
+      </n-card>
+      <n-card>
+        <n-input-text
+          title="申込会社名"
+          name="organization"
+          autocomplete="organization"
+          placeholder="日報ビジネス株式会社"
+          required
+        ></n-input-text>
+
+        <n-input-text
+          title="ご担当者様 氏名"
+          name="name"
+          autocomplete="name"
+          placeholder="日報　太郎"
+          required
+        ></n-input-text>
+
+        <n-input-text
+          title="ご担当者様 所属・役職"
+          name="organization-title"
+          autocomplete="organization-title"
+          placeholder="企画営業部"
+        ></n-input-text>
+
+        <n-inputs-address
+          title="郵便番号"
+          name="postal-code"
+          address-title="資料送付先ご住所"
+          required
+        ></n-inputs-address>
+
+        <n-input-tel title="TEL" name="tel"></n-input-tel>
+        <n-input-tel title="FAX" name="fax" autocomplete=""></n-input-tel>
+
+        <n-input-email title="メールアドレス" name="email" required></n-input-email>
+
+        <n-input-num title="出展予定小間数" name="koma" min="0" step="1"></n-input-num>
+
+        <n-inputs-radio name="performance" values="有,無"></n-inputs-radio>
+      </n-card>
+    </n-app>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
