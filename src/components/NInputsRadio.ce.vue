@@ -16,7 +16,7 @@ const labelList: string[] | undefined = props.labels?.split(',')
 
 const model = ref<string>('')
 
-const { errors, isValidate, setTermsRequired, setTermsPattern, validate } = useValidation()
+const { errors, isValidate, setTermsRequired, validate } = useValidation()
 setTermsRequired(props.required)
 watchEffect(() => {
   validate(model.value)
