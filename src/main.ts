@@ -19,7 +19,7 @@ import NHeaderTool from './components/NHeaderTool.ce.vue'
 import NImage from './components/NImage.ce.vue'
 import NInputEmail from './components/NInputEmail.ce.vue'
 import NInputNum from './components/NInputNum.ce.vue'
-import NInputsAddress from './components/NInputsAddress.ce.vue'
+import NInputPostalCode from './components/NInputPostalCode.ce.vue'
 import NInputsRadio from './components/NInputsRadio.ce.vue'
 import NInputTel from './components/NInputTel.ce.vue'
 import NInputText from './components/NInputText.ce.vue'
@@ -61,7 +61,7 @@ customElements.define('n-header-tool', defineCustomElement(NHeaderTool))
 customElements.define('n-image', defineCustomElement(NImage))
 customElements.define('n-input-email', defineCustomElement(NInputEmail))
 customElements.define('n-input-num', defineCustomElement(NInputNum))
-customElements.define('n-inputs-address', defineCustomElement(NInputsAddress))
+customElements.define('n-input-postal-code', defineCustomElement(NInputPostalCode))
 customElements.define('n-inputs-radio', defineCustomElement(NInputsRadio))
 customElements.define('n-input-tel', defineCustomElement(NInputTel))
 customElements.define('n-input-text', defineCustomElement(NInputText))

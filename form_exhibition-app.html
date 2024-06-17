@@ -38,12 +38,19 @@
             placeholder="企画営業部"
           ></n-input-text>
 
-          <n-inputs-address
-            title="郵便番号"
-            name="postal-code"
-            address-title="資料送付先ご住所"
+          <n-input-postal-code title="郵便番号" name="postal-code" required></n-input-postal-code>
+
+          <n-input-text
+            title="資料送付先ご住所"
+            name="address"
+            autocomplete="address"
+            placeholder="大阪市中央区南本町1-5-11　カセンビルディング"
             required
-          ></n-inputs-address>
+          >
+            <p>
+              郵便番号を入力すると住所は自動入力されますが、番地や建物名は手入力で追加してください。
+            </p>
+          </n-input-text>
 
           <n-input-tel title="TEL" name="tel"></n-input-tel>
           <n-input-tel title="FAX" name="fax" autocomplete=""></n-input-tel>
