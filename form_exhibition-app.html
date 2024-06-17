@@ -51,7 +51,24 @@
 
         <n-input-num title="出展予定小間数" name="koma" min="0" step="1"></n-input-num>
 
-        <n-inputs-radio name="performance" values="有,無"></n-inputs-radio>
+        <n-inputs-radio title="実演の有無" name="performance" values="有,無"></n-inputs-radio>
+
+        <n-textarea title="出展物（予定）" name="exhibit"></n-textarea>
+
+        <n-inputs-radio
+          title="日報ビジネス主催展示会への出展履歴"
+          name="is-exhibited"
+          values="有,無"
+          required
+        ></n-inputs-radio>
+
+        <n-input-text
+          title="日報ビジネス主催展示会への出展履歴が「有」の場合展示会名をご記入ください"
+          name="what-exhibited"
+          placeholder="2023札幌パック"
+        ></n-input-text>
+
+        <n-textarea title="通信欄：ご質問等ございましたらご入力ください" name="note"></n-textarea>
       </n-card>
     </n-app>
 

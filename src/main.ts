@@ -35,6 +35,7 @@ import NMsgCheck from './components/NMsgCheck.ce.vue'
 import NMsgWarning from './components/NMsgWarning.ce.vue'
 import NSheet from './components/NSheet.ce.vue'
 import NSignature from './components/NSignature.ce.vue'
+import NTextarea from './components/NTextarea.ce.vue'
 import NTitleLv1Site from './components/NTitleLv1Site.ce.vue'
 import NTitleLv2Index from './components/NTitleLv2Index.ce.vue'
 import NTitleLv2Page from './components/NTitleLv2Page.ce.vue'
@@ -75,6 +76,7 @@ customElements.define('n-msg-check', defineCustomElement(NMsgCheck))
 customElements.define('n-msg-warning', defineCustomElement(NMsgWarning))
 customElements.define('n-sheet', defineCustomElement(NSheet))
 customElements.define('n-signature', defineCustomElement(NSignature))
+customElements.define('n-textarea', defineCustomElement(NTextarea))
 customElements.define('n-title-lv1-site', defineCustomElement(NTitleLv1Site))
 customElements.define('n-title-lv2-index', defineCustomElement(NTitleLv2Index))
 customElements.define('n-title-lv2-page', defineCustomElement(NTitleLv2Page))
