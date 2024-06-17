@@ -13,63 +13,67 @@
       <n-card>
         <n-title-lv2-page>出展案内書（申込書）資料請求フォーム</n-title-lv2-page>
       </n-card>
-      <n-card>
-        <n-input-text
-          title="申込会社名"
-          name="organization"
-          autocomplete="organization"
-          placeholder="日報ビジネス株式会社"
-          required
-        ></n-input-text>
+      <form action="mail.php" method="post">
+        <n-card>
+          <n-input-text
+            title="申込会社名"
+            name="organization"
+            autocomplete="organization"
+            placeholder="日報ビジネス株式会社"
+            required
+          ></n-input-text>
 
-        <n-input-text
-          title="ご担当者様 氏名"
-          name="name"
-          autocomplete="name"
-          placeholder="日報　太郎"
-          required
-        ></n-input-text>
+          <n-input-text
+            title="ご担当者様 氏名"
+            name="name"
+            autocomplete="name"
+            placeholder="日報　太郎"
+            required
+          ></n-input-text>
 
-        <n-input-text
-          title="ご担当者様 所属・役職"
-          name="organization-title"
-          autocomplete="organization-title"
-          placeholder="企画営業部"
-        ></n-input-text>
+          <n-input-text
+            title="ご担当者様 所属・役職"
+            name="organization-title"
+            autocomplete="organization-title"
+            placeholder="企画営業部"
+          ></n-input-text>
 
-        <n-inputs-address
-          title="郵便番号"
-          name="postal-code"
-          address-title="資料送付先ご住所"
-          required
-        ></n-inputs-address>
+          <n-inputs-address
+            title="郵便番号"
+            name="postal-code"
+            address-title="資料送付先ご住所"
+            required
+          ></n-inputs-address>
 
-        <n-input-tel title="TEL" name="tel"></n-input-tel>
-        <n-input-tel title="FAX" name="fax" autocomplete=""></n-input-tel>
+          <n-input-tel title="TEL" name="tel"></n-input-tel>
+          <n-input-tel title="FAX" name="fax" autocomplete=""></n-input-tel>
 
-        <n-input-email title="メールアドレス" name="email" required></n-input-email>
+          <n-input-email title="メールアドレス" name="email" required></n-input-email>
 
-        <n-input-num title="出展予定小間数" name="koma" min="0" step="1"></n-input-num>
+          <n-input-num title="出展予定小間数" name="koma" min="0" step="1"></n-input-num>
 
-        <n-inputs-radio title="実演の有無" name="performance" values="有,無"></n-inputs-radio>
+          <n-inputs-radio title="実演の有無" name="performance" values="有,無"></n-inputs-radio>
 
-        <n-textarea title="出展物（予定）" name="exhibit"></n-textarea>
+          <n-textarea title="出展物（予定）" name="exhibit"></n-textarea>
 
-        <n-inputs-radio
-          title="日報ビジネス主催展示会への出展履歴"
-          name="is-exhibited"
-          values="有,無"
-          required
-        ></n-inputs-radio>
+          <n-inputs-radio
+            title="日報ビジネス主催展示会への出展履歴"
+            name="is-exhibited"
+            values="有,無"
+            required
+          ></n-inputs-radio>
 
-        <n-input-text
-          title="日報ビジネス主催展示会への出展履歴が「有」の場合展示会名をご記入ください"
-          name="what-exhibited"
-          placeholder="2023札幌パック"
-        ></n-input-text>
+          <n-input-text
+            title="日報ビジネス主催展示会への出展履歴が「有」の場合展示会名をご記入ください"
+            name="what-exhibited"
+            placeholder="2023札幌パック"
+          ></n-input-text>
 
-        <n-textarea title="通信欄：ご質問等ございましたらご入力ください" name="note"></n-textarea>
-      </n-card>
+          <n-textarea title="通信欄：ご質問等ございましたらご入力ください" name="note"></n-textarea>
+
+          <n-btn type="submit" color="primary">送信</n-btn>
+        </n-card>
+      </form>
     </n-app>
 
     <script type="module" src="/src/main.ts"></script>
