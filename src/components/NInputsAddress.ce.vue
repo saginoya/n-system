@@ -23,12 +23,14 @@ const props = withDefaults(defineProps<AttributesInput & AttributesAccess>(), {
 
 const model = ref<string>('')
 
-const { isValidation, validationMsg, validateCheck } = useValidation()
+const { errors, isValidate, setTermsRequired, setTermsPattern, validate } = useValidation()
+setTermsRequired(props.required)
+setTermsPattern(props.pattern)
 const { address, fetchAddress, clearAddress } = useFetchAddress()
 
 watchEffect(() => {
-  validateCheck(model.value, props.required, props.pattern)
-  if (isValidation) {
+  validate(model.value)
+  if (isValidate.value) {
     fetchAddress(model.value)
   } else {
     clearAddress()
@@ -55,8 +57,8 @@ watchEffect(() => {
       v-model="model"
     />
     <div class="min-h-4">
-      <n-msg-check v-if="isValidation"></n-msg-check>
-      <n-msg-warning v-else>{{ validationMsg }}</n-msg-warning>
+      <n-msg-check v-if="isValidate"></n-msg-check>
+      <n-msg-warning v-else>{{ errors[0] }}</n-msg-warning>
     </div>
     <label for="address" class="font-bold">{{ addressTitle }}</label>
     <input

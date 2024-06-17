@@ -16,9 +16,11 @@ const props = withDefaults(defineProps<AttributesInput>(), {
 
 const model = ref<string>('')
 
-const { isValidation, validationMsg, validateCheck } = useValidation()
+const { errors, isValidate, setTermsRequired, setTermsPattern, validate } = useValidation()
+setTermsRequired(props.required)
+setTermsPattern(props.pattern)
 watchEffect(() => {
-  validateCheck(model.value, props.required, props.pattern)
+  validate(model.value)
 })
 </script>
 
@@ -41,8 +43,8 @@ watchEffect(() => {
       v-model="model"
     />
     <div class="min-h-4">
-      <n-msg-check v-if="isValidation"></n-msg-check>
-      <n-msg-warning v-else>{{ validationMsg }}</n-msg-warning>
+      <n-msg-check v-if="isValidate"></n-msg-check>
+      <n-msg-warning v-else>{{ errors[0] }}</n-msg-warning>
     </div>
     <slot />
   </div>

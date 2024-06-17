@@ -16,9 +16,10 @@ const labelList: string[] | undefined = props.labels?.split(',')
 
 const model = ref<string>('')
 
-const { isValidation, validationMsg, validateCheck } = useValidation()
+const { errors, isValidate, setTermsRequired, setTermsPattern, validate } = useValidation()
+setTermsRequired(props.required)
 watchEffect(() => {
-  validateCheck(model.value, props.required)
+  validate(model.value)
 })
 </script>
 
@@ -44,8 +45,8 @@ watchEffect(() => {
       </label>
     </div>
     <div class="min-h-4">
-      <n-msg-check v-if="isValidation"></n-msg-check>
-      <n-msg-warning v-else>{{ validationMsg }}</n-msg-warning>
+      <n-msg-check v-if="isValidate"></n-msg-check>
+      <n-msg-warning v-else>{{ errors[0] }}</n-msg-warning>
     </div>
     <slot />
   </div>
