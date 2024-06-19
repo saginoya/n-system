@@ -9,7 +9,7 @@ import { useDrawer } from '@/composables/useDrawer'
 
 const props = defineProps<{
   jsonPath: string
-  page: 'top' | undefined
+  page?: 'top'
 }>()
 const { siteTitle, copyright, mainVisual, navigation } = useConfig(props.jsonPath)
 const { drawer, operateDrawer } = useDrawer()
