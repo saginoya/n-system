@@ -30,4 +30,20 @@
   a {
     @apply text-blue-600;
   }
+  input {
+    @apply rounded;
+    @apply border-2;
+    @apply border-gray-300;
+    @apply px-2;
+    @apply py-1;
+    @apply text-lg;
+  }
+  textarea {
+    @apply rounded;
+    @apply border-2;
+    @apply border-gray-300;
+    @apply px-2;
+    @apply py-1;
+    @apply text-lg;
+  }
 }
