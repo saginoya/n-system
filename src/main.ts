@@ -17,13 +17,14 @@ import NGlobalNav from './components/NGlobalNav.ce.vue'
 import NHeader from './components/NHeader.ce.vue'
 import NHeaderTool from './components/NHeaderTool.ce.vue'
 import NImage from './components/NImage.ce.vue'
-import NInputEmail from './components/NInputEmail.ce.vue'
-import NInputNum from './components/NInputNum.ce.vue'
-import NInputPostalCode from './components/NInputPostalCode.ce.vue'
-import NInputsRadio from './components/NInputsRadio.ce.vue'
-import NInputTel from './components/NInputTel.ce.vue'
-import NInputText from './components/NInputText.ce.vue'
-import NInputUrl from './components/NInputUrl.ce.vue'
+// import NInputEmail from './components/NInputEmail.ce.vue'
+// import NInputNum from './components/NInputNum.ce.vue'
+// import NInputPostalCode from './components/NInputPostalCode.ce.vue'
+// import NInputsRadio from './components/NInputsRadio.ce.vue'
+// import NInputTel from './components/NInputTel.ce.vue'
+// import NInputText from './components/NInputText.ce.vue'
+// import NInputUrl from './components/NInputUrl.ce.vue'
+import NInputWrapper from './components/NInputWrapper.ce.vue'
 import NLayoutDefault from './components/NLayoutDefault.ce.vue'
 import NLink from './components/NLink.ce.vue'
 import NListItemDate from './components/NListItemDate.ce.vue'
@@ -59,13 +60,14 @@ customElements.define('n-global-nav', defineCustomElement(NGlobalNav))
 customElements.define('n-header', defineCustomElement(NHeader))
 customElements.define('n-header-tool', defineCustomElement(NHeaderTool))
 customElements.define('n-image', defineCustomElement(NImage))
-customElements.define('n-input-email', defineCustomElement(NInputEmail))
-customElements.define('n-input-num', defineCustomElement(NInputNum))
-customElements.define('n-input-postal-code', defineCustomElement(NInputPostalCode))
-customElements.define('n-inputs-radio', defineCustomElement(NInputsRadio))
-customElements.define('n-input-tel', defineCustomElement(NInputTel))
-customElements.define('n-input-text', defineCustomElement(NInputText))
-customElements.define('n-input-url', defineCustomElement(NInputUrl))
+// customElements.define('n-input-email', defineCustomElement(NInputEmail))
+// customElements.define('n-input-num', defineCustomElement(NInputNum))
+// customElements.define('n-input-postal-code', defineCustomElement(NInputPostalCode))
+// customElements.define('n-inputs-radio', defineCustomElement(NInputsRadio))
+// customElements.define('n-input-tel', defineCustomElement(NInputTel))
+// customElements.define('n-input-text', defineCustomElement(NInputText))
+// customElements.define('n-input-url', defineCustomElement(NInputUrl))
+customElements.define('n-input-wrapper', defineCustomElement(NInputWrapper))
 customElements.define('n-layout-default', defineCustomElement(NLayoutDefault))
 customElements.define('n-link', defineCustomElement(NLink))
 customElements.define('n-list-item-date', defineCustomElement(NListItemDate))
