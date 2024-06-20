@@ -7,7 +7,7 @@
     <title>N-System</title>
     <link rel="stylesheet" href="/css/n-system-variables.css" />
   </head>
-  <body>
+  <body style="visibility: hidden" onLoad="document.body.style.visibility='visible'">
     <noscript><iframe src="./noscript.html"></iframe></noscript>
     <n-app json-path="/json/config.json" layout="default" page="top">
       <n-container-1col>
@@ -126,7 +126,6 @@
         </n-container-flex>
       </n-container-1col>
     </n-app>
-
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>N-System</title>
     <link rel="stylesheet" href="/css/n-system-variables.css" />
+    <script src="https://yubinbango.github.io/yubinbango/yubinbango.js" charset="UTF-8"></script>
   </head>
   <body>
     <noscript><iframe src="./noscript.html"></iframe></noscript>
@@ -13,72 +14,175 @@
       <n-card>
         <n-title-lv2-page>出展案内書（申込書）資料請求フォーム</n-title-lv2-page>
       </n-card>
-      <form action="mail.php" method="post">
+      <form action="mail.php" method="post" class="h-adr">
+        <span class="p-country-name" style="display: none">Japan</span>
         <n-card>
-          <n-input-text
-            title="申込会社名"
-            name="organization"
-            autocomplete="organization"
-            placeholder="日報ビジネス株式会社"
-            required
-          ></n-input-text>
+          <n-input-wrapper title="申込会社名" required>
+            <input
+              type="text"
+              name="申込会社名"
+              autocomplete="organization"
+              placeholder="日報ビジネス株式会社"
+              required
+              class="w-full md:w-96"
+            />
+          </n-input-wrapper>
 
-          <n-input-text
-            title="ご担当者様 氏名"
-            name="name"
-            autocomplete="name"
-            placeholder="日報　太郎"
-            required
-          ></n-input-text>
+          <n-input-wrapper title="ご担当者様 氏名" required>
+            <input
+              type="text"
+              name="ご担当者様 氏名"
+              autocomplete="name"
+              placeholder="日報　太郎"
+              required
+              class="w-full md:w-96"
+            />
+          </n-input-wrapper>
 
-          <n-input-text
-            title="ご担当者様 所属・役職"
-            name="organization-title"
-            autocomplete="organization-title"
-            placeholder="企画営業部"
-          ></n-input-text>
+          <n-input-wrapper title="ご担当者様 所属・役職">
+            <input
+              type="text"
+              name="ご担当者様 所属・役職"
+              autocomplete="organization-title"
+              placeholder="企画営業部"
+              class="w-full md:w-96"
+            />
+          </n-input-wrapper>
 
-          <n-input-postal-code title="郵便番号" name="postal-code" required></n-input-postal-code>
+          <p>資料送付先ご住所</p>
 
-          <n-input-text
-            title="資料送付先ご住所"
-            name="address"
-            autocomplete="address"
-            placeholder="大阪市中央区南本町1-5-11　カセンビルディング"
-            required
-          >
-            <p>
-              郵便番号を入力すると住所は自動入力されますが、番地や建物名は手入力で追加してください。
-            </p>
-          </n-input-text>
+          <n-input-wrapper title="郵便番号" required>
+            <input
+              type="text"
+              name="郵便番号"
+              autocomplete="postal-code"
+              inputmode="decimal"
+              placeholder="101-0061"
+              pattern="^[0-9]{3}-?[0-9]{4}$"
+              required
+              class="w-full md:w-96 p-postal-code"
+            />
+          </n-input-wrapper>
 
-          <n-input-tel title="TEL" name="tel"></n-input-tel>
-          <n-input-tel title="FAX" name="fax" autocomplete=""></n-input-tel>
+          <n-input-wrapper title="都道府県" required>
+            <input
+              type="text"
+              name="都道府県"
+              autocomplete="address-level1"
+              placeholder="大阪府"
+              required
+              class="w-full md:w-96 p-region"
+            />
+          </n-input-wrapper>
 
-          <n-input-email title="メールアドレス" name="email" required></n-input-email>
+          <n-input-wrapper title="市町村" required>
+            <input
+              type="text"
+              name="市町村"
+              autocomplete="address-level2"
+              placeholder="大阪市"
+              required
+              class="w-full md:w-96 p-locality"
+            />
+          </n-input-wrapper>
 
-          <n-input-num title="出展予定小間数" name="koma" min="0" step="1"></n-input-num>
+          <n-input-wrapper title="番地以降" required>
+            <input
+              type="text"
+              name="番地以降"
+              autocomplete="street-address"
+              placeholder="中央区南本町1-5-11　カセンビルディング"
+              required
+              class="w-full max-w-2xl p-street-address"
+            />
+          </n-input-wrapper>
 
-          <n-inputs-radio title="実演の有無" name="performance" values="有,無"></n-inputs-radio>
+          <n-input-wrapper title="TEL">
+            <input
+              type="tel"
+              name="TEL"
+              autocomplete="tel"
+              inputmode="tel"
+              placeholder="03-3262-3462"
+              pattern="^\\+?\\d{1,4}?[-.\\s]?\\(?\\d{1,4}?\\)?[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,9}$"
+              class="w-full md:w-96"
+            />
+          </n-input-wrapper>
 
-          <n-textarea title="出展物（予定）" name="exhibit"></n-textarea>
+          <n-input-wrapper title="FAX">
+            <input
+              type="tel"
+              name="FAX"
+              inputmode="tel"
+              placeholder="03-3262-3462"
+              pattern="^\\+?\\d{1,4}?[-.\\s]?\\(?\\d{1,4}?\\)?[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,9}$"
+              class="w-full md:w-96"
+            />
+          </n-input-wrapper>
 
-          <n-inputs-radio
-            title="日報ビジネス主催展示会への出展履歴"
-            name="is-exhibited"
-            values="有,無"
-            required
-          ></n-inputs-radio>
+          <n-input-wrapper title="メールアドレス" required>
+            <input
+              type="email"
+              name="メールアドレス"
+              autocomplete="email"
+              inputmode="email"
+              placeholder="sample@sample.com"
+              pattern="^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$"
+              required
+              class="w-full max-w-2xl"
+            />
+          </n-input-wrapper>
 
-          <n-input-text
-            title="日報ビジネス主催展示会への出展履歴が「有」の場合展示会名をご記入ください"
-            name="what-exhibited"
-            placeholder="2023札幌パック"
-          ></n-input-text>
+          <n-input-wrapper title="出展予定小間数">
+            <input type="number" name="出展予定小間数" inputmode="numeric" min="0" step="1" />
+          </n-input-wrapper>
 
-          <n-textarea title="通信欄：ご質問等ございましたらご入力ください" name="note"></n-textarea>
+          <n-input-wrapper title="実演の有無">
+            <label class="inline-block py-2 px-1 text-lg">
+              <input type="radio" name="実演の有無" value="有" />有</label
+            >
+            <label class="inline-block py-2 px-1 text-lg">
+              <input type="radio" name="実演の有無" value="無" />無</label
+            >
+          </n-input-wrapper>
 
-          <n-btn type="submit" color="primary">送信</n-btn>
+          <n-input-wrapper title="出展物（予定）">
+            <textarea name="出展物（予定）" cols="60" rows="4" class="w-full"></textarea>
+          </n-input-wrapper>
+
+          <n-input-wrapper title="出展履歴" required>
+            <p>日報ビジネス主催展示会への出展があれば有を選択してください</p>
+            <label class="inline-block py-2 px-1 text-lg">
+              <input type="radio" name="出展履歴" value="有" required />有</label
+            >
+            <label class="inline-block py-2 px-1 text-lg">
+              <input type="radio" name="出展履歴" value="無" />無</label
+            >
+          </n-input-wrapper>
+
+          <n-input-wrapper title="展示会名">
+            <p>日報ビジネス主催展示会への出展履歴が「有」の場合展示会名をご記入ください</p>
+            <input
+              type="text"
+              name="展示会名"
+              placeholder="2023札幌パック"
+              class="w-full max-w-2xl"
+            />
+          </n-input-wrapper>
+
+          <n-input-wrapper title="通信欄">
+            <p>ご質問等ございましたらご入力ください</p>
+            <textarea name="通信欄" cols="60" rows="4" class="w-full"></textarea>
+          </n-input-wrapper>
+
+          <p>
+            <button
+              type="submit"
+              class="rounded border-2 font-bold text-white bg-primary border-primary"
+            >
+              <span class="inline-block px-4 py-2 hover:bg-black/20 focus:bg-black/20"> 送信 </span>
+            </button>
+          </p>
         </n-card>
       </form>
     </n-app>
