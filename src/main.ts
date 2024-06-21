@@ -26,6 +26,7 @@ import NImage from './components/NImage.ce.vue'
 // import NInputUrl from './components/NInputUrl.ce.vue'
 import NInputWrapper from './components/NInputWrapper.ce.vue'
 import NLayoutDefault from './components/NLayoutDefault.ce.vue'
+import NLayoutToppage from './components/NLayoutToppage.ce.vue'
 import NLink from './components/NLink.ce.vue'
 import NListItemDate from './components/NListItemDate.ce.vue'
 import NListNav from './components/NListNav.ce.vue'
@@ -69,6 +70,7 @@ customElements.define('n-image', defineCustomElement(NImage))
 // customElements.define('n-input-url', defineCustomElement(NInputUrl))
 customElements.define('n-input-wrapper', defineCustomElement(NInputWrapper))
 customElements.define('n-layout-default', defineCustomElement(NLayoutDefault))
+customElements.define('n-layout-toppage', defineCustomElement(NLayoutToppage))
 customElements.define('n-link', defineCustomElement(NLink))
 customElements.define('n-list-item-date', defineCustomElement(NListItemDate))
 customElements.define('n-list-nav', defineCustomElement(NListNav))
