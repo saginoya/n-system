@@ -1,51 +1,27 @@
 {
-  "siteTitle": ["OKINAWA", "PACK", "2025"],
-  "copyright": "Nippo Co., Ltd.",
+  "siteTitle": ["N-System"],
+  "copyright": "n-system",
   "mainVisual": {
-    "top": "/images/banners/main-visual.png",
-    "lower": "/images/banners/main-visual-lower.png"
+    "top": "/images/banners/n-system-mainvisual.png",
+    "lower": "/images/banners/n-system-subvisual.png"
   },
   "navigation": {
-    "lang": [],
+    "lang": [
+      {
+        "name": "NEW環境展",
+        "path": "https://www.n-expo.jp/",
+        "type": "external"
+      }
+    ],
     "header": [
       {
         "name": "トップ",
-        "path": "./",
+        "path": "/",
         "type": "internal"
       },
       {
-        "name": "開催に向けて",
-        "path": "greeting.html",
-        "type": "internal"
-      },
-      {
-        "name": "開催概要",
-        "path": "outline.html",
-        "type": "internal"
-      },
-      {
-        "name": "出展要項",
-        "path": "rules.html",
-        "type": "internal"
-      },
-      {
-        "name": "会場アクセス",
-        "path": "access.html",
-        "type": "internal"
-      },
-      {
-        "name": "過去出展社一覧",
-        "path": "past-exhibitor-list.html",
-        "type": "internal"
-      },
-      {
-        "name": "広報活動",
-        "path": "publicity.html",
-        "type": "internal"
-      },
-      {
-        "name": "出展申込",
-        "path": "exhibition-app.html",
+        "name": "クイックスタート",
+        "path": "/pages/quick-start.html",
         "type": "internal"
       }
     ],

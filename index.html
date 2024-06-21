@@ -10,121 +10,23 @@
   <body style="visibility: hidden" onLoad="document.body.style.visibility='visible'">
     <noscript><iframe src="./noscript.html"></iframe></noscript>
     <n-app json-path="/json/config.json" layout="toppage">
-      <n-container-1col>
+      <n-card>
+        <n-title-lv2-index>N-Systemとは</n-title-lv2-index>
+        <div>
+          <p>日報グループ主催の展示会サイトのためのデザインシステムです。</p>
+          <p>WEBコンポーネントを利用してデザインの統一性やUI・UXの品質向上を目指します。</p>
+        </div>
+      </n-card>
+
+      <n-card>
         <n-title-lv2-index>新着情報</n-title-lv2-index>
-        <n-card>
-          <n-list-news>
-            <n-list-item-date datetime="2024-06-17T13:00:00+09:00">
-              公式ホームページを公開しました。
-            </n-list-item-date>
-          </n-list-news>
-        </n-card>
-      </n-container-1col>
-      <n-container-1col>
-        <n-title-lv2-index>お問い合わせ</n-title-lv2-index>
-        <n-card>
-          <n-container-flex>
-            <n-image
-              src="/images/logos/nippo-logo.png"
-              width="280"
-              height="34"
-              alt="日報ビジネス株式会社"
-            ></n-image>
-            <n-title-lv3>2025沖縄（うちなー）パック事務局</n-title-lv3>
-          </n-container-flex>
-          <hr />
-          <n-container-2col>
-            <section>
-              <n-title-lv4>大阪</n-title-lv4>
-              <p>〒541-0054 大阪市中央区南本町1-5-11</p>
-              <p>Tel. 06(6262)2406 （代）</p>
-              <p>Fax. 06(6265)7127</p>
-            </section>
-            <section>
-              <n-title-lv4>東京</n-title-lv4>
-              <p>〒101-0061 東京都千代田区神田三崎町3-1-5</p>
-              <p>Tel. 03(3262)3462 （代）</p>
-              <p>Fax. 03(5276)4431</p>
-            </section>
-          </n-container-2col>
-        </n-card>
-      </n-container-1col>
-      <n-container-2col>
-        <section>
-          <n-title-lv2-index>SNS</n-title-lv2-index>
-          <n-card>
-            <n-sheet>
-              <n-banner
-                color="info"
-                size="free"
-                href="https://www.facebook.com/nippo.biz/"
-                type="external"
-              >
-                <n-image
-                  src="/images/banners/bnr-facebook.png"
-                  width="312"
-                  height="100"
-                  alt=""
-                  caption="Facebook"
-                ></n-image>
-              </n-banner>
-            </n-sheet>
-          </n-card>
-        </section>
-        <section>
-          <n-title-lv2-index>広告</n-title-lv2-index>
-          <n-card>
-            <n-sheet>
-              <n-banner color="success" size="md"> バナー広告募集中 </n-banner>
-              <p>バナー広告を掲載いたします。詳細はお気軽にお問合せ下さい。</p>
-            </n-sheet>
-          </n-card>
-        </section>
-      </n-container-2col>
-      <n-container-1col>
-        <n-title-lv2-index>日報ビジネスの発行物</n-title-lv2-index>
-        <n-container-flex>
-          <n-banner
-            color="accent"
-            size="free"
-            href="https://www.nippo.co.jp/ht/index.htm"
-            type="external"
-          >
-            <n-image
-              src="/images/banners/bnr-hoso-times.gif"
-              width="150"
-              height="40"
-              alt="包装タイムス"
-            ></n-image>
-          </n-banner>
-          <n-banner
-            color="accent"
-            size="free"
-            href="https://www.nippo.co.jp/fp/index.htm"
-            type="external"
-          >
-            <n-image
-              src="/images/banners/bnr-food-package.gif"
-              width="150"
-              height="40"
-              alt="食品包装"
-            ></n-image>
-          </n-banner>
-          <n-banner
-            color="accent"
-            size="free"
-            href="https://www.nippo.co.jp/cb/index.htm"
-            type="external"
-          >
-            <n-image
-              src="/images/banners/bnr-carton-box.gif"
-              width="150"
-              height="40"
-              alt="カートン&ボックス"
-            ></n-image>
-          </n-banner>
-        </n-container-flex>
-      </n-container-1col>
+        <n-list-news>
+          <n-list-item-date datetime="2024-06-21T13:00:00+09:00">
+            <p>N-Systemのベータ版0.2.0リリース</p>
+            <p>2025沖縄パックサイトに導入</p>
+          </n-list-item-date>
+        </n-list-news>
+      </n-card>
     </n-app>
     <script type="module" src="/src/main.ts"></script>
   </body>
