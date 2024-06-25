@@ -27,7 +27,7 @@ import NImage from './components/NImage.ce.vue'
 // import NInputUrl from './components/NInputUrl.ce.vue'
 import NInputWrapper from './components/NInputWrapper.ce.vue'
 import NLayoutDefault from './components/NLayoutDefault.ce.vue'
-import NLayoutToppage from './components/NLayoutToppage.ce.vue'
+import NLayoutIndex from './components/NLayoutIndex.ce.vue'
 import NLink from './components/NLink.ce.vue'
 import NListItemDate from './components/NListItemDate.ce.vue'
 import NListNav from './components/NListNav.ce.vue'
@@ -39,7 +39,7 @@ import NMsgCheck from './components/NMsgCheck.ce.vue'
 import NMsgWarning from './components/NMsgWarning.ce.vue'
 import NSheet from './components/NSheet.ce.vue'
 import NSignature from './components/NSignature.ce.vue'
-import NTextarea from './components/NTextarea.ce.vue'
+// import NTextarea from './components/NTextarea.ce.vue'
 import NTitleLv1Site from './components/NTitleLv1Site.ce.vue'
 import NTitleLv2Index from './components/NTitleLv2Index.ce.vue'
 import NTitleLv2Page from './components/NTitleLv2Page.ce.vue'
@@ -72,7 +72,7 @@ customElements.define('n-image', defineCustomElement(NImage))
 // customElements.define('n-input-url', defineCustomElement(NInputUrl))
 customElements.define('n-input-wrapper', defineCustomElement(NInputWrapper))
 customElements.define('n-layout-default', defineCustomElement(NLayoutDefault))
-customElements.define('n-layout-toppage', defineCustomElement(NLayoutToppage))
+customElements.define('n-layout-index', defineCustomElement(NLayoutIndex))
 customElements.define('n-link', defineCustomElement(NLink))
 customElements.define('n-list-item-date', defineCustomElement(NListItemDate))
 customElements.define('n-list-nav', defineCustomElement(NListNav))
@@ -84,7 +84,7 @@ customElements.define('n-msg-check', defineCustomElement(NMsgCheck))
 customElements.define('n-msg-warning', defineCustomElement(NMsgWarning))
 customElements.define('n-sheet', defineCustomElement(NSheet))
 customElements.define('n-signature', defineCustomElement(NSignature))
-customElements.define('n-textarea', defineCustomElement(NTextarea))
+// customElements.define('n-textarea', defineCustomElement(NTextarea))
 customElements.define('n-title-lv1-site', defineCustomElement(NTitleLv1Site))
 customElements.define('n-title-lv2-index', defineCustomElement(NTitleLv2Index))
 customElements.define('n-title-lv2-page', defineCustomElement(NTitleLv2Page))
