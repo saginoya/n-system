@@ -7,6 +7,7 @@ import NBanner from './components/NBanner.ce.vue'
 import NBtn from './components/NBtn.ce.vue'
 import NCard from './components/NCard.ce.vue'
 import NChip from './components/NChip.ce.vue'
+import NCode from './components/NCode.ce.vue'
 import NContainer1col from './components/NContainer1col.ce.vue'
 import NContainer2col from './components/NContainer2col.ce.vue'
 import NContainer3col from './components/NContainer3col.ce.vue'
@@ -51,6 +52,7 @@ customElements.define('n-banner', defineCustomElement(NBanner))
 customElements.define('n-btn', defineCustomElement(NBtn))
 customElements.define('n-card', defineCustomElement(NCard))
 customElements.define('n-chip', defineCustomElement(NChip))
+customElements.define('n-code', defineCustomElement(NCode))
 customElements.define('n-container-1col', defineCustomElement(NContainer1col))
 customElements.define('n-container-2col', defineCustomElement(NContainer2col))
 customElements.define('n-container-3col', defineCustomElement(NContainer3col))
