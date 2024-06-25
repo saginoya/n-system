@@ -1,21 +1,32 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-const props = defineProps<{
-  html: string
-  title?: string
-}>()
+const props = withDefaults(
+  defineProps<{
+    code: string
+    title?: string
+    codeType: 'html' | 'css' | 'json'
+  }>(),
+  {
+    codeType: 'html'
+  }
+)
 
 const escapeHtml = (html: string) => {
   const div = document.createElement('div')
   div.appendChild(document.createTextNode(html))
-  // 改行文字を <br> タグに置き換える
-  const escapedHtml = div.innerHTML.replace(/\\n/g, '<br />')
-  return escapedHtml
+  return div.innerHTML
+}
+const replaceBreak = (code: string) => {
+  return code.replace(/\\n/g, '<br />')
 }
 
-const escapedHtml = computed(() => {
-  return escapeHtml(props.html)
+const escapedCode = computed(() => {
+  let code = props.code
+  if (props.codeType === 'html') {
+    code = escapeHtml(code)
+  }
+  return replaceBreak(code)
 })
 </script>
 
@@ -24,7 +35,7 @@ const escapedHtml = computed(() => {
     <p v-if="title" class="px-1">
       <span class="bg-cyan-700 px-2">{{ title }}</span>
     </p>
-    <pre class="whitespace-pre-wrap p-2"><code v-html="escapedHtml"></code></pre>
+    <pre class="whitespace-pre-wrap p-2"><code v-html="escapedCode"></code></pre>
   </div>
 </template>
 
