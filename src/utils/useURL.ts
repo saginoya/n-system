@@ -1,31 +1,29 @@
 export const useURL = () => {
-  const url = document.location
-  const href = url.href
-  const origin = url.origin
-  const pathName = url.pathname
+  const currentUrl = new URL(document.location.href)
 
-  const currentDirectory = () => {
-    const array = pathName.split('/')
-    const directory = array.slice(0, array.length - 1).join('/')
-    return origin + directory + '/'
+  const normalizePath = (path: string): string => {
+    // `index.html`が末尾にある場合は除去する
+    return path.replace(/\/index\.html$/, '/')
   }
 
-  const samePathname = (link: string) => {
-    const name = () => {
-      switch (link) {
-        case 'index.html':
-          return ''
-        case './':
-          return ''
-        default:
-          return link
-      }
+  const isSamePage = (link: string): boolean => {
+    let linkUrl: URL
+    try {
+      // linkが絶対URLであればそのままnew URLに渡し、
+      // 相対パスであればdocument.location.originをベースにしてnew URLに渡す
+      linkUrl = new URL(link, document.location.origin)
+    } catch (error) {
+      console.error('Invalid URL:', link)
+      return false
     }
-    const path = currentDirectory() + name()
-    return path === href || path + 'index.html' === href
+
+    const currentPath = normalizePath(currentUrl.origin + currentUrl.pathname)
+    const linkPath = normalizePath(linkUrl.origin + linkUrl.pathname)
+
+    return currentPath === linkPath
   }
 
   return {
-    samePathname
+    isSamePage
   }
 }

@@ -9,13 +9,13 @@ defineProps<{
 }>()
 
 const { linkTarget, linkIcon } = useLink()
-const { samePathname } = useURL()
+const { isSamePage } = useURL()
 </script>
 
 <template>
   <a
     class="inline-block rounded-full px-3 py-1 hover:bg-black/20 focus:bg-black/20"
-    :class="{ 'bg-black/30': samePathname(href) }"
+    :class="{ 'bg-black/30': isSamePage(href) }"
     :href
     :target="linkTarget(type)"
   >
