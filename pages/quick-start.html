@@ -16,7 +16,93 @@
       </n-card>
 
       <n-card>
-        <n-title-lv3-index>インポート</n-title-lv3-index>
+        <n-title-lv3>インポート</n-title-lv3>
+        <p>まずはコアファイルを読み込みます。</p>
+        <n-code
+          title="headの内部"
+          html='<script type="module" crossorigin src="/assets/n-system.js"></script>\n<link rel="stylesheet" crossorigin href="/assets/n-system.css" />'
+        >
+        </n-code>
+      </n-card>
+      <n-card>
+        <n-title-lv3>サイトの設定</n-title-lv3>
+        <p>
+          次にサイトの設定ファイルを設置して読み込みます。JSON形式で以下のようなファイルを作成して設置してください。場所やファイル名は自由です。
+        </p>
+        <p>また、メインビジュアルが必須となっているので、画像もご用意ください。</p>
+        <p>
+          メインビジュアルのパスやグローバルナビのリンクのパスを記入しますが、パスは絶対パスで記入してください。
+        </p>
+        <n-code
+          title="config.json"
+          html='{
+          "siteTitle": ["N-System"],
+          "copyright": "n-system",
+          "mainVisual": {
+            "top": "/images/banners/n-system-mainvisual.png",
+            "lower": "/images/banners/n-system-subvisual.png"
+          },
+          "navigation": {
+            "lang": [
+              {
+                "name": "NEW環境展",
+                "path": "https://www.n-expo.jp/",
+                "type": "external"
+              }
+            ],
+            "header": [
+              {
+                "name": "トップ",
+                "path": "/",
+                "type": "internal"
+              },
+              {
+                "name": "クイックスタート",
+                "path": "/pages/quick-start.html",
+                "type": "internal"
+              }
+            ],
+            "footer": [
+              {
+                "name": "日報インターネット",
+                "path": "https://www.nippo.co.jp/",
+                "type": "external"
+              }
+            ]
+          }
+        }'
+        >
+        </n-code>
+        <p>そして、bodyにNAppコンポーネントを設置して先ほどのjsonファイルを読み込ませます。</p>
+        <n-code title="bodyの内部" html='<n-app json-path="/json/config.json"></n-app>'> </n-code>
+      </n-card>
+      <n-card>
+        <n-title-lv3>CSSの設定</n-title-lv3>
+        <p>
+          サイトのテーマカラーを設定します。まずは、n-system-variables.cssファイルを設置してください。
+        </p>
+        <p>そして、以下のような形式でカラーを設定してください。</p>
+        <n-code
+          title="n-system-variables.css"
+          html=":root {
+          --color-primary: #3f3f46;
+          --color-secondary: #6d28d9;
+          --color-accent: #c2410c;
+          --color-exhibition-a: #047857;
+          --color-exhibition-b: #0369a1;
+          --color-info: #2196f3;
+          --color-success: #4caf50;
+          --color-error: #f44336;
+          --color-warning: #ff9800;
+        }"
+        >
+        </n-code>
+        <p>最後にCSSファイルを読み込めば導入は完了です。</p>
+        <n-code
+          title="headの内部"
+          html='<link rel="stylesheet" href="/css/n-system-variables.css" />'
+        >
+        </n-code>
       </n-card>
     </n-app>
     <script type="module" src="/src/main.ts"></script>
