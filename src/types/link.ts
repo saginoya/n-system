@@ -6,7 +6,7 @@ export type Link = {
   type: LinkType
 }
 export type GlobalNav = {
-  lang: Link[]
+  related: Link[]
   header: Link[]
   footer: Link[]
 }
