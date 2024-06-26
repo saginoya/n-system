@@ -1,4 +1,4 @@
-export type LinkType = 'internal' | 'external' | 'doc'
+export type LinkType = 'internal' | 'external' | 'pdf' | 'download'
 
 export type Link = {
   name: string

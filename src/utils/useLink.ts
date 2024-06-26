@@ -1,5 +1,6 @@
 import IconOpenInNew from '@/components/icons/IconOpenInNew.vue'
-import IconFileOpen from '@/components/icons/IconFileOpen.vue'
+import IconDownload from '@/components/icons/IconDownload.vue'
+import IconPdf from '@/components/icons/IconPdf.vue'
 import type { LinkType } from '@/types/link'
 import type { Component } from 'vue'
 
@@ -10,8 +11,10 @@ export const useLink = () => {
 
   const linkIcon = (type: LinkType): Component | undefined => {
     switch (type) {
-      case 'doc':
-        return IconFileOpen
+      case 'pdf':
+        return IconPdf
+      case 'download':
+        return IconDownload
       case 'external':
         return IconOpenInNew
       default:
