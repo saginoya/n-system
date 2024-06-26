@@ -29,10 +29,12 @@ import NInputWrapper from './components/NInputWrapper.ce.vue'
 import NLayoutDefault from './components/NLayoutDefault.ce.vue'
 import NLayoutIndex from './components/NLayoutIndex.ce.vue'
 import NLink from './components/NLink.ce.vue'
+import NListItem2col from './components/NListItem2col.ce.vue'
 import NListItemDate from './components/NListItemDate.ce.vue'
 import NListNav from './components/NListNav.ce.vue'
 import NListNavRow from './components/NListNavRow.ce.vue'
 import NListNews from './components/NListNews.ce.vue'
+import NListSimple from './components/NListSimple.ce.vue'
 import NMain from './components/NMain.ce.vue'
 import NMainVisual from './components/NMainVisual.ce.vue'
 import NMsgCheck from './components/NMsgCheck.ce.vue'
@@ -74,10 +76,12 @@ customElements.define('n-input-wrapper', defineCustomElement(NInputWrapper))
 customElements.define('n-layout-default', defineCustomElement(NLayoutDefault))
 customElements.define('n-layout-index', defineCustomElement(NLayoutIndex))
 customElements.define('n-link', defineCustomElement(NLink))
+customElements.define('n-list-item-2col', defineCustomElement(NListItem2col))
 customElements.define('n-list-item-date', defineCustomElement(NListItemDate))
 customElements.define('n-list-nav', defineCustomElement(NListNav))
 customElements.define('n-list-nav-row', defineCustomElement(NListNavRow))
 customElements.define('n-list-news', defineCustomElement(NListNews))
+customElements.define('n-list-simple', defineCustomElement(NListSimple))
 customElements.define('n-main', defineCustomElement(NMain))
 customElements.define('n-main-visual', defineCustomElement(NMainVisual))
 customElements.define('n-msg-check', defineCustomElement(NMsgCheck))
