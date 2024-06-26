@@ -23,6 +23,11 @@
         "name": "クイックスタート",
         "path": "/pages/quick-start.html",
         "type": "internal"
+      },
+      {
+        "name": "バナー",
+        "path": "/pages/banner.html",
+        "type": "internal"
       }
     ],
     "footer": [

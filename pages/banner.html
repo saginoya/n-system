@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>N-System</title>
+    <link rel="stylesheet" href="/css/n-system-variables.css" />
+  </head>
+  <body style="visibility: hidden" onLoad="document.body.style.visibility='visible'">
+    <noscript><iframe src="./noscript.html"></iframe></noscript>
+    <n-app json-path="/json/config.json">
+      <n-card>
+        <n-title-lv2-index>バナー</n-title-lv2-index>
+        <p>バナーコンポーネントの利用方法を解説します。</p>
+      </n-card>
+
+      <n-card>
+        <n-title-lv3>属性一覧</n-title-lv3>
+        <n-list-simple>
+          <n-list-item-2col>
+            <div slot="header">color</div>
+            <p>必須・色の指定（カラーページ参照）</p>
+          </n-list-item-2col>
+          <n-list-item-2col>
+            <div slot="header">size</div>
+            <p>必須・サイズをxs・sm・md・lg・xlまたはfreeから選択</p>
+            <p>freeは内容のサイズにフィットするため、画像などを利用する場合に利用</p>
+          </n-list-item-2col>
+          <n-list-item-2col>
+            <div slot="header">href</div>
+            <p>任意・リンクを設定する場合はURLを記入する</p>
+          </n-list-item-2col>
+          <n-list-item-2col>
+            <div slot="header">type</div>
+            <p>任意・リンクを設定する場合リンクタイプを指定（リンクタイプページ参照）</p>
+          </n-list-item-2col>
+        </n-list-simple>
+      </n-card>
+
+      <n-card>
+        <n-title-lv3>サンプル</n-title-lv3>
+        <n-banner color="primary" size="xs">XS</n-banner>
+        <n-banner color="secondary" size="sm">SM</n-banner>
+        <n-banner color="accent" size="md">MD</n-banner>
+        <n-banner color="exhibition-a" size="lg">LG</n-banner>
+        <n-banner color="exhibition-b" size="xl">XL</n-banner>
+        <n-code
+          code='<n-banner color="primary" size="xs">XS</n-banner>
+<n-banner color="secondary" size="sm">SM</n-banner>
+<n-banner color="accent" size="md">MD</n-banner>
+<n-banner color="exhibition-a" size="lg">LG</n-banner>
+<n-banner color="exhibition-b" size="xl">XL</n-banner>'
+        ></n-code>
+      </n-card>
+      <n-card>
+        <n-title-lv3>リンク付き</n-title-lv3>
+        <n-banner color="primary" size="md" href="/" type="internal">トップページへ</n-banner>
+        <n-banner color="primary" size="md" href="https://www.nippo.co.jp/" type="external"
+          >外部ページへ</n-banner
+        >
+        <n-banner color="primary" size="md" href="/doc/sample.pdf" type="pdf"
+          >PDFへのリンク</n-banner
+        >
+        <n-banner color="primary" size="md" href="/doc/sample.pdf" type="download"
+          >エクセルなどダウンロード</n-banner
+        >
+        <n-code
+          code='<n-banner color="primary" size="md" href="/" type="internal">トップページへ</n-banner>
+<n-banner color="primary" size="md" href="https://www.nippo.co.jp/" type="external">外部ページへ</n-banner>
+<n-banner color="primary" size="md" href="/doc/sample.pdf" type="pdf"
+>PDFへのリンク</n-banner>
+<n-banner color="primary" size="md" href="/doc/sample.pdf" type="download"
+>エクセルなどダウンロード</n-banner>'
+        ></n-code>
+      </n-card>
+    </n-app>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
