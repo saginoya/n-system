@@ -36,7 +36,7 @@ const { linkTarget, linkIcon } = useLink()
       :class="[{ 'group-hover:bg-black/20': href }, { 'group-focus:bg-black/20': href }]"
     >
       <slot />
-      <component v-if="type" :is="linkIcon(type)" />
+      <component v-if="type" :is="linkIcon(type)" class="size-6" />
     </div>
     <!--     <el-banner-overlay
       v-if="placeOn"
