@@ -5,7 +5,7 @@ const props = withDefaults(
   defineProps<{
     code: string
     title?: string
-    codeType: 'html' | 'css' | 'json'
+    codeType?: 'html' | 'css' | 'json'
   }>(),
   {
     codeType: 'html'
