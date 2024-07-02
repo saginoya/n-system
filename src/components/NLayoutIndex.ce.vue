@@ -23,7 +23,13 @@ const { drawer, operateDrawer } = useDrawer()
       class="fixed left-0 top-0 z-40 h-screen w-5/6 -translate-x-96 transition duration-200 md:w-96"
       :class="{ 'translate-x-0': drawer }"
     ></n-header>
-    <n-main-visual v-if="mainVisual" :nav="navigation?.related" :image="mainVisual.top">
+    <n-main-visual
+      v-if="mainVisual"
+      :nav="navigation?.related"
+      :image="mainVisual.top"
+      :width="1024"
+      :height="360"
+    >
     </n-main-visual>
     <n-global-nav v-if="navigation" :nav="navigation.header" />
     <n-main class="flex flex-1 justify-center py-1">

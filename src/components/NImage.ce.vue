@@ -1,5 +1,7 @@
 <script setup lang="ts">
-defineProps<{
+import { computed } from 'vue'
+
+const props = defineProps<{
   width: number
   height: number
   src: string
@@ -7,6 +9,20 @@ defineProps<{
   caption?: string
   cover?: boolean
 }>()
+
+// 最大公約数を求める関数
+const getGCD = (x: number, y: number): number => (x % y ? getGCD(y, x % y) : y)
+// アスペクト比のスタイル
+const aspectStyle = computed(() => {
+  if (typeof props.width !== 'number' || typeof props.height !== 'number') {
+    return undefined
+  }
+  const gcd: number = getGCD(props.width, props.height)
+  const widthValue = props.width / gcd
+  const heightValue = props.height / gcd
+  console.log(gcd, widthValue, heightValue)
+  return { 'aspect-ratio': widthValue / heightValue }
+})
 </script>
 
 <template>
@@ -18,8 +34,9 @@ defineProps<{
       decoding="auto"
       :src="src"
       :alt="alt"
-      class="h-auto max-w-full align-top"
-      :class="{ 'object-cover': cover }"
+      class="h-auto max-w-full bg-gray-50 align-top"
+      :class="[cover ? 'object-cover' : 'object-contain']"
+      :style="aspectStyle"
     />
     <figcaption v-if="caption" class="leading-5" :style="{ 'max-width': width + 'px' }">
       {{ caption }}
