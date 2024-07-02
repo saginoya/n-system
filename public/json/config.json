@@ -25,6 +25,11 @@
         "type": "internal"
       },
       {
+        "name": "イメージ",
+        "path": "/pages/image.html",
+        "type": "internal"
+      },
+      {
         "name": "バナー",
         "path": "/pages/banner.html",
         "type": "internal"
