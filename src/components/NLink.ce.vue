@@ -15,7 +15,7 @@ const { isSamePage } = useURL()
 <template>
   <a
     class="inline-block rounded-full px-3 py-1 hover:bg-black/20 focus:bg-black/20"
-    :class="{ 'bg-black/30': isSamePage(href), 'mix-blend-overlay': isSamePage(href) }"
+    :class="{ 'bg-black': isSamePage(href), 'opacity-30': isSamePage(href) }"
     :href
     :target="linkTarget(type)"
   >
