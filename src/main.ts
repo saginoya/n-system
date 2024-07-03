@@ -13,10 +13,12 @@ import NContainer2col from './components/NContainer2col.ce.vue'
 import NContainer3col from './components/NContainer3col.ce.vue'
 import NContainerFlex from './components/NContainerFlex.ce.vue'
 import NContainerMedia from './components/NContainerMedia.ce.vue'
+import NElapsed from './components/NElapsed.ce.vue'
 import NFooter from './components/NFooter.ce.vue'
 import NGlobalNav from './components/NGlobalNav.ce.vue'
 import NHeader from './components/NHeader.ce.vue'
 import NHeaderTool from './components/NHeaderTool.ce.vue'
+import NIcon from './components/NIcon.ce.vue'
 import NImage from './components/NImage.ce.vue'
 // import NInputEmail from './components/NInputEmail.ce.vue'
 // import NInputNum from './components/NInputNum.ce.vue'
@@ -29,6 +31,7 @@ import NInputWrapper from './components/NInputWrapper.ce.vue'
 import NLayoutDefault from './components/NLayoutDefault.ce.vue'
 import NLayoutIndex from './components/NLayoutIndex.ce.vue'
 import NLink from './components/NLink.ce.vue'
+import NListDisc from './components/NListDisc.ce.vue'
 import NListItem2col from './components/NListItem2col.ce.vue'
 import NListItemDate from './components/NListItemDate.ce.vue'
 import NListNav from './components/NListNav.ce.vue'
@@ -60,10 +63,12 @@ customElements.define('n-container-2col', defineCustomElement(NContainer2col))
 customElements.define('n-container-3col', defineCustomElement(NContainer3col))
 customElements.define('n-container-flex', defineCustomElement(NContainerFlex))
 customElements.define('n-container-media', defineCustomElement(NContainerMedia))
+customElements.define('n-elapsed', defineCustomElement(NElapsed))
 customElements.define('n-footer', defineCustomElement(NFooter))
 customElements.define('n-global-nav', defineCustomElement(NGlobalNav))
 customElements.define('n-header', defineCustomElement(NHeader))
 customElements.define('n-header-tool', defineCustomElement(NHeaderTool))
+customElements.define('n-icon', defineCustomElement(NIcon))
 customElements.define('n-image', defineCustomElement(NImage))
 // customElements.define('n-input-email', defineCustomElement(NInputEmail))
 // customElements.define('n-input-num', defineCustomElement(NInputNum))
@@ -76,6 +81,7 @@ customElements.define('n-input-wrapper', defineCustomElement(NInputWrapper))
 customElements.define('n-layout-default', defineCustomElement(NLayoutDefault))
 customElements.define('n-layout-index', defineCustomElement(NLayoutIndex))
 customElements.define('n-link', defineCustomElement(NLink))
+customElements.define('n-list-disc', defineCustomElement(NListDisc))
 customElements.define('n-list-item-2col', defineCustomElement(NListItem2col))
 customElements.define('n-list-item-date', defineCustomElement(NListItemDate))
 customElements.define('n-list-nav', defineCustomElement(NListNav))
