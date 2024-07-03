@@ -1,25 +1,30 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import NLayoutDefault from '@/components/NLayoutDefault.ce.vue'
 import NLayoutIndex from '@/components/NLayoutIndex.ce.vue'
-defineProps<{
+const props = defineProps<{
   jsonPath: string
   layout?: 'default' | 'toppage'
 }>()
 
-const getLayoutCompName = (key: string | undefined) => {
-  switch (key) {
+const layoutComp = computed(() => {
+  switch (props.layout) {
     case 'toppage':
-      return 'n-layout-index'
+      return NLayoutIndex
     default:
-      return 'n-layout-default'
+      return NLayoutDefault
   }
-}
+})
 </script>
 
 <template>
   <Transition name="fade">
-    <component :is="getLayoutCompName(layout)" :json-path="jsonPath">
+    <component :is="layoutComp" :json-path="jsonPath">
       <slot />
     </component>
   </Transition>
 </template>
+
+<style scoped>
+@import url(../assets/css/main.css);
+</style>

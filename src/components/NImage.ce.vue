@@ -1,14 +1,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import type { Image } from '@/types/image'
 
-const props = defineProps<{
-  width: number
-  height: number
-  src: string
-  alt: string
-  caption?: string
-  cover?: boolean
-}>()
+const props = defineProps<Image>()
 
 // 最大公約数を求める関数
 const getGCD = (x: number, y: number): number => (x % y ? getGCD(y, x % y) : y)

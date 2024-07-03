@@ -1,10 +1,11 @@
 import { onMounted, ref } from 'vue'
 import { useJson } from '@/utils/useJson'
 import type { GlobalNav } from '@/types/link'
+import type { Image } from '@/types/image'
 
 type MainVisual = {
-  top: string
-  lower: string
+  top: Image
+  lower: Image
 }
 
 export const useConfig = (jsonPath: string) => {

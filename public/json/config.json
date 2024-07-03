@@ -2,8 +2,18 @@
   "siteTitle": ["N-System"],
   "copyright": "n-system",
   "mainVisual": {
-    "top": "/images/banners/n-system-mainvisual.png",
-    "lower": "/images/banners/n-system-subvisual.png"
+    "top": {
+      "width": 1024,
+      "height": 360,
+      "src": "/images/banners/n-system-mainvisual.png",
+      "alt": "NEW環境展・地球温暖化防止展"
+    },
+    "lower": {
+      "width": 1024,
+      "height": 130,
+      "src": "/images/banners/n-system-subvisual.png",
+      "alt": "NEW環境展・地球温暖化防止展"
+    }
   },
   "navigation": {
     "related": [
