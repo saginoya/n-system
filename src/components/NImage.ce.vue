@@ -14,7 +14,6 @@ const aspectStyle = computed(() => {
   const gcd: number = getGCD(props.width, props.height)
   const widthValue = props.width / gcd
   const heightValue = props.height / gcd
-  console.log(gcd, widthValue, heightValue)
   return { 'aspect-ratio': widthValue / heightValue }
 })
 </script>
