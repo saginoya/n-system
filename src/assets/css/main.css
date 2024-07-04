@@ -46,4 +46,8 @@
     @apply py-1;
     @apply text-lg;
   }
+  th,
+  td {
+    @apply px-1;
+  }
 }
