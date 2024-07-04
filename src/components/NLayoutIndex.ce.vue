@@ -21,7 +21,7 @@ const { drawer, operateDrawer } = useDrawer()
       v-if="siteTitle && navigation"
       :titleList="siteTitle"
       :nav="navigation"
-      class="fixed left-0 top-0 z-40 h-screen w-5/6 -translate-x-96 transition duration-200 md:w-96"
+      class="fixed left-0 top-0 z-40 h-screen w-96 max-w-full -translate-x-96 transition duration-200"
       :class="{ 'translate-x-0': drawer }"
     ></n-header>
     <n-main-visual v-if="mainVisual" :nav="navigation?.related" :image="mainVisual.top">
