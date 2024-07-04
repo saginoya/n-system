@@ -31,6 +31,7 @@ import NInputWrapper from './components/NInputWrapper.ce.vue'
 import NLayoutDefault from './components/NLayoutDefault.ce.vue'
 import NLayoutIndex from './components/NLayoutIndex.ce.vue'
 import NLink from './components/NLink.ce.vue'
+import NListDecimal from './components/NListDecimal.ce.vue'
 import NListDisc from './components/NListDisc.ce.vue'
 import NListItem2col from './components/NListItem2col.ce.vue'
 import NListItemDate from './components/NListItemDate.ce.vue'
@@ -81,6 +82,7 @@ customElements.define('n-input-wrapper', defineCustomElement(NInputWrapper))
 customElements.define('n-layout-default', defineCustomElement(NLayoutDefault))
 customElements.define('n-layout-index', defineCustomElement(NLayoutIndex))
 customElements.define('n-link', defineCustomElement(NLink))
+customElements.define('n-list-decimal', defineCustomElement(NListDecimal))
 customElements.define('n-list-disc', defineCustomElement(NListDisc))
 customElements.define('n-list-item-2col', defineCustomElement(NListItem2col))
 customElements.define('n-list-item-date', defineCustomElement(NListItemDate))
