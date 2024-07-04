@@ -1,5 +1,5 @@
 <template>
-  <li class="grid grid-cols-1 border-b p-4 sm:grid-cols-4 md:grid-cols-6">
+  <li class="grid grid-cols-1 border-b p-2 sm:grid-cols-4 md:grid-cols-6 md:p-4">
     <div class="font-bold">
       <slot name="header"></slot>
     </div>
