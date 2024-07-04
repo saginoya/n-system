@@ -4,6 +4,7 @@ import NHeaderTool from '@/components/NHeaderTool.ce.vue'
 import NMainVisual from '@/components/NMainVisual.ce.vue'
 import NMain from '@/components/NMain.ce.vue'
 import NFooter from '@/components/NFooter.ce.vue'
+import NGlobalNav from './NGlobalNav.ce.vue'
 import { useConfig } from '@/composables/useConfig'
 import { useDrawer } from '@/composables/useDrawer'
 
