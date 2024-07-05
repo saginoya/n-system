@@ -33,7 +33,7 @@ const { linkTarget, linkIcon } = useLink()
   >
     <div
       class="flex size-full items-center justify-center gap-1"
-      :class="[{ 'group-hover:bg-black/20': href }, { 'group-focus:bg-black/20': href }]"
+      :class="[{ 'group-hover:bg-white/20': href }, { 'group-focus:bg-white/20': href }]"
     >
       <slot />
       <component v-if="type" :is="linkIcon(type)" class="size-6" />
