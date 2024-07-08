@@ -31,7 +31,7 @@ const aspectStyle = computed(() => {
       :class="[cover ? 'object-cover' : 'object-contain']"
       :style="aspectStyle"
     />
-    <figcaption v-if="caption" class="leading-5" :style="{ 'max-width': width + 'px' }">
+    <figcaption v-if="caption" class="text-sm leading-5" :style="{ 'max-width': width + 'px' }">
       {{ caption }}
     </figcaption>
   </figure>
