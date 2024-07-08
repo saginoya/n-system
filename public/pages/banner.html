@@ -15,61 +15,63 @@
         <p>バナーコンポーネントの利用方法を解説します。</p>
       </n-card>
 
-      <n-card>
-        <n-title-lv3>属性一覧</n-title-lv3>
-        <n-list-simple>
-          <n-list-item-2col header="color">
-            <p>必須・色の指定（カラーページ参照）</p>
-          </n-list-item-2col>
-          <n-list-item-2col header="size">
-            <p>必須・サイズをxs・sm・md・lg・xlまたはfreeから選択</p>
-            <p>freeは内容のサイズにフィットするため、画像などを利用する場合に利用</p>
-          </n-list-item-2col>
-          <n-list-item-2col header="href">
-            <p>任意・リンクを設定する場合はURLを記入する</p>
-          </n-list-item-2col>
-          <n-list-item-2col header="type">
-            <p>任意・リンクを設定する場合リンクタイプを指定（リンクタイプページ参照）</p>
-          </n-list-item-2col>
-        </n-list-simple>
-      </n-card>
+      <n-container-1col>
+        <n-card>
+          <n-title-lv3>属性一覧</n-title-lv3>
+          <n-list-simple>
+            <n-list-item-2col header="color">
+              <p>必須・色の指定（カラーページ参照）</p>
+            </n-list-item-2col>
+            <n-list-item-2col header="size">
+              <p>必須・サイズをxs・sm・md・lg・xlまたはfreeから選択</p>
+              <p>freeは内容のサイズにフィットするため、画像などを利用する場合に利用</p>
+            </n-list-item-2col>
+            <n-list-item-2col header="href">
+              <p>任意・リンクを設定する場合はURLを記入する</p>
+            </n-list-item-2col>
+            <n-list-item-2col header="type">
+              <p>任意・リンクを設定する場合リンクタイプを指定（リンクタイプページ参照）</p>
+            </n-list-item-2col>
+          </n-list-simple>
+        </n-card>
 
-      <n-card>
-        <n-title-lv3>サンプル</n-title-lv3>
-        <n-banner color="primary" size="xs">XS</n-banner>
-        <n-banner color="secondary" size="sm">SM</n-banner>
-        <n-banner color="accent" size="md">MD</n-banner>
-        <n-banner color="exhibition-a" size="lg">LG</n-banner>
-        <n-banner color="exhibition-b" size="xl">XL</n-banner>
-        <n-code
-          code='<n-banner color="primary" size="xs">XS</n-banner>
+        <n-card>
+          <n-title-lv3>サンプル</n-title-lv3>
+          <n-banner color="primary" size="xs">XS</n-banner>
+          <n-banner color="secondary" size="sm">SM</n-banner>
+          <n-banner color="accent" size="md">MD</n-banner>
+          <n-banner color="exhibition-a" size="lg">LG</n-banner>
+          <n-banner color="exhibition-b" size="xl">XL</n-banner>
+          <n-code
+            code='<n-banner color="primary" size="xs">XS</n-banner>
 <n-banner color="secondary" size="sm">SM</n-banner>
 <n-banner color="accent" size="md">MD</n-banner>
 <n-banner color="exhibition-a" size="lg">LG</n-banner>
 <n-banner color="exhibition-b" size="xl">XL</n-banner>'
-        ></n-code>
-      </n-card>
-      <n-card>
-        <n-title-lv3>リンク付き</n-title-lv3>
-        <n-banner color="primary" size="md" href="/" type="internal">トップページへ</n-banner>
-        <n-banner color="primary" size="md" href="https://www.nippo.co.jp/" type="external"
-          >外部ページへ</n-banner
-        >
-        <n-banner color="primary" size="md" href="/doc/sample.pdf" type="pdf"
-          >PDFへのリンク</n-banner
-        >
-        <n-banner color="primary" size="md" href="/doc/sample.pdf" type="download"
-          >エクセルなどダウンロード</n-banner
-        >
-        <n-code
-          code='<n-banner color="primary" size="md" href="/" type="internal">トップページへ</n-banner>
+          ></n-code>
+        </n-card>
+        <n-card>
+          <n-title-lv3>リンク付き</n-title-lv3>
+          <n-banner color="primary" size="md" href="/" type="internal">トップページへ</n-banner>
+          <n-banner color="primary" size="md" href="https://www.nippo.co.jp/" type="external"
+            >外部ページへ</n-banner
+          >
+          <n-banner color="primary" size="md" href="/doc/sample.pdf" type="pdf"
+            >PDFへのリンク</n-banner
+          >
+          <n-banner color="primary" size="md" href="/doc/sample.pdf" type="download"
+            >エクセルなどダウンロード</n-banner
+          >
+          <n-code
+            code='<n-banner color="primary" size="md" href="/" type="internal">トップページへ</n-banner>
 <n-banner color="primary" size="md" href="https://www.nippo.co.jp/" type="external">外部ページへ</n-banner>
 <n-banner color="primary" size="md" href="/doc/sample.pdf" type="pdf"
 >PDFへのリンク</n-banner>
 <n-banner color="primary" size="md" href="/doc/sample.pdf" type="download"
 >エクセルなどダウンロード</n-banner>'
-        ></n-code>
-      </n-card>
+          ></n-code>
+        </n-card>
+      </n-container-1col>
     </n-app>
     <script type="module" src="/src/main.ts"></script>
   </body>
