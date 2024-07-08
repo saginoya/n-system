@@ -1,5 +1,16 @@
+<script setup lang="ts">
+defineProps<{
+  heightFull?: boolean
+}>()
+</script>
+
 <template>
-  <div class="flex flex-col gap-4 rounded bg-white px-6 py-4"><slot /></div>
+  <div
+    class="flex flex-col gap-4 rounded bg-white px-6 py-4"
+    :class="{ 'h-full': heightFull === true }"
+  >
+    <slot />
+  </div>
 </template>
 
 <style scoped>
