@@ -32,6 +32,18 @@
             <n-list-item-2col header="type">
               <p>任意・リンクを設定する場合リンクタイプを指定（リンクタイプページ参照）</p>
             </n-list-item-2col>
+            <n-list-item-2col header="state">
+              <p>任意・バナーの状態を表すことができる。</p>
+              <p>準備中：'in-preparation'、通常：'default'、締切：'closing'</p>
+            </n-list-item-2col>
+            <n-list-item-2col header="deadline">
+              <p>任意・締切日時を表示して、その期日が過ぎると自動で締切状態になる。</p>
+              <p>自動締切機能が有効の場合には時計アイコンが表示される。</p>
+              <p>例：2024-07-11T16:00:00+09:00</p>
+            </n-list-item-2col>
+            <n-list-item-2col header="revoke-auto-deadline">
+              <p>任意・Deadlineの自動締切機能を解除できる</p>
+            </n-list-item-2col>
           </n-list-simple>
         </n-card>
 
@@ -69,6 +81,110 @@
 >PDFへのリンク</n-banner>
 <n-banner color="primary" size="md" href="/doc/sample.pdf" type="download"
 >エクセルなどダウンロード</n-banner>'
+          ></n-code>
+        </n-card>
+        <n-card>
+          <n-title-lv3>状態付き</n-title-lv3>
+          <n-banner color="primary" size="md" state="in-preparation" href="/" type="internal">
+            state="in-preparation"
+          </n-banner>
+          <n-banner color="primary" size="md" state="default" href="/" type="internal">
+            state="default"
+          </n-banner>
+          <n-banner color="primary" size="md" state="closing" href="/" type="internal">
+            state="closing"
+          </n-banner>
+          <n-code
+            code='<n-banner color="primary" size="md" state="in-preparation" href="/" type="internal">
+  state="in-preparation"
+</n-banner>
+<n-banner color="primary" size="md" state="default" href="/" type="internal">
+  state="default"
+</n-banner>
+<n-banner color="primary" size="md" state="closing" href="/" type="internal">
+  state="closing"
+</n-banner>'
+          ></n-code>
+        </n-card>
+        <n-card>
+          <n-title-lv3>期限付き</n-title-lv3>
+          <n-banner
+            color="primary"
+            size="md"
+            deadline="2200-07-11T16:00:00+09:00"
+            href="/"
+            type="internal"
+          >
+            期限付き
+          </n-banner>
+          <n-banner
+            color="primary"
+            size="md"
+            deadline="2200-07-11T16:00:00+09:00"
+            revoke-auto-deadline
+            href="/"
+            type="internal"
+          >
+            期限付き（自動締切機能解除）
+          </n-banner>
+          <n-banner
+            color="primary"
+            size="md"
+            deadline="2000-07-11T16:00:00+09:00"
+            href="/"
+            type="internal"
+          >
+            期限付き（期限切れ）
+          </n-banner>
+          <n-banner
+            color="primary"
+            size="md"
+            deadline="2000-07-11T16:00:00+09:00"
+            revoke-auto-deadline
+            href="/"
+            type="internal"
+          >
+            期限付き（自動締切機能解除）
+          </n-banner>
+          <n-code
+            code='<n-banner
+  color="primary"
+  size="md"
+  deadline="2200-07-11T16:00:00+09:00"
+  href="/"
+  type="internal"
+>
+  期限付き
+</n-banner>
+<n-banner
+  color="primary"
+  size="md"
+  deadline="2200-07-11T16:00:00+09:00"
+  revoke-auto-deadline
+  href="/"
+  type="internal"
+>
+  期限付き（自動締切機能解除）
+</n-banner>
+<n-banner
+  color="primary"
+  size="md"
+  deadline="2000-07-11T16:00:00+09:00"
+  href="/"
+  type="internal"
+>
+  期限付き（期限切れ）
+</n-banner>
+<n-banner
+  color="primary"
+  size="md"
+  deadline="2000-07-11T16:00:00+09:00"
+  revoke-auto-deadline
+  href="/"
+  type="internal"
+>
+  期限付き（自動締切機能解除）
+</n-banner>'
           ></n-code>
         </n-card>
       </n-container-1col>
