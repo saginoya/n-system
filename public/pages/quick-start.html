@@ -17,18 +17,9 @@
 
       <n-container-1col>
         <n-card>
-          <n-title-lv3>インポート</n-title-lv3>
-          <p>まずはコアファイルを設置して読み込みます。</p>
-          <n-code
-            title="headの内部"
-            code='<script type="module" crossorigin src="/assets/n-system.js"></script>\n<link rel="stylesheet" crossorigin href="/assets/n-system.css" />'
-          >
-          </n-code>
-        </n-card>
-        <n-card>
-          <n-title-lv3>サイトの設定</n-title-lv3>
+          <n-title-lv3>サイトの設定ファイルを準備</n-title-lv3>
           <p>
-            次にサイトの設定ファイルを設置して読み込みます。JSON形式で以下のようなファイルを作成して設置してください。場所やファイル名は自由です。
+            まずはサイトの設定ファイルを設置しておきます。JSON形式で以下のようなファイルを作成して設置してください。場所やファイル名は自由です。
           </p>
           <p>また、メインビジュアルが必須となっているので、画像もご用意ください。</p>
           <p>
@@ -41,8 +32,18 @@
   "siteTitle": ["N-System"],
   "copyright": "n-system",
   "mainVisual": {
-    "top": "/images/banners/n-system-mainvisual.png",
-    "lower": "/images/banners/n-system-subvisual.png"
+    "top": {
+      "width": 1024,
+      "height": 360,
+      "src": "/images/banners/n-system-mainvisual.png",
+      "alt": "N-System"
+    },
+    "lower": {
+      "width": 1024,
+      "height": 130,
+      "src": "/images/banners/n-system-subvisual.png",
+      "alt": "N-System"
+    }
   },
   "navigation": {
     "related": [
@@ -75,15 +76,11 @@
 }'
           >
           </n-code>
-          <p>そして、bodyにNAppコンポーネントを設置して先ほどのjsonファイルを読み込ませます。</p>
-          <n-code title="bodyの内部" code='<n-app json-path="/json/config.json"></n-app>'> </n-code>
         </n-card>
         <n-card>
           <n-title-lv3>CSSの設定</n-title-lv3>
-          <p>
-            サイトのテーマカラーを設定します。まずは、n-system-variables.cssファイルを設置してください。
-          </p>
-          <p>そして、以下のような形式でカラーを設定してください。</p>
+          <p>次にCSSの設定ファイルを設置します。名称と設置場所は自由です。</p>
+          <p>そして、ファイルの内容は以下のような形式でCSSの変数を設定してください。</p>
           <n-code
             title="n-system-variables.css"
             code-type="css"
@@ -100,12 +97,21 @@
 }"
           >
           </n-code>
-          <p>最後にCSSファイルを読み込めば導入は完了です。</p>
+        </n-card>
+        <n-card>
+          <n-title-lv3>インポート</n-title-lv3>
+          <p>
+            それでは最後にHTMLファイルにコアファイルと設置したCSS設定ファイルを読み込みましょう。以下のようなタグを設置してください。
+          </p>
           <n-code
             title="headの内部"
-            code='<link rel="stylesheet" href="/css/n-system-variables.css" />'
+            code='<script type="module" crossorigin src="/assets/n-system.js"></script>\n<link rel="stylesheet" crossorigin href="/assets/n-system.css" />\n<link rel="stylesheet" href="/css/n-system-variables.css" />'
           >
           </n-code>
+          <p>
+            そして、bodyにNAppコンポーネントを設置して先ほどの設定用JSONファイルを読み込ませます。
+          </p>
+          <n-code title="bodyの内部" code='<n-app json-path="/json/config.json"></n-app>'> </n-code>
         </n-card>
       </n-container-1col>
     </n-app>
