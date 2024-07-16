@@ -1,20 +1,22 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { computed } from 'vue'
+import { usePublishedState } from '@/composables/usePublishedState'
 import { useColorStyle } from '@/utils/useColorStyle'
 import { useSizeStyle } from '@/utils/useSizeStyle'
 import { useLink } from '@/utils/useLink'
-import { useDeadline } from '@/utils/useDeadline'
+import { useDateFormat } from '@/utils/useDateFormat'
 import IconClock from '@/components/icons/IconClock.vue'
 import type { Color } from '@/types/color'
 import type { Size } from '@/types/size'
 import type { LinkType } from '@/types/link'
+import type { PublishedState } from '@/types/publishedState'
 
 const props = defineProps<{
   color: Color
   size: Size
   href?: string
   type?: LinkType
-  state?: 'in-preparation' | 'default' | 'closing'
+  state?: PublishedState
   deadline?: string
   revokeAutoDeadline?: boolean
 }>()
@@ -22,21 +24,28 @@ const props = defineProps<{
 const { bgColor, borderColor } = useColorStyle()
 const { widthSize } = useSizeStyle()
 const { linkTarget, linkIcon } = useLink()
-const { isExpiration, format } = useDeadline(props.deadline)
 
-const isInPreparation = ref<boolean>(props.state === 'in-preparation')
-const isClosing = computed(() => {
-  if (props.deadline && props.revokeAutoDeadline !== true) {
-    return isExpiration()
-  } else {
-    return props.state === 'closing'
-  }
-})
-const isDeadlineExtend = computed(() => {
-  return props.revokeAutoDeadline === true && isExpiration()
-})
+const {
+  isPreparation,
+  isClosing,
+  isExpiration,
+  setPublishedState,
+  setDeadline,
+  revokeAutoDeadline: revokeAutoDeadlineFn
+} = usePublishedState()
+
+if (props.state) {
+  setPublishedState(props.state)
+}
+if (props.deadline) {
+  setDeadline(props.deadline)
+}
+if (props.revokeAutoDeadline === true) {
+  revokeAutoDeadlineFn()
+}
+
 const isLink = computed(() => {
-  return props.href && !isInPreparation.value && !isClosing.value
+  return props.href && !isPreparation.value && !isClosing.value
 })
 
 type OverlayContent = {
@@ -44,30 +53,36 @@ type OverlayContent = {
   class: string
 }
 const overlayContent = computed<OverlayContent | false>(() => {
-  if (isInPreparation.value) {
+  if (isPreparation.value) {
     return {
       text: '準備中',
       class: 'bg-white/70 text-slate-700'
     }
   } else if (isClosing.value) {
     return {
-      text: '締め切り',
+      text: '締切ました',
       class: 'bg-black/50'
     }
-  } else if (isDeadlineExtend.value) {
+  } else if (isExpiration.value) {
     return {
-      text: `${format()} 締切（延長中）`,
+      text: `${deadlineFormat()} 締切（延長中）`,
       class: ''
     }
   } else if (props.deadline) {
     return {
-      text: `${format()} 締切`,
+      text: `${deadlineFormat()} 締切`,
       class: ''
     }
   } else {
     return false
   }
 })
+
+const deadlineFormat = (): string | undefined => {
+  if (!props.deadline) return undefined
+  const { year, month, date, hour } = useDateFormat(props.deadline)
+  return `${year}年${month}月${date}日 ${hour}時`
+}
 </script>
 
 <template>
@@ -95,7 +110,7 @@ const overlayContent = computed<OverlayContent | false>(() => {
       class="absolute left-0 top-0 flex size-full flex-col items-center justify-end"
       :class="overlayContent.class"
     >
-      <div class="flex items-center">
+      <div class="flex items-center text-sm">
         <IconClock v-if="deadline && !revokeAutoDeadline" />
         <span class="rounded px-2">{{ overlayContent.text }}</span>
       </div>

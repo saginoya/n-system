@@ -34,7 +34,7 @@
             </n-list-item-2col>
             <n-list-item-2col header="state">
               <p>任意・バナーの状態を表すことができる。</p>
-              <p>準備中：'in-preparation'、通常：'default'、締切：'closing'</p>
+              <p>準備中：'preparation'、通常：'default'、締切：'closing'</p>
             </n-list-item-2col>
             <n-list-item-2col header="deadline">
               <p>任意・締切日時を表示して、その期日が過ぎると自動で締切状態になる。</p>
@@ -85,8 +85,8 @@
         </n-card>
         <n-card>
           <n-title-lv3>状態付き</n-title-lv3>
-          <n-banner color="primary" size="md" state="in-preparation" href="/" type="internal">
-            state="in-preparation"
+          <n-banner color="primary" size="md" state="preparation" href="/" type="internal">
+            state="preparation"
           </n-banner>
           <n-banner color="primary" size="md" state="default" href="/" type="internal">
             state="default"
@@ -95,8 +95,8 @@
             state="closing"
           </n-banner>
           <n-code
-            code='<n-banner color="primary" size="md" state="in-preparation" href="/" type="internal">
-  state="in-preparation"
+            code='<n-banner color="primary" size="md" state="preparation" href="/" type="internal">
+  state="preparation"
 </n-banner>
 <n-banner color="primary" size="md" state="default" href="/" type="internal">
   state="default"
@@ -108,6 +108,9 @@
         </n-card>
         <n-card>
           <n-title-lv3>期限付き</n-title-lv3>
+          <p>
+            'deadline'属性を設定すると締切日時が表示されて、その日時になると自動的に締切状態となる。自動締切を解除したい場合には'revoke-auto-deadline'属性をつけることで解除可能。
+          </p>
           <n-banner
             color="primary"
             size="md"
