@@ -5,10 +5,9 @@ const props = defineProps<{
   datetime: string
 }>()
 
-const { dateFormatParts } = useDateFormat()
-const times = dateFormatParts(props.datetime)
+const { year, month, date } = useDateFormat(props.datetime)
 
-const LabelTime = `${times.year}年${times.month}月${times.date}日`
+const LabelTime = `${year}年${month}月${date}日`
 </script>
 
 <template>
