@@ -11,7 +11,7 @@ const decorationBorder = (): boolean => {
 <template>
   <h2
     class="text-center text-2xl sm:text-left"
-    :class="{ 'border-l-4 border-l-current pl-4': decorationBorder() }"
+    :class="{ 'sm:border-l-4 sm:border-l-current sm:pl-4': decorationBorder() }"
   >
     <slot />
   </h2>
