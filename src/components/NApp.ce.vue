@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import NLayoutDefault from '@/components/NLayoutDefault.ce.vue'
-import NLayoutIndex from '@/components/NLayoutIndex.ce.vue'
+import NLayoutDefault from '@/components/NLayoutDefault.vue'
+import NLayoutIndex from '@/components/NLayoutIndex.vue'
 const props = defineProps<{
   jsonPath: string
   layout?: 'default' | 'toppage'
@@ -18,13 +18,11 @@ const layoutComp = computed(() => {
 </script>
 
 <template>
-  <Transition name="fade">
-    <component :is="layoutComp" :json-path="jsonPath">
-      <slot />
-    </component>
-  </Transition>
+  <component :is="layoutComp" :json-path="jsonPath">
+    <slot />
+  </component>
 </template>
 
-<style scoped>
+<style>
 @import url(../assets/css/main.css);
 </style>

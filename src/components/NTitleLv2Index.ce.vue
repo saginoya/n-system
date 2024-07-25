@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const props = defineProps<{
-  decoration: 'border' | undefined
+  decoration?: 'border'
 }>()
 
 const decorationBorder = (): boolean => {

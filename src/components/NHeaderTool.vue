@@ -15,7 +15,3 @@ defineProps<{
     <span class="text-xs">MENU</span>
   </button>
 </template>
-
-<style scoped>
-@import url(../assets/css/main.css);
-</style>

@@ -11,7 +11,3 @@ defineProps<{
     </span>
   </h1>
 </template>
-
-<style scoped>
-@import url(../assets/css/main.css);
-</style>

@@ -33,7 +33,3 @@ defineProps<{
     </div>
   </div>
 </template>
-
-<style scoped>
-@import url(../assets/css/main.css);
-</style>
