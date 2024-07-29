@@ -3,6 +3,7 @@ import './assets/css/main.css'
 
 // Components
 import NApp from './components/NApp.ce.vue'
+import NAlert from './components/NAlert.ce.vue'
 import NBanner from './components/NBanner.ce.vue'
 import NBtn from './components/NBtn.ce.vue'
 import NCard from './components/NCard.ce.vue'
@@ -46,6 +47,7 @@ import NTitleLv4 from './components/NTitleLv4.ce.vue'
 import NTitleLv5 from './components/NTitleLv5.ce.vue'
 
 customElements.define('n-app', defineCustomElement(NApp))
+customElements.define('n-alert', defineCustomElement(NAlert))
 customElements.define('n-banner', defineCustomElement(NBanner))
 customElements.define('n-btn', defineCustomElement(NBtn))
 customElements.define('n-card', defineCustomElement(NCard))
