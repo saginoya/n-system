@@ -39,6 +39,6 @@ const escapedCode = computed(() => {
   </div>
 </template>
 
-<style scoped>
+<style>
 @import url(../assets/css/main.css);
 </style>

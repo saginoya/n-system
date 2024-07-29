@@ -15,6 +15,6 @@ defineProps<{
   </li>
 </template>
 
-<style scoped>
+<style>
 @import url(../assets/css/main.css);
 </style>

@@ -41,6 +41,6 @@ const sizeClass = computed(() => {
   <component :is="icon" class="inline-block align-middle" :class="sizeClass" />
 </template>
 
-<style scoped>
+<style>
 @import url(../assets/css/main.css);
 </style>

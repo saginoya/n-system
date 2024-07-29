@@ -9,6 +9,6 @@ import IconWarning from './icons/IconWarning.vue'
   </div>
 </template>
 
-<style scoped>
+<style>
 @import url(../assets/css/main.css);
 </style>

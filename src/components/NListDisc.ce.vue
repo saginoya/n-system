@@ -15,6 +15,6 @@ const itemList: string[] = props.items ? props.items.split(',') : []
   </ul>
 </template>
 
-<style scoped>
+<style>
 @import url(../assets/css/main.css);
 </style>

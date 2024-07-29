@@ -9,6 +9,6 @@ import IconCheckCircle from './icons/IconCheckCircle.vue'
   </div>
 </template>
 
-<style scoped>
+<style>
 @import url(../assets/css/main.css);
 </style>
