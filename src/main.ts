@@ -45,6 +45,7 @@ import NTitleLv2Page from './components/NTitleLv2Page.ce.vue'
 import NTitleLv3 from './components/NTitleLv3.ce.vue'
 import NTitleLv4 from './components/NTitleLv4.ce.vue'
 import NTitleLv5 from './components/NTitleLv5.ce.vue'
+import NYoutube from './components/NYoutube.ce.vue'
 
 customElements.define('n-app', defineCustomElement(NApp))
 customElements.define('n-alert', defineCustomElement(NAlert))
@@ -89,3 +90,4 @@ customElements.define('n-title-lv2-page', defineCustomElement(NTitleLv2Page))
 customElements.define('n-title-lv3', defineCustomElement(NTitleLv3))
 customElements.define('n-title-lv4', defineCustomElement(NTitleLv4))
 customElements.define('n-title-lv5', defineCustomElement(NTitleLv5))
+customElements.define('n-youtube', defineCustomElement(NYoutube))
