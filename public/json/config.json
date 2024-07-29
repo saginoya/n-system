@@ -30,18 +30,8 @@
         "type": "internal"
       },
       {
-        "name": "クイックスタート",
-        "path": "/pages/quick-start.html",
-        "type": "internal"
-      },
-      {
-        "name": "イメージ",
-        "path": "/pages/image.html",
-        "type": "internal"
-      },
-      {
-        "name": "バナー",
-        "path": "/pages/banner.html",
+        "name": "デフォルト",
+        "path": "/default.html",
         "type": "internal"
       }
     ],
