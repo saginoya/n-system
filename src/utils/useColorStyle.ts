@@ -21,6 +21,8 @@ export const useColorStyle = () => {
         return 'text-error'
       case 'warning':
         return 'text-warning'
+      case 'gray':
+        return 'text-gray-500'
       default:
         return 'text-white'
     }
@@ -46,6 +48,8 @@ export const useColorStyle = () => {
         return 'bg-error'
       case 'warning':
         return 'bg-warning'
+      case 'gray':
+        return 'bg-gray-500'
       default:
         return 'bg-white'
     }
@@ -71,6 +75,8 @@ export const useColorStyle = () => {
         return 'border-error'
       case 'warning':
         return 'border-warning'
+      case 'gray':
+        return 'border-gray-500'
       default:
         return 'border-white'
     }

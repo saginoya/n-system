@@ -8,3 +8,4 @@ export type Color =
   | 'success'
   | 'error'
   | 'warning'
+  | 'gray'
