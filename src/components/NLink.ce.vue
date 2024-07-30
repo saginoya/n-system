@@ -6,6 +6,7 @@ import type { LinkType } from '@/types/link'
 defineProps<{
   href: string
   type: LinkType
+  textAligned?: boolean
 }>()
 
 const { linkTarget, linkIcon } = useLink()
@@ -14,8 +15,12 @@ const { isSamePage } = useURL()
 
 <template>
   <a
-    class="inline-block rounded-full px-3 py-1 hover:bg-blue-200/20 focus:bg-blue-200/20"
-    :class="{ 'bg-black': isSamePage(href), 'opacity-70': isSamePage(href) }"
+    class="box-content inline-block rounded-full px-3 py-1 hover:bg-blue-200/20 focus:bg-blue-200/20"
+    :class="{
+      'bg-slate-900/40': isSamePage(href),
+      'contrast-75': isSamePage(href),
+      '-translate-x-3': textAligned
+    }"
     :href
     :target="linkTarget(type)"
   >
