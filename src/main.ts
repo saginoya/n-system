@@ -35,6 +35,7 @@ import NListNav from './components/NListNav.ce.vue'
 import NListNavRow from './components/NListNavRow.ce.vue'
 import NListNews from './components/NListNews.ce.vue'
 import NListSimple from './components/NListSimple.ce.vue'
+import NModal from './components/NModal.ce.vue'
 // import NMsgCheck from './components/NMsgCheck.ce.vue'
 // import NMsgWarning from './components/NMsgWarning.ce.vue'
 import NSheet from './components/NSheet.ce.vue'
@@ -80,6 +81,7 @@ customElements.define('n-list-nav', defineCustomElement(NListNav))
 customElements.define('n-list-nav-row', defineCustomElement(NListNavRow))
 customElements.define('n-list-news', defineCustomElement(NListNews))
 customElements.define('n-list-simple', defineCustomElement(NListSimple))
+customElements.define('n-modal', defineCustomElement(NModal))
 // customElements.define('n-msg-check', defineCustomElement(NMsgCheck))
 // customElements.define('n-msg-warning', defineCustomElement(NMsgWarning))
 customElements.define('n-sheet', defineCustomElement(NSheet))
