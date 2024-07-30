@@ -17,34 +17,25 @@
 
       <n-container-1col>
         <n-card>
-          <n-title-lv3>属性一覧</n-title-lv3>
-          <n-list-simple>
-            <n-list-item-2col header="color">
-              <p>必須・色の指定（カラーページ参照）</p>
-            </n-list-item-2col>
-            <n-list-item-2col header="size">
-              <p>必須・サイズをxs・sm・md・lg・xlまたはfreeから選択</p>
-              <p>freeは内容のサイズにフィットするため、画像などを利用する場合に利用</p>
-            </n-list-item-2col>
-            <n-list-item-2col header="href">
-              <p>任意・リンクを設定する場合はURLを記入する</p>
-            </n-list-item-2col>
-            <n-list-item-2col header="type">
-              <p>任意・リンクを設定する場合リンクタイプを指定（リンクタイプページ参照）</p>
-            </n-list-item-2col>
-            <n-list-item-2col header="state">
-              <p>任意・バナーの状態を表すことができる。</p>
-              <p>準備中：'preparation'、通常：'default'、締切：'closing'</p>
-            </n-list-item-2col>
-            <n-list-item-2col header="deadline">
-              <p>任意・締切日時を表示して、その期日が過ぎると自動で締切状態になる。</p>
-              <p>自動締切機能が有効の場合には時計アイコンが表示される。</p>
-              <p>例：2024-07-11T16:00:00+09:00</p>
-            </n-list-item-2col>
-            <n-list-item-2col header="revoke-auto-deadline">
-              <p>任意・Deadlineの自動締切機能を解除できる</p>
-            </n-list-item-2col>
-          </n-list-simple>
+          <n-title-lv3>アラート</n-title-lv3>
+          <n-alert type="warning">
+            <p>
+              あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
+            </p>
+            <p>かきくけこかきくけこかきくけこかきくけこかきくけこ</p>
+          </n-alert>
+        </n-card>
+        <n-card>
+          <n-title-lv3>ユーチューブ</n-title-lv3>
+          <n-youtube
+            src="https://www.youtube.com/embed/CkmEMDdiZH4"
+            caption="キャプション"
+          ></n-youtube>
+        </n-card>
+        <n-card>
+          <n-title-lv3>モーダルウィンドウ</n-title-lv3>
+          <n-modal btn-title="ボタン"> <p>モーダルの内容</p> </n-modal>
+          <n-banner color="info" size="md">aaa</n-banner>
         </n-card>
       </n-container-1col>
     </n-app>
