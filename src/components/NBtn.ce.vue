@@ -1,16 +1,24 @@
 <script setup lang="ts">
-import { useColorStyle } from '@/utils/useColorStyle'
+import { useVariantStyle } from '@/utils/useVariantStyle'
 import type { Color } from '@/types/color'
+import type { Variant } from '@/types/variant'
 
-defineProps<{
-  type?: 'submit' | 'reset' | 'button'
-  color: Color
-  disabled?: boolean
-  name?: string
-  value?: string
-}>()
+withDefaults(
+  defineProps<{
+    color: Color
+    type?: 'submit' | 'reset' | 'button'
+    disabled?: boolean
+    name?: string
+    value?: string
+    variant?: Variant
+  }>(),
+  {
+    type: 'button',
+    disabled: false
+  }
+)
 
-const { bgColor, borderColor } = useColorStyle()
+const { getStyles } = useVariantStyle()
 </script>
 
 <template>
@@ -20,8 +28,8 @@ const { bgColor, borderColor } = useColorStyle()
     :disabled
     :name
     :value
-    class="rounded border-2 font-bold text-white"
-    :class="[bgColor(color), borderColor(color)]"
+    class="overflow-hidden rounded border-2 font-bold"
+    :class="getStyles(color, variant)"
   >
     <span class="inline-block size-full px-4 py-2 hover:bg-black/20">
       <slot />

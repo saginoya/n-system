@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { usePublishedState } from '@/composables/usePublishedState'
-import { useColorStyle } from '@/utils/useColorStyle'
+import { useVariantStyle } from '@/utils/useVariantStyle'
 import { useSizeStyle } from '@/utils/useSizeStyle'
 import { useLink } from '@/utils/useLink'
 import { useDateFormat } from '@/utils/useDateFormat'
 import IconClock from '@/components/icons/IconClock.vue'
 import type { Color } from '@/types/color'
+import type { Variant } from '@/types/variant'
 import type { Size } from '@/types/size'
 import type { LinkType } from '@/types/link'
 import type { PublishedState } from '@/types/publishedState'
@@ -19,9 +20,10 @@ const props = defineProps<{
   state?: PublishedState
   deadline?: string
   revokeAutoDeadline?: boolean
+  variant?: Variant
 }>()
 
-const { bgColor, borderColor } = useColorStyle()
+const { getStyles } = useVariantStyle()
 const { widthSize } = useSizeStyle()
 const { linkTarget, linkIcon } = useLink()
 
@@ -89,12 +91,7 @@ const deadlineFormat = (): string | undefined => {
   <component
     :is="isLink ? 'a' : 'div'"
     class="group relative block max-w-full overflow-hidden rounded border-2 font-bold text-white"
-    :class="[
-      bgColor(color),
-      borderColor(color),
-      widthSize(size),
-      { 'aspect-[4/1]': size !== 'free' }
-    ]"
+    :class="[widthSize(size), ...getStyles(color, variant), { 'aspect-[4/1]': size !== 'free' }]"
     :href="isLink ? href : null"
     :target="isLink ? (type ? linkTarget(type) : '_self') : null"
   >
