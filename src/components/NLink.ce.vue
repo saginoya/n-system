@@ -24,10 +24,8 @@ const { isSamePage } = useURL()
     :href
     :target="linkTarget(type)"
   >
-    <span class="flex items-center gap-1">
-      <slot />
-      <component v-if="type !== 'internal'" :is="linkIcon(type)" />
-    </span>
+    <slot />
+    <component v-if="type !== 'internal'" :is="linkIcon(type)" class="ml-1 inline" />
   </a>
 </template>
 
