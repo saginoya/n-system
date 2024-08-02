@@ -16,29 +16,29 @@ const props = withDefaults(
 
 const { textColor, borderColor } = useColorStyle()
 
-const classObject = (value: string) => {
-  if (model.value !== value) return
-  return [textColor(props.color), 'font-bold', borderColor(props.color), 'bg-slate-50']
-}
+const selectedClass = [textColor(props.color), 'font-bold', borderColor(props.color), 'bg-slate-50']
 
 const model = defineModel<string>()
 const setModel = (value: string): void => {
   model.value = value
 }
+const isSelected = (value: string) => {
+  return model.value === value
+}
 </script>
 
 <template>
-  <div role="tablist" class="flex overflow-hidden rounded-t">
+  <div role="tablist" class="inline-flex overflow-hidden rounded-t">
     <button
       v-for="(value, index) in values"
       :key="value"
       role="tab"
       :id="value"
       aria-controls="value"
-      :ariaSelected="model === value"
-      :tabindex="model === value ? 0 : -1"
-      class="block flex-1 border-b-4 px-4 py-2 text-center transition-all duration-150 hover:bg-slate-200"
-      :class="classObject(value)"
+      :ariaSelected="isSelected(value)"
+      :tabindex="isSelected(value) ? 0 : -1"
+      class="block border-b-4 px-4 py-1 text-center transition-all duration-150 hover:bg-slate-200"
+      :class="isSelected(value) ? selectedClass : 'text-gray-400'"
       @click="setModel(value)"
     >
       {{ labels ? labels[index] : value }}
