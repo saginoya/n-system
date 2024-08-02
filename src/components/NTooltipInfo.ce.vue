@@ -27,8 +27,8 @@ const locationStyles = (): string[] => {
   <div
     class="group relative inline-block cursor-pointer rounded p-1 align-middle hover:bg-slate-100 focus:bg-slate-100"
   >
-    <IconInfo class="inline text-2xl" />
-    <span class="text-xs">{{ text }}</span>
+    <IconInfo class="inline text-xl" />
+    <span class="text-xs font-bold tracking-tight">{{ text }}</span>
     <div
       class="invisible fixed left-0 top-1/2 z-50 m-2 -translate-y-1/2 rounded bg-slate-800 p-2 text-sm text-white opacity-0 transition-all delay-150 ease-in-out group-hover:visible group-hover:opacity-100 group-focus:visible group-focus:opacity-100 sm:absolute sm:m-0 sm:w-96"
       :class="locationStyles()"
