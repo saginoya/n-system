@@ -16,6 +16,7 @@ import NContainerFlex from './components/NContainerFlex.ce.vue'
 import NContainerVerticalGrow from './components/NContainerVerticalGrow.ce.vue'
 import NContainerMedia from './components/NContainerMedia.ce.vue'
 import NElapsed from './components/NElapsed.ce.vue'
+import NExhibitors from './components/NExhibitors.ce.vue'
 import NIcon from './components/NIcon.ce.vue'
 import NImage from './components/NImage.ce.vue'
 // import NInputEmail from './components/NInputEmail.ce.vue'
@@ -63,6 +64,7 @@ customElements.define('n-container-flex', defineCustomElement(NContainerFlex))
 customElements.define('n-container-vertical-grow', defineCustomElement(NContainerVerticalGrow))
 customElements.define('n-container-media', defineCustomElement(NContainerMedia))
 customElements.define('n-elapsed', defineCustomElement(NElapsed))
+customElements.define('n-exhibitors', defineCustomElement(NExhibitors))
 customElements.define('n-icon', defineCustomElement(NIcon))
 customElements.define('n-image', defineCustomElement(NImage))
 // customElements.define('n-input-email', defineCustomElement(NInputEmail))
