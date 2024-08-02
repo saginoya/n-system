@@ -19,7 +19,7 @@ const active = defineModel<boolean>()
 </script>
 
 <template>
-  <div class="inline-flex items-center">
+  <button class="inline-flex cursor-pointer items-center">
     <input type="checkbox" v-model="active" :id="id" class="group hidden" />
     <label
       :for="id"
@@ -39,5 +39,5 @@ const active = defineModel<boolean>()
     <label if="label" :for="id" :class="active ? textColor(color) : 'text-slate-400'">{{
       label
     }}</label>
-  </div>
+  </button>
 </template>
