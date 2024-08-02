@@ -19,13 +19,6 @@ import NElapsed from './components/NElapsed.ce.vue'
 import NExhibitors from './components/NExhibitors.ce.vue'
 import NIcon from './components/NIcon.ce.vue'
 import NImage from './components/NImage.ce.vue'
-// import NInputEmail from './components/NInputEmail.ce.vue'
-// import NInputNum from './components/NInputNum.ce.vue'
-// import NInputPostalCode from './components/NInputPostalCode.ce.vue'
-// import NInputsRadio from './components/NInputsRadio.ce.vue'
-// import NInputTel from './components/NInputTel.ce.vue'
-// import NInputText from './components/NInputText.ce.vue'
-// import NInputUrl from './components/NInputUrl.ce.vue'
 import NInputWrapper from './components/NInputWrapper.ce.vue'
 import NLink from './components/NLink.ce.vue'
 import NListDecimal from './components/NListDecimal.ce.vue'
@@ -37,11 +30,8 @@ import NListNavRow from './components/NListNavRow.ce.vue'
 import NListNews from './components/NListNews.ce.vue'
 import NListSimple from './components/NListSimple.ce.vue'
 import NModal from './components/NModal.ce.vue'
-// import NMsgCheck from './components/NMsgCheck.ce.vue'
-// import NMsgWarning from './components/NMsgWarning.ce.vue'
 import NSheet from './components/NSheet.ce.vue'
 import NSignature from './components/NSignature.ce.vue'
-// import NTextarea from './components/NTextarea.ce.vue'
 import NTitleLv2Index from './components/NTitleLv2Index.ce.vue'
 import NTitleLv2Page from './components/NTitleLv2Page.ce.vue'
 import NTitleLv3 from './components/NTitleLv3.ce.vue'
@@ -67,13 +57,6 @@ customElements.define('n-elapsed', defineCustomElement(NElapsed))
 customElements.define('n-exhibitors', defineCustomElement(NExhibitors))
 customElements.define('n-icon', defineCustomElement(NIcon))
 customElements.define('n-image', defineCustomElement(NImage))
-// customElements.define('n-input-email', defineCustomElement(NInputEmail))
-// customElements.define('n-input-num', defineCustomElement(NInputNum))
-// customElements.define('n-input-postal-code', defineCustomElement(NInputPostalCode))
-// customElements.define('n-inputs-radio', defineCustomElement(NInputsRadio))
-// customElements.define('n-input-tel', defineCustomElement(NInputTel))
-// customElements.define('n-input-text', defineCustomElement(NInputText))
-// customElements.define('n-input-url', defineCustomElement(NInputUrl))
 customElements.define('n-input-wrapper', defineCustomElement(NInputWrapper))
 customElements.define('n-link', defineCustomElement(NLink))
 customElements.define('n-list-decimal', defineCustomElement(NListDecimal))
@@ -85,11 +68,8 @@ customElements.define('n-list-nav-row', defineCustomElement(NListNavRow))
 customElements.define('n-list-news', defineCustomElement(NListNews))
 customElements.define('n-list-simple', defineCustomElement(NListSimple))
 customElements.define('n-modal', defineCustomElement(NModal))
-// customElements.define('n-msg-check', defineCustomElement(NMsgCheck))
-// customElements.define('n-msg-warning', defineCustomElement(NMsgWarning))
 customElements.define('n-sheet', defineCustomElement(NSheet))
 customElements.define('n-signature', defineCustomElement(NSignature))
-// customElements.define('n-textarea', defineCustomElement(NTextarea))
 customElements.define('n-title-lv2-index', defineCustomElement(NTitleLv2Index))
 customElements.define('n-title-lv2-page', defineCustomElement(NTitleLv2Page))
 customElements.define('n-title-lv3', defineCustomElement(NTitleLv3))

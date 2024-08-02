@@ -1,15 +1,16 @@
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue'
-import NMsgCheck from './NMsgCheck.ce.vue'
-import NMsgWarning from './NMsgWarning.ce.vue'
+import NMsgCheck from '@/components/NMsgCheck.vue'
+import NMsgWarning from '@/components/NMsgWarning.vue'
 import { useValidation } from '@/composables/useValidation'
 import type { AttributesInput } from '@/types/attributesInputs'
 
 const props = withDefaults(defineProps<AttributesInput>(), {
-  name: 'url',
-  inputmode: 'url',
-  placeholder: 'https://www.nippo.co.jp/',
-  pattern: '^(https?|ftp):\\/\\/([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,}(\\/[^\\s]*)?$'
+  name: 'email',
+  autocomplete: 'email',
+  inputmode: 'email',
+  placeholder: 'sample@sample.com',
+  pattern: '^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$'
 })
 
 const model = ref<string>('')
@@ -26,7 +27,7 @@ watchEffect(() => {
   <div class="flex flex-col gap-1">
     <label v-if="title" :for="name" class="font-bold">{{ title }}</label>
     <input
-      type="url"
+      type="email"
       :id="name"
       :name
       :required

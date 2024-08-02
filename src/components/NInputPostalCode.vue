@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue'
-import NMsgCheck from '@/components/NMsgCheck.ce.vue'
-import NMsgWarning from '@/components/NMsgWarning.ce.vue'
+import NMsgCheck from './NMsgCheck.vue'
+import NMsgWarning from './NMsgWarning.vue'
 import { useValidation } from '@/composables/useValidation'
 import type { AttributesInput } from '@/types/attributesInputs'
 
 const props = withDefaults(defineProps<AttributesInput>(), {
-  name: 'email',
-  autocomplete: 'email',
-  inputmode: 'email',
-  placeholder: 'sample@sample.com',
-  pattern: '^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$'
+  name: 'postal-code',
+  autocomplete: 'postal-code',
+  inputmode: 'decimal',
+  placeholder: '101-0061',
+  pattern: '^[0-9]{3}-?[0-9]{4}$'
 })
 
 const model = ref<string>('')
@@ -27,7 +27,7 @@ watchEffect(() => {
   <div class="flex flex-col gap-1">
     <label v-if="title" :for="name" class="font-bold">{{ title }}</label>
     <input
-      type="email"
+      type="text"
       :id="name"
       :name
       :required
@@ -38,7 +38,7 @@ watchEffect(() => {
       :inputmode
       :placeholder
       :pattern
-      class="w-full max-w-2xl rounded border-2 border-gray-300 px-2 py-1 text-lg"
+      class="w-full max-w-xs rounded border-2 border-gray-300 px-2 py-1 text-lg"
       v-model="model"
     />
     <div class="min-h-4">

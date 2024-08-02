@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue'
-import NMsgCheck from '@/components/NMsgCheck.ce.vue'
-import NMsgWarning from '@/components/NMsgWarning.ce.vue'
+import NMsgCheck from '@/components/NMsgCheck.vue'
+import NMsgWarning from '@/components/NMsgWarning.vue'
 import { useValidation } from '@/composables/useValidation'
 
 const props = withDefaults(

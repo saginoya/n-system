@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue'
-import NMsgCheck from './NMsgCheck.ce.vue'
-import NMsgWarning from './NMsgWarning.ce.vue'
+import NMsgCheck from './NMsgCheck.vue'
+import NMsgWarning from './NMsgWarning.vue'
 import { useValidation } from '@/composables/useValidation'
 import type { AttributesInput } from '@/types/attributesInputs'
 
