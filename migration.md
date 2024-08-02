@@ -11,5 +11,5 @@
 - [x] BlTooltip (インフォメーションの表示チップ)
 - [] ElBtnFavorite (お気に入りボタン)
 - [x] ElSwitch (スイッチボタン)
-- [] ElSwitchChoice (複数選択肢のあるスイッチ)
+- [x] ElSwitchChoice (複数選択肢のあるスイッチ)
 - [x] ElYoutube (ユーチューブの表示)
