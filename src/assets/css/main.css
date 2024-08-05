@@ -46,8 +46,17 @@
     @apply py-1;
     @apply text-lg;
   }
+  table {
+    @apply border-y-2;
+  }
   th,
   td {
-    @apply px-1;
+    @apply border-y;
+    @apply py-1;
+    @apply px-2;
+  }
+  th {
+    @apply text-left;
+    @apply bg-slate-100;
   }
 }
