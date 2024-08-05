@@ -13,8 +13,9 @@ import NContainer1col from './components/NContainer1col.ce.vue'
 import NContainer2col from './components/NContainer2col.ce.vue'
 import NContainer3col from './components/NContainer3col.ce.vue'
 import NContainerFlex from './components/NContainerFlex.ce.vue'
-import NContainerVerticalGrow from './components/NContainerVerticalGrow.ce.vue'
 import NContainerMedia from './components/NContainerMedia.ce.vue'
+import NContainerVerticalGrow from './components/NContainerVerticalGrow.ce.vue'
+import NContainerXScroll from './components/NContainerXScroll.ce.vue'
 import NElapsed from './components/NElapsed.ce.vue'
 import NExhibitors from './components/NExhibitors.ce.vue'
 import NIcon from './components/NIcon.ce.vue'
@@ -51,8 +52,9 @@ customElements.define('n-container-1col', defineCustomElement(NContainer1col))
 customElements.define('n-container-2col', defineCustomElement(NContainer2col))
 customElements.define('n-container-3col', defineCustomElement(NContainer3col))
 customElements.define('n-container-flex', defineCustomElement(NContainerFlex))
-customElements.define('n-container-vertical-grow', defineCustomElement(NContainerVerticalGrow))
 customElements.define('n-container-media', defineCustomElement(NContainerMedia))
+customElements.define('n-container-vertical-grow', defineCustomElement(NContainerVerticalGrow))
+customElements.define('n-container-x-scroll', defineCustomElement(NContainerXScroll))
 customElements.define('n-elapsed', defineCustomElement(NElapsed))
 customElements.define('n-exhibitors', defineCustomElement(NExhibitors))
 customElements.define('n-icon', defineCustomElement(NIcon))
