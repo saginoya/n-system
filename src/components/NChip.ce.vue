@@ -16,8 +16,8 @@ const { bgColor } = useColorStyle()
 <template>
   <span class="inline-block overflow-hidden rounded-full" :class="bgColor(color)">
     <n-link v-if="href" :href="href" :type="type || 'internal'" class="text-white">
-      <slot
-    /></n-link>
+      <slot />
+    </n-link>
     <span v-else class="inline-block px-3 py-1 text-white">
       <slot />
     </span>
