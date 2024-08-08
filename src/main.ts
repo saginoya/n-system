@@ -28,6 +28,7 @@ import NListItem2col from './components/NListItem2col.ce.vue'
 import NListItem3col from './components/NListItem3col.ce.vue'
 import NListItemApp from './components/NListItemApp.ce.vue'
 import NListItemDate from './components/NListItemDate.ce.vue'
+import NListItemKomazu from './components/NListItemKomazu.ce.vue'
 import NListNav from './components/NListNav.ce.vue'
 import NListNavRow from './components/NListNavRow.ce.vue'
 import NListNews from './components/NListNews.ce.vue'
@@ -69,6 +70,7 @@ customElements.define('n-list-item-2col', defineCustomElement(NListItem2col))
 customElements.define('n-list-item-3col', defineCustomElement(NListItem3col))
 customElements.define('n-list-item-app', defineCustomElement(NListItemApp))
 customElements.define('n-list-item-date', defineCustomElement(NListItemDate))
+customElements.define('n-list-item-komazu', defineCustomElement(NListItemKomazu))
 customElements.define('n-list-nav', defineCustomElement(NListNav))
 customElements.define('n-list-nav-row', defineCustomElement(NListNavRow))
 customElements.define('n-list-news', defineCustomElement(NListNews))
