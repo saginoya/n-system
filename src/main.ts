@@ -25,6 +25,7 @@ import NLink from './components/NLink.ce.vue'
 import NListDecimal from './components/NListDecimal.ce.vue'
 import NListDisc from './components/NListDisc.ce.vue'
 import NListItem2col from './components/NListItem2col.ce.vue'
+import NListItem3col from './components/NListItem3col.ce.vue'
 import NListItemApp from './components/NListItemApp.ce.vue'
 import NListItemDate from './components/NListItemDate.ce.vue'
 import NListNav from './components/NListNav.ce.vue'
@@ -65,6 +66,7 @@ customElements.define('n-link', defineCustomElement(NLink))
 customElements.define('n-list-decimal', defineCustomElement(NListDecimal))
 customElements.define('n-list-disc', defineCustomElement(NListDisc))
 customElements.define('n-list-item-2col', defineCustomElement(NListItem2col))
+customElements.define('n-list-item-3col', defineCustomElement(NListItem3col))
 customElements.define('n-list-item-app', defineCustomElement(NListItemApp))
 customElements.define('n-list-item-date', defineCustomElement(NListItemDate))
 customElements.define('n-list-nav', defineCustomElement(NListNav))
