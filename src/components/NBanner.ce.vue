@@ -90,14 +90,14 @@ const deadlineFormat = (): string | undefined => {
 <template>
   <component
     :is="isLink ? 'a' : 'div'"
-    class="group relative block max-w-full overflow-hidden rounded border-2 font-bold text-white"
+    class="group relative block max-w-full overflow-hidden rounded border-2 font-bold"
     :class="[widthSize(size), ...getStyles(color, variant), { 'aspect-[4/1]': size !== 'free' }]"
     :href="isLink ? href : null"
     :target="isLink ? (type ? linkTarget(type) : '_self') : null"
   >
     <div
       class="flex size-full items-center justify-center gap-1"
-      :class="{ 'group-hover:bg-white/20 group-focus:bg-white/20': isLink }"
+      :class="{ 'group-hover:bg-blue-200/20 group-focus:bg-blue-200/20': isLink }"
     >
       <slot />
       <component v-if="type" :is="linkIcon(type)" class="size-6" />
