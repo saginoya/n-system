@@ -9,9 +9,9 @@ export const useVariantStyle = () => {
     const bg: string = bgColor(color)
     const border: string = borderColor(color)
 
-    const textWhite: string = 'text-white'
-    const bgWhite: string = 'bg-white'
-    const borderWhite: string = 'border-white'
+    const textWhite: string = textColor('white')
+    const bgWhite: string = bgColor('white')
+    const borderWhite: string = borderColor('white')
 
     switch (variant) {
       case 'outlined':
