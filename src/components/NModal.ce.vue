@@ -6,15 +6,14 @@ import NTransitionScale from './NTransitionScale.vue'
 import { useModal } from '@/composables/useModal'
 
 defineProps<{
-  btnTitle: string
-  noBtn?: boolean
+  btnTitle?: string
 }>()
 
 const { visible, show, dismiss } = useModal()
 </script>
 
 <template>
-  <NBtn v-if="!noBtn" color="primary" @click="show()">{{ btnTitle }}</NBtn>
+  <NBtn v-if="btnTitle" color="primary" @click="show()">{{ btnTitle }}</NBtn>
   <NTransitionFade>
     <div
       v-show="visible"
