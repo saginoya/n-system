@@ -136,6 +136,7 @@ const sdgsEnImg = [
       :height="80"
       :src="lang === 'ja' ? sdgsJaImg[n] : sdgsEnImg[n]"
       :alt="lang === 'ja' ? sdgsJa[n] : sdgsEn[n]"
+      :title="lang === 'ja' ? sdgsJa[n] : sdgsEn[n]"
     ></NImage>
   </NContainerFlex>
 </template>
