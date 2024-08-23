@@ -31,7 +31,7 @@ const { getStyles } = useVariantStyle()
     class="overflow-hidden rounded border-2 font-bold"
     :class="getStyles(color, variant)"
   >
-    <span class="inline-block size-full px-4 py-2 hover:bg-black/20">
+    <span class="inline-block size-full px-4 py-2 hover:bg-blue-200/20 focus:bg-blue-200/20">
       <slot />
     </span>
   </button>
