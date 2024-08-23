@@ -4,16 +4,23 @@ import NCard from '@/components/NCard.ce.vue'
 import NTransitionFade from '@/components/NTransitionFade.vue'
 import NTransitionScale from './NTransitionScale.vue'
 import { useModal } from '@/composables/useModal'
+import type { Color } from '@/types/color'
 
-defineProps<{
-  btnTitle?: string
-}>()
+withDefaults(
+  defineProps<{
+    btnTitle?: string
+    btnColor?: Color
+  }>(),
+  {
+    btnColor: 'primary'
+  }
+)
 
 const { visible, show, dismiss } = useModal()
 </script>
 
 <template>
-  <NBtn v-if="btnTitle" color="primary" @click="show()">{{ btnTitle }}</NBtn>
+  <NBtn v-if="btnTitle" :color="btnColor" @click="show()">{{ btnTitle }}</NBtn>
   <NTransitionFade>
     <div
       v-show="visible"
