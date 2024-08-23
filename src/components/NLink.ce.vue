@@ -15,7 +15,7 @@ const { isSamePage } = useURL()
 
 <template>
   <a
-    class="box-content inline-block rounded-full px-3 pb-1 pt-0.5 align-middle hover:bg-blue-200/20 focus:bg-blue-200/20"
+    class="inline-flex items-center justify-center rounded-full px-3 py-1 hover:bg-blue-200/20 focus:bg-blue-200/20"
     :class="{
       'bg-slate-900/40': isSamePage(href),
       'contrast-75': isSamePage(href),

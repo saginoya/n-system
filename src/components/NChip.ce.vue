@@ -18,7 +18,7 @@ const { bgColor } = useColorStyle()
     <n-link v-if="href" :href="href" :type="type || 'internal'" class="text-white">
       <slot />
     </n-link>
-    <span v-else class="inline-block px-3 pb-1 pt-0.5 align-middle text-white">
+    <span v-else class="inline-flex items-center justify-center px-3 py-1 align-middle text-white">
       <slot />
     </span>
   </span>
