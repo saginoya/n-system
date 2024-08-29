@@ -2,11 +2,12 @@
 import NChip from '@/components/NChip.ce.vue'
 import NLink from '@/components/NLink.ce.vue'
 import NSdgsIcons from '@/components/NSdgsIcons.vue'
-import { useLang } from '@/composables/useLang'
+import type { Lang } from '@/types/lang'
 import type { Color } from '@/types/color'
 
 withDefaults(
   defineProps<{
+    lang: Lang
     name: string
     exhibitiion: string
     genre: string
@@ -23,7 +24,6 @@ withDefaults(
   }
 )
 
-const { lang } = useLang()
 const texts = {
   ja: {
     cat: 'カテゴリー',
@@ -39,7 +39,7 @@ const texts = {
 </script>
 
 <template>
-  <article class="flex flex-col p-4">
+  <article class="flex flex-col">
     <header class="flex flex-col items-center gap-4 py-6 sm:flex-row">
       <div>
         <NChip :color v-if="koma">{{ koma }}</NChip>
