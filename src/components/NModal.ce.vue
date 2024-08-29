@@ -2,7 +2,8 @@
 import NBtn from '@/components/NBtn.ce.vue'
 import NCard from '@/components/NCard.ce.vue'
 import NTransitionFade from '@/components/NTransitionFade.vue'
-import NTransitionScale from './NTransitionScale.vue'
+import NTransitionScale from '@/components/NTransitionScale.vue'
+import NBtnClose from '@/components/NBtnClose.vue'
 import { useModal } from '@/composables/useModal'
 import type { Color } from '@/types/color'
 
@@ -17,6 +18,8 @@ withDefaults(
 )
 
 const { visible, show, dismiss } = useModal()
+
+defineExpose({ show })
 </script>
 
 <template>
@@ -24,13 +27,18 @@ const { visible, show, dismiss } = useModal()
   <NTransitionFade>
     <div
       v-show="visible"
-      class="fixed left-0 top-0 z-50 flex h-screen w-full items-center justify-center overflow-y-scroll overscroll-contain bg-black/70"
+      class="fixed left-0 top-0 z-50 flex h-screen w-full items-center justify-center bg-black/70 p-6"
       @click="dismiss()"
     >
       <NTransitionScale>
-        <NCard v-show="visible" @click.stop>
-          <slot />
-          <NBtn color="gray" variant="text" @click="dismiss()">Close</NBtn>
+        <NCard ref="card" v-if="visible" @click.stop class="relative max-h-full">
+          <NBtnClose class="absolute -right-4 -top-4" @click="dismiss()"></NBtnClose>
+          <div class="overflow-y-auto overscroll-contain">
+            <slot />
+            <p class="text-center">
+              <NBtn color="gray" variant="text" @click="dismiss()">Close</NBtn>
+            </p>
+          </div>
         </NCard>
       </NTransitionScale>
     </div>
