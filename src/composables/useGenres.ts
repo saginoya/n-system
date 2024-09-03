@@ -5,19 +5,17 @@ import type { Genre } from '@/types/genre'
 
 export const useGenres = (src: string) => {
   // ジャンルのリスト
-  const genres = ref<Genre[]>([])
-
-  const isGenres = ref<boolean>(genres.value.length > 0)
+  const genres = ref<Genre[]>()
 
   onMounted(async () => {
     genres.value = await useJson(src)
   })
 
   // ジャンル記号からジャンル名を取得する関数
-  const getGenreNameFromID = (value: string, lang: Lang): string | undefined => {
-    if (isGenres.value) {
+  const getGenreNameFromID = (value: string, lang: Lang): string => {
+    if (!genres.value) {
       console.error('Could not retrieve genre list')
-      return undefined
+      return value
     }
 
     for (const genre of genres.value) {
@@ -30,6 +28,8 @@ export const useGenres = (src: string) => {
         }
       }
     }
+
+    return value
   }
 
   return {

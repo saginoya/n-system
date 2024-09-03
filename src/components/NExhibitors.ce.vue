@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watchEffect } from 'vue'
+import { ref, computed, watchEffect } from 'vue'
 import { useExhibitorList } from '@/composables/useExhibitorList'
 import { useLang } from '@/composables/useLang'
 
@@ -23,8 +23,14 @@ const {
   validateExhibitor,
   stateKeyword,
   numberOfExhibitors,
-  numberOfVisibleExhibitors
+  numberOfVisibleExhibitors,
+  genres
 } = useExhibitorList('ja', '/json/exhibitor-list2024.json', '/json/genres2024.json')
+
+const genresList = computed(() => {
+  if (!genres.value) return undefined
+  return genres.value?.map((item) => item[lang.value === 'ja' ? 'name' : 'nameEng'])
+})
 
 const sort = ref<'name' | 'koma'>('name')
 
@@ -59,7 +65,7 @@ const showModal = (exhibitor: Exhibitor) => {
     :labels="['50音順', '小間番号順']"
   ></NTabs>
 
-  <NInputSearch v-model="stateKeyword"></NInputSearch>
+  <NInputSearch v-model="stateKeyword" :datalist="genresList"></NInputSearch>
 
   <NSwitcBookmark name="bookmark" v-model="bookmark" color="success"></NSwitcBookmark>
   <NTooltipBookmark :active="bookmark"></NTooltipBookmark>

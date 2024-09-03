@@ -6,6 +6,9 @@ import type { Lang } from '@/types/lang'
 import type { Exhibitor, JsonExhibitor, SortType, ExhibitionName } from '@/types/exhibitorList'
 
 export const useExhibitorList = (lang: Lang, listSrc: string, genresSrc: string) => {
+  // ジャンルの取得
+  const { getGenreNameFromID, genres } = useGenres(genresSrc)
+
   // 出展社リスト
   const exhibitorList = ref<Exhibitor[]>([])
 
@@ -24,7 +27,6 @@ export const useExhibitorList = (lang: Lang, listSrc: string, genresSrc: string)
   const isJapanese = lang === 'ja'
 
   // JSONの出展社情報をリストの形式に変換する関数
-  const { getGenreNameFromID } = useGenres(genresSrc)
   const applyExhibitor = (value: JsonExhibitor): Exhibitor => {
     return {
       id: value.id,
@@ -125,6 +127,7 @@ export const useExhibitorList = (lang: Lang, listSrc: string, genresSrc: string)
     stateExhibition,
     setStateExhibition,
     validateExhibitor,
-    stateKeyword
+    stateKeyword,
+    genres
   }
 }
