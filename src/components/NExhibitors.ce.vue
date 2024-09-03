@@ -1,41 +1,86 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watchEffect } from 'vue'
+import { useExhibitorList } from '@/composables/useExhibitorList'
+import { useLang } from '@/composables/useLang'
+
+import NExhibitorListItem from '@/components/NExhibitorListItem.vue'
+import NExhibitorProfile from '@/components/NExhibitorProfile.vue'
+import NInputSearch from '@/components/NInputSearch.vue'
+import NModal from '@/components/NModal.ce.vue'
 import NSwitch from '@/components/NSwitch.vue'
-import NTabs from '@/components/NTabs.vue'
 import NSwitcBookmark from '@/components/NSwitcBookmark.vue'
+import NTabs from '@/components/NTabs.vue'
 import NTooltipBookmark from '@/components/NTooltipBookmark.vue'
+
+import type { Exhibitor } from '@/types/exhibitorList'
+
+const { lang } = useLang()
+
+const {
+  exhibitorList,
+  setStateSort,
+  setStateExhibition,
+  validateExhibitor,
+  stateKeyword,
+  numberOfExhibitors,
+  numberOfVisibleExhibitors
+} = useExhibitorList('ja', '/json/exhibitor-list2024.json', '/json/genres2024.json')
+
+const sort = ref<'name' | 'koma'>('name')
 
 const nexpo = ref<boolean>(true)
 const gwpe = ref<boolean>(true)
 
-const sort = ref<'aiu' | 'koma'>('aiu')
-const sort2 = ref('aaa')
-
 const bookmark = ref<boolean>(false)
+
+watchEffect(() => {
+  setStateExhibition('nexpo', nexpo.value)
+  setStateExhibition('gwpe', gwpe.value)
+  setStateSort(sort.value)
+})
+
+// モーダルウインドウ
+const modal = ref()
+const currentExhibitor = ref<Exhibitor | undefined>()
+const showModal = (exhibitor: Exhibitor) => {
+  currentExhibitor.value = exhibitor
+  modal.value.show()
+}
 </script>
 
 <template>
   <NSwitch id="nexpo" v-model="nexpo" label="NEW環境点" color="exhibition-a"></NSwitch>
   <NSwitch id="gwpe" v-model="gwpe" label="地球温暖化防止展" color="exhibition-b"></NSwitch>
 
-  <p>{{ nexpo }}</p>
-  <p>{{ gwpe }}</p>
-
   <NTabs
     v-model="sort"
     name="sort"
-    :values="['aiu', 'koma']"
+    :values="['name', 'koma']"
     :labels="['50音順', '小間番号順']"
   ></NTabs>
 
-  <NTabs v-model="sort2" name="sort2" :values="['aaa', 'bbb', 'ccc']" color="info"></NTabs>
-
-  <p>{{ sort }}</p>
-  <p>{{ sort2 }}</p>
+  <NInputSearch v-model="stateKeyword"></NInputSearch>
 
   <NSwitcBookmark name="bookmark" v-model="bookmark" color="success"></NSwitcBookmark>
   <NTooltipBookmark :active="bookmark"></NTooltipBookmark>
-  <p>{{ bookmark }}</p>
+  <p>{{ numberOfVisibleExhibitors }}/{{ numberOfExhibitors }}</p>
+
+  <!-- 出展社の一覧リスト -->
+  <ul class="divide-y">
+    <template v-for="exhibitor in exhibitorList" :key="exhibitor.id">
+      <NExhibitorListItem
+        v-show="validateExhibitor(exhibitor)"
+        :items="exhibitor"
+        @click="showModal(exhibitor)"
+      ></NExhibitorListItem>
+    </template>
+  </ul>
+
+  <!-- モーダルウインドウ（出展社の詳細情報） -->
+  <NModal ref="modal">
+    <p v-if="!currentExhibitor">情報がありません。</p>
+    <NExhibitorProfile v-else :lang="lang" :exhibitor="currentExhibitor"></NExhibitorProfile>
+  </NModal>
 </template>
 
 <style>
