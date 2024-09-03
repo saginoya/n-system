@@ -2,27 +2,16 @@
 import NChip from '@/components/NChip.ce.vue'
 import NLink from '@/components/NLink.ce.vue'
 import NSdgsIcons from '@/components/NSdgsIcons.vue'
+import type { Exhibitor } from '@/types/exhibitorList'
 import type { Lang } from '@/types/lang'
-import type { Color } from '@/types/color'
 
-withDefaults(
-  defineProps<{
-    lang: Lang
-    name: string
-    exhibitiion: string
-    genre: string
-    koma?: string
-    subName?: string
-    webSite?: string
-    contents?: string
-    categories?: string[]
-    sdgs?: number[]
-    color?: Color
-  }>(),
-  {
-    color: 'exhibition-a'
-  }
-)
+const props = defineProps<{
+  lang: Lang
+  exhibitor: Exhibitor
+}>()
+
+const { koma, color, name, subName, contents, exhibition, genre, categories, webSite, sdgs } =
+  props.exhibitor
 
 const texts = {
   ja: {
@@ -42,22 +31,27 @@ const texts = {
   <article class="flex flex-col">
     <header class="flex flex-col items-center gap-4 py-6 sm:flex-row">
       <div>
-        <NChip :color v-if="koma">{{ koma }}</NChip>
+        <NChip :color="color || 'exhibition-a'" v-if="koma">{{ koma }}</NChip>
       </div>
       <div>
         <h1>{{ name }}</h1>
         <p v-if="subName">{{ subName }}</p>
       </div>
     </header>
-    <div v-if="contents" class="rounded bg-gray-100 p-2">
-      <p>{{ contents }}</p>
+    <div v-if="contents">
+      <p class="bg-gray-100 py-1">
+        {{ contents }}
+      </p>
     </div>
     <dl class="divide-y">
       <div class="grid grid-cols-1 gap-2 py-2 sm:grid-cols-4 md:grid-cols-6">
-        <dt class="font-bold">{{ exhibitiion }}</dt>
+        <dt class="font-bold">{{ exhibition }}</dt>
         <dd class="sm:col-span-3 md:col-span-5">{{ genre }}</dd>
       </div>
-      <div v-if="categories" class="grid grid-cols-1 gap-2 py-2 sm:grid-cols-4 md:grid-cols-6">
+      <div
+        v-if="categories && categories.length > 0"
+        class="grid grid-cols-1 gap-2 py-2 sm:grid-cols-4 md:grid-cols-6"
+      >
         <dt class="font-bold">{{ texts[lang].cat }}</dt>
         <dd class="sm:col-span-3 md:col-span-5">
           <ul>
