@@ -17,7 +17,7 @@ import NContainerMedia from './components/NContainerMedia.ce.vue'
 import NContainerVerticalGrow from './components/NContainerVerticalGrow.ce.vue'
 import NContainerXScroll from './components/NContainerXScroll.ce.vue'
 import NElapsed from './components/NElapsed.ce.vue'
-import NExhibitors from './components/NExhibitors.ce.vue'
+import NExhibitorsNexpo from './components/NExhibitorsNexpo.ce.vue'
 import NIcon from './components/NIcon.ce.vue'
 import NImage from './components/NImage.ce.vue'
 import NInputWrapper from './components/NInputWrapper.ce.vue'
@@ -59,7 +59,7 @@ customElements.define('n-container-media', defineCustomElement(NContainerMedia))
 customElements.define('n-container-vertical-grow', defineCustomElement(NContainerVerticalGrow))
 customElements.define('n-container-x-scroll', defineCustomElement(NContainerXScroll))
 customElements.define('n-elapsed', defineCustomElement(NElapsed))
-customElements.define('n-exhibitors', defineCustomElement(NExhibitors))
+customElements.define('n-exhibitors-nexpo', defineCustomElement(NExhibitorsNexpo))
 customElements.define('n-icon', defineCustomElement(NIcon))
 customElements.define('n-image', defineCustomElement(NImage))
 customElements.define('n-input-wrapper', defineCustomElement(NInputWrapper))

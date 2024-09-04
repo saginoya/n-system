@@ -3,9 +3,14 @@ import { useJson } from '@/utils/useJson'
 import { useText } from '@/utils/useText'
 import { useGenres } from '@/composables/useGenres'
 import type { Lang } from '@/types/lang'
-import type { Exhibitor, JsonExhibitor, SortType, ExhibitionName } from '@/types/exhibitorList'
+import type { Exhibitor, JsonExhibitor, SortType, Exhibitions } from '@/types/exhibitorList'
 
-export const useExhibitorList = (lang: Lang, listSrc: string, genresSrc: string) => {
+export const useExhibitorList = (
+  lang: Lang,
+  listSrc: string,
+  genresSrc: string,
+  exhibitions: Exhibitions
+) => {
   // ジャンルの取得
   const { getGenreNameFromID, genres } = useGenres(genresSrc)
 
@@ -33,10 +38,10 @@ export const useExhibitorList = (lang: Lang, listSrc: string, genresSrc: string)
       name: isJapanese ? value.name : value.nameEng,
       order: isJapanese ? value.order : value.orderEng,
       subName: isJapanese ? value.nameEng : '',
-      exhibition: value.exhibition,
+      exhibition: exhibitions[value.exhibition][lang],
       genre: getGenreNameFromID(value.genre, lang),
       koma: value.koma,
-      color: 'exhibition-a',
+      color: exhibitions[value.exhibition].color,
       webSite: value.webSite,
       contents: isJapanese ? value.contents : value.contentsEng,
       categories: isJapanese ? value.categories : value.categoriesEng,
@@ -76,8 +81,8 @@ export const useExhibitorList = (lang: Lang, listSrc: string, genresSrc: string)
   const stateKeyword = ref<string>('')
 
   // フィルターの条件（展示会）
-  const stateExhibition = ref<ExhibitionName[]>([])
-  const setStateExhibition = (name: ExhibitionName, active: boolean) => {
+  const stateExhibition = ref<string[]>([])
+  const setStateExhibition = (name: string, active: boolean) => {
     if (active) {
       if (stateExhibition.value.includes(name)) return
       stateExhibition.value.push(name)

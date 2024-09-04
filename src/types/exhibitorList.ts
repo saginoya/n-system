@@ -1,7 +1,13 @@
 import type { Color } from '@/types/color'
 
 export type SortType = 'name' | 'nameEng' | 'koma' | undefined
-export type ExhibitionName = string
+export type Exhibitions = {
+  [key: string]: {
+    ja: string
+    en: string
+    color: Color
+  }
+}
 export type Exhibitor = {
   id: string
   name: string
