@@ -3,6 +3,7 @@ import { ref, computed, watchEffect } from 'vue'
 import { useExhibitorList } from '@/composables/useExhibitorList'
 import { useLang } from '@/composables/useLang'
 
+import NExhibitorListHeading from '@/components/NExhibitorListHeading.vue'
 import NExhibitorListItem from '@/components/NExhibitorListItem.vue'
 import NExhibitorProfile from '@/components/NExhibitorProfile.vue'
 import NInputSearch from '@/components/NInputSearch.vue'
@@ -11,7 +12,7 @@ import NSwitch from '@/components/NSwitch.vue'
 import NSwitcBookmark from '@/components/NSwitcBookmark.vue'
 import NTabs from '@/components/NTabs.vue'
 
-import type { Exhibitor } from '@/types/exhibitorList'
+import type { Exhibitor, Exhibitions } from '@/types/exhibitorList'
 
 const props = defineProps<{
   listSrc: string
@@ -19,7 +20,7 @@ const props = defineProps<{
 }>()
 const { lang } = useLang()
 
-const exhibitions = {
+const exhibitions: Exhibitions = {
   nexpo: {
     ja: 'NEW環境展',
     en: 'N-EXPO',
@@ -40,7 +41,8 @@ const {
   stateKeyword,
   numberOfExhibitors,
   numberOfVisibleExhibitors,
-  genres
+  genres,
+  headings
 } = useExhibitorList(lang.value, props.listSrc, props.genreSrc, exhibitions)
 
 const genresList = computed(() => {
@@ -106,7 +108,10 @@ const showModal = (exhibitor: Exhibitor) => {
 
   <!-- 出展社の一覧リスト -->
   <ul class="divide-y">
-    <template v-for="exhibitor in exhibitorList" :key="exhibitor.id">
+    <template v-for="(exhibitor, index) in exhibitorList" :key="exhibitor.id">
+      <NExhibitorListHeading v-if="headings[index]">
+        {{ headings[index] }}
+      </NExhibitorListHeading>
       <NExhibitorListItem
         v-show="validateExhibitor(exhibitor)"
         :items="exhibitor"
