@@ -13,6 +13,9 @@ export const useExhibitorList = (
   genresSrc: string,
   exhibitions: Exhibitions
 ) => {
+  // 言語は日本語か
+  const isJapanese = lang === 'ja'
+
   // 状態管理
   // 出展社リスト
   const exhibitorList = ref<Exhibitor[]>([])
@@ -22,8 +25,9 @@ export const useExhibitorList = (
     await genres.value
     const json = await useJson(listSrc)
 
-    exhibitorList.value = await json.map((item: JsonExhibitor) => {
-      return applyExhibitor(item)
+    await json.map((items: JsonExhibitor) => {
+      if (!isJapanese && !items.nameEng) return
+      exhibitorList.value.push(applyExhibitor(items))
     })
 
     await replaceList()
@@ -41,15 +45,12 @@ export const useExhibitorList = (
   } = useExhibitorListFilter(exhibitorList)
   const { headings } = useExhibitorListHeading(exhibitorList, stateSort, lang, validateExhibitor)
 
-  // 言語は日本語か
-  const isJapanese = lang === 'ja'
-
   // JSONの出展社情報をリストの形式に変換する関数
   const applyExhibitor = (value: JsonExhibitor): Exhibitor => {
     return {
       id: value.id,
       name: isJapanese ? value.name : value.nameEng,
-      order: isJapanese ? value.order : value.orderEng,
+      order: isJapanese ? value.order : value.orderEng || value.nameEng,
       subName: isJapanese ? value.nameEng : '',
       exhibition: exhibitions[value.exhibition][lang],
       genre: getGenreNameFromID(value.genre, lang),
