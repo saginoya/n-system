@@ -2,6 +2,7 @@ import { ref, computed, onMounted } from 'vue'
 import { useJson } from '@/utils/useJson'
 import { useGenres } from '@/composables/useGenres'
 import { useExhibitorListFilter } from '@/composables/useExhibitorListFilter'
+import { useExhibitorListHeading } from '@/composables/useExhibitorListHeading'
 import { useExhibitorListSort } from '@/composables/useExhibitorListSort'
 import type { Lang } from '@/types/lang'
 import type { Exhibitor, JsonExhibitor, Exhibitions } from '@/types/exhibitorList'
@@ -38,6 +39,7 @@ export const useExhibitorList = (
     setStateExhibition,
     validateExhibitor
   } = useExhibitorListFilter(exhibitorList)
+  const { headings } = useExhibitorListHeading(exhibitorList, stateSort, lang, validateExhibitor)
 
   // 言語は日本語か
   const isJapanese = lang === 'ja'
@@ -51,12 +53,21 @@ export const useExhibitorList = (
       subName: isJapanese ? value.nameEng : '',
       exhibition: exhibitions[value.exhibition][lang],
       genre: getGenreNameFromID(value.genre, lang),
-      koma: value.koma,
+      koma: toBoothNumber(value.koma),
       color: exhibitions[value.exhibition].color,
       webSite: value.webSite,
       contents: isJapanese ? value.contents : value.contentsEng,
       categories: isJapanese ? value.categories : value.categoriesEng,
       sdgs: value.sdgs
+    }
+  }
+
+  // 英語の場合は屋外出展社の小間番号を変換する
+  const toBoothNumber = (boothNumber: string) => {
+    if (isJapanese || !boothNumber.includes('外')) {
+      return boothNumber
+    } else {
+      return boothNumber.replace('外', 'Z')
     }
   }
 
@@ -75,6 +86,7 @@ export const useExhibitorList = (
     setStateExhibition,
     validateExhibitor,
     stateKeyword,
-    genres
+    genres,
+    headings
   }
 }
