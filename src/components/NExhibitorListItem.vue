@@ -5,9 +5,11 @@ import type { Exhibitor } from '@/types/exhibitorList'
 
 const props = defineProps<{
   items: Exhibitor
+  favorite: boolean
+  favoriteMethod: (value: string) => void
 }>()
 
-const { koma, name, contents, color } = props.items
+const { id, koma, name, contents, color } = props.items
 </script>
 
 <template>
@@ -25,7 +27,11 @@ const { koma, name, contents, color } = props.items
         <p v-html="contents" class="truncate text-gray-400"></p>
       </div>
       <div class="text-center">
-        <NTooltipBookmark :active="false"></NTooltipBookmark>
+        <NTooltipBookmark
+          :active="favorite"
+          color="success"
+          @click.stop="favoriteMethod(id)"
+        ></NTooltipBookmark>
       </div>
     </div>
   </li>

@@ -8,6 +8,7 @@ export type Exhibitions = {
     color: Color
   }
 }
+export type Favorites = string[]
 export type Exhibitor = {
   id: string
   name: string

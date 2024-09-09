@@ -20,6 +20,7 @@ import type { Exhibitor, Exhibitions } from '@/types/exhibitorList'
 const props = defineProps<{
   listSrc: string
   genreSrc: string
+  favoriteKey: string
 }>()
 const { lang } = useLang()
 
@@ -36,7 +37,6 @@ const exhibitions: Exhibitions = {
     color: 'exhibition-b'
   }
 }
-
 // リストとリストの機能読み込み
 const {
   exhibitorList,
@@ -44,11 +44,14 @@ const {
   setStateExhibition,
   validateExhibitor,
   stateKeyword,
+  stateFavorite,
   numberOfExhibitors,
   numberOfVisibleExhibitors,
   genres,
-  headings
-} = useExhibitorList(lang.value, props.listSrc, props.genreSrc, exhibitions)
+  headings,
+  myFavorites,
+  switchFavorite
+} = useExhibitorList(lang.value, props.listSrc, props.genreSrc, exhibitions, props.favoriteKey)
 
 // ジャンルの読み込み
 const genresList = computed(() => {
@@ -70,11 +73,23 @@ const gwpe = ref<boolean>(true)
 // ブックマークフィルター条件
 const bookmark = ref<boolean>(false)
 
+const switchBookmark = (): void => {
+  if (bookmark.value) {
+    nexpo.value = true
+    gwpe.value = true
+    stateKeyword.value = ''
+    stateFavorite.value = true
+  } else {
+    stateFavorite.value = false
+  }
+}
+
 // 条件をもとにメソッドを実行
 watchEffect(() => {
   setStateExhibition(exhibitions.nexpo[lang.value], nexpo.value)
   setStateExhibition(exhibitions.gwpe[lang.value], gwpe.value)
   setStateSort(sort.value)
+  switchBookmark()
 })
 
 // モーダルウインドウ
@@ -214,6 +229,8 @@ const showModal = (exhibitor: Exhibitor) => {
       <NExhibitorListItem
         v-show="validateExhibitor(exhibitor)"
         :items="exhibitor"
+        :favorite="myFavorites.includes(exhibitor.id)"
+        :favorite-method="switchFavorite"
         @click="showModal(exhibitor)"
       ></NExhibitorListItem>
     </template>

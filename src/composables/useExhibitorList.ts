@@ -1,6 +1,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { useJson } from '@/utils/useJson'
 import { useGenres } from '@/composables/useGenres'
+import { useExhibitorListFavorite } from '@/composables/useExhibitorListFavorite'
 import { useExhibitorListFilter } from '@/composables/useExhibitorListFilter'
 import { useExhibitorListHeading } from '@/composables/useExhibitorListHeading'
 import { useExhibitorListSort } from '@/composables/useExhibitorListSort'
@@ -11,7 +12,8 @@ export const useExhibitorList = (
   lang: Lang,
   listSrc: string,
   genresSrc: string,
-  exhibitions: Exhibitions
+  exhibitions: Exhibitions,
+  favoriteKey: string
 ) => {
   // 言語は日本語か
   const isJapanese = lang === 'ja'
@@ -35,14 +37,17 @@ export const useExhibitorList = (
 
   // モジュールの読み込み
   const { getGenreNameFromID, genres } = useGenres(genresSrc)
+  const { myFavorites, switchFavorite } = useExhibitorListFavorite(favoriteKey)
+
   const { stateSort, setStateSort, replaceList } = useExhibitorListSort(exhibitorList)
   const {
     stateKeyword,
     stateExhibition,
+    stateFavorite,
     numberOfVisibleExhibitors,
     setStateExhibition,
     validateExhibitor
-  } = useExhibitorListFilter(exhibitorList)
+  } = useExhibitorListFilter(exhibitorList, myFavorites)
   const { headings } = useExhibitorListHeading(exhibitorList, stateSort, lang, validateExhibitor)
 
   // JSONの出展社情報をリストの形式に変換する関数
@@ -84,10 +89,13 @@ export const useExhibitorList = (
     stateSort,
     setStateSort,
     stateExhibition,
+    stateFavorite,
     setStateExhibition,
     validateExhibitor,
     stateKeyword,
     genres,
-    headings
+    headings,
+    myFavorites,
+    switchFavorite
   }
 }

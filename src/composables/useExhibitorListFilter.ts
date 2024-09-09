@@ -1,9 +1,12 @@
 import { ref, computed } from 'vue'
 import { useText } from '@/utils/useText'
 import type { Ref } from 'vue'
-import type { Exhibitor } from '@/types/exhibitorList'
+import type { Exhibitor, Favorites } from '@/types/exhibitorList'
 
-export const useExhibitorListFilter = (exhibitorList: Ref<Exhibitor[]>) => {
+export const useExhibitorListFilter = (
+  exhibitorList: Ref<Exhibitor[]>,
+  favorites: Ref<Favorites>
+) => {
   // モジュールの読み込み
   const { katakanaToHiragana } = useText()
 
@@ -12,6 +15,8 @@ export const useExhibitorListFilter = (exhibitorList: Ref<Exhibitor[]>) => {
   const stateKeyword = ref<string>('')
   // フィルターの条件（展示会）
   const stateExhibition = ref<string[]>([])
+  // フィルターの条件（お気に入り）
+  const stateFavorite = ref<boolean>()
 
   // フィルター条件に一致する出展社の件数
   const numberOfVisibleExhibitors = computed<number>(() => {
@@ -32,9 +37,16 @@ export const useExhibitorListFilter = (exhibitorList: Ref<Exhibitor[]>) => {
 
   // 出展社を検索条件に一致するか検査する関数
   const validateExhibitor = (value: Exhibitor): boolean => {
+    // お気に入りのみ表示のときにお気に入りでなければ早期リターン
+    if (stateFavorite.value && !favorites.value.includes(value.id)) return false
+
+    // 展示会の条件に一致しなければ早期リターン
     if (!stateExhibition.value.includes(value.exhibition)) return false
+
+    // キーワードが設定されていなければ早期リターン
     if (!stateKeyword.value) return true
 
+    // キーワードが含まれるかの検証
     const keyword = katakanaToHiragana(stateKeyword.value.toLowerCase())
     const subjects = [
       value.name,
@@ -45,13 +57,13 @@ export const useExhibitorListFilter = (exhibitorList: Ref<Exhibitor[]>) => {
       value.categories
     ]
     const subject = katakanaToHiragana(subjects.join('・').toLowerCase())
-
     return subject.includes(keyword)
   }
 
   return {
     stateKeyword,
     stateExhibition,
+    stateFavorite,
     numberOfVisibleExhibitors,
     setStateExhibition,
     validateExhibitor
