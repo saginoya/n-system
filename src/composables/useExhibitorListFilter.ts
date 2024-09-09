@@ -16,7 +16,7 @@ export const useExhibitorListFilter = (
   // フィルターの条件（展示会）
   const stateExhibition = ref<string[]>([])
   // フィルターの条件（お気に入り）
-  const stateFavorite = ref<boolean>()
+  const stateFavorite = ref<boolean>(false)
 
   // フィルター条件に一致する出展社の件数
   const numberOfVisibleExhibitors = computed<number>(() => {

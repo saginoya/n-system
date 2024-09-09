@@ -70,26 +70,11 @@ const sortLabel = {
 const nexpo = ref<boolean>(true)
 const gwpe = ref<boolean>(true)
 
-// ブックマークフィルター条件
-const bookmark = ref<boolean>(false)
-
-const switchBookmark = (): void => {
-  if (bookmark.value) {
-    nexpo.value = true
-    gwpe.value = true
-    stateKeyword.value = ''
-    stateFavorite.value = true
-  } else {
-    stateFavorite.value = false
-  }
-}
-
 // 条件をもとにメソッドを実行
 watchEffect(() => {
   setStateExhibition(exhibitions.nexpo[lang.value], nexpo.value)
   setStateExhibition(exhibitions.gwpe[lang.value], gwpe.value)
   setStateSort(sort.value)
-  switchBookmark()
 })
 
 // モーダルウインドウ
@@ -165,7 +150,7 @@ const showModal = (exhibitor: Exhibitor) => {
 
       <div class="flex flex-col sm:flex-row sm:items-center">
         <!-- お気に入りフィルターのタブ -->
-        <NSwitcBookmark name="bookmark" v-model="bookmark" color="success"></NSwitcBookmark>
+        <NSwitcBookmark name="bookmark" v-model="stateFavorite" color="success"></NSwitcBookmark>
 
         <!-- お気に入りフィルターのインフォメーション -->
         <NTooltipInfo location="left">
