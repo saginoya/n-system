@@ -17,12 +17,17 @@
       <n-container-1col>
         <n-card>
           <n-title-lv3>出展社一覧</n-title-lv3>
-          <n-exhibitors></n-exhibitors>
+          <n-exhibitors-nexpo
+            list-src="/json/exhibitor-list2024.json"
+            genre-src="/json/genres2024.json"
+            favorite-key="nexpo_favorites_2025"
+          ></n-exhibitors-nexpo>
         </n-card>
 
         <n-card>
           <n-title-lv3>モーダル</n-title-lv3>
           <n-modal btn-title="ボタン"> <p>モーダルの内容</p> </n-modal>
+          <n-modal btn-title="色変更" btn-color="info"> <p>モーダルの内容</p> </n-modal>
         </n-card>
         <n-card>
           <n-title-lv3>リンク・チップ</n-title-lv3>

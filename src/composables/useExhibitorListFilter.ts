@@ -5,7 +5,7 @@ import type { Exhibitor, Favorites } from '@/types/exhibitorList'
 
 export const useExhibitorListFilter = (
   exhibitorList: Ref<Exhibitor[]>,
-  favorites: Ref<Favorites>
+  favorites?: Ref<Favorites>
 ) => {
   // モジュールの読み込み
   const { katakanaToHiragana } = useText()
@@ -38,7 +38,7 @@ export const useExhibitorListFilter = (
   // 出展社を検索条件に一致するか検査する関数
   const validateExhibitor = (value: Exhibitor): boolean => {
     // お気に入りのみ表示のときにお気に入りでなければ早期リターン
-    if (stateFavorite.value && !favorites.value.includes(value.id)) return false
+    if (stateFavorite.value && favorites && !favorites.value.includes(value.id)) return false
 
     // 展示会の条件に一致しなければ早期リターン
     if (!stateExhibition.value.includes(value.exhibition)) return false

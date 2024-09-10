@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { ref, computed, watchEffect } from 'vue'
 import { useExhibitorList } from '@/composables/useExhibitorList'
+import { useExhibitorListSort } from '@/composables/useExhibitorListSort'
+import { useExhibitorListFilter } from '@/composables/useExhibitorListFilter'
+import { useExhibitorListHeading } from '@/composables/useExhibitorListHeading'
+import { useExhibitorListFavorite } from '@/composables/useExhibitorListFavorite'
 import { useLang } from '@/composables/useLang'
 
 import NExhibitorListHeading from '@/components/NExhibitorListHeading.vue'
@@ -37,21 +41,36 @@ const exhibitions: Exhibitions = {
     color: 'exhibition-b'
   }
 }
-// リストとリストの機能読み込み
+// 出展社リストの読み込み
+const { exhibitorList, numberOfExhibitors, genres } = useExhibitorList(
+  lang.value,
+  props.listSrc,
+  props.genreSrc,
+  exhibitions
+)
+
+// リストのソート機能
+const { stateSort } = useExhibitorListSort(exhibitorList)
+
+// お気に入り機能
+const { myFavorites, switchFavorite } = useExhibitorListFavorite(props.favoriteKey)
+
+// リストのフィルター機能
 const {
-  exhibitorList,
-  setStateSort,
-  setStateExhibition,
-  validateExhibitor,
   stateKeyword,
   stateFavorite,
-  numberOfExhibitors,
   numberOfVisibleExhibitors,
-  genres,
-  headings,
-  myFavorites,
-  switchFavorite
-} = useExhibitorList(lang.value, props.listSrc, props.genreSrc, exhibitions, props.favoriteKey)
+  setStateExhibition,
+  validateExhibitor
+} = useExhibitorListFilter(exhibitorList, myFavorites)
+
+// リストの見出し機能
+const { headings } = useExhibitorListHeading(
+  exhibitorList,
+  stateSort,
+  lang.value,
+  validateExhibitor
+)
 
 // ジャンルの読み込み
 const genresList = computed(() => {
@@ -59,8 +78,7 @@ const genresList = computed(() => {
   return genres.value?.map((item) => item[lang.value === 'ja' ? 'name' : 'nameEng'])
 })
 
-// ソート条件
-const sort = ref<'name' | 'koma'>('name')
+// ソート
 const sortLabel = {
   ja: ['50音順', '小間番号順'],
   en: ['Name', 'Booth number']
@@ -74,7 +92,6 @@ const gwpe = ref<boolean>(true)
 watchEffect(() => {
   setStateExhibition(exhibitions.nexpo[lang.value], nexpo.value)
   setStateExhibition(exhibitions.gwpe[lang.value], gwpe.value)
-  setStateSort(sort.value)
 })
 
 // モーダルウインドウ
@@ -94,7 +111,7 @@ const showModal = (exhibitor: Exhibitor) => {
       <!-- ソートの条件タブ -->
       <div class="text-center">
         <NTabs
-          v-model="sort"
+          v-model="stateSort"
           name="sort"
           :values="['name', 'koma']"
           :labels="sortLabel[lang]"

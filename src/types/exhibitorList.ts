@@ -1,6 +1,6 @@
 import type { Color } from '@/types/color'
 
-export type SortType = 'name' | 'koma' | undefined
+export type SortType = 'name' | 'koma'
 export type Exhibitions = {
   [key: string]: {
     ja: string
@@ -8,9 +8,10 @@ export type Exhibitions = {
     color: Color
   }
 }
-export type Favorites = string[]
+export type ExhibitorID = string
+export type Favorites = ExhibitorID[]
 export type Exhibitor = {
-  id: string
+  id: ExhibitorID
   name: string
   order: string
   koma: string

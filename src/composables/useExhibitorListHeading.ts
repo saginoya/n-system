@@ -15,6 +15,10 @@ export const useExhibitorListHeading = (
 
   // 見出しの一覧
   const headings = computed<string[]>(() => {
+    // 見出しを比較する変数のリセット
+    currentHeading = ''
+
+    // 出展社リストから見出しのリストを生成する
     return exhibitorList.value.map((exhibitor) => {
       if (filterFunc(exhibitor)) {
         return showHeading(exhibitor.genre || '', exhibitor.order)
@@ -36,7 +40,7 @@ export const useExhibitorListHeading = (
     }
   }
 
-  // 値から見出しも文字を生成
+  // 値から見出しの文字を生成
   const generateHeading = (genre: string, order: string) => {
     if (sort.value === 'koma') {
       return genre

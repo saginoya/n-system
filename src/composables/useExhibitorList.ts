@@ -1,10 +1,6 @@
 import { ref, computed, onMounted } from 'vue'
 import { useJson } from '@/utils/useJson'
 import { useGenres } from '@/composables/useGenres'
-import { useExhibitorListFavorite } from '@/composables/useExhibitorListFavorite'
-import { useExhibitorListFilter } from '@/composables/useExhibitorListFilter'
-import { useExhibitorListHeading } from '@/composables/useExhibitorListHeading'
-import { useExhibitorListSort } from '@/composables/useExhibitorListSort'
 import type { Lang } from '@/types/lang'
 import type { Exhibitor, JsonExhibitor, Exhibitions } from '@/types/exhibitorList'
 
@@ -12,8 +8,7 @@ export const useExhibitorList = (
   lang: Lang,
   listSrc: string,
   genresSrc: string,
-  exhibitions: Exhibitions,
-  favoriteKey: string
+  exhibitions: Exhibitions
 ) => {
   // 言語は日本語か
   const isJapanese = lang === 'ja'
@@ -31,24 +26,10 @@ export const useExhibitorList = (
       if (!isJapanese && !items.nameEng) return
       exhibitorList.value.push(applyExhibitor(items))
     })
-
-    await replaceList()
   })
 
-  // モジュールの読み込み
+  // ジャンルを取得
   const { getGenreNameFromID, genres } = useGenres(genresSrc)
-  const { myFavorites, switchFavorite } = useExhibitorListFavorite(favoriteKey)
-
-  const { stateSort, setStateSort, replaceList } = useExhibitorListSort(exhibitorList)
-  const {
-    stateKeyword,
-    stateExhibition,
-    stateFavorite,
-    numberOfVisibleExhibitors,
-    setStateExhibition,
-    validateExhibitor
-  } = useExhibitorListFilter(exhibitorList, myFavorites)
-  const { headings } = useExhibitorListHeading(exhibitorList, stateSort, lang, validateExhibitor)
 
   // JSONの出展社情報をリストの形式に変換する関数
   const applyExhibitor = (value: JsonExhibitor): Exhibitor => {
@@ -85,17 +66,6 @@ export const useExhibitorList = (
   return {
     exhibitorList,
     numberOfExhibitors,
-    numberOfVisibleExhibitors,
-    stateSort,
-    setStateSort,
-    stateExhibition,
-    stateFavorite,
-    setStateExhibition,
-    validateExhibitor,
-    stateKeyword,
-    genres,
-    headings,
-    myFavorites,
-    switchFavorite
+    genres
   }
 }

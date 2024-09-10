@@ -1,31 +1,32 @@
-import { ref } from 'vue'
+import { ref, watchEffect } from 'vue'
 import type { Ref } from 'vue'
 import type { Exhibitor, SortType } from '@/types/exhibitorList'
 
 export const useExhibitorListSort = (exhibitorList: Ref<Exhibitor[]>) => {
   // ソートの条件
-  const stateSort = ref<SortType>()
+  const stateSort = ref<SortType>('name')
 
-  // ソートの条件を更新してソートを実行する関数
-  const setStateSort = (type: SortType) => {
-    stateSort.value = type
-    replaceList()
+  // ソートの条件と出展社のオブジェクトの相対関係
+  const sortKeys: Record<SortType, keyof Exhibitor> = {
+    name: 'order',
+    koma: 'koma'
   }
 
-  // JSONの出展社リストをソートする関数
-  const replaceList = () => {
+  // リストをソートする関数
+  const sortExhibitorList = () => {
+    if (!stateSort.value) return
+    const key = sortKeys[stateSort.value]
     exhibitorList.value.sort((a, b) => {
-      if (stateSort.value === 'name') {
-        return a.order > b.order ? 1 : -1
-      } else {
-        return a.koma > b.koma ? 1 : -1
-      }
+      return (a[key] ?? 0) > (b[key] ?? 0) ? 1 : -1
     })
   }
 
+  // ソートの条件が変更されたら配列をソートする
+  watchEffect(() => {
+    sortExhibitorList()
+  })
+
   return {
-    stateSort,
-    setStateSort,
-    replaceList
+    stateSort
   }
 }
