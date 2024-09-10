@@ -9,9 +9,9 @@ const model = defineModel<string>()
 </script>
 
 <template>
-  <label class="inline-flex items-center rounded-full border-2 px-3">
+  <label class="inline-flex w-96 max-w-full items-center rounded-full border-2 px-3">
     <IconSearch class="text-xl" />
-    <input type="search" class="border-0" v-model="model" list="search" />
+    <input type="search" class="w-full border-0 leading-none" v-model="model" list="search" />
   </label>
   <datalist v-if="datalist" id="search">
     <option v-for="(item, index) in datalist" :key="index" :value="item"></option>
