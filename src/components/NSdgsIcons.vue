@@ -1,49 +1,50 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import NContainerFlex from '@/components/NContainerFlex.ce.vue'
-import NImage from '@/components/NImage.ce.vue'
 import { useLang } from '@/composables/useLang'
+
+import IconSdgsEn01 from '@/components/icons/IconSdgsEn01.vue'
+import IconSdgsEn02 from '@/components/icons/IconSdgsEn02.vue'
+import IconSdgsEn03 from '@/components/icons/IconSdgsEn03.vue'
+import IconSdgsEn04 from '@/components/icons/IconSdgsEn04.vue'
+import IconSdgsEn05 from '@/components/icons/IconSdgsEn05.vue'
+import IconSdgsEn06 from '@/components/icons/IconSdgsEn06.vue'
+import IconSdgsEn07 from '@/components/icons/IconSdgsEn07.vue'
+import IconSdgsEn08 from '@/components/icons/IconSdgsEn08.vue'
+import IconSdgsEn09 from '@/components/icons/IconSdgsEn09.vue'
+import IconSdgsEn10 from '@/components/icons/IconSdgsEn10.vue'
+import IconSdgsEn11 from '@/components/icons/IconSdgsEn11.vue'
+import IconSdgsEn12 from '@/components/icons/IconSdgsEn12.vue'
+import IconSdgsEn13 from '@/components/icons/IconSdgsEn13.vue'
+import IconSdgsEn14 from '@/components/icons/IconSdgsEn14.vue'
+import IconSdgsEn15 from '@/components/icons/IconSdgsEn15.vue'
+import IconSdgsEn16 from '@/components/icons/IconSdgsEn16.vue'
+import IconSdgsEn17 from '@/components/icons/IconSdgsEn17.vue'
+
+import IconSdgsJa01 from '@/components/icons/IconSdgsJa01.vue'
+import IconSdgsJa02 from '@/components/icons/IconSdgsJa02.vue'
+import IconSdgsJa03 from '@/components/icons/IconSdgsJa03.vue'
+import IconSdgsJa04 from '@/components/icons/IconSdgsJa04.vue'
+import IconSdgsJa05 from '@/components/icons/IconSdgsJa05.vue'
+import IconSdgsJa06 from '@/components/icons/IconSdgsJa06.vue'
+import IconSdgsJa07 from '@/components/icons/IconSdgsJa07.vue'
+import IconSdgsJa08 from '@/components/icons/IconSdgsJa08.vue'
+import IconSdgsJa09 from '@/components/icons/IconSdgsJa09.vue'
+import IconSdgsJa10 from '@/components/icons/IconSdgsJa10.vue'
+import IconSdgsJa11 from '@/components/icons/IconSdgsJa11.vue'
+import IconSdgsJa12 from '@/components/icons/IconSdgsJa12.vue'
+import IconSdgsJa13 from '@/components/icons/IconSdgsJa13.vue'
+import IconSdgsJa14 from '@/components/icons/IconSdgsJa14.vue'
+import IconSdgsJa15 from '@/components/icons/IconSdgsJa15.vue'
+import IconSdgsJa16 from '@/components/icons/IconSdgsJa16.vue'
+import IconSdgsJa17 from '@/components/icons/IconSdgsJa17.vue'
 
 defineProps<{
   numbers: number[]
 }>()
 
-import IconJa01 from '@/assets/images/icons/sdg_icon_01.png'
-import IconJa02 from '@/assets/images/icons/sdg_icon_02.png'
-import IconJa03 from '@/assets/images/icons/sdg_icon_03.png'
-import IconJa04 from '@/assets/images/icons/sdg_icon_04.png'
-import IconJa05 from '@/assets/images/icons/sdg_icon_05.png'
-import IconJa06 from '@/assets/images/icons/sdg_icon_06.png'
-import IconJa07 from '@/assets/images/icons/sdg_icon_07.png'
-import IconJa08 from '@/assets/images/icons/sdg_icon_08.png'
-import IconJa09 from '@/assets/images/icons/sdg_icon_09.png'
-import IconJa10 from '@/assets/images/icons/sdg_icon_10.png'
-import IconJa11 from '@/assets/images/icons/sdg_icon_11.png'
-import IconJa12 from '@/assets/images/icons/sdg_icon_12.png'
-import IconJa13 from '@/assets/images/icons/sdg_icon_13.png'
-import IconJa14 from '@/assets/images/icons/sdg_icon_14.png'
-import IconJa15 from '@/assets/images/icons/sdg_icon_15.png'
-import IconJa16 from '@/assets/images/icons/sdg_icon_16.png'
-import IconJa17 from '@/assets/images/icons/sdg_icon_17.png'
-
-import IconEn01 from '@/assets/images/icons/sdg_eng_icon_01.png'
-import IconEn02 from '@/assets/images/icons/sdg_eng_icon_02.png'
-import IconEn03 from '@/assets/images/icons/sdg_eng_icon_03.png'
-import IconEn04 from '@/assets/images/icons/sdg_eng_icon_04.png'
-import IconEn05 from '@/assets/images/icons/sdg_eng_icon_05.png'
-import IconEn06 from '@/assets/images/icons/sdg_eng_icon_06.png'
-import IconEn07 from '@/assets/images/icons/sdg_eng_icon_07.png'
-import IconEn08 from '@/assets/images/icons/sdg_eng_icon_08.png'
-import IconEn09 from '@/assets/images/icons/sdg_eng_icon_09.png'
-import IconEn10 from '@/assets/images/icons/sdg_eng_icon_10.png'
-import IconEn11 from '@/assets/images/icons/sdg_eng_icon_11.png'
-import IconEn12 from '@/assets/images/icons/sdg_eng_icon_12.png'
-import IconEn13 from '@/assets/images/icons/sdg_eng_icon_13.png'
-import IconEn14 from '@/assets/images/icons/sdg_eng_icon_14.png'
-import IconEn15 from '@/assets/images/icons/sdg_eng_icon_15.png'
-import IconEn16 from '@/assets/images/icons/sdg_eng_icon_16.png'
-import IconEn17 from '@/assets/images/icons/sdg_eng_icon_17.png'
-
 const { lang } = useLang()
+const isJapanese = ref(lang.value === 'ja')
 
 const sdgsJa = [
   '-',
@@ -87,56 +88,58 @@ const sdgsEn = [
 ]
 const sdgsJaImg = [
   '-',
-  IconJa01,
-  IconJa02,
-  IconJa03,
-  IconJa04,
-  IconJa05,
-  IconJa06,
-  IconJa07,
-  IconJa08,
-  IconJa09,
-  IconJa10,
-  IconJa11,
-  IconJa12,
-  IconJa13,
-  IconJa14,
-  IconJa15,
-  IconJa16,
-  IconJa17
+  IconSdgsJa01,
+  IconSdgsJa02,
+  IconSdgsJa03,
+  IconSdgsJa04,
+  IconSdgsJa05,
+  IconSdgsJa06,
+  IconSdgsJa07,
+  IconSdgsJa08,
+  IconSdgsJa09,
+  IconSdgsJa10,
+  IconSdgsJa11,
+  IconSdgsJa12,
+  IconSdgsJa13,
+  IconSdgsJa14,
+  IconSdgsJa15,
+  IconSdgsJa16,
+  IconSdgsJa17
 ]
 const sdgsEnImg = [
   '-',
-  IconEn01,
-  IconEn02,
-  IconEn03,
-  IconEn04,
-  IconEn05,
-  IconEn06,
-  IconEn07,
-  IconEn08,
-  IconEn09,
-  IconEn10,
-  IconEn11,
-  IconEn12,
-  IconEn13,
-  IconEn14,
-  IconEn15,
-  IconEn16,
-  IconEn17
+  IconSdgsEn01,
+  IconSdgsEn02,
+  IconSdgsEn03,
+  IconSdgsEn04,
+  IconSdgsEn05,
+  IconSdgsEn06,
+  IconSdgsEn07,
+  IconSdgsEn08,
+  IconSdgsEn09,
+  IconSdgsEn10,
+  IconSdgsEn11,
+  IconSdgsEn12,
+  IconSdgsEn13,
+  IconSdgsEn14,
+  IconSdgsEn15,
+  IconSdgsEn16,
+  IconSdgsEn17
 ]
 </script>
 
 <template>
   <NContainerFlex>
-    <NImage
+    <component
       v-for="n in numbers"
       :key="n"
+      :is="isJapanese ? sdgsJaImg[n] : sdgsEnImg[n]"
       :width="80"
       :height="80"
-      :src="lang === 'ja' ? sdgsJaImg[n] : sdgsEnImg[n]"
-      :alt="lang === 'ja' ? sdgsJa[n] : sdgsEn[n]"
-      :title="lang === 'ja' ? sdgsJa[n] : sdgsEn[n]"
-    ></NImage>
+      :src="isJapanese ? sdgsJaImg[n] : sdgsEnImg[n]"
+      :alt="isJapanese ? sdgsJa[n] : sdgsEn[n]"
+      :title="isJapanese ? sdgsJa[n] : sdgsEn[n]"
+      class="size-20"
+    ></component>
   </NContainerFlex>
 </template>
