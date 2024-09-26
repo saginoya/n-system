@@ -1,10 +1,10 @@
 export const useText = () => {
-  // 前後の空白削除
+  // 文字列前後の空白を削除
   const trim = (value: string): string => {
     return value.trim()
   }
 
-  // 半角文字かの判定
+  // 文字列がすべて半角文字かの判定
   const isSingleByteChara = (value: string): boolean => {
     if (value.match(/^[ -~]*$/)) {
       return true
