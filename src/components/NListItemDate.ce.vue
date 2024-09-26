@@ -15,7 +15,7 @@ const labelTime = getLang() === 'ja' ? labelTimeJa : labelTimeEn
 </script>
 
 <template>
-  <li class="grid grid-cols-1 border-b p-2 sm:grid-cols-4 md:grid-cols-6 md:p-4">
+  <li class="grid grid-cols-1 items-center border-b p-2 sm:grid-cols-4 md:grid-cols-6 md:p-4">
     <time :datetime class="font-bold">
       {{ labelTime }}
     </time>
