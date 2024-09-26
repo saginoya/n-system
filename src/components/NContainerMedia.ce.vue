@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import NImage from '@/components/NImage.ce.vue'
 import NSheet from '@/components/NSheet.ce.vue'
+import NChip from '@/components/NChip.ce.vue'
 
 defineProps<{
   width: number
@@ -9,6 +10,8 @@ defineProps<{
   alt: string
   caption?: string
   cover?: boolean
+  left?: boolean
+  pdf?: string
 }>()
 </script>
 
@@ -17,9 +20,10 @@ defineProps<{
     <div class="flex flex-col gap-4 md:col-span-2">
       <slot />
     </div>
-    <n-sheet color="gray" class="text-center md:col-span-1">
-      <n-image :width :height :src :alt :caption :cover></n-image>
-    </n-sheet>
+    <NSheet color="gray" class="text-center md:col-span-1" :class="{ 'order-first': left }">
+      <NImage :width :height :src :alt :caption :cover></NImage>
+      <NChip v-if="pdf" :href="pdf" type="pdf" color="info">PDFファイル</NChip>
+    </NSheet>
   </div>
 </template>
 
