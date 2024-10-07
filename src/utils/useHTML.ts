@@ -5,7 +5,12 @@ export const useHTML = () => {
     return docLang === 'ja' ? 'ja' : 'en'
   }
 
+  const toBodyStyleVisible = () => {
+    document.body.style.visibility = 'visible'
+  }
+
   return {
-    getLang
+    getLang,
+    toBodyStyleVisible
   }
 }

@@ -1,3 +1,9 @@
+/* システムがマウントされるまでボディを隠す */
+body {
+  visibility: hidden;
+}
+/* hiddenの解除はv-appコンポーネントで行われます */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
