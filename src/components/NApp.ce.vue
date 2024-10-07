@@ -5,6 +5,7 @@ import { useHTML } from '@/utils/useHTML'
 import NLayoutDefault from '@/components/NLayoutDefault.vue'
 import NLayoutIndex from '@/components/NLayoutIndex.vue'
 import NTransitionFade from '@/components/NTransitionFade.vue'
+import NModalPageLoading from './NModalPageLoading.vue'
 
 const props = defineProps<{
   jsonPath: string
@@ -36,9 +37,7 @@ onMounted(() => {
 <template>
   <NTransitionFade>
     <div v-if="isLoading">
-      <div class="fixed flex h-svh w-full items-center justify-center bg-white">
-        <p class="">読み込み中...</p>
-      </div>
+      <NModalPageLoading />
     </div>
     <div v-else>
       <component :is="layoutComp" :json-path="jsonPath">
