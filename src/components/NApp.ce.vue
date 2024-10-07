@@ -35,7 +35,12 @@ onMounted(() => {
 
 <template>
   <NTransitionFade>
-    <div v-show="!isLoading">
+    <div v-if="isLoading">
+      <div class="fixed flex h-svh w-full items-center justify-center bg-white">
+        <p class="">読み込み中...</p>
+      </div>
+    </div>
+    <div v-else>
       <component :is="layoutComp" :json-path="jsonPath">
         <slot />
       </component>
