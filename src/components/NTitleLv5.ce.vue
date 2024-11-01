@@ -1,7 +1,7 @@
 <template>
-  <h4>
+  <h5>
     <slot />
-  </h4>
+  </h5>
 </template>
 
 <style>

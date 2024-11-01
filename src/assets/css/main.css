@@ -30,7 +30,6 @@ body {
     @apply font-bold;
   }
   h5 {
-    @apply text-lg;
     @apply font-bold;
   }
   a {
