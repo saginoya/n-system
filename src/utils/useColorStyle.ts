@@ -21,10 +21,26 @@ export const useColorStyle = () => {
         return 'text-error'
       case 'warning':
         return 'text-warning'
-      case 'gray':
-        return 'text-gray-500'
       case 'white':
         return 'text-white'
+      case 'gray':
+        return 'text-gray-500'
+      case 'orange':
+        return 'text-orange-500'
+      case 'yellow':
+        return 'text-yellow-500'
+      case 'green':
+        return 'text-green-500'
+      case 'blue':
+        return 'text-blue-500'
+      case 'orange-light':
+        return 'text-orange-400'
+      case 'yellow-light':
+        return 'text-yellow-400'
+      case 'green-light':
+        return 'text-green-400'
+      case 'blue-light':
+        return 'text-blue-400'
       default:
         return 'text-white'
     }
@@ -50,10 +66,26 @@ export const useColorStyle = () => {
         return 'bg-error'
       case 'warning':
         return 'bg-warning'
-      case 'gray':
-        return 'bg-gray-500'
       case 'white':
         return 'bg-white'
+      case 'gray':
+        return 'bg-gray-500'
+      case 'orange':
+        return 'bg-orange-500'
+      case 'yellow':
+        return 'bg-yellow-500'
+      case 'green':
+        return 'bg-green-500'
+      case 'blue':
+        return 'bg-blue-500'
+      case 'orange-light':
+        return 'bg-orange-400'
+      case 'yellow-light':
+        return 'bg-yellow-400'
+      case 'green-light':
+        return 'bg-green-400'
+      case 'blue-light':
+        return 'bg-blue-400'
       default:
         return 'bg-white'
     }
@@ -79,10 +111,26 @@ export const useColorStyle = () => {
         return 'border-error'
       case 'warning':
         return 'border-warning'
-      case 'gray':
-        return 'border-gray-500'
       case 'white':
         return 'border-white'
+      case 'gray':
+        return 'border-gray-500'
+      case 'orange':
+        return 'border-orange-500'
+      case 'yellow':
+        return 'border-yellow-500'
+      case 'green':
+        return 'border-green-500'
+      case 'blue':
+        return 'border-blue-500'
+      case 'orange-light':
+        return 'border-orange-400'
+      case 'yellow-light':
+        return 'border-yellow-400'
+      case 'green-light':
+        return 'border-green-400'
+      case 'blue-light':
+        return 'border-blue-400'
       default:
         return 'border-white'
     }
