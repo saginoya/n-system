@@ -3,8 +3,6 @@ import type { Size } from '@/types/size'
 export const useSizeStyle = () => {
   const widthSize = (size: Size) => {
     switch (size) {
-      case 'free':
-        return 'w-fit'
       case 'xs':
         return 'w-52'
       case 'sm':
@@ -13,6 +11,10 @@ export const useSizeStyle = () => {
         return 'w-80'
       case 'xl':
         return 'w-96'
+      case 'free':
+        return 'w-fit'
+      case 'w-full':
+        return 'w-full'
       default:
         return 'w-72'
     }
@@ -20,18 +22,18 @@ export const useSizeStyle = () => {
 
   const heightSize = (size: Size) => {
     switch (size) {
+      case 'xs':
+        return 'h-14'
+      case 'sm':
+        return 'h-16'
+      case 'lg':
+        return 'h-20'
+      case 'xl':
+        return 'h-24'
       case 'free':
         return 'h-fit'
-      case 'xs':
-        return 'h-10'
-      case 'sm':
-        return 'h-12'
-      case 'lg':
-        return 'h-16'
-      case 'xl':
-        return 'h-20'
       default:
-        return 'h-14'
+        return 'h-20'
     }
   }
 
