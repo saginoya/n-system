@@ -23,7 +23,7 @@ const aspectStyle = computed(() => {
 </script>
 
 <template>
-  <figure :class="{ relative: overlay }">
+  <figure class="inline-block" :class="{ relative: overlay }">
     <img
       :width="width"
       :height="height"
