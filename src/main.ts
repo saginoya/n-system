@@ -8,6 +8,7 @@ import './assets/css/main.css'
 // Components
 import NApp from './components/NApp.ce.vue'
 import NAlert from './components/NAlert.ce.vue'
+import NAnnotation from './components/NAnnotation.ce.vue'
 import NBanner from './components/NBanner.ce.vue'
 import NBtn from './components/NBtn.ce.vue'
 import NCard from './components/NCard.ce.vue'
@@ -40,6 +41,7 @@ import NListSimple from './components/NListSimple.ce.vue'
 import NModal from './components/NModal.ce.vue'
 import NSheet from './components/NSheet.ce.vue'
 import NSignature from './components/NSignature.ce.vue'
+import NStrong from './components/NStrong.ce.vue'
 import NTitleLv2Index from './components/NTitleLv2Index.ce.vue'
 import NTitleLv2Page from './components/NTitleLv2Page.ce.vue'
 import NTitleLv3 from './components/NTitleLv3.ce.vue'
@@ -50,6 +52,7 @@ import NYoutube from './components/NYoutube.ce.vue'
 
 customElements.define('n-app', defineCustomElement(NApp))
 customElements.define('n-alert', defineCustomElement(NAlert))
+customElements.define('n-annotation', defineCustomElement(NAnnotation))
 customElements.define('n-banner', defineCustomElement(NBanner))
 customElements.define('n-btn', defineCustomElement(NBtn))
 customElements.define('n-card', defineCustomElement(NCard))
@@ -82,6 +85,7 @@ customElements.define('n-list-simple', defineCustomElement(NListSimple))
 customElements.define('n-modal', defineCustomElement(NModal))
 customElements.define('n-sheet', defineCustomElement(NSheet))
 customElements.define('n-signature', defineCustomElement(NSignature))
+customElements.define('n-strong', defineCustomElement(NStrong))
 customElements.define('n-title-lv2-index', defineCustomElement(NTitleLv2Index))
 customElements.define('n-title-lv2-page', defineCustomElement(NTitleLv2Page))
 customElements.define('n-title-lv3', defineCustomElement(NTitleLv3))
