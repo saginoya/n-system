@@ -2,7 +2,11 @@
 import { computed } from 'vue'
 import type { Image } from '@/types/image'
 
-const props = defineProps<Image>()
+const props = defineProps<
+  Image & {
+    overlay?: boolean
+  }
+>()
 
 // 最大公約数を求める関数
 const getGCD = (x: number, y: number): number => (x % y ? getGCD(y, x % y) : y)
@@ -19,7 +23,7 @@ const aspectStyle = computed(() => {
 </script>
 
 <template>
-  <figure>
+  <figure :class="{ relative: overlay }">
     <img
       :width="width"
       :height="height"
@@ -34,6 +38,14 @@ const aspectStyle = computed(() => {
     <figcaption v-if="caption" class="text-sm leading-5" :style="{ 'max-width': width + 'px' }">
       {{ caption }}
     </figcaption>
+    <div
+      v-if="overlay"
+      class="absolute left-0 top-0 flex size-full flex-col items-center justify-center"
+    >
+      <span class="bg-white/90 px-1 text-center">
+        <slot />
+      </span>
+    </div>
   </figure>
 </template>
 
