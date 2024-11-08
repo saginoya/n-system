@@ -97,10 +97,10 @@ const deadlineFormat = (): string | undefined => {
     :target="isLink ? (type ? linkTarget(type) : '_self') : null"
   >
     <div
-      class="flex size-full flex-col items-center justify-center"
+      class="flex size-full flex-col items-center justify-center text-center leading-tight"
       :class="{ 'group-hover:bg-blue-200/20 group-focus:bg-blue-200/20': isLink }"
     >
-      <div class="flex items-center gap-1 font-bold">
+      <div class="flex items-center gap-1 text-balance font-bold tracking-tight">
         <slot />
         <component v-if="type" :is="linkIcon(type)" class="size-6" />
       </div>
