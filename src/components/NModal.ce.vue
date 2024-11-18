@@ -31,7 +31,7 @@ defineExpose({ show })
       @click="dismiss()"
     >
       <NTransitionScale>
-        <NCard ref="card" v-if="visible" @click.stop class="relative max-h-full">
+        <NCard ref="card" v-if="visible" @click.stop class="relative max-h-full" role="dialog">
           <NBtnClose class="absolute -right-4 -top-4" @click="dismiss()"></NBtnClose>
           <div class="overflow-y-auto overscroll-contain">
             <slot />
