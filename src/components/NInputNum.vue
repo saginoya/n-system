@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-
 type AttributesInputNum = {
   name: string
   title?: string
@@ -15,7 +13,7 @@ type AttributesInputNum = {
 
 defineProps<AttributesInputNum>()
 
-const model = ref<number>(0)
+const model = defineModel()
 </script>
 
 <template>

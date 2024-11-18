@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watchEffect } from 'vue'
+import { watchEffect } from 'vue'
 import NMsgCheck from './NMsgCheck.vue'
 import NMsgWarning from './NMsgWarning.vue'
 import { useValidation } from '@/composables/useValidation'
@@ -9,7 +9,7 @@ const props = withDefaults(defineProps<AttributesInput>(), {
   inputmode: 'text'
 })
 
-const model = ref<string>('')
+const model = defineModel<string>()
 
 const { errors, isValidate, setTermsRequired, setTermsPattern, validate } = useValidation()
 setTermsRequired(props.required)
@@ -38,8 +38,8 @@ watchEffect(() => {
       v-model="model"
     />
     <div class="min-h-4">
-      <n-msg-check v-if="isValidate"></n-msg-check>
-      <n-msg-warning v-else>{{ errors[0] }}</n-msg-warning>
+      <NMsgCheck v-if="isValidate"></NMsgCheck>
+      <NMsgWarning v-else>{{ errors[0] }}</NMsgWarning>
     </div>
     <slot />
   </div>

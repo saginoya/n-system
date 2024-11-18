@@ -8,7 +8,3 @@ import IconCheckCircle from './icons/IconCheckCircle.vue'
     <span><slot /></span>
   </div>
 </template>
-
-<style>
-@import url(../assets/css/main.css);
-</style>

@@ -8,7 +8,3 @@ import IconWarning from './icons/IconWarning.vue'
     <span><slot /></span>
   </div>
 </template>
-
-<style>
-@import url(../assets/css/main.css);
-</style>

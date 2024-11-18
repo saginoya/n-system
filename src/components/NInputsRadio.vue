@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watchEffect } from 'vue'
+import { watchEffect } from 'vue'
 import { useValidation } from '@/composables/useValidation'
 
 const props = defineProps<{
@@ -14,7 +14,7 @@ const props = defineProps<{
 const valueList: string[] = props.values.split(',')
 const labelList: string[] | undefined = props.labels?.split(',')
 
-const model = ref<string>('')
+const model = defineModel<string>()
 
 const { errors, isValidate, setTermsRequired, validate } = useValidation()
 setTermsRequired(props.required)
