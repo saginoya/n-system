@@ -3,9 +3,10 @@ import { watchEffect } from 'vue'
 import NMsgCheck from '@/components/NMsgCheck.vue'
 import NMsgWarning from '@/components/NMsgWarning.vue'
 import { useValidation } from '@/composables/useValidation'
-import type { AttributesInput } from '@/types/attributesInputs'
+import type { FormField } from '@/types/formField'
 
-const props = withDefaults(defineProps<AttributesInput>(), {
+const props = withDefaults(defineProps<FormField>(), {
+  type: 'email',
   name: 'email',
   autocomplete: 'email',
   inputmode: 'email',

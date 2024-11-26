@@ -4,26 +4,12 @@ import NMsgCheck from '@/components/NMsgCheck.vue'
 import NMsgWarning from '@/components/NMsgWarning.vue'
 import { useValidation } from '@/composables/useValidation'
 
-const props = withDefaults(
-  defineProps<{
-    name: string
-    title?: string
-    autofocus?: boolean
-    cols?: number
-    disabled?: boolean
-    form?: string
-    maxlength?: number
-    minlength?: number
-    placeholder?: string
-    readonly?: boolean
-    required?: boolean
-    rows?: number
-  }>(),
-  {
-    cols: 40,
-    rows: 4
-  }
-)
+import type { FormFieldTextarea } from '@/types/formField'
+
+const props = withDefaults(defineProps<FormFieldTextarea>(), {
+  cols: 40,
+  rows: 4
+})
 
 const model = defineModel<string>()
 
@@ -39,10 +25,8 @@ watchEffect(() => {
   <div class="flex flex-col gap-1">
     <label v-if="title" :for="name" class="font-bold">{{ title }}</label>
     <textarea
-      type="email"
-      :id="name"
+      :id
       :name
-      :autofocus
       :cols
       :disabled
       :form

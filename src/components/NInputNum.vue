@@ -1,17 +1,7 @@
 <script setup lang="ts">
-type AttributesInputNum = {
-  name: string
-  title?: string
-  placeholder?: string
-  form?: string
-  list?: string
-  readonly?: boolean
-  max?: number
-  min?: number
-  step?: number
-}
+import type { FormFieldNumber } from '@/types/formField'
 
-defineProps<AttributesInputNum>()
+defineProps<FormFieldNumber>()
 
 const model = defineModel()
 </script>
