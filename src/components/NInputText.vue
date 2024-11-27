@@ -7,6 +7,8 @@ import type { FormFieldText } from '@/types/formField'
 
 const props = defineProps<FormFieldText>()
 
+const emits = defineEmits<{ validated: [result: boolean] }>()
+
 const model = defineModel<string>()
 
 const { errors, isValidate, setTermsRequired, setTermsPattern, validate } = useValidation()
@@ -14,6 +16,7 @@ setTermsRequired(props.required)
 setTermsPattern(props.pattern)
 watchEffect(() => {
   validate(model.value)
+  emits('validated', isValidate.value)
 })
 </script>
 

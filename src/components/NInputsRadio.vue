@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { watchEffect } from 'vue'
+import NMsgCheck from '@/components/NMsgCheck.vue'
+import NMsgWarning from '@/components/NMsgWarning.vue'
 import { useValidation } from '@/composables/useValidation'
 
 import type { FormField } from '@/types/formField'
@@ -12,6 +14,8 @@ const props = defineProps<
   }
 >()
 
+const emits = defineEmits<{ validated: [result: boolean] }>()
+
 const valueList: string[] = props.values.split(',')
 const labelList: string[] | undefined = props.labels?.split(',')
 
@@ -21,6 +25,7 @@ const { errors, isValidate, setTermsRequired, validate } = useValidation()
 setTermsRequired(props.required)
 watchEffect(() => {
   validate(model.value)
+  emits('validated', isValidate.value)
 })
 </script>
 
@@ -46,8 +51,8 @@ watchEffect(() => {
       </label>
     </div>
     <div class="min-h-4">
-      <n-msg-check v-if="isValidate"></n-msg-check>
-      <n-msg-warning v-else>{{ errors[0] }}</n-msg-warning>
+      <NMsgCheck v-if="isValidate"></NMsgCheck>
+      <NMsgWarning v-else>{{ errors[0] }}</NMsgWarning>
     </div>
     <slot />
   </div>

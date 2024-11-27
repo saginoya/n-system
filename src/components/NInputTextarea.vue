@@ -11,6 +11,8 @@ const props = withDefaults(defineProps<FormFieldTextarea>(), {
   rows: 4
 })
 
+const emits = defineEmits<{ validated: [result: boolean] }>()
+
 const model = defineModel<string>()
 
 const { errors, isValidate, setTermsRequired, validate } = useValidation()
@@ -18,6 +20,7 @@ setTermsRequired(props.required)
 
 watchEffect(() => {
   validate(model.value)
+  emits('validated', isValidate.value)
 })
 </script>
 
@@ -40,8 +43,8 @@ watchEffect(() => {
       v-model="model"
     ></textarea>
     <div class="min-h-4">
-      <n-msg-check v-if="isValidate"></n-msg-check>
-      <n-msg-warning v-else>{{ errors[0] }}</n-msg-warning>
+      <NMsgCheck v-if="isValidate"></NMsgCheck>
+      <NMsgWarning v-else>{{ errors[0] }}</NMsgWarning>
     </div>
     <slot />
   </div>

@@ -12,6 +12,8 @@ const props = withDefaults(defineProps<FormField>(), {
   pattern: '^[0-9]{3}-?[0-9]{4}$'
 })
 
+const emits = defineEmits<{ validated: [result: boolean] }>()
+
 const model = defineModel<string>()
 
 const { errors, isValidate, setTermsRequired, setTermsPattern, validate } = useValidation()
@@ -19,6 +21,7 @@ setTermsRequired(props.required)
 setTermsPattern(props.pattern)
 watchEffect(() => {
   validate(model.value)
+  emits('validated', isValidate.value)
 })
 </script>
 
