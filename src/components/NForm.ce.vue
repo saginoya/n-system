@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import NContainer1col from '@/components/NContainer1col.ce.vue'
-import NModal from '@/components/NModal.ce.vue'
 import NInputEmail from '@/components/NInputEmail.vue'
 import NInputNum from '@/components/NInputNum.vue'
 import NInputPostalCode from '@/components/NInputPostalCode.vue'
@@ -10,174 +9,177 @@ import NInputText from '@/components/NInputText.vue'
 import NInputUrl from '@/components/NInputUrl.vue'
 import NInputsRadio from '@/components/NInputsRadio.vue'
 import NInputWrapper from '@/components/NInputWrapper.ce.vue'
-import NTextarea from '@/components/NTextarea.vue'
+import NInputTextarea from '@/components/NInputTextarea.vue'
+import NBtn from '@/components/NBtn.ce.vue'
+import NContainerFlex from '@/components/NContainerFlex.ce.vue'
+import NModal from '@/components/NModal.ce.vue'
 
-defineProps<{
-  action: string
+import { useFormFields } from '@/composables/useFormFields'
+
+import type { FormFields } from '@/types/formField'
+
+const props = defineProps<{
+  storageKey: string
 }>()
 
-type Response = {
-  id: string
-  label: string
-  value: string | undefined
-  required: boolean
-}
-type Responses = {
-  email: Response
-  num: Response
-  postalCode: Response
-  tel: Response
-  text: Response
-  url: Response
-  radio: Response
-  textarea: Response
-}
-const responses = ref<Responses>({
+const initFormFields: FormFields = {
   email: {
+    name: 'email',
     id: 'email',
-    label: 'E-mail',
+    title: 'E-mail',
     value: '',
     required: true
   },
   num: {
+    name: 'num',
     id: 'num',
-    label: '数字',
+    title: '数字',
     value: '',
     required: false
   },
   postalCode: {
+    name: 'postal-code',
     id: 'postal-code',
-    label: '郵便番号',
+    title: '郵便番号',
     value: '',
     required: true
   },
   tel: {
+    name: 'tel',
     id: 'tel',
-    label: 'TEL',
+    title: 'TEL',
     value: '',
     required: true
   },
   text: {
+    name: 'text',
     id: 'text',
-    label: 'テキスト',
+    title: 'テキスト',
     value: '',
     required: false
   },
   url: {
+    name: 'url',
     id: 'url',
-    label: 'URL',
+    title: 'URL',
     value: '',
     required: false
   },
   radio: {
+    name: 'radio',
     id: 'radio',
-    label: 'ラジオボタン',
+    title: 'ラジオボタン',
     value: '',
     required: false
   },
   textarea: {
+    name: 'textarea',
     id: 'textarea',
-    label: 'テキストボックス',
+    title: 'テキストボックス',
     value: '',
     required: false
   }
-})
+}
+
+const { formFields, saveFormFields } = useFormFields(props.storageKey, initFormFields)
+
+const emit = defineEmits(['custom-confirm'])
+
+const modal = ref()
+const validateValues = () => {
+  // カスタムイベントを発行
+  emit('custom-confirm', formFields.value)
+  modal.value.show()
+}
 </script>
 
 <template>
-  <NContainer1col :gap="8">
-    <NInputWrapper :title="responses['email'].label" :required="responses['email'].required">
-      <NInputEmail
-        :name="responses['email'].id"
-        :required="responses['email'].required"
-        v-model="responses['email'].value"
-      ></NInputEmail>
-    </NInputWrapper>
+  <div>
+    <NContainer1col v-if="storageKey" :gap="4">
+      <NInputWrapper :title="formFields['email'].title!" :required="formFields['email'].required">
+        <NInputEmail
+          :name="formFields['email'].name"
+          :required="formFields['email'].required"
+          v-model="formFields['email'].value"
+        ></NInputEmail>
+      </NInputWrapper>
 
-    <NInputWrapper :title="responses['num'].label" :required="responses['num'].required">
-      <NInputNum
-        :name="responses['num'].id"
-        :required="responses['num'].required"
-        v-model="responses['num'].value"
-      ></NInputNum>
-    </NInputWrapper>
-
-    <NInputWrapper
-      :title="responses['postalCode'].label"
-      :required="responses['postalCode'].required"
-    >
-      <NInputPostalCode
-        :name="responses['postalCode'].id"
-        :required="responses['postalCode'].required"
-        v-model="responses['postalCode'].value"
-      ></NInputPostalCode>
-    </NInputWrapper>
-
-    <NInputWrapper :title="responses['tel'].label" :required="responses['tel'].required">
-      <NInputTel
-        :name="responses['tel'].id"
-        :required="responses['tel'].required"
-        v-model="responses['tel'].value"
-      ></NInputTel>
-    </NInputWrapper>
-
-    <NInputWrapper :title="responses['text'].label" :required="responses['text'].required">
-      <NInputText
-        :name="responses['text'].id"
-        :required="responses['text'].required"
-        v-model="responses['text'].value"
-      ></NInputText>
-    </NInputWrapper>
-
-    <NInputWrapper :title="responses['url'].label" :required="responses['url'].required">
-      <NInputUrl
-        :name="responses['url'].id"
-        :required="responses['url'].required"
-        v-model="responses['url'].value"
-      ></NInputUrl>
-    </NInputWrapper>
-
-    <NInputWrapper :title="responses['radio'].label" :required="responses['radio'].required">
-      <NInputsRadio
-        :name="responses['radio'].id"
-        :required="responses['radio'].required"
-        values="ひとつ,ふたつ,みっつ"
-        v-model="responses['radio'].value"
-      ></NInputsRadio>
+      <NInputWrapper :title="formFields['num'].title!" :required="formFields['num'].required">
+        <NInputNum
+          :name="formFields['num'].name"
+          :required="formFields['num'].required"
+          v-model="formFields['num'].value"
+        ></NInputNum>
+      </NInputWrapper>
 
       <NInputWrapper
-        :title="responses['textarea'].label"
-        :required="responses['textarea'].required"
+        :title="formFields['postalCode'].title!"
+        :required="formFields['postalCode'].required"
       >
-        <NTextarea
-          :name="responses['textarea'].id"
-          :required="responses['textarea'].required"
-          v-model="responses['textarea'].value"
-        ></NTextarea>
+        <NInputPostalCode
+          :name="formFields['postalCode'].name"
+          :required="formFields['postalCode'].required"
+          v-model="formFields['postalCode'].value"
+        ></NInputPostalCode>
       </NInputWrapper>
-    </NInputWrapper>
-  </NContainer1col>
-  <NModal btnTitle="確認">
-    <form :action="action">
-      <NContainer1col>
-        <div v-for="response in responses" :key="response.id">
-          <p class="font-bold">{{ response.label }}</p>
-          <p>
-            <input
-              type="text"
-              :name="response.label"
-              :value="response.value"
-              :required="response.required"
-              readonly
-            />
-          </p>
-        </div>
-        <div>
-          <input type="submit" value="送信" />
-        </div>
-      </NContainer1col>
-    </form>
-  </NModal>
+
+      <NInputWrapper :title="formFields['tel'].title!" :required="formFields['tel'].required">
+        <NInputTel
+          :name="formFields['tel'].name"
+          :required="formFields['tel'].required"
+          v-model="formFields['tel'].value"
+        ></NInputTel>
+      </NInputWrapper>
+
+      <NInputWrapper :title="formFields['text'].title!" :required="formFields['text'].required">
+        <NInputText
+          :name="formFields['text'].name"
+          :required="formFields['text'].required"
+          v-model="formFields['text'].value"
+        ></NInputText>
+      </NInputWrapper>
+
+      <NInputWrapper :title="formFields['url'].title!" :required="formFields['url'].required">
+        <NInputUrl
+          :name="formFields['url'].name"
+          :required="formFields['url'].required"
+          v-model="formFields['url'].value"
+        ></NInputUrl>
+      </NInputWrapper>
+
+      <NInputWrapper :title="formFields['radio'].title!" :required="formFields['radio'].required">
+        <NInputsRadio
+          :name="formFields['radio'].name"
+          :required="formFields['radio'].required"
+          values="ひとつ,ふたつ,みっつ"
+          v-model="formFields['radio'].value"
+        ></NInputsRadio>
+
+        <NInputWrapper
+          :title="formFields['textarea'].title!"
+          :required="formFields['textarea'].required"
+        >
+          <NInputTextarea
+            :name="formFields['textarea'].name"
+            :required="formFields['textarea'].required"
+            v-model="formFields['textarea'].value"
+          ></NInputTextarea>
+        </NInputWrapper>
+      </NInputWrapper>
+      <NContainerFlex>
+        <NBtn color="primary" @click="validateValues">入力内容を確認</NBtn>
+        <NBtn color="primary" variant="outlined" @click="saveFormFields">入力内容を一時保存</NBtn>
+      </NContainerFlex>
+    </NContainer1col>
+    <div v-else>
+      <p class="text-error">
+        ローカルストレージのキーが設定されていないためフォームを表示できません
+      </p>
+    </div>
+    <NModal ref="modal">
+      <slot />
+    </NModal>
+  </div>
 </template>
 
 <style>
