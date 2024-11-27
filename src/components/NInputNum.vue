@@ -11,9 +11,8 @@ const model = defineModel()
     <label v-if="title" :for="name" class="font-bold">{{ title }}</label>
     <input
       type="number"
-      :id="name"
+      :id="id || name"
       :name
-      :list
       :max
       :min
       :placeholder

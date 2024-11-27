@@ -6,10 +6,7 @@ import { useValidation } from '@/composables/useValidation'
 import type { FormField } from '@/types/formField'
 
 const props = withDefaults(defineProps<FormField>(), {
-  type: 'email',
-  name: 'email',
   autocomplete: 'email',
-  inputmode: 'email',
   placeholder: 'sample@sample.com',
   pattern: '^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$'
 })
@@ -29,14 +26,14 @@ watchEffect(() => {
     <label v-if="title" :for="name" class="font-bold">{{ title }}</label>
     <input
       type="email"
-      :id="name"
+      :id="id || name"
       :name
       :required
       :disabled
       :form
       :readonly
       :autocomplete
-      :inputmode
+      inputmode="email"
       :placeholder
       :pattern
       class="w-full max-w-2xl rounded border-2 border-gray-300 px-2 py-1 text-lg"

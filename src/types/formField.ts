@@ -1,35 +1,15 @@
 export type FormField = {
-  type: string
   name: string
+  title?: string
+  id?: string
   value?: string
   required?: boolean
-  id?: string
-  title?: string
   form?: string
-  list?: string
   placeholder?: string
   pattern?: string
   readonly?: boolean
   disabled?: boolean
-  isabled?: boolean
-  autocomplete?:
-    | 'name'
-    | 'username'
-    | 'family-name'
-    | 'given-name'
-    | 'new-password'
-    | 'current-password'
-    | 'email'
-    | 'tel'
-    | 'postal-code'
-    | 'address-level1'
-    | 'address-level2'
-    | 'address-line1'
-    | 'address-line2'
-    | 'organization'
-    | 'organization-title'
-    | 'off'
-  inputmode?: 'text' | 'email' | 'url' | 'decimal' | 'numeric' | 'tel'
+  autocomplete?: string
 }
 
 export type FormFieldText = FormField & {
@@ -40,10 +20,6 @@ export type FormFieldNumber = FormField & {
   min?: number
   max?: number
   step?: number
-}
-
-export type FormFieldRadio = FormField & {
-  checked?: boolean
 }
 
 export type FormFieldTextarea = FormField & {

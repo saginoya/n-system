@@ -25,9 +25,8 @@ watchEffect(() => {
   <div class="flex flex-col gap-1">
     <label v-if="title" :for="name" class="font-bold">{{ title }}</label>
     <textarea
-      :id
+      :id="id || name"
       :name
-      :cols
       :disabled
       :form
       :maxlength
@@ -35,6 +34,7 @@ watchEffect(() => {
       :placeholder
       :readonly
       :required
+      :cols
       :rows
       class="w-full max-w-2xl rounded border-2 border-gray-300 px-2 py-1 text-lg"
       v-model="model"

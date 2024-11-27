@@ -8,7 +8,6 @@ import type { FormField } from '@/types/formField'
 const props = withDefaults(defineProps<FormField>(), {
   name: 'postal-code',
   autocomplete: 'postal-code',
-  inputmode: 'decimal',
   placeholder: '101-0061',
   pattern: '^[0-9]{3}-?[0-9]{4}$'
 })
@@ -28,14 +27,14 @@ watchEffect(() => {
     <label v-if="title" :for="name" class="font-bold">{{ title }}</label>
     <input
       type="text"
-      :id="name"
+      :id="id || name"
       :name
       :required
       :disabled
       :form
       :readonly
       :autocomplete
-      :inputmode
+      inputmode="decimal"
       :placeholder
       :pattern
       class="w-full max-w-xs rounded border-2 border-gray-300 px-2 py-1 text-lg"

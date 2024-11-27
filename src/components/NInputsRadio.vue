@@ -2,14 +2,15 @@
 import { watchEffect } from 'vue'
 import { useValidation } from '@/composables/useValidation'
 
-const props = defineProps<{
-  name: string
-  values: string
-  labels?: string
-  title?: string
-  required?: boolean
-  checked?: number
-}>()
+import type { FormField } from '@/types/formField'
+
+const props = defineProps<
+  FormField & {
+    values: string
+    labels?: string
+    checked?: number
+  }
+>()
 
 const valueList: string[] = props.values.split(',')
 const labelList: string[] | undefined = props.labels?.split(',')
@@ -34,7 +35,7 @@ watchEffect(() => {
       >
         <input
           type="radio"
-          id="radio"
+          :id="id || name"
           :name="name"
           v-model="model"
           :value="value"
