@@ -28,7 +28,7 @@ const { getStyles } = useVariantStyle()
     :disabled
     :name
     :value
-    class="overflow-hidden rounded border-2 font-bold"
+    class="overflow-hidden rounded border-2 font-bold disabled:opacity-25"
     :class="getStyles(color, variant)"
   >
     <span class="inline-block size-full px-4 py-2 hover:bg-blue-200/20 focus:bg-blue-200/20">
