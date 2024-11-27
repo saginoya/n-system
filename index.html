@@ -15,7 +15,7 @@
       </n-card>
 
       <n-card>
-        <n-form action="./"></n-form>
+        <n-form storage-key="test-form"></n-form>
       </n-card>
 
       <n-card variant="outlined" color="blue">
@@ -369,5 +369,15 @@
       </n-container-1col>
     </n-app>
     <script type="module" src="/src/main.ts"></script>
+    <script type="module">
+      // Webコンポーネントを取得
+      const myComponent = document.querySelector('n-form')
+
+      // カスタムイベントをリッスン
+      myComponent.addEventListener('custom-confirm', (event) => {
+        console.log('Received custom event:', event.detail)
+        alert(`Message: ${event.detail.message}`)
+      })
+    </script>
   </body>
 </html>

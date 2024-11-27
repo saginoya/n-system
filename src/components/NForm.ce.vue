@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import NContainer1col from '@/components/NContainer1col.ce.vue'
 import NInputEmail from '@/components/NInputEmail.vue'
 import NInputNum from '@/components/NInputNum.vue'
@@ -35,7 +35,7 @@ const initFormFields: FormFields = {
     id: 'num',
     title: '数字',
     value: '',
-    required: false
+    required: true
   },
   postalCode: {
     name: 'postal-code',
@@ -70,7 +70,7 @@ const initFormFields: FormFields = {
     id: 'radio',
     title: 'ラジオボタン',
     value: '',
-    required: false
+    required: true
   },
   textarea: {
     name: 'textarea',
@@ -91,6 +91,19 @@ const validateValues = () => {
   emit('custom-confirm', formFields.value)
   modal.value.show()
 }
+
+// 子コンポーネントから取得したバリデーションの結果
+const validatedResults = ref<{ [key: string]: boolean }>({})
+
+// バリデーションがすべてTRUEか
+const isValidated = computed<boolean>(() => {
+  return Object.values(validatedResults.value).every((value) => value === true)
+})
+
+// バリデーション結果を追加する関数
+const addValidatedResults = (key: string, result: boolean): void => {
+  validatedResults.value[key] = result
+}
 </script>
 
 <template>
@@ -101,6 +114,7 @@ const validateValues = () => {
           :name="formFields['email'].name"
           :required="formFields['email'].required"
           v-model="formFields['email'].value"
+          @validated="(result) => addValidatedResults('email', result)"
         ></NInputEmail>
       </NInputWrapper>
 
@@ -109,6 +123,7 @@ const validateValues = () => {
           :name="formFields['num'].name"
           :required="formFields['num'].required"
           v-model="formFields['num'].value"
+          @validated="(result) => addValidatedResults('num', result)"
         ></NInputNum>
       </NInputWrapper>
 
@@ -120,6 +135,7 @@ const validateValues = () => {
           :name="formFields['postalCode'].name"
           :required="formFields['postalCode'].required"
           v-model="formFields['postalCode'].value"
+          @validated="(result) => addValidatedResults('postalCode', result)"
         ></NInputPostalCode>
       </NInputWrapper>
 
@@ -128,6 +144,7 @@ const validateValues = () => {
           :name="formFields['tel'].name"
           :required="formFields['tel'].required"
           v-model="formFields['tel'].value"
+          @validated="(result) => addValidatedResults('tel', result)"
         ></NInputTel>
       </NInputWrapper>
 
@@ -136,6 +153,7 @@ const validateValues = () => {
           :name="formFields['text'].name"
           :required="formFields['text'].required"
           v-model="formFields['text'].value"
+          @validated="(result) => addValidatedResults('text', result)"
         ></NInputText>
       </NInputWrapper>
 
@@ -144,6 +162,7 @@ const validateValues = () => {
           :name="formFields['url'].name"
           :required="formFields['url'].required"
           v-model="formFields['url'].value"
+          @validated="(result) => addValidatedResults('url', result)"
         ></NInputUrl>
       </NInputWrapper>
 
@@ -153,6 +172,7 @@ const validateValues = () => {
           :required="formFields['radio'].required"
           values="ひとつ,ふたつ,みっつ"
           v-model="formFields['radio'].value"
+          @validated="(result) => addValidatedResults('radio', result)"
         ></NInputsRadio>
 
         <NInputWrapper
@@ -163,11 +183,12 @@ const validateValues = () => {
             :name="formFields['textarea'].name"
             :required="formFields['textarea'].required"
             v-model="formFields['textarea'].value"
+            @validated="(result) => addValidatedResults('textarea', result)"
           ></NInputTextarea>
         </NInputWrapper>
       </NInputWrapper>
       <NContainerFlex>
-        <NBtn color="primary" @click="validateValues">入力内容を確認</NBtn>
+        <NBtn color="primary" :disabled="!isValidated" @click="validateValues">入力内容を確認</NBtn>
         <NBtn color="primary" variant="outlined" @click="saveFormFields">入力内容を一時保存</NBtn>
       </NContainerFlex>
     </NContainer1col>
