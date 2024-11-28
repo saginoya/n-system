@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import NContainer1col from '@/components/NContainer1col.ce.vue'
 import NGroupInput from '@/components/NGroupInput.vue'
 import NBtn from '@/components/NBtn.ce.vue'
@@ -74,7 +74,10 @@ const initFormFields: FormFields = {
   }
 }
 
-const { formFields, saveFormFields } = useFormFields(props.storageKey, initFormFields)
+const { formFields, saveFormFields, loadFormFields } = useFormFields(
+  props.storageKey,
+  initFormFields
+)
 
 // モーダルウィンドウのコンポーネント取得
 const modal = ref()
@@ -94,6 +97,11 @@ const isValidated = computed<boolean>(() => {
 const addValidatedResults = (key: string, result: boolean): void => {
   validatedResults.value[key] = result
 }
+
+onMounted(() => {
+  // ローカルストレージの内容を読み込む
+  loadFormFields()
+})
 </script>
 
 <template>
