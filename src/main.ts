@@ -9,6 +9,7 @@ import './assets/css/main.css'
 import NApp from './components/NApp.ce.vue'
 import NAlert from './components/NAlert.ce.vue'
 import NAnnotation from './components/NAnnotation.ce.vue'
+import NAnnotationLight from './components/NAnnotationLight.ce.vue'
 import NBanner from './components/NBanner.ce.vue'
 import NBtn from './components/NBtn.ce.vue'
 import NCard from './components/NCard.ce.vue'
@@ -55,6 +56,7 @@ import NYoutube from './components/NYoutube.ce.vue'
 customElements.define('n-app', defineCustomElement(NApp))
 customElements.define('n-alert', defineCustomElement(NAlert))
 customElements.define('n-annotation', defineCustomElement(NAnnotation))
+customElements.define('n-annotation-light', defineCustomElement(NAnnotationLight))
 customElements.define('n-banner', defineCustomElement(NBanner))
 customElements.define('n-btn', defineCustomElement(NBtn))
 customElements.define('n-card', defineCustomElement(NCard))
