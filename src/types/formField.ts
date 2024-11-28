@@ -1,7 +1,7 @@
 export type FormField = {
+  type: 'email' | 'number' | 'postal-code' | 'tel' | 'text' | 'textarea' | 'url' | 'radio'
   name: string
   title?: string
-  id?: string
   value?: string
   required?: boolean
   form?: string
@@ -29,6 +29,12 @@ export type FormFieldTextarea = FormField & {
   cols?: number
 }
 
+export type FormFieldRadio = FormField & {
+  values: string
+  labels?: string
+  checked?: number
+}
+
 export type FormFields = {
-  [key: string]: FormField
+  [key: string]: FormField | FormFieldText | FormFieldNumber | FormFieldTextarea | FormFieldRadio
 }
