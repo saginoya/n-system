@@ -83,8 +83,8 @@ const overlayContent = computed<OverlayContent | false>(() => {
 
 const deadlineFormat = (): string | undefined => {
   if (!props.deadline) return undefined
-  const { year, month, date, hour } = useDateFormat(props.deadline)
-  return `${year}年${month}月${date}日 ${hour}時`
+  const { year, month, date, twoDigitHour, twoDigitMinutes } = useDateFormat(props.deadline)
+  return `${year}年${month}月${date}日 ${twoDigitHour}:${twoDigitMinutes}`
 }
 </script>
 
