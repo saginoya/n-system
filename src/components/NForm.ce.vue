@@ -14,6 +14,8 @@ const props = defineProps<{
   storageKey: string
 }>()
 
+const emits = defineEmits(['n-form-confirm'])
+
 const initFormFields: FormFields = {
   email: {
     type: 'email',
@@ -81,8 +83,11 @@ const { formFields, saveFormFields, loadFormFields } = useFormFields(
 
 // モーダルウィンドウのコンポーネント取得
 const modal = ref()
-const showModal = () => {
+
+// 確認実行
+const confirm = () => {
   modal.value.show()
+  emits('n-form-confirm')
 }
 
 // 子コンポーネントから取得したバリデーションの結果
@@ -116,7 +121,7 @@ onMounted(() => {
       ></NGroupInput>
 
       <NContainerFlex>
-        <NBtn color="primary" :disabled="!isValidated" @click="showModal">入力内容を確認</NBtn>
+        <NBtn color="primary" :disabled="!isValidated" @click="confirm">入力内容を確認</NBtn>
         <NBtn color="primary" variant="outlined" @click="saveFormFields">入力内容を一時保存</NBtn>
       </NContainerFlex>
     </NContainer1col>
