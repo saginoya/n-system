@@ -86,6 +86,7 @@ const modal = ref()
 
 // 確認実行
 const confirm = () => {
+  saveFormFields()
   modal.value.show()
   emits('n-form-confirm')
 }
