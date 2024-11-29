@@ -71,7 +71,8 @@ customElements.define('n-container-vertical-grow', defineCustomElement(NContaine
 customElements.define('n-container-x-scroll', defineCustomElement(NContainerXScroll))
 customElements.define('n-elapsed', defineCustomElement(NElapsed))
 customElements.define('n-exhibitors-nexpo', defineCustomElement(NExhibitorsNexpo))
-customElements.define('n-form', defineCustomElement(NForm))
+// NForm ビルド時に型エラーのため、これを一時的に回避するためany型にしている
+customElements.define('n-form', defineCustomElement(NForm as any))
 customElements.define('n-icon', defineCustomElement(NIcon))
 customElements.define('n-image', defineCustomElement(NImage))
 customElements.define('n-input-wrapper', defineCustomElement(NInputWrapper))
