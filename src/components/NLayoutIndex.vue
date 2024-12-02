@@ -3,6 +3,7 @@ import NHeader from '@/components/NHeader.vue'
 import NHeaderTool from '@/components/NHeaderTool.vue'
 import NMainVisual from '@/components/NMainVisual.vue'
 import NListNavRow from './NListNavRow.ce.vue'
+import NOverlay from '@/components/NOverlay.vue'
 import { useConfig } from '@/composables/useConfig'
 import { useDrawer } from '@/composables/useDrawer'
 
@@ -10,7 +11,7 @@ const props = defineProps<{
   jsonPath: string
 }>()
 const { siteTitle, copyright, mainVisual, navigation } = useConfig(props.jsonPath)
-const { drawer, operateDrawer } = useDrawer()
+const { drawer, operateDrawer, dismissDrawer } = useDrawer()
 </script>
 
 <template>
@@ -21,6 +22,7 @@ const { drawer, operateDrawer } = useDrawer()
     class="fixed left-0 top-0 z-40 h-screen w-96 max-w-full -translate-x-96 transition duration-200"
     :class="{ 'translate-x-0': drawer }"
   ></NHeader>
+  <NOverlay v-show="drawer" class="z-30" @click="dismissDrawer()"></NOverlay>
   <div class="flex min-h-screen w-full flex-col overflow-hidden bg-slate-200">
     <NHeaderTool :active="drawer" class="z-50" @click="operateDrawer()"></NHeaderTool>
     <NMainVisual v-if="mainVisual" :nav="navigation?.related" :image="mainVisual.top">

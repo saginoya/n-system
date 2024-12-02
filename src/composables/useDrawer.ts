@@ -5,9 +5,11 @@ export const useDrawer = () => {
   const operateDrawer = (): void => {
     drawer.value = !drawer.value
   }
+  const dismissDrawer = () => (drawer.value = false)
 
   return {
     drawer: readonly(drawer),
-    operateDrawer
+    operateDrawer,
+    dismissDrawer
   }
 }
