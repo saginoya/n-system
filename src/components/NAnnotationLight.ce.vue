@@ -5,7 +5,7 @@ defineProps<{
 </script>
 
 <template>
-  <div class="flex gap-0.5 text-sm md:justify-end">
+  <div class="flex gap-0.5 text-xs italic text-gray-600 md:justify-end">
     <div>{{ mark || '※' }}</div>
     <div>
       <slot />
