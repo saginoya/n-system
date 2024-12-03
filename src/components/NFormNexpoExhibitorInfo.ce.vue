@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
+import { useFormFields } from '@/composables/useFormFields'
+import { useValidatedResults } from '@/composables/useValidatedResults'
+
 import NContainer1col from '@/components/NContainer1col.ce.vue'
-import NGroupInput from '@/components/NGroupInput.vue'
 import NBtn from '@/components/NBtn.ce.vue'
 import NContainerFlex from '@/components/NContainerFlex.ce.vue'
+import NGroupInput from '@/components/NGroupInput.vue'
 import NModal from '@/components/NModal.ce.vue'
-
-import { useFormFields } from '@/composables/useFormFields'
 
 import type { FormFields } from '@/types/formField'
 
@@ -80,6 +81,7 @@ const { formFields, saveFormFields, loadFormFields } = useFormFields(
   props.storageKey,
   initFormFields
 )
+const { addValidatedResults, isValidated } = useValidatedResults()
 
 // モーダルウィンドウのコンポーネント取得
 const modal = ref()
@@ -89,19 +91,6 @@ const confirm = () => {
   saveFormFields()
   modal.value.show()
   emits('n-form-confirm')
-}
-
-// 子コンポーネントから取得したバリデーションの結果
-const validatedResults = ref<{ [key: string]: boolean }>({})
-
-// バリデーションがすべてTRUEか
-const isValidated = computed<boolean>(() => {
-  return Object.values(validatedResults.value).every((value) => value === true)
-})
-
-// バリデーション結果を追加する関数
-const addValidatedResults = (key: string, result: boolean): void => {
-  validatedResults.value[key] = result
 }
 
 onMounted(() => {
@@ -120,7 +109,6 @@ onMounted(() => {
         v-model="formField.value"
         @validated="(result) => addValidatedResults(formField.name, result)"
       ></NGroupInput>
-
       <NContainerFlex>
         <NBtn color="primary" :disabled="!isValidated" @click="confirm">入力内容を確認</NBtn>
         <NBtn color="primary" variant="outlined" @click="saveFormFields">入力内容を一時保存</NBtn>

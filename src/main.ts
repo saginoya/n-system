@@ -24,7 +24,7 @@ import NContainerVerticalGrow from './components/NContainerVerticalGrow.ce.vue'
 import NContainerXScroll from './components/NContainerXScroll.ce.vue'
 import NElapsed from './components/NElapsed.ce.vue'
 import NExhibitorsNexpo from './components/NExhibitorsNexpo.ce.vue'
-import NForm from './components/NForm.ce.vue'
+import NFormNexpoExhibitorInfo from './components/NFormNexpoExhibitorInfo.ce.vue'
 import NIcon from './components/NIcon.ce.vue'
 import NImage from './components/NImage.ce.vue'
 import NInputWrapper from './components/NInputWrapper.ce.vue'
@@ -72,7 +72,10 @@ customElements.define('n-container-x-scroll', defineCustomElement(NContainerXScr
 customElements.define('n-elapsed', defineCustomElement(NElapsed))
 customElements.define('n-exhibitors-nexpo', defineCustomElement(NExhibitorsNexpo))
 // NForm ビルド時に型エラーのため、これを一時的に回避するためany型にしている
-customElements.define('n-form', defineCustomElement(NForm as any))
+customElements.define(
+  'n-form-nexpo-exhibitor-info',
+  defineCustomElement(NFormNexpoExhibitorInfo as any)
+)
 customElements.define('n-icon', defineCustomElement(NIcon))
 customElements.define('n-image', defineCustomElement(NImage))
 customElements.define('n-input-wrapper', defineCustomElement(NInputWrapper))
