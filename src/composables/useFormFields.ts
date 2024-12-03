@@ -18,8 +18,6 @@ export const useFormFields = (storageKey: string, initFormFields: FormFields) =>
     }
   }
 
-  console.log(formFields.value)
-
   return {
     formFields,
     saveFormFields,
