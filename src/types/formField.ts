@@ -1,5 +1,15 @@
+export type TypeOfFormField =
+  | 'email'
+  | 'number'
+  | 'postal-code'
+  | 'tel'
+  | 'text'
+  | 'textarea'
+  | 'url'
+  | 'radio'
+
 export type FormField = {
-  type: 'email' | 'number' | 'postal-code' | 'tel' | 'text' | 'textarea' | 'url' | 'radio'
+  type: TypeOfFormField
   name: string
   title?: string
   value?: string

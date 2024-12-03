@@ -1,12 +1,7 @@
 <script setup lang="ts">
 import type { FormField } from '@/types/formField'
 
-withDefaults(defineProps<FormField>(), {
-  name: 'postal-code',
-  autocomplete: 'postal-code',
-  placeholder: '101-0061',
-  pattern: '^[0-9]{3}-?[0-9]{4}$'
-})
+defineProps<FormField>()
 
 const model = defineModel<string>()
 </script>
