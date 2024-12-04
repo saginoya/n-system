@@ -21,23 +21,57 @@ const initFormFields: FormFields = {
   email: {
     type: 'email',
     name: 'email',
-    title: 'E-mail',
+    title: 'メールアドレス',
     value: '',
     required: true
   },
-  num: {
-    type: 'number',
-    name: 'num',
-    title: '数字',
+  name: {
+    type: 'text',
+    name: 'name',
+    title: '記入者名',
     value: '',
-    required: true
+    required: true,
+    placeholder: '日報　太郎'
   },
-  postalCode: {
-    type: 'postal-code',
-    name: 'postal-code',
-    title: '郵便番号',
+  url: {
+    type: 'url',
+    name: 'url',
+    title: 'WEBサイト',
     value: '',
-    required: true
+    required: false
+  },
+  koma: {
+    type: 'text',
+    name: 'koma',
+    title: '小間番号',
+    value: '',
+    required: false,
+    placeholder: 'A101'
+  },
+  organization: {
+    type: 'text',
+    name: 'organization',
+    title: '会社名',
+    value: '',
+    required: true,
+    placeholder: '例：日報ビジネス　株式会社'
+  },
+  kana: {
+    type: 'text',
+    name: 'kana',
+    title: '社名フリガナ',
+    value: '',
+    required: true,
+    placeholder: '例：ニッポウビジネス'
+  },
+  address: {
+    type: 'text',
+    name: 'address',
+    title: '問い合わせ先となる都道府県名',
+    value: '',
+    required: true,
+    placeholder: '例：東京都　例2：アメリカ',
+    autocomplete: 'address-level1'
   },
   tel: {
     type: 'tel',
@@ -46,32 +80,73 @@ const initFormFields: FormFields = {
     value: '',
     required: true
   },
-  text: {
-    type: 'text',
-    name: 'text',
-    title: 'テキスト',
-    value: '',
-    required: false
-  },
-  url: {
-    type: 'url',
-    name: 'url',
-    title: 'URL',
-    value: '',
-    required: false
-  },
-  radio: {
-    type: 'radio',
-    name: 'radio',
-    title: 'ラジオボタン',
-    value: '',
-    required: true,
-    values: 'いち,に,さん'
-  },
-  textarea: {
+  exhibits: {
     type: 'textarea',
-    name: 'textarea',
-    title: 'テキストボックス',
+    name: 'exhibits',
+    title: '出展内容',
+    value: '',
+    required: true
+  },
+  cat1: {
+    type: 'text',
+    name: 'cat1',
+    title: 'カテゴリー1',
+    value: '',
+    required: false
+  },
+  cat2: {
+    type: 'text',
+    name: 'cat2',
+    title: 'カテゴリー2',
+    value: '',
+    required: false
+  },
+  cat3: {
+    type: 'text',
+    name: 'cat3',
+    title: 'カテゴリー3',
+    value: '',
+    required: false
+  },
+  sdgs: {
+    type: 'text',
+    name: 'sdgs',
+    title: 'SDGs',
+    value: '',
+    required: true
+  },
+  en_organization: {
+    type: 'text',
+    name: 'en_organization',
+    title: '英文会社名',
+    value: '',
+    required: true
+  },
+  en_organization2: {
+    type: 'text',
+    name: 'en_organization2',
+    title: '英文会社名2',
+    value: '',
+    required: false
+  },
+  en_address: {
+    type: 'text',
+    name: 'en_address',
+    title: '英文の問い合わせ先となる国名・地域名',
+    value: '',
+    required: true
+  },
+  en_tel: {
+    type: 'text',
+    name: 'en_tel',
+    title: '英文TEL',
+    value: '+',
+    required: true
+  },
+  en_exhibits: {
+    type: 'textarea',
+    name: 'en_exhibits',
+    title: '英文出展内容',
     value: '',
     required: false
   }
