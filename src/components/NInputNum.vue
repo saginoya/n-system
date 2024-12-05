@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { watch } from 'vue'
+import { useText } from '@/utils/useText'
 import type { FormFieldNumber } from '@/types/formField'
 
 defineProps<FormFieldNumber>()
@@ -10,6 +12,12 @@ const handleInput = (event: Event) => {
   const target = event.target as HTMLInputElement
   model.value = target.value
 }
+
+const { convertFullWidthToHalfWidth } = useText()
+
+watch(model, () => {
+  model.value = convertFullWidthToHalfWidth(model.value)
+})
 </script>
 
 <template>

@@ -1,9 +1,17 @@
 <script setup lang="ts">
+import { watch } from 'vue'
+import { useText } from '@/utils/useText'
 import type { FormField } from '@/types/formField'
 
 defineProps<FormField>()
 
 const model = defineModel<string>()
+
+const { convertFullWidthToHalfWidth, convertFullWidthSymbolToHalfWidth } = useText()
+
+watch(model, () => {
+  model.value = convertFullWidthSymbolToHalfWidth(convertFullWidthToHalfWidth(model.value))
+})
 </script>
 
 <template>

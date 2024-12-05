@@ -21,9 +21,65 @@ export const useText = () => {
     })
   }
 
+  // 英数字を全角から半角へ変換する
+  const convertFullWidthToHalfWidth = (value: string | undefined): string | undefined => {
+    if (!value) return undefined
+    return value.replace(/[Ａ-Ｚａ-ｚ０-９]/g, (s) => {
+      return String.fromCharCode(s.charCodeAt(0) - 0xfee0)
+    })
+  }
+
+  // 全角の記号を半角へ変換する
+  const convertFullWidthSymbolToHalfWidth = (value: string | undefined): string | undefined => {
+    if (!value) return undefined
+
+    const symbolMap: { [key: string]: string } = {
+      '！': '!',
+      '＂': '"',
+      '＃': '#',
+      '＄': '$',
+      '％': '%',
+      '＆': '&',
+      '＇': "'",
+      '（': '(',
+      '）': ')',
+      '＊': '*',
+      '＋': '+',
+      '，': ',',
+      '－': '-',
+      '．': '.',
+      '／': '/',
+      '：': ':',
+      '；': ';',
+      '＜': '<',
+      '＝': '=',
+      '＞': '>',
+      '？': '?',
+      '＠': '@',
+      '［': '[',
+      '＼': '\\',
+      '］': ']',
+      '＾': '^',
+      '＿': '_',
+      '｀': '`',
+      '｛': '{',
+      '｜': '|',
+      '｝': '}',
+      '～': '~',
+      '　': ' '
+    }
+
+    return value.replace(
+      /[！＂＃＄％＆＇（）＊＋，－．／：；＜＝＞？＠［＼］＾＿｀｛｜｝～\u3000]/g,
+      (match) => symbolMap[match] || match
+    )
+  }
+
   return {
     trim,
     isSingleByteChara,
-    katakanaToHiragana
+    katakanaToHiragana,
+    convertFullWidthToHalfWidth,
+    convertFullWidthSymbolToHalfWidth
   }
 }

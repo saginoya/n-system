@@ -31,7 +31,7 @@ const initFormFields: FormFields = {
     title: '記入者名',
     value: '',
     required: true,
-    placeholder: '日報　太郎'
+    placeholder: '日報 太郎'
   },
   url: {
     type: 'url',
@@ -54,7 +54,7 @@ const initFormFields: FormFields = {
     title: '会社名',
     value: '',
     required: true,
-    placeholder: '例：日報ビジネス　株式会社'
+    placeholder: '例：日報ビジネス 株式会社'
   },
   kana: {
     type: 'text',
@@ -70,7 +70,7 @@ const initFormFields: FormFields = {
     title: '問い合わせ先となる都道府県名',
     value: '',
     required: true,
-    placeholder: '例：東京都　例2：アメリカ',
+    placeholder: '例：東京都 例2：アメリカ',
     autocomplete: 'address-level1'
   },
   tel: {
