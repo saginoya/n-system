@@ -26,16 +26,18 @@ const props = defineProps<{
 }>()
 const { type, required, pattern, title, name } = props.formField
 
+const maxlength = (props.formField as FormFieldText | FormFieldTextarea).maxlength ?? undefined
+
+const minlength = (props.formField as FormFieldTextarea).minlength ?? undefined
+
 const emits = defineEmits<{ validated: [result: boolean] }>()
 
 const model = defineModel<string>()
 
-const { errors, isValidate, setTermsRequired, setTermsPattern, validate } = useValidation()
-setTermsRequired(required || false)
-setTermsPattern(pattern)
+const { errors, isValid, validate } = useValidation({ required, pattern, maxlength, minlength })
 watchEffect(() => {
   validate(model.value)
-  emits('validated', isValidate.value)
+  emits('validated', isValid.value)
 })
 
 const getInputComponent = () => {
@@ -66,9 +68,16 @@ const getInputComponent = () => {
   <NInputWrapper :title="title || name" :required="required">
     <div class="flex flex-col gap-1">
       <component :is="getInputComponent()" v-model="model" v-bind="formField" />
-      <div class="min-h-4">
-        <NMsgCheck v-if="isValidate"></NMsgCheck>
-        <NMsgWarning v-else>{{ errors[0] }}</NMsgWarning>
+      <div class="flex justify-between px-2 text-sm">
+        <div class="min-h-4">
+          <NMsgCheck v-if="isValid"></NMsgCheck>
+          <NMsgWarning v-else>{{ errors[0] }}</NMsgWarning>
+        </div>
+        <div v-if="maxlength || minlength">
+          <span>{{ formField.value?.length || 0 }}</span>
+          <span v-show="maxlength"> / {{ maxlength }}</span>
+          <span v-show="minlength"> ({{ minlength }}文字以上)</span>
+        </div>
       </div>
       <slot />
     </div>
