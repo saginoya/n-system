@@ -54,7 +54,7 @@ const initFormFields: FormFields = {
     title: '会社名',
     value: '',
     required: true,
-    placeholder: '例：日報ビジネス 株式会社'
+    placeholder: '日報ビジネス 株式会社'
   },
   kana: {
     type: 'text',
@@ -62,7 +62,7 @@ const initFormFields: FormFields = {
     title: '社名フリガナ',
     value: '',
     required: true,
-    placeholder: '例：ニッポウビジネス'
+    placeholder: 'ニッポウビジネス'
   },
   address: {
     type: 'text',
@@ -70,7 +70,7 @@ const initFormFields: FormFields = {
     title: '問い合わせ先となる都道府県名',
     value: '',
     required: true,
-    placeholder: '例：東京都 例2：アメリカ',
+    placeholder: '東京都 ・ アメリカ',
     autocomplete: 'address-level1'
   },
   tel: {
@@ -85,7 +85,8 @@ const initFormFields: FormFields = {
     name: 'exhibits',
     title: '出展内容',
     value: '',
-    required: true
+    required: true,
+    maxlength: 100
   },
   cat1: {
     type: 'text',
@@ -148,7 +149,8 @@ const initFormFields: FormFields = {
     name: 'en_exhibits',
     title: '英文出展内容',
     value: '',
-    required: false
+    required: false,
+    maxlength: 100
   }
 }
 
