@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { watch } from 'vue'
 import { useText } from '@/utils/useText'
+import { useInputStyle } from '@/utils/useInputStyle'
 import type { FormFieldNumber } from '@/types/formField'
 
 defineProps<FormFieldNumber>()
@@ -14,6 +15,7 @@ const handleInput = (event: Event) => {
 }
 
 const { convertFullWidthToHalfWidth } = useText()
+const { inputStyleDefault } = useInputStyle()
 
 watch(model, () => {
   model.value = convertFullWidthToHalfWidth(model.value)
@@ -31,7 +33,7 @@ watch(model, () => {
     :step
     inputmode="numeric"
     :value="model"
+    :class="inputStyleDefault"
     @input="handleInput"
-    class="w-full max-w-xs rounded border-2 border-gray-300 px-2 py-1 text-lg"
   />
 </template>
