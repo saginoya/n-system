@@ -142,7 +142,9 @@ const initFormFields: FormFields = {
     name: 'en_tel',
     title: '英文TEL',
     value: '+',
-    required: true
+    required: true,
+    pattern: '^\\+(\\d{1,3})(-?\\d{1,14})*$',
+    placeholder: '+81-3-3262-3562'
   },
   en_exhibits: {
     type: 'textarea',
