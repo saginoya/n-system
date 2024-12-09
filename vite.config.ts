@@ -27,5 +27,11 @@ export default defineConfig({
         assetFileNames: `assets/n-system.[ext]`
       }
     }
+  },
+  server: {
+    watch: {
+      usePolling: true,
+      ignored: ['**/node_modules/**', '**/dist/**']
+    }
   }
 })
