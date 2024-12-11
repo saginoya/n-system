@@ -36,7 +36,41 @@ import IconSdgsJa17 from '@/components/icons/IconSdgsJa17.vue'
 
 import type { Component } from 'vue'
 
-export type SdgsNum = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17
+export type SdgsNum =
+  | '1'
+  | '2'
+  | '3'
+  | '4'
+  | '5'
+  | '6'
+  | '7'
+  | '8'
+  | '9'
+  | '10'
+  | '11'
+  | '12'
+  | '13'
+  | '14'
+  | '15'
+  | '16'
+  | '17'
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
 type SdgsObj = Record<SdgsNum, string>
 type SdgsCompObj = Record<SdgsNum, Component>
 type GetSdgs = {
