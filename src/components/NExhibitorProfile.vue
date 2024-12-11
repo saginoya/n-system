@@ -4,6 +4,7 @@ import NLink from '@/components/NLink.ce.vue'
 import NSdgsIcons from '@/components/NSdgsIcons.vue'
 import type { Exhibitor } from '@/types/exhibitorList'
 import type { Lang } from '@/types/lang'
+import type { SdgsNum } from '@/utils/useSdgs'
 
 const props = defineProps<{
   lang: Lang
@@ -69,7 +70,9 @@ const texts = {
       </div>
       <div v-if="sdgs" class="grid grid-cols-1 gap-2 py-2 sm:grid-cols-4 md:grid-cols-6">
         <dt class="font-bold">{{ texts[lang].sdgs }}</dt>
-        <dd class="sm:col-span-3 md:col-span-5"><NSdgsIcons :numbers="sdgs"></NSdgsIcons></dd>
+        <dd class="sm:col-span-3 md:col-span-5">
+          <NSdgsIcons :numbers="sdgs as SdgsNum[]"></NSdgsIcons>
+        </dd>
       </div>
     </dl>
   </article>

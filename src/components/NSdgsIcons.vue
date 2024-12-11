@@ -4,8 +4,10 @@ import NContainerFlex from '@/components/NContainerFlex.ce.vue'
 import { useLang } from '@/composables/useLang'
 import { useSdgs } from '@/utils/useSdgs'
 
+import type { SdgsNum } from '@/utils/useSdgs'
+
 defineProps<{
-  numbers: number[]
+  numbers: SdgsNum[]
 }>()
 
 const { lang } = useLang()
