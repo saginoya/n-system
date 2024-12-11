@@ -5,6 +5,7 @@ import NInputTel from '@/components/NInputTel.vue'
 import NInputText from '@/components/NInputText.vue'
 import NInputTextarea from '@/components/NInputTextarea.vue'
 import NInputUrl from '@/components/NInputUrl.vue'
+import NInputSdgs from '@/components/NInputSdgs.vue'
 import NInputsRadio from '@/components/NInputsRadio.vue'
 
 import type { TypeOfFormField } from '@/types/formField'
@@ -26,6 +27,8 @@ export const useInputComps = () => {
         return NInputTextarea
       case 'url':
         return NInputUrl
+      case 'sdgs':
+        return NInputSdgs
       case 'radio':
         return NInputsRadio
       default:

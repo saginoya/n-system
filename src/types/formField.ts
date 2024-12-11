@@ -7,6 +7,7 @@ export type TypeOfFormField =
   | 'textarea'
   | 'url'
   | 'radio'
+  | 'sdgs'
 
 export type FormField = {
   type: TypeOfFormField
@@ -40,8 +41,8 @@ export type FormFieldTextarea = FormField & {
 }
 
 export type FormFieldRadio = FormField & {
-  values: string
-  labels?: string
+  values: string[]
+  labels?: string[]
   checked?: number
 }
 

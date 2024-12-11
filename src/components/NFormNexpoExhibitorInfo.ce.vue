@@ -110,7 +110,7 @@ const initFormFields: FormFields = {
     required: false
   },
   sdgs: {
-    type: 'text',
+    type: 'sdgs',
     name: 'sdgs',
     title: 'SDGs',
     value: '',
