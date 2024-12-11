@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { watchEffect } from 'vue'
+import { computed, watchEffect } from 'vue'
 import { useValueList } from '@/composables/useValueList'
 import { useSdgs } from '@/utils/useSdgs'
 import { useCommaSeparatedValues } from '@/utils/useCommaSeparatedValues'
@@ -26,6 +26,15 @@ const sortValueList = () => {
   valueList.value.sort((a, b) => Number(a) - Number(b))
 }
 
+// SDGsの掲載を希望しない場合の値
+const notListedValue = '18'
+const isNotListed = computed<boolean>(() => {
+  return valueList.value.includes(notListedValue)
+})
+const isListed = computed<boolean>(() => {
+  return !isNotListed.value && valueList.value.length > 0
+})
+
 watchEffect(() => {
   valueList.value = toStringArray(model.value)
 })
@@ -44,7 +53,7 @@ const toggleValue = (value: string, event: InputEvent): void => {
 }
 
 // SDGsの情報取得
-const { sdgsJa } = useSdgs()
+const { sdgsJa, sdgsNum } = useSdgs()
 const values = Object.keys(sdgsJa)
 const labels = Object.values(sdgsJa)
 </script>
@@ -57,12 +66,23 @@ const labels = Object.values(sdgsJa)
       :name
       :value
       :checked="valueList.includes(value)"
+      :disabled="isNotListed"
       @change="toggleValue(value, $event)"
     >
-      {{ labels ? labels[index] || value : value }}
+      {{ sdgsNum[index] }} {{ labels ? labels[index] || value : value }}
+    </NInputCheckbox>
+    <NInputCheckbox
+      :name
+      :value="notListedValue"
+      :checked="isNotListed"
+      :disabled="isListed"
+      @change="toggleValue(notListedValue, $event)"
+    >
+      {{ notListedValue }} 掲載しない（希望しない）
     </NInputCheckbox>
   </NContainer2col>
   <NSheet color="gray">
-    <NSdgsIcons :numbers="valueList as SdgsNum[]"></NSdgsIcons>
+    <NSdgsIcons v-if="isListed" :numbers="valueList as SdgsNum[]"></NSdgsIcons>
+    <p v-else-if="isNotListed">掲載を希望しない</p>
   </NSheet>
 </template>
