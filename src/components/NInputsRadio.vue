@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import type { FormFieldRadio } from '@/types/formField'
 
-const props = defineProps<FormFieldRadio>()
-
-const valueList: string[] = props.values.split(',')
-const labelList: string[] | undefined = props.labels?.split(',')
+defineProps<FormFieldRadio>()
 
 const model = defineModel<string>()
 </script>
@@ -12,7 +9,7 @@ const model = defineModel<string>()
 <template>
   <div class="flex gap-1">
     <label
-      v-for="(value, index) in valueList"
+      v-for="(value, index) in values"
       :key="index"
       class="rounded px-2 py-1 text-lg hover:bg-slate-100 focus:bg-slate-100"
     >
@@ -24,7 +21,7 @@ const model = defineModel<string>()
         :checked="index === checked"
         :required="required && index === 1"
       />
-      {{ labelList ? labelList[index] || value : value }}
+      {{ labels ? labels[index] || value : value }}
     </label>
   </div>
 </template>
