@@ -1,11 +1,15 @@
 <script setup lang="ts">
+import { watchEffect } from 'vue'
 import { useValueList } from '@/composables/useValueList'
 import { useSdgs } from '@/utils/useSdgs'
 import { useCommaSeparatedValues } from '@/utils/useCommaSeparatedValues'
-import type { FormFieldText } from '@/types/formField'
-import NInputText from '@/components/NInputText.vue'
-import NInputCheckbox from '@/components/NInputCheckbox.vue'
 import NContainer2col from '@/components/NContainer2col.ce.vue'
+import NInputCheckbox from '@/components/NInputCheckbox.vue'
+import NSdgsIcons from '@/components/NSdgsIcons.vue'
+import NSheet from '@/components/NSheet.ce.vue'
+
+import type { FormFieldText } from '@/types/formField'
+import type { SdgsNum } from '@/utils/useSdgs'
 
 defineProps<FormFieldText>()
 
@@ -16,7 +20,15 @@ const model = defineModel<string>()
 const { toCommaSeparated, toStringArray } = useCommaSeparatedValues()
 
 // 配列とそれを操作する関数
-const { valueList, addValue, removeValue } = useValueList(['1', '2'])
+const { valueList, addValue, removeValue } = useValueList()
+
+const sortValueList = () => {
+  valueList.value.sort((a, b) => Number(a) - Number(b))
+}
+
+watchEffect(() => {
+  valueList.value = toStringArray(model.value)
+})
 
 // チェックボックスの切り替えで値を操作
 const toggleValue = (value: string, event: InputEvent): void => {
@@ -26,6 +38,7 @@ const toggleValue = (value: string, event: InputEvent): void => {
   } else {
     removeValue(value)
   }
+  sortValueList()
   // 配列の情報をモデルに上書きする
   model.value = toCommaSeparated(valueList.value)
 }
@@ -37,8 +50,6 @@ const labels = Object.values(sdgsJa)
 </script>
 
 <template>
-  <NInputText type="text" :name v-model="model"></NInputText>
-  <p>{{ valueList }}</p>
   <NContainer2col>
     <NInputCheckbox
       v-for="(value, index) in values"
@@ -51,4 +62,7 @@ const labels = Object.values(sdgsJa)
       {{ labels ? labels[index] || value : value }}
     </NInputCheckbox>
   </NContainer2col>
+  <NSheet color="gray">
+    <NSdgsIcons :numbers="valueList as SdgsNum[]"></NSdgsIcons>
+  </NSheet>
 </template>
