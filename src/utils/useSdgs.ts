@@ -1,42 +1,42 @@
-import IconSdgsEn01 from '@/components/icons/IconSdgsEn01.vue'
-import IconSdgsEn02 from '@/components/icons/IconSdgsEn02.vue'
-import IconSdgsEn03 from '@/components/icons/IconSdgsEn03.vue'
-import IconSdgsEn04 from '@/components/icons/IconSdgsEn04.vue'
-import IconSdgsEn05 from '@/components/icons/IconSdgsEn05.vue'
-import IconSdgsEn06 from '@/components/icons/IconSdgsEn06.vue'
-import IconSdgsEn07 from '@/components/icons/IconSdgsEn07.vue'
-import IconSdgsEn08 from '@/components/icons/IconSdgsEn08.vue'
-import IconSdgsEn09 from '@/components/icons/IconSdgsEn09.vue'
-import IconSdgsEn10 from '@/components/icons/IconSdgsEn10.vue'
-import IconSdgsEn11 from '@/components/icons/IconSdgsEn11.vue'
-import IconSdgsEn12 from '@/components/icons/IconSdgsEn12.vue'
-import IconSdgsEn13 from '@/components/icons/IconSdgsEn13.vue'
-import IconSdgsEn14 from '@/components/icons/IconSdgsEn14.vue'
-import IconSdgsEn15 from '@/components/icons/IconSdgsEn15.vue'
-import IconSdgsEn16 from '@/components/icons/IconSdgsEn16.vue'
-import IconSdgsEn17 from '@/components/icons/IconSdgsEn17.vue'
+import IconSDGsEn01 from '@/components/icons/SDGs/IconSDGsEn01.vue'
+import IconSDGsEn02 from '@/components/icons/SDGs/IconSDGsEn02.vue'
+import IconSDGsEn03 from '@/components/icons/SDGs/IconSDGsEn03.vue'
+import IconSDGsEn04 from '@/components/icons/SDGs/IconSDGsEn04.vue'
+import IconSDGsEn05 from '@/components/icons/SDGs/IconSDGsEn05.vue'
+import IconSDGsEn06 from '@/components/icons/SDGs/IconSDGsEn06.vue'
+import IconSDGsEn07 from '@/components/icons/SDGs/IconSDGsEn07.vue'
+import IconSDGsEn08 from '@/components/icons/SDGs/IconSDGsEn08.vue'
+import IconSDGsEn09 from '@/components/icons/SDGs/IconSDGsEn09.vue'
+import IconSDGsEn10 from '@/components/icons/SDGs/IconSDGsEn10.vue'
+import IconSDGsEn11 from '@/components/icons/SDGs/IconSDGsEn11.vue'
+import IconSDGsEn12 from '@/components/icons/SDGs/IconSDGsEn12.vue'
+import IconSDGsEn13 from '@/components/icons/SDGs/IconSDGsEn13.vue'
+import IconSDGsEn14 from '@/components/icons/SDGs/IconSDGsEn14.vue'
+import IconSDGsEn15 from '@/components/icons/SDGs/IconSDGsEn15.vue'
+import IconSDGsEn16 from '@/components/icons/SDGs/IconSDGsEn16.vue'
+import IconSDGsEn17 from '@/components/icons/SDGs/IconSDGsEn17.vue'
 
-import IconSdgsJa01 from '@/components/icons/IconSdgsJa01.vue'
-import IconSdgsJa02 from '@/components/icons/IconSdgsJa02.vue'
-import IconSdgsJa03 from '@/components/icons/IconSdgsJa03.vue'
-import IconSdgsJa04 from '@/components/icons/IconSdgsJa04.vue'
-import IconSdgsJa05 from '@/components/icons/IconSdgsJa05.vue'
-import IconSdgsJa06 from '@/components/icons/IconSdgsJa06.vue'
-import IconSdgsJa07 from '@/components/icons/IconSdgsJa07.vue'
-import IconSdgsJa08 from '@/components/icons/IconSdgsJa08.vue'
-import IconSdgsJa09 from '@/components/icons/IconSdgsJa09.vue'
-import IconSdgsJa10 from '@/components/icons/IconSdgsJa10.vue'
-import IconSdgsJa11 from '@/components/icons/IconSdgsJa11.vue'
-import IconSdgsJa12 from '@/components/icons/IconSdgsJa12.vue'
-import IconSdgsJa13 from '@/components/icons/IconSdgsJa13.vue'
-import IconSdgsJa14 from '@/components/icons/IconSdgsJa14.vue'
-import IconSdgsJa15 from '@/components/icons/IconSdgsJa15.vue'
-import IconSdgsJa16 from '@/components/icons/IconSdgsJa16.vue'
-import IconSdgsJa17 from '@/components/icons/IconSdgsJa17.vue'
+import IconSDGsJa01 from '@/components/icons/SDGs/IconSDGsJa01.vue'
+import IconSDGsJa02 from '@/components/icons/SDGs/IconSDGsJa02.vue'
+import IconSDGsJa03 from '@/components/icons/SDGs/IconSDGsJa03.vue'
+import IconSDGsJa04 from '@/components/icons/SDGs/IconSDGsJa04.vue'
+import IconSDGsJa05 from '@/components/icons/SDGs/IconSDGsJa05.vue'
+import IconSDGsJa06 from '@/components/icons/SDGs/IconSDGsJa06.vue'
+import IconSDGsJa07 from '@/components/icons/SDGs/IconSDGsJa07.vue'
+import IconSDGsJa08 from '@/components/icons/SDGs/IconSDGsJa08.vue'
+import IconSDGsJa09 from '@/components/icons/SDGs/IconSDGsJa09.vue'
+import IconSDGsJa10 from '@/components/icons/SDGs/IconSDGsJa10.vue'
+import IconSDGsJa11 from '@/components/icons/SDGs/IconSDGsJa11.vue'
+import IconSDGsJa12 from '@/components/icons/SDGs/IconSDGsJa12.vue'
+import IconSDGsJa13 from '@/components/icons/SDGs/IconSDGsJa13.vue'
+import IconSDGsJa14 from '@/components/icons/SDGs/IconSDGsJa14.vue'
+import IconSDGsJa15 from '@/components/icons/SDGs/IconSDGsJa15.vue'
+import IconSDGsJa16 from '@/components/icons/SDGs/IconSDGsJa16.vue'
+import IconSDGsJa17 from '@/components/icons/SDGs/IconSDGsJa17.vue'
 
 import type { Component } from 'vue'
 
-export type SdgsNum =
+export type SDGsNumType =
   | '1'
   | '2'
   | '3'
@@ -71,19 +71,19 @@ export type SdgsNum =
   | 15
   | 16
   | 17
-type SdgsObj = Record<SdgsNum, string>
-type SdgsCompObj = Record<SdgsNum, Component>
-type GetSdgs = {
+type SDGsObj = Record<SDGsNumType, string>
+type SDGsCompObj = Record<SDGsNumType, Component>
+type GetSDGs = {
   ja: string
   en: string
   iconJa: Component
   iconEn: Component
 }
 
-export const useSdgs = () => {
-  const sdgsNum: SdgsNum[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+export const useSDGs = () => {
+  const SDGsNum: SDGsNumType[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
 
-  const sdgsJa: SdgsObj = {
+  const SDGsJa: SDGsObj = {
     1: '貧困をなくそう',
     2: '飢餓をゼロに',
     3: 'すべての人に健康と福祉を',
@@ -102,7 +102,7 @@ export const useSdgs = () => {
     16: '平和と公正をすべての人に',
     17: 'パートナーシップで目標を達成しよう'
   }
-  const sdgsEn: SdgsObj = {
+  const SDGsEn: SDGsObj = {
     1: 'No Poverty',
     2: 'Zero Hunger',
     3: 'Good Health and Well-Being',
@@ -122,61 +122,61 @@ export const useSdgs = () => {
     17: 'Partnerships for the Goals'
   }
 
-  const sdgsJaImg: SdgsCompObj = {
-    1: IconSdgsJa01,
-    2: IconSdgsJa02,
-    3: IconSdgsJa03,
-    4: IconSdgsJa04,
-    5: IconSdgsJa05,
-    6: IconSdgsJa06,
-    7: IconSdgsJa07,
-    8: IconSdgsJa08,
-    9: IconSdgsJa09,
-    10: IconSdgsJa10,
-    11: IconSdgsJa11,
-    12: IconSdgsJa12,
-    13: IconSdgsJa13,
-    14: IconSdgsJa14,
-    15: IconSdgsJa15,
-    16: IconSdgsJa16,
-    17: IconSdgsJa17
+  const SDGsJaImg: SDGsCompObj = {
+    1: IconSDGsJa01,
+    2: IconSDGsJa02,
+    3: IconSDGsJa03,
+    4: IconSDGsJa04,
+    5: IconSDGsJa05,
+    6: IconSDGsJa06,
+    7: IconSDGsJa07,
+    8: IconSDGsJa08,
+    9: IconSDGsJa09,
+    10: IconSDGsJa10,
+    11: IconSDGsJa11,
+    12: IconSDGsJa12,
+    13: IconSDGsJa13,
+    14: IconSDGsJa14,
+    15: IconSDGsJa15,
+    16: IconSDGsJa16,
+    17: IconSDGsJa17
   }
 
-  const sdgsEnImg: SdgsCompObj = {
-    1: IconSdgsEn01,
-    2: IconSdgsEn02,
-    3: IconSdgsEn03,
-    4: IconSdgsEn04,
-    5: IconSdgsEn05,
-    6: IconSdgsEn06,
-    7: IconSdgsEn07,
-    8: IconSdgsEn08,
-    9: IconSdgsEn09,
-    10: IconSdgsEn10,
-    11: IconSdgsEn11,
-    12: IconSdgsEn12,
-    13: IconSdgsEn13,
-    14: IconSdgsEn14,
-    15: IconSdgsEn15,
-    16: IconSdgsEn16,
-    17: IconSdgsEn17
+  const SDGsEnImg: SDGsCompObj = {
+    1: IconSDGsEn01,
+    2: IconSDGsEn02,
+    3: IconSDGsEn03,
+    4: IconSDGsEn04,
+    5: IconSDGsEn05,
+    6: IconSDGsEn06,
+    7: IconSDGsEn07,
+    8: IconSDGsEn08,
+    9: IconSDGsEn09,
+    10: IconSDGsEn10,
+    11: IconSDGsEn11,
+    12: IconSDGsEn12,
+    13: IconSDGsEn13,
+    14: IconSDGsEn14,
+    15: IconSDGsEn15,
+    16: IconSDGsEn16,
+    17: IconSDGsEn17
   }
 
-  const getSdgs = (num: SdgsNum): GetSdgs => {
+  const getSDGs = (num: SDGsNumType): GetSDGs => {
     return {
-      ja: sdgsJa[num],
-      en: sdgsEn[num],
-      iconJa: sdgsJaImg[num],
-      iconEn: sdgsEnImg[num]
+      ja: SDGsJa[num],
+      en: SDGsEn[num],
+      iconJa: SDGsJaImg[num],
+      iconEn: SDGsEnImg[num]
     }
   }
 
   return {
-    sdgsNum,
-    sdgsJa,
-    sdgsEn,
-    sdgsJaImg,
-    sdgsEnImg,
-    getSdgs
+    SDGsNum,
+    SDGsJa,
+    SDGsEn,
+    SDGsJaImg,
+    SDGsEnImg,
+    getSDGs
   }
 }

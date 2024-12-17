@@ -1,4 +1,4 @@
-export const useText = () => {
+export const useTextFormatter = () => {
   // 文字列前後の空白を削除
   const trim = (value: string): string => {
     return value.trim()

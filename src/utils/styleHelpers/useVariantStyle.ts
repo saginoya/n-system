@@ -1,4 +1,4 @@
-import { useColorStyle } from '@/utils/useColorStyle'
+import { useColorStyle } from '@/utils/styleHelpers/useColorStyle'
 import type { Color } from '@/types/color'
 import type { Variant } from '@/types/variant'
 

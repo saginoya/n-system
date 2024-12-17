@@ -1,4 +1,4 @@
-export const useDateFormat = (datetime: string) => {
+export const useDateFormatter = (datetime: string) => {
   const dayJaList: string[] = ['日', '月', '火', '水', '木', '金', '土']
   const twoDigit = (num: string): string => {
     return num.padStart(2, '0')
