@@ -2,12 +2,12 @@ export type TypeOfFormField =
   | 'email'
   | 'number'
   | 'postal-code'
+  | 'radio'
+  | 'sdgs'
   | 'tel'
   | 'text'
   | 'textarea'
   | 'url'
-  | 'radio'
-  | 'sdgs'
 
 export type FormField = {
   type: TypeOfFormField
