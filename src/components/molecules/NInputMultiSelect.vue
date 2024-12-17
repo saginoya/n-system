@@ -4,8 +4,12 @@ import NInputCheckbox from '@/components/atoms/NInputCheckbox.vue'
 
 import type { NInputCheckboxProps } from '@/components/atoms/NInputCheckbox.vue'
 
+export type NInputMultiSelectProps = NInputCheckboxProps & {
+  label?: string
+}
+
 defineProps<{
-  options: NInputCheckboxProps[]
+  options: NInputMultiSelectProps[]
 }>()
 
 const model = defineModel<string[]>()
@@ -34,6 +38,6 @@ const toggleValue = (value: string, event: InputEvent): void => {
     :value="option.value"
     @change="toggleValue(option.value, $event)"
   >
-    {{ option.value }}
+    {{ option.label || option.value }}
   </NInputCheckbox>
 </template>
