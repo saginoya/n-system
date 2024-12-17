@@ -1,0 +1,10 @@
+<script setup lang="ts">
+import IconCheckCircle from '@/components/icons/IconCheckCircle.vue'
+</script>
+
+<template>
+  <div class="flex items-center gap-2 text-success">
+    <IconCheckCircle />
+    <span><slot /></span>
+  </div>
+</template>
