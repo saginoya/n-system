@@ -1,10 +1,12 @@
 <script setup lang="ts">
-defineProps<{
+export type NInputCheckboxProps = {
   name: string
   value: string
   checked?: boolean
   disabled?: boolean
-}>()
+}
+
+defineProps<NInputCheckboxProps>()
 
 const model = defineModel<boolean>()
 
