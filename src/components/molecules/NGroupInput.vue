@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { watchEffect } from 'vue'
 import { useValidation } from '@/composables/useValidation'
-import { useInputComps } from '@/utils/useInputComps'
+import { useInputComps } from '@/utils/componentHelpers/useInputComps'
 
 import NInputWrapper from '@/components/atoms/NInputWrapper.ce.vue'
 import NInputStatus from '@/components/molecules/NInputStatus.vue'

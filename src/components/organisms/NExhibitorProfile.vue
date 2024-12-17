@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import NChip from '@/components/atoms/NChip.ce.vue'
 import NLink from '@/components/atoms/NLink.ce.vue'
-import NSdgsIcons from '@/components/molecules/NSdgsIcons.vue'
+import NSDGsIcons from '@/components/molecules/NSDGsIcons.vue'
 import type { Exhibitor } from '@/types/exhibitorList'
 import type { Lang } from '@/types/lang'
-import type { SdgsNum } from '@/utils/useSdgs'
+import type { SDGsNumType } from '@/utils/useSDGs'
 
 const props = defineProps<{
   lang: Lang
@@ -71,7 +71,7 @@ const texts = {
       <div v-if="sdgs" class="grid grid-cols-1 gap-2 py-2 sm:grid-cols-4 md:grid-cols-6">
         <dt class="font-bold">{{ texts[lang].sdgs }}</dt>
         <dd class="sm:col-span-3 md:col-span-5">
-          <NSdgsIcons :numbers="sdgs as SdgsNum[]"></NSdgsIcons>
+          <NSDGsIcons :numbers="sdgs as SDGsNumType[]"></NSDGsIcons>
         </dd>
       </div>
     </dl>

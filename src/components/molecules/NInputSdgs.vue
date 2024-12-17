@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { computed, watchEffect } from 'vue'
 import { useValueList } from '@/composables/useValueList'
-import { useSdgs } from '@/utils/useSdgs'
-import { useCommaSeparatedValues } from '@/utils/useCommaSeparatedValues'
+import { useSDGs } from '@/utils/useSDGs'
+import { useConvertType } from '@/utils/useConvertType'
 import NContainer2col from '@/components/atoms/NContainer2col.ce.vue'
 import NInputCheckbox from '@/components/atoms/NInputCheckbox.vue'
-import NSdgsIcons from '@/components/molecules/NSdgsIcons.vue'
+import NSdgsIcons from '@/components/molecules/NSDGsIcons.vue'
 import NSheet from '@/components/atoms/NSheet.ce.vue'
 
 import type { FormFieldText } from '@/types/formField'
-import type { SdgsNum } from '@/utils/useSdgs'
+import type { SDGsNumType } from '@/utils/useSDGs'
 
 defineProps<FormFieldText>()
 
@@ -17,7 +17,7 @@ defineProps<FormFieldText>()
 const model = defineModel<string>()
 
 // 配列とカンマ区切り文字列を変換する関数
-const { toCommaSeparated, toStringArray } = useCommaSeparatedValues()
+const { convertArrayToCommaSeparated, convertCommaSeparatedToArray } = useConvertType()
 
 // 配列とそれを操作する関数
 const { valueList, addValue, removeValue } = useValueList()
@@ -36,7 +36,7 @@ const isListed = computed<boolean>(() => {
 })
 
 watchEffect(() => {
-  valueList.value = toStringArray(model.value)
+  valueList.value = convertCommaSeparatedToArray(model.value)
 })
 
 // チェックボックスの切り替えで値を操作
@@ -49,13 +49,13 @@ const toggleValue = (value: string, event: InputEvent): void => {
   }
   sortValueList()
   // 配列の情報をモデルに上書きする
-  model.value = toCommaSeparated(valueList.value)
+  model.value = convertArrayToCommaSeparated(valueList.value)
 }
 
 // SDGsの情報取得
-const { sdgsJa, sdgsNum } = useSdgs()
-const values = Object.keys(sdgsJa)
-const labels = Object.values(sdgsJa)
+const { SDGsJa, SDGsNum } = useSDGs()
+const values = Object.keys(SDGsJa)
+const labels = Object.values(SDGsJa)
 </script>
 
 <template>
@@ -69,7 +69,7 @@ const labels = Object.values(sdgsJa)
       :disabled="isNotListed"
       @change="toggleValue(value, $event)"
     >
-      {{ sdgsNum[index] }} {{ labels ? labels[index] || value : value }}
+      {{ SDGsNum[index] }} {{ labels ? labels[index] || value : value }}
     </NInputCheckbox>
     <NInputCheckbox
       :name
@@ -82,7 +82,7 @@ const labels = Object.values(sdgsJa)
     </NInputCheckbox>
   </NContainer2col>
   <NSheet color="gray">
-    <NSdgsIcons v-if="isListed" :numbers="valueList as SdgsNum[]"></NSdgsIcons>
+    <NSdgsIcons v-if="isListed" :numbers="valueList as SDGsNumType[]"></NSdgsIcons>
     <p v-else-if="isNotListed">掲載を希望しない</p>
   </NSheet>
 </template>

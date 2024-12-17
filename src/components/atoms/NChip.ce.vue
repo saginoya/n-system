@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import NLink from '@/components/atoms/NLink.ce.vue'
-import { useColorStyle } from '@/utils/useColorStyle'
+import { useColorStyle } from '@/utils/styleHelpers/useColorStyle'
 import type { Color } from '@/types/color'
 import type { LinkType } from '@/types/link'
 

@@ -2,18 +2,18 @@
 import { ref } from 'vue'
 import NContainerFlex from '@/components/atoms/NContainerFlex.ce.vue'
 import { useLang } from '@/composables/useLang'
-import { useSdgs } from '@/utils/useSdgs'
+import { useSDGs } from '@/utils/useSDGs'
 
-import type { SdgsNum } from '@/utils/useSdgs'
+import type { SDGsNumType } from '@/utils/useSDGs'
 
 defineProps<{
-  numbers: SdgsNum[]
+  numbers: SDGsNumType[]
 }>()
 
 const { lang } = useLang()
 const isJapanese = ref(lang.value === 'ja')
 
-const { sdgsJa, sdgsJaImg, sdgsEn, sdgsEnImg } = useSdgs()
+const { SDGsJa, SDGsJaImg, SDGsEn, SDGsEnImg } = useSDGs()
 </script>
 
 <template>
@@ -21,12 +21,12 @@ const { sdgsJa, sdgsJaImg, sdgsEn, sdgsEnImg } = useSdgs()
     <component
       v-for="n in numbers"
       :key="n"
-      :is="isJapanese ? sdgsJaImg[n] : sdgsEnImg[n]"
+      :is="isJapanese ? SDGsJaImg[n] : SDGsEnImg[n]"
       :width="80"
       :height="80"
-      :src="isJapanese ? sdgsJaImg[n] : sdgsEnImg[n]"
-      :alt="isJapanese ? sdgsJa[n] : sdgsEn[n]"
-      :title="isJapanese ? sdgsJa[n] : sdgsEn[n]"
+      :src="isJapanese ? SDGsJaImg[n] : SDGsEnImg[n]"
+      :alt="isJapanese ? SDGsJa[n] : SDGsEn[n]"
+      :title="isJapanese ? SDGsJa[n] : SDGsEn[n]"
       class="size-20"
     ></component>
   </NContainerFlex>

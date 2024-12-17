@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { watch } from 'vue'
-import { useText } from '@/utils/useText'
-import { useInputStyle } from '@/utils/useInputStyle'
+import { useTextFormatter } from '@/utils/formatter/useTextFormatter'
+import { useInputStyle } from '@/utils/styleHelpers/useInputStyle'
 import type { FormFieldTextarea } from '@/types/formField'
 
 withDefaults(defineProps<FormFieldTextarea>(), {
@@ -11,7 +11,7 @@ withDefaults(defineProps<FormFieldTextarea>(), {
 
 const model = defineModel<string>()
 
-const { convertFullWidthToHalfWidth, convertFullWidthSymbolToHalfWidth } = useText()
+const { convertFullWidthToHalfWidth, convertFullWidthSymbolToHalfWidth } = useTextFormatter()
 const { inputStyleDefault } = useInputStyle()
 
 watch(model, () => {

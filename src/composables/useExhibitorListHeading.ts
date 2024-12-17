@@ -1,5 +1,5 @@
 import { computed } from 'vue'
-import { useText } from '@/utils/useText'
+import { useText } from '@/utils/formatter/useTextFormatter'
 import type { Ref } from 'vue'
 import type { Lang } from '@/types/lang'
 import type { SortType } from '@/types/exhibitorList'

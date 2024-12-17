@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { watch } from 'vue'
-import { useText } from '@/utils/useText'
-import { useInputStyle } from '@/utils/useInputStyle'
+import { useTextFormatter } from '@/utils/formatter/useTextFormatter'
+import { useInputStyle } from '@/utils/styleHelpers/useInputStyle'
 import type { FormFieldNumber } from '@/types/formField'
 
 defineProps<FormFieldNumber>()
@@ -14,7 +14,7 @@ const handleInput = (event: Event) => {
   model.value = target.value
 }
 
-const { convertFullWidthToHalfWidth } = useText()
+const { convertFullWidthToHalfWidth } = useTextFormatter()
 const { inputStyleDefault } = useInputStyle()
 
 watch(model, () => {
