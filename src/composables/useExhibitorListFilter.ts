@@ -1,5 +1,5 @@
 import { ref, computed } from 'vue'
-import { useText } from '@/utils/formatter/useTextFormatter'
+import { useTextFormatter } from '@/utils/formatter/useTextFormatter'
 import type { Ref } from 'vue'
 import type { Exhibitor, Favorites } from '@/types/exhibitorList'
 
@@ -8,7 +8,7 @@ export const useExhibitorListFilter = (
   favorites?: Ref<Favorites>
 ) => {
   // モジュールの読み込み
-  const { katakanaToHiragana } = useText()
+  const { katakanaToHiragana } = useTextFormatter()
 
   // 状態管理
   // フィルターの条件（キーワード）

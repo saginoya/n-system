@@ -1,5 +1,5 @@
 import { computed } from 'vue'
-import { useText } from '@/utils/formatter/useTextFormatter'
+import { useTextFormatter } from '@/utils/formatter/useTextFormatter'
 import type { Ref } from 'vue'
 import type { Lang } from '@/types/lang'
 import type { SortType } from '@/types/exhibitorList'
@@ -11,7 +11,7 @@ export const useExhibitorListHeading = (
   lang: Lang,
   filterFunc: (value: Exhibitor) => boolean
 ) => {
-  const { isSingleByteChara } = useText()
+  const { isSingleByteChara } = useTextFormatter()
 
   // 見出しの一覧
   const headings = computed<string[]>(() => {
