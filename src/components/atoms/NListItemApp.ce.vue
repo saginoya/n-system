@@ -64,5 +64,5 @@ const headers = ['項目', 'データ', '提出書類内容', '提出期限', '�
 </template>
 
 <style>
-@import url(../../assets/css/main.css);
+@import url(@/assets/css/main.css);
 </style>

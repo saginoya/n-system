@@ -35,5 +35,5 @@ const gapStyle = (num: number): string => {
 </template>
 
 <style>
-@import url(../../assets/css/main.css);
+@import url(@/assets/css/main.css);
 </style>

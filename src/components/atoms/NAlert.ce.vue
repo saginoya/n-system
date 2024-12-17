@@ -29,5 +29,5 @@ const colorStyles = [textColor(props.type), borderColor(props.type)]
 </template>
 
 <style>
-@import url(../../assets/css/main.css);
+@import url(@/assets/css/main.css);
 </style>
