@@ -2,11 +2,13 @@
 import NMsgCheck from '@/components/atoms/NMsgCheck.vue'
 import NMsgWarning from '@/components/atoms/NMsgWarning.vue'
 
-defineProps<{
+export type ValidationStatusProps = {
   isValid: boolean
   msg?: string
   placeholder?: string
-}>()
+}
+
+defineProps<ValidationStatusProps>()
 </script>
 
 <template>
