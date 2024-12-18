@@ -1,12 +1,12 @@
-<script setup lang="ts">
-export type NInputCheckboxProps = {
+<script setup lang="ts" generic="T">
+export type NInputCheckboxProps<T> = {
   name: string
-  value: string
+  value: T
   checked?: boolean
   disabled?: boolean
 }
 
-defineProps<NInputCheckboxProps>()
+defineProps<NInputCheckboxProps<T>>()
 
 const model = defineModel<boolean>()
 
