@@ -1,6 +1,6 @@
 import { defineCustomElement } from 'vue'
 // import { createPinia, setActivePinia } from 'pinia'
-
+import './assets/css/main.css'
 // Piniaを利用する場合は以下を実行する
 // setActivePinia(createPinia())
 
