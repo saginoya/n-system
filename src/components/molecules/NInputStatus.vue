@@ -1,15 +1,16 @@
 <script setup lang="ts">
-import NValidationStatus from '@/components/molecules/NValidationStatus.vue'
+import type { CharacterCountProps } from '@/components/atoms/NCharacterCount.vue'
+
+import NValidationStatus from '@/components/atoms/NValidationStatus.vue'
 import NCharacterCount from '@/components/atoms/NCharacterCount.vue'
 
-defineProps<{
-  isValid: boolean
-  errors: string[]
-  value?: string
-  maxlength?: number
-  minlength?: number
-  placeholder?: string
-}>()
+defineProps<
+  {
+    isValid: boolean
+    errors: string[]
+    placeholder?: string
+  } & CharacterCountProps
+>()
 </script>
 
 <template>

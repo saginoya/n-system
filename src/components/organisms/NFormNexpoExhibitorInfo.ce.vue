@@ -7,6 +7,7 @@ import NContainer1col from '@/components/atoms/NContainer1col.ce.vue'
 import NBtn from '@/components/atoms/NBtn.ce.vue'
 import NContainerFlex from '@/components/atoms/NContainerFlex.ce.vue'
 import NGroupInput from '@/components/molecules/NGroupInput.vue'
+import NGroupInputMultiSelect from '@/components/molecules/NGroupInputMultiSelect.vue'
 import NModal from '@/components/molecules/NModal.ce.vue'
 
 import type { FormFields } from '@/types/formField'
@@ -210,7 +211,7 @@ const initFormFields: FormFields = {
   }
 }
 
-const { formFields, saveFormFields, loadFormFields } = useFormFields(
+const { formFields, saveFormFields, loadFormFields, updateFormFieldValue } = useFormFields(
   props.storageKey,
   initFormFields
 )
@@ -230,11 +231,35 @@ onMounted(() => {
   // ローカルストレージの内容を読み込む
   loadFormFields()
 })
+
+const catModel = ref<string[]>([])
+const updateCatModel = () => {
+  updateFormFieldValue('cat1', catModel.value[0])
+  updateFormFieldValue('cat2', catModel.value[1])
+  updateFormFieldValue('cat3', catModel.value[2])
+}
 </script>
 
 <template>
   <div>
     <NContainer1col v-if="storageKey" :gap="4">
+      <NGroupInputMultiSelect
+        name="categories"
+        :options="[
+          { name: 'aaa', value: 'aaa' },
+          { name: 'bbb', value: 'bbb' },
+          { name: 'ccc', value: 'ccc' },
+          { name: 'ddd', value: 'ddd' }
+        ]"
+        title="カテゴリー"
+        required
+        :maxlength="3"
+        v-model="catModel"
+        @change="updateCatModel"
+      ></NGroupInputMultiSelect>
+      <p>1 {{ formFields['cat1'].value }}</p>
+      <p>2 {{ formFields['cat2'].value }}</p>
+      <p>3 {{ formFields['cat3'].value }}</p>
       <NGroupInput
         :form-field="formFields['email']"
         v-model="formFields['email'].value"

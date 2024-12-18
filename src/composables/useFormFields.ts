@@ -11,7 +11,12 @@ export const useFormFields = (storageKey: string, initFormFields: FormFields) =>
 
   const { saveFormFields, loadFormFields } = useFormFieldsStoredData(storageKey, formFields)
 
-  // フォームフィールドのValueを更新する関数
+  /**
+   * フォームフィールドのValueを更新する関数
+   *
+   * @param fieldId - 第一引数 変更したいID
+   * @param value - 第二引数 変更したい値
+   */
   const updateFormFieldValue = (fieldId: string, value: string) => {
     if (formFields.value[fieldId]) {
       formFields.value[fieldId].value = value
