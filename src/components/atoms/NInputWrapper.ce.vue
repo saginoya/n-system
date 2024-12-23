@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import NContainer1col from '@/components/atoms/NContainer1col.ce.vue'
+import NContainerFlex from '@/components/atoms/NContainerFlex.ce.vue'
+import NChip from '@/components/atoms/NChip.ce.vue'
+
 defineProps<{
   title: string
   required?: boolean
@@ -6,16 +10,17 @@ defineProps<{
 </script>
 
 <template>
-  <div class="flex flex-col gap-1">
-    <div class="flex gap-2 font-bold">
-      <span v-if="required" class="inline-block rounded-full bg-warning px-2 text-white">必須</span>
-      <span v-else class="inline-block rounded-full bg-gray-300 px-2 text-white">任意</span>
+  <NContainer1col :gap="1">
+    <NContainerFlex class="font-bold">
+      <NChip :color="required ? 'warning' : 'gray-light'" size="sm">
+        {{ required ? '任意' : '必須' }}
+      </NChip>
       <span>{{ title }}</span>
-    </div>
-    <div>
+    </NContainerFlex>
+    <NContainer1col :gap="0.5">
       <slot />
-    </div>
-  </div>
+    </NContainer1col>
+  </NContainer1col>
 </template>
 
 <style>
