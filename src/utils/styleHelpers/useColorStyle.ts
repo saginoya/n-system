@@ -33,6 +33,8 @@ export const useColorStyle = () => {
         return 'text-green-500'
       case 'blue':
         return 'text-blue-500'
+      case 'gray-light':
+        return 'text-gray-300'
       case 'orange-light':
         return 'text-orange-400'
       case 'yellow-light':
@@ -78,6 +80,8 @@ export const useColorStyle = () => {
         return 'bg-green-500'
       case 'blue':
         return 'bg-blue-500'
+      case 'gray-light':
+        return 'bg-gray-300'
       case 'orange-light':
         return 'bg-orange-400'
       case 'yellow-light':
@@ -123,6 +127,8 @@ export const useColorStyle = () => {
         return 'border-green-500'
       case 'blue':
         return 'border-blue-500'
+      case 'gray-light':
+        return 'border-gray-300'
       case 'orange-light':
         return 'border-orange-400'
       case 'yellow-light':
