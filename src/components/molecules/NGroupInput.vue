@@ -36,17 +36,15 @@ watchEffect(() => {
 
 <template>
   <NInputWrapper :title="title || name" :required="required">
-    <div class="flex flex-col gap-0.5">
-      <component :is="getInputComp(type)" v-model="model" v-bind="formField" />
-      <NInputStatus
-        :is-valid="isValid"
-        :errors
-        :value="model"
-        :maxlength
-        :minlength
-        :placeholder
-      ></NInputStatus>
-      <slot />
-    </div>
+    <component :is="getInputComp(type)" v-model="model" v-bind="formField" />
+    <NInputStatus
+      :is-valid="isValid"
+      :errors
+      :value="model"
+      :maxlength
+      :minlength
+      :placeholder
+    ></NInputStatus>
+    <slot />
   </NInputWrapper>
 </template>
