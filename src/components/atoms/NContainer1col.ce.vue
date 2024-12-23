@@ -1,7 +1,7 @@
 <script setup lang="ts">
 withDefaults(
   defineProps<{
-    gap?: 0 | 1 | 2 | 4 | 8 | 12
+    gap?: 0 | 0.5 | 1 | 2 | 4 | 8 | 12
   }>(),
   {
     gap: 2
@@ -12,6 +12,8 @@ const gapStyle = (num: number): string => {
   switch (num) {
     case 0:
       return 'gap-0'
+    case 0.5:
+      return 'gap-0.5'
     case 1:
       return 'gap-1'
     case 2:
