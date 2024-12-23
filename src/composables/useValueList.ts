@@ -1,25 +1,36 @@
-import { ref } from 'vue'
+import { ref, type Ref, type ModelRef } from 'vue'
 
-export const useValueList = (initValue?: string[]) => {
-  const valueList = ref<string[]>(initValue || [])
+/**
+ * useValueListの補助関数
+ * valueListの初期化を行う
+ * @param initList
+ * @returns
+ */
+export const createValueList = (initList: string[] = []) => ref([...initList])
 
-  // 文字列を追加する関数
+/**
+ * 値を格納した配列を操作する関数
+ * @param valueList
+ * @returns addValue 配列に値を追加するメソッド
+ * @returns removeValue 配列から値を削除するメソッド
+ */
+export const useValueList = (valueList: Ref<string[]> | ModelRef<string[]>) => {
+  const hasValue = (value: string): boolean => {
+    return valueList.value.includes(value)
+  }
+
   const addValue = (value: string): void => {
-    if (!valueList.value.includes(value)) {
+    if (!hasValue(value)) {
       valueList.value.push(value)
     }
   }
 
-  // 指定した値を削除する関数
   const removeValue = (value: string): void => {
-    const index = valueList.value.indexOf(value)
-    if (index !== -1) {
-      valueList.value.splice(index, 1) // 一致する値を削除
-    }
+    valueList.value = valueList.value.filter((item) => item !== value)
   }
 
   return {
-    valueList,
+    hasValue,
     addValue,
     removeValue
   }

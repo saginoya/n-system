@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, watchEffect } from 'vue'
+import { ref, computed, watchEffect } from 'vue'
 import { useValueList } from '@/composables/useValueList'
 import { useSDGs } from '@/utils/useSDGs'
 import { useConvertType } from '@/utils/useConvertType'
@@ -15,12 +15,13 @@ defineProps<FormFieldText>()
 
 // 親コンポーネントと共有するSDGsの番号
 const model = defineModel<string>()
+const valueList = ref<string[]>([])
 
 // 配列とカンマ区切り文字列を変換する関数
 const { convertArrayToCommaSeparated, convertCommaSeparatedToArray } = useConvertType()
 
 // 配列とそれを操作する関数
-const { valueList, addValue, removeValue } = useValueList()
+const { addValue, removeValue } = useValueList(valueList)
 
 const sortValueList = () => {
   valueList.value.sort((a, b) => Number(a) - Number(b))
