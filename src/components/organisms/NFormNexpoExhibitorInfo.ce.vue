@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, watch, onMounted } from 'vue'
 import { useFormFields } from '@/composables/useFormFields'
 import { useValidatedResults } from '@/composables/useValidatedResults'
 
+import NTitleLv3 from '@/components/atoms/NTitleLv3.ce.vue'
 import NContainer1col from '@/components/atoms/NContainer1col.ce.vue'
 import NBtn from '@/components/atoms/NBtn.ce.vue'
 import NContainerFlex from '@/components/atoms/NContainerFlex.ce.vue'
@@ -227,17 +228,30 @@ const confirm = () => {
   emits('n-form-confirm')
 }
 
-onMounted(() => {
-  // ローカルストレージの内容を読み込む
-  loadFormFields()
-})
-
 const catModel = ref<string[]>([])
 const updateCatModel = () => {
   updateFormFieldValue('cat1', catModel.value[0])
   updateFormFieldValue('cat2', catModel.value[1])
   updateFormFieldValue('cat3', catModel.value[2])
 }
+const setCatModel = () => {
+  const catKeys = ['cat1', 'cat2', 'cat3']
+  let resultList = []
+  for (const key of catKeys) {
+    if (formFields.value[key] && formFields.value[key].value) {
+      resultList.push(formFields.value[key].value)
+    }
+  }
+  catModel.value = resultList
+}
+watch(formFields.value, () => {
+  setCatModel()
+})
+
+onMounted(() => {
+  // ローカルストレージの内容を読み込む
+  loadFormFields()
+})
 </script>
 
 <template>
@@ -245,12 +259,7 @@ const updateCatModel = () => {
     <NContainer1col v-if="storageKey" :gap="4">
       <NGroupInputMultiSelect
         name="categories"
-        :options="[
-          { name: 'aaa', value: 'aaa' },
-          { name: 'bbb', value: 'bbb' },
-          { name: 'ccc', value: 'ccc' },
-          { name: 'ddd', value: 'ddd' }
-        ]"
+        :options="[{ value: 'aaa' }, { value: 'bbb' }, { value: 'ccc' }, { value: 'ddd' }]"
         title="カテゴリー"
         required
         :maxlength="3"
@@ -352,7 +361,17 @@ const updateCatModel = () => {
       </p>
     </div>
     <NModal ref="modal">
-      <slot />
+      <slot>
+        <NTitleLv3>確認画面</NTitleLv3>
+        <form>
+          <NContainer1col>
+            <div v-for="field in formFields" :key="field.name">
+              <p>{{ field.title }}</p>
+              <input type="text" :name="field.name" :value="field.value" readonly />
+            </div>
+          </NContainer1col>
+        </form>
+      </slot>
     </NModal>
   </div>
 </template>
