@@ -6,18 +6,20 @@ import { useExhibitorListFilter } from '@/composables/useExhibitorListFilter'
 import { useExhibitorListHeading } from '@/composables/useExhibitorListHeading'
 import { useExhibitorListFavorite } from '@/composables/useExhibitorListFavorite'
 import { useLang } from '@/composables/useLang'
+import { useModal } from '@/composables/useModal'
 
 import NExhibitorListHeading from '@/components/atoms/NExhibitorListHeading.vue'
 import NExhibitorListItem from '@/components/molecules/NExhibitorListItem.vue'
 import NExhibitorProfile from '@/components/organisms/NExhibitorProfile.vue'
 import NInputSearch from '@/components/molecules/NInputSearch.vue'
 import NListDisc from '@/components/atoms/NListDisc.ce.vue'
-import NModal from '@/components/molecules/NModal.ce.vue'
+import NModalBase from '@/components/molecules/NModalBase.vue'
 import NSwitch from '@/components/atoms/NSwitch.vue'
 import NSwitcBookmark from '@/components/molecules/NSwitcBookmark.vue'
 import NTabs from '@/components/molecules/NTabs.vue'
 import NTitleLv3 from '@/components/atoms/NTitleLv3.ce.vue'
 import NTooltipInfo from '@/components/molecules/NTooltipInfo.ce.vue'
+import NBtn from '@/components/atoms/NBtn.ce.vue'
 
 import type { Exhibitor, Exhibitions } from '@/types/exhibitorList'
 
@@ -95,11 +97,11 @@ watchEffect(() => {
 })
 
 // モーダルウインドウ
-const modal = ref()
+const { visible, show, dismiss } = useModal()
 const currentExhibitor = ref<Exhibitor | undefined>()
 const showModal = (exhibitor: Exhibitor) => {
   currentExhibitor.value = exhibitor
-  modal.value.show()
+  show()
 }
 </script>
 
@@ -239,10 +241,17 @@ const showModal = (exhibitor: Exhibitor) => {
   </ul>
 
   <!-- モーダルウインドウ（出展社の詳細情報） -->
-  <NModal ref="modal">
-    <p v-if="!currentExhibitor">情報がありません。</p>
-    <NExhibitorProfile v-else :lang="lang" :exhibitor="currentExhibitor"></NExhibitorProfile>
-  </NModal>
+  <NModalBase :visible :close-action="dismiss">
+    <NExhibitorProfile
+      v-if="currentExhibitor"
+      :lang="lang"
+      :exhibitor="currentExhibitor"
+    ></NExhibitorProfile>
+    <p v-else>情報がありません。</p>
+    <template #footer>
+      <NBtn color="gray" variant="text" @click="dismiss()">Close</NBtn>
+    </template>
+  </NModalBase>
 </template>
 
 <style>

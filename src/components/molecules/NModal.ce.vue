@@ -1,9 +1,6 @@
 <script setup lang="ts">
 import NBtn from '@/components/atoms/NBtn.ce.vue'
-import NCard from '@/components/atoms/NCard.ce.vue'
-import NOverlay from '@/components/atoms/NOverlay.vue'
-import NTransitionScale from '@/components/atoms/NTransitionScale.vue'
-import NBtnClose from '@/components/atoms/NBtnClose.vue'
+import NModalBase from '@/components/molecules/NModalBase.vue'
 import { useModal } from '@/composables/useModal'
 import type { Color } from '@/types/color'
 
@@ -24,19 +21,12 @@ defineExpose({ show })
 
 <template>
   <NBtn v-if="btnTitle" :color="btnColor" @click="show()">{{ btnTitle }}</NBtn>
-  <NOverlay v-show="visible" class="z-50" @click="dismiss()">
-    <NTransitionScale>
-      <NCard ref="card" v-if="visible" @click.stop class="relative max-h-full" role="dialog">
-        <NBtnClose class="absolute -right-4 -top-4" @click="dismiss()"></NBtnClose>
-        <div class="overflow-y-auto overscroll-contain">
-          <slot />
-          <p class="text-center">
-            <NBtn color="gray" variant="text" @click="dismiss()">Close</NBtn>
-          </p>
-        </div>
-      </NCard>
-    </NTransitionScale>
-  </NOverlay>
+  <NModalBase :visible :close-action="dismiss">
+    <slot />
+    <template #footer>
+      <NBtn color="gray" variant="text" @click="dismiss()">Close</NBtn>
+    </template>
+  </NModalBase>
 </template>
 
 <style>
