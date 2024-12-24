@@ -31,6 +31,7 @@ export default defineConfig({
   server: {
     watch: {
       usePolling: true,
+      interval: 300,
       ignored: ['**/node_modules/**', '**/dist/**']
     }
   }

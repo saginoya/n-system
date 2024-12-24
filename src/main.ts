@@ -23,7 +23,6 @@ import NContainerVerticalGrow from './components/molecules/NContainerVerticalGro
 import NContainerXScroll from './components/atoms/NContainerXScroll.ce.vue'
 import NElapsed from './components/atoms/NElapsed.ce.vue'
 import NExhibitorsNexpo from './components/organisms/NExhibitorsNexpo.ce.vue'
-import NFormNexpoExhibitorInfo from './components/organisms/NFormNexpoExhibitorInfo.ce.vue'
 import NIcon from './components/atoms/NIcon.ce.vue'
 import NImage from './components/molecules/NImage.ce.vue'
 import NInputWrapper from './components/atoms/NInputWrapper.ce.vue'
@@ -70,11 +69,6 @@ customElements.define('n-container-vertical-grow', defineCustomElement(NContaine
 customElements.define('n-container-x-scroll', defineCustomElement(NContainerXScroll))
 customElements.define('n-elapsed', defineCustomElement(NElapsed))
 customElements.define('n-exhibitors-nexpo', defineCustomElement(NExhibitorsNexpo))
-// NForm ビルド時に型エラーのため、これを一時的に回避するためany型にしている
-customElements.define(
-  'n-form-nexpo-exhibitor-info',
-  defineCustomElement(NFormNexpoExhibitorInfo as any)
-)
 customElements.define('n-icon', defineCustomElement(NIcon))
 customElements.define('n-image', defineCustomElement(NImage))
 customElements.define('n-input-wrapper', defineCustomElement(NInputWrapper))
