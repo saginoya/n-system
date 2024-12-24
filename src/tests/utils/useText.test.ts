@@ -1,7 +1,7 @@
 import { expect, test } from 'vitest'
-import { useText } from '@/utils/formatter/useTextFormatter'
+import { useTextFormatter } from '@/utils/formatter/useTextFormatter'
 
-const { trim, isSingleByteChara, katakanaToHiragana } = useText()
+const { trim, isSingleByteChara, katakanaToHiragana } = useTextFormatter()
 
 test('trim function', () => {
   // 文字列前後の空白を削除
