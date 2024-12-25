@@ -23,8 +23,8 @@ const { drawer, operateDrawer, dismissDrawer } = useDrawer()
     :class="{ 'translate-x-0': drawer }"
   ></NHeader>
   <NOverlay v-show="drawer" class="z-30" @click="dismissDrawer()"></NOverlay>
+  <NHeaderTool :active="drawer" class="z-50" @click="operateDrawer()"></NHeaderTool>
   <div class="flex min-h-screen w-full flex-col overflow-hidden bg-slate-200">
-    <NHeaderTool :active="drawer" class="z-50" @click="operateDrawer()"></NHeaderTool>
     <NMainVisual v-if="mainVisual" :nav="navigation?.related" :image="mainVisual.top">
     </NMainVisual>
     <div v-if="navigation" class="hidden bg-primary px-4 py-2 text-white lg:block">
