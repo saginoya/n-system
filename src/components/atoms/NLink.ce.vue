@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useLink } from '@/utils/useLink'
+import NLinkText from '@/components/atoms/NLinkText.vue'
 import { useURL } from '@/utils/useURL'
 import type { LinkType } from '@/types/link'
 
@@ -9,24 +9,22 @@ defineProps<{
   textAligned?: boolean
 }>()
 
-const { linkTarget, linkIcon } = useLink()
 const { isSamePage } = useURL()
 </script>
 
 <template>
-  <a
-    class="inline-flex items-center justify-center rounded-full px-3 py-1 hover:bg-blue-200/20 focus:bg-blue-200/20"
+  <NLinkText
+    class="inline-flex items-center justify-center rounded-full bg-blue-200/10 px-3 py-1 hover:bg-blue-200/30 focus:bg-blue-200/30"
     :class="{
       'bg-slate-900/40': isSamePage(href),
       'contrast-75': isSamePage(href),
       '-translate-x-3': textAligned,
     }"
     :href
-    :target="linkTarget(type)"
+    :type
   >
     <slot />
-    <component v-if="type !== 'internal'" :is="linkIcon(type)" class="ml-1 inline" />
-  </a>
+  </NLinkText>
 </template>
 
 <style>
