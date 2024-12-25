@@ -1,6 +1,7 @@
 import pluginVue from 'eslint-plugin-vue'
 import vueTsEslintConfig from '@vue/eslint-config-typescript'
 import pluginVitest from '@vitest/eslint-plugin'
+import pluginTailwindcss from 'eslint-plugin-tailwindcss'
 import skipFormatting from '@vue/eslint-config-prettier/skip-formatting'
 
 export default [
@@ -15,6 +16,7 @@ export default [
   },
 
   ...pluginVue.configs['flat/essential'],
+  ...pluginTailwindcss.configs['flat/recommended'],
   ...vueTsEslintConfig(),
 
   {
