@@ -37,7 +37,7 @@ export const useExhibitorListFavorite = (key: string) => {
   // お気に入りリストから削除
   const msgRemove = {
     ja: 'お気に入り登録から解除しますか？',
-    en: 'Do you want to unsubscribe from your favorites?'
+    en: 'Do you want to unsubscribe from your favorites?',
   }
   const removeFavorite = (value: Value) => {
     if (window.confirm(msgRemove[lang.value])) {
@@ -62,6 +62,6 @@ export const useExhibitorListFavorite = (key: string) => {
     getFavoriteItems,
     setFavorite,
     removeFavorite,
-    switchFavorite
+    switchFavorite,
   }
 }

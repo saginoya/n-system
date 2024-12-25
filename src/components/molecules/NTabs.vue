@@ -10,8 +10,8 @@ const props = withDefaults(
     color?: Color
   }>(),
   {
-    color: 'primary'
-  }
+    color: 'primary',
+  },
 )
 
 const { textColor, borderColor } = useColorStyle()

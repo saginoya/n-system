@@ -14,6 +14,7 @@ export const useURL = () => {
       linkUrl = new URL(link, document.location.origin)
     } catch (error) {
       console.error('Invalid URL:', link)
+      console.error(error)
       return false
     }
 
@@ -24,6 +25,6 @@ export const useURL = () => {
   }
 
   return {
-    isSamePage
+    isSamePage,
   }
 }

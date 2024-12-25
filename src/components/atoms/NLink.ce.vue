@@ -19,7 +19,7 @@ const { isSamePage } = useURL()
     :class="{
       'bg-slate-900/40': isSamePage(href),
       'contrast-75': isSamePage(href),
-      '-translate-x-3': textAligned
+      '-translate-x-3': textAligned,
     }"
     :href
     :target="linkTarget(type)"

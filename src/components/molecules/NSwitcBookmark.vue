@@ -10,8 +10,8 @@ withDefaults(
     color?: Color
   }>(),
   {
-    color: 'primary'
-  }
+    color: 'primary',
+  },
 )
 const model = defineModel<boolean>()
 
@@ -19,12 +19,12 @@ const { lang } = useLang()
 const text = {
   all: {
     ja: 'すべてを表示',
-    en: 'Show All'
+    en: 'Show All',
   },
   favorite: {
     ja: 'お気に入り登録のみを表示',
-    en: 'Show only favorites'
-  }
+    en: 'Show only favorites',
+  },
 }
 
 const { borderColor, textColor } = useColorStyle()

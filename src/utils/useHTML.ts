@@ -11,6 +11,6 @@ export const useHTML = () => {
 
   return {
     getLang,
-    toBodyStyleVisible
+    toBodyStyleVisible,
   }
 }

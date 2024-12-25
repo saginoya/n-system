@@ -5,7 +5,7 @@ import type { Exhibitor, Favorites } from '@/types/exhibitorList'
 
 export const useExhibitorListFilter = (
   exhibitorList: Ref<Exhibitor[]>,
-  favorites?: Ref<Favorites>
+  favorites?: Ref<Favorites>,
 ) => {
   // モジュールの読み込み
   const { katakanaToHiragana } = useTextFormatter()
@@ -54,7 +54,7 @@ export const useExhibitorListFilter = (
       value.koma,
       value.genre,
       value.contents,
-      value.categories
+      value.categories,
     ]
     const subject = katakanaToHiragana(subjects.join('・').toLowerCase())
     return subject.includes(keyword)
@@ -66,6 +66,6 @@ export const useExhibitorListFilter = (
     stateFavorite,
     numberOfVisibleExhibitors,
     setStateExhibition,
-    validateExhibitor
+    validateExhibitor,
   }
 }

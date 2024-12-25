@@ -24,6 +24,6 @@ export const useLink = () => {
 
   return {
     linkTarget,
-    linkIcon
+    linkIcon,
   }
 }

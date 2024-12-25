@@ -25,6 +25,6 @@ export const useConfig = (jsonPath: string) => {
     siteTitle,
     copyright,
     mainVisual,
-    navigation
+    navigation,
   }
 }

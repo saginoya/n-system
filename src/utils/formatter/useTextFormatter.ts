@@ -66,12 +66,12 @@ export const useTextFormatter = () => {
       '｜': '|',
       '｝': '}',
       '～': '~',
-      '　': ' '
+      '　': ' ',
     }
 
     return value.replace(
       /[！＂＃＄％＆＇（）＊＋，－．／：；＜＝＞？＠［＼］＾＿｀｛｜｝～\u3000]/g,
-      (match) => symbolMap[match] || match
+      (match) => symbolMap[match] || match,
     )
   }
 
@@ -80,6 +80,6 @@ export const useTextFormatter = () => {
     isSingleByteChara,
     katakanaToHiragana,
     convertFullWidthToHalfWidth,
-    convertFullWidthSymbolToHalfWidth
+    convertFullWidthSymbolToHalfWidth,
   }
 }

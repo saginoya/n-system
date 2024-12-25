@@ -34,7 +34,7 @@ const {
   isExpiration,
   setPublishedState,
   setDeadline,
-  revokeAutoDeadline: revokeAutoDeadlineFn
+  revokeAutoDeadline: revokeAutoDeadlineFn,
 } = usePublishedState()
 
 if (props.state) {
@@ -59,22 +59,22 @@ const overlayContent = computed<OverlayContent | false>(() => {
   if (isPreparation.value) {
     return {
       text: '準備中',
-      class: 'bg-white/70 text-slate-700'
+      class: 'bg-white/70 text-slate-700',
     }
   } else if (isClosing.value) {
     return {
       text: '締切ました',
-      class: 'bg-black/50'
+      class: 'bg-black/50',
     }
   } else if (isExpiration.value) {
     return {
       text: `${deadlineFormat()} 締切（延長中）`,
-      class: ''
+      class: '',
     }
   } else if (props.deadline) {
     return {
       text: `${deadlineFormat()} 締切`,
-      class: ''
+      class: '',
     }
   } else {
     return false

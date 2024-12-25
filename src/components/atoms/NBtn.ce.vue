@@ -14,8 +14,8 @@ withDefaults(
   }>(),
   {
     type: 'button',
-    disabled: false
-  }
+    disabled: false,
+  },
 )
 
 const { getStyles } = useVariantStyle()

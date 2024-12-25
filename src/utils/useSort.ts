@@ -38,6 +38,6 @@ export const useSort = () => {
 
   return {
     sortObjects,
-    mergeSortObjects
+    mergeSortObjects,
   }
 }

@@ -145,6 +145,6 @@ export const useColorStyle = () => {
   return {
     textColor,
     bgColor,
-    borderColor
+    borderColor,
   }
 }

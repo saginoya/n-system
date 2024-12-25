@@ -35,20 +35,20 @@ const exhibitions: Exhibitions = {
   nexpo: {
     ja: 'NEW環境展',
     en: 'N-EXPO',
-    color: 'exhibition-a'
+    color: 'exhibition-a',
   },
   gwpe: {
     ja: '地球温暖化防止展',
     en: 'GWPE',
-    color: 'exhibition-b'
-  }
+    color: 'exhibition-b',
+  },
 }
 // 出展社リストの読み込み
 const { exhibitorList, numberOfExhibitors, genres } = useExhibitorList(
   lang.value,
   props.listSrc,
   props.genreSrc,
-  exhibitions
+  exhibitions,
 )
 
 // リストのソート機能
@@ -63,7 +63,7 @@ const {
   stateFavorite,
   numberOfVisibleExhibitors,
   setStateExhibition,
-  validateExhibitor
+  validateExhibitor,
 } = useExhibitorListFilter(exhibitorList, myFavorites)
 
 // リストの見出し機能
@@ -71,7 +71,7 @@ const { headings } = useExhibitorListHeading(
   exhibitorList,
   stateSort,
   lang.value,
-  validateExhibitor
+  validateExhibitor,
 )
 
 // ジャンルの読み込み
@@ -83,7 +83,7 @@ const genresList = computed(() => {
 // ソート
 const sortLabel = {
   ja: ['50音順', '小間番号順'],
-  en: ['Name', 'Booth number']
+  en: ['Name', 'Booth number'],
 }
 
 // 展示会フィルター条件

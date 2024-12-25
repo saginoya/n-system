@@ -14,6 +14,6 @@ export const useLocalStorage = (name: string) => {
   return {
     set,
     get,
-    remove
+    remove,
   }
 }

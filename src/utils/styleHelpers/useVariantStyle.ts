@@ -45,6 +45,6 @@ export const useVariantStyle = () => {
 
   return {
     getStyles,
-    getCardStyles
+    getCardStyles,
   }
 }

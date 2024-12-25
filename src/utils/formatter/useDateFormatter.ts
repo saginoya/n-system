@@ -30,6 +30,6 @@ export const useDateFormatter = (datetime: string) => {
     twoDigitMonth,
     twoDigitDate,
     twoDigitHour,
-    twoDigitMinutes
+    twoDigitMinutes,
   }
 }

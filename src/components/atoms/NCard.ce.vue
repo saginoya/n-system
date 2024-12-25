@@ -10,8 +10,8 @@ withDefaults(
     color?: Color
   }>(),
   {
-    color: 'white'
-  }
+    color: 'white',
+  },
 )
 
 const { getCardStyles } = useVariantStyle()

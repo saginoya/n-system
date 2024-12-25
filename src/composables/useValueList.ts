@@ -32,6 +32,6 @@ export const useValueList = (valueList: Ref<string[]> | ModelRef<string[]>) => {
   return {
     hasValue,
     addValue,
-    removeValue
+    removeValue,
   }
 }

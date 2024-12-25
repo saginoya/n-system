@@ -9,8 +9,8 @@ withDefaults(
     label?: string
   }>(),
   {
-    color: 'primary'
-  }
+    color: 'primary',
+  },
 )
 
 const { bgColor, textColor } = useColorStyle()

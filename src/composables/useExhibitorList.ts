@@ -8,7 +8,7 @@ export const useExhibitorList = (
   lang: Lang,
   listSrc: string,
   genresSrc: string,
-  exhibitions: Exhibitions
+  exhibitions: Exhibitions,
 ) => {
   // 言語は日本語か
   const isJapanese = lang === 'ja'
@@ -45,7 +45,7 @@ export const useExhibitorList = (
       webSite: value.webSite,
       contents: isJapanese ? value.contents : value.contentsEng,
       categories: isJapanese ? value.categories : value.categoriesEng,
-      sdgs: value.sdgs
+      sdgs: value.sdgs,
     }
   }
 
@@ -66,6 +66,6 @@ export const useExhibitorList = (
   return {
     exhibitorList,
     numberOfExhibitors,
-    genres
+    genres,
   }
 }

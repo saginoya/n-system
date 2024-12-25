@@ -13,6 +13,6 @@ export const useLang = () => {
   setDocLang()
 
   return {
-    lang
+    lang,
   }
 }

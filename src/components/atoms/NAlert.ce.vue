@@ -8,8 +8,8 @@ const props = withDefaults(
     type?: 'info' | 'warning'
   }>(),
   {
-    type: 'info'
-  }
+    type: 'info',
+  },
 )
 
 const { textColor, borderColor } = useColorStyle()

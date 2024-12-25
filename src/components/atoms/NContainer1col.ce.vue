@@ -4,8 +4,8 @@ withDefaults(
     gap?: 0 | 0.5 | 1 | 2 | 4 | 8 | 12
   }>(),
   {
-    gap: 2
-  }
+    gap: 2,
+  },
 )
 
 const gapStyle = (num: number): string => {

@@ -14,7 +14,7 @@ export const useExhibitorListSort = (exhibitorList: Ref<Exhibitor[]>) => {
   // ソートの条件とオブジェクトのキーの相関
   const sortKeys: Record<SortType, keyof Exhibitor> = {
     name: 'order',
-    koma: 'koma'
+    koma: 'koma',
   }
 
   // ソートの関数読み込み
@@ -32,6 +32,6 @@ export const useExhibitorListSort = (exhibitorList: Ref<Exhibitor[]>) => {
   })
 
   return {
-    stateSort
+    stateSort,
   }
 }

@@ -34,6 +34,6 @@ export const useGenres = (src: string) => {
 
   return {
     genres,
-    getGenreNameFromID
+    getGenreNameFromID,
   }
 }

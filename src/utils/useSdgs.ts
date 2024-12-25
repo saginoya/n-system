@@ -100,7 +100,7 @@ export const useSDGs = () => {
     14: '海の豊かさを守ろう',
     15: '陸の豊かさも守ろう',
     16: '平和と公正をすべての人に',
-    17: 'パートナーシップで目標を達成しよう'
+    17: 'パートナーシップで目標を達成しよう',
   }
   const SDGsEn: SDGsObj = {
     1: 'No Poverty',
@@ -119,7 +119,7 @@ export const useSDGs = () => {
     14: 'Life Below Water',
     15: 'Life On Land',
     16: 'Peace, Justice and Strong Institutions',
-    17: 'Partnerships for the Goals'
+    17: 'Partnerships for the Goals',
   }
 
   const SDGsJaImg: SDGsCompObj = {
@@ -139,7 +139,7 @@ export const useSDGs = () => {
     14: IconSDGsJa14,
     15: IconSDGsJa15,
     16: IconSDGsJa16,
-    17: IconSDGsJa17
+    17: IconSDGsJa17,
   }
 
   const SDGsEnImg: SDGsCompObj = {
@@ -159,7 +159,7 @@ export const useSDGs = () => {
     14: IconSDGsEn14,
     15: IconSDGsEn15,
     16: IconSDGsEn16,
-    17: IconSDGsEn17
+    17: IconSDGsEn17,
   }
 
   const getSDGs = (num: SDGsNumType): GetSDGs => {
@@ -167,7 +167,7 @@ export const useSDGs = () => {
       ja: SDGsJa[num],
       en: SDGsEn[num],
       iconJa: SDGsJaImg[num],
-      iconEn: SDGsEnImg[num]
+      iconEn: SDGsEnImg[num],
     }
   }
 
@@ -177,6 +177,6 @@ export const useSDGs = () => {
     SDGsEn,
     SDGsJaImg,
     SDGsEnImg,
-    getSDGs
+    getSDGs,
   }
 }

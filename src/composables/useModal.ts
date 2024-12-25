@@ -8,6 +8,6 @@ export const useModal = () => {
   return {
     visible: readonly(visible),
     show,
-    dismiss
+    dismiss,
   }
 }

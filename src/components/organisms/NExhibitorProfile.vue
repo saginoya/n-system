@@ -15,13 +15,13 @@ const texts = {
   ja: {
     cat: 'カテゴリー',
     website: 'ウェブサイト',
-    sdgs: 'SDGsの取り組み'
+    sdgs: 'SDGsの取り組み',
   },
   en: {
     cat: 'Categories',
     website: 'Website',
-    sdgs: 'SDGs'
-  }
+    sdgs: 'SDGs',
+  },
 }
 </script>
 

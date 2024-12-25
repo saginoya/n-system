@@ -43,6 +43,6 @@ export const usePublishedState = () => {
     isClosing: readonly(isClosing),
     setPublishedState,
     setDeadline,
-    revokeAutoDeadline
+    revokeAutoDeadline,
   }
 }

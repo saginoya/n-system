@@ -10,8 +10,8 @@ withDefaults(
     btnColor?: Color
   }>(),
   {
-    btnColor: 'primary'
-  }
+    btnColor: 'primary',
+  },
 )
 
 const { visible, show, dismiss } = useModal()

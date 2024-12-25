@@ -14,6 +14,6 @@ export const useScroll = () => {
 
   return {
     scrollX,
-    scrollY
+    scrollY,
   }
 }

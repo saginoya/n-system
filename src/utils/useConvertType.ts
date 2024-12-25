@@ -23,6 +23,6 @@ export const useConvertType = () => {
 
   return {
     convertArrayToCommaSeparated,
-    convertCommaSeparatedToArray
+    convertCommaSeparatedToArray,
   }
 }

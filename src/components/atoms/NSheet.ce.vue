@@ -5,8 +5,8 @@ const props = withDefaults(
     height?: 'full' | 'auto'
   }>(),
   {
-    height: 'full'
-  }
+    height: 'full',
+  },
 )
 
 const heightStyle = () => {

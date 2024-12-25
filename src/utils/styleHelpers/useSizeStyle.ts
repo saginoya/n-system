@@ -39,6 +39,6 @@ export const useSizeStyle = () => {
 
   return {
     widthSize,
-    heightSize
+    heightSize,
   }
 }

@@ -8,8 +8,8 @@ const props = withDefaults(
     codeType?: 'html' | 'css' | 'json'
   }>(),
   {
-    codeType: 'html'
-  }
+    codeType: 'html',
+  },
 )
 
 const escapeHtml = (html: string) => {

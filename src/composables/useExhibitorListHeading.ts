@@ -9,7 +9,7 @@ export const useExhibitorListHeading = (
   exhibitorList: Ref<Exhibitor[]>,
   sort: Ref<SortType>,
   lang: Lang,
-  filterFunc: (value: Exhibitor) => boolean
+  filterFunc: (value: Exhibitor) => boolean,
 ) => {
   const { isSingleByteChara } = useTextFormatter()
 
@@ -58,6 +58,6 @@ export const useExhibitorListHeading = (
   }
 
   return {
-    headings
+    headings,
   }
 }
