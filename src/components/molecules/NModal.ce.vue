@@ -6,7 +6,7 @@ import type { Color } from '@/types/color'
 
 withDefaults(
   defineProps<{
-    btnTitle?: string
+    btnTitle: string
     btnColor?: Color
   }>(),
   {
@@ -15,16 +15,14 @@ withDefaults(
 )
 
 const { visible, show, dismiss } = useModal()
-
-defineExpose({ show })
 </script>
 
 <template>
-  <NBtn v-if="btnTitle" :color="btnColor" @click="show()">{{ btnTitle }}</NBtn>
+  <NBtn :color="btnColor" :action="show">{{ btnTitle }}</NBtn>
   <NModalBase :visible :close-action="dismiss">
     <slot />
     <template #footer>
-      <NBtn color="gray" variant="text" @click="dismiss()">Close</NBtn>
+      <NBtn color="gray" variant="text" :action="dismiss">Close</NBtn>
     </template>
   </NModalBase>
 </template>
