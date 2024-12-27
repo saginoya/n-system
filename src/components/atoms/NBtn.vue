@@ -38,7 +38,3 @@ const { getStyles } = useVariantStyle()
     </span>
   </button>
 </template>
-
-<style>
-@import url(@/assets/css/main.css);
-</style>

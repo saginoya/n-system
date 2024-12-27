@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import NBtn from '@/components/atoms/NBtn.ce.vue'
+import NBtn from '@/components/atoms/NBtn.vue'
 import NModalBase from '@/components/molecules/NModalBase.vue'
 import { useModal } from '@/composables/useModal'
 import type { Color } from '@/types/color'
