@@ -2,7 +2,7 @@
 import NHeader from '@/components/organisms/NHeader.vue'
 import NHeaderTool from '@/components/atoms/NHeaderTool.vue'
 import NMainVisual from '@/components/molecules/NMainVisual.vue'
-import NListNavRow from '@/components/molecules/NListNavRow.ce.vue'
+import NListNavRow from '@/components/molecules/NListNavRow.vue'
 import NOverlay from '@/components/atoms/NOverlay.vue'
 import { useConfig } from '@/composables/useConfig'
 import { useDrawer } from '@/composables/useDrawer'
@@ -29,7 +29,7 @@ const { drawer, operateDrawer, dismissDrawer } = useDrawer()
     </NMainVisual>
     <div v-if="navigation" class="hidden bg-primary px-4 py-2 text-white lg:block">
       <nav>
-        <n-list-nav-row :links="navigation.header" />
+        <NListNavRow :links="navigation.header" />
       </nav>
     </div>
     <main class="flex flex-1 justify-center px-4 py-8">
@@ -39,7 +39,7 @@ const { drawer, operateDrawer, dismissDrawer } = useDrawer()
     </main>
     <footer class="bg-primary px-4 text-center text-white">
       <div v-if="navigation?.footer" class="hidden py-2 lg:block">
-        <n-list-nav-row :links="navigation?.footer"> </n-list-nav-row>
+        <NListNavRow :links="navigation?.footer"></NListNavRow>
       </div>
       <hr />
       <div class="py-2">
