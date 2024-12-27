@@ -28,6 +28,11 @@
         "name": "トップ",
         "path": "/",
         "type": "internal"
+      },
+      {
+        "name": "サンプル",
+        "path": "/sample",
+        "type": "internal"
       }
     ],
     "footer": [

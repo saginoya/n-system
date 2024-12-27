@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import NLink from '@/components/atoms/NLink.ce.vue'
+import NLinkBlock from '@/components/atoms/NLinkBlock.vue'
 import type { Link } from '@/types/link'
 
 defineProps<{
@@ -10,13 +10,9 @@ defineProps<{
 <template>
   <ul class="flex flex-col gap-1">
     <li v-for="(link, index) in links" :key="index">
-      <n-link :href="link.path" :type="link.type" class="font-bold text-white">
+      <NLinkBlock :href="link.path" :type="link.type" class="font-bold text-white">
         {{ link.name }}
-      </n-link>
+      </NLinkBlock>
     </li>
   </ul>
 </template>
-
-<style>
-@import url(@/assets/css/main.css);
-</style>
