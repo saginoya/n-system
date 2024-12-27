@@ -7,7 +7,6 @@ import NAlert from './components/atoms/NAlert.ce.vue'
 import NAnnotation from './components/atoms/NAnnotation.ce.vue'
 import NAnnotationLight from './components/atoms/NAnnotationLight.ce.vue'
 import NBanner from './components/molecules/NBanner.ce.vue'
-import NBtn from './components/atoms/NBtn.ce.vue'
 import NCard from './components/atoms/NCard.ce.vue'
 import NChip from './components/atoms/NChip.ce.vue'
 import NCode from './components/atoms/NCode.ce.vue'
@@ -32,8 +31,6 @@ import NListItemApp from './components/atoms/NListItemApp.ce.vue'
 import NListItemDate from './components/atoms/NListItemDate.ce.vue'
 import NListItemKomazu from './components/atoms/NListItemKomazu.ce.vue'
 import NListItemStepper from './components/atoms/NListItemStepper.ce.vue'
-import NListNav from './components/molecules/NListNav.ce.vue'
-import NListNavRow from './components/molecules/NListNavRow.ce.vue'
 import NListNews from './components/atoms/NListNews.ce.vue'
 import NListSimple from './components/atoms/NListSimple.ce.vue'
 import NModal from './components/molecules/NModal.ce.vue'
@@ -53,7 +50,6 @@ customElements.define('n-alert', defineCustomElement(NAlert))
 customElements.define('n-annotation', defineCustomElement(NAnnotation))
 customElements.define('n-annotation-light', defineCustomElement(NAnnotationLight))
 customElements.define('n-banner', defineCustomElement(NBanner))
-customElements.define('n-btn', defineCustomElement(NBtn))
 customElements.define('n-card', defineCustomElement(NCard))
 customElements.define('n-chip', defineCustomElement(NChip))
 customElements.define('n-code', defineCustomElement(NCode))
@@ -78,8 +74,6 @@ customElements.define('n-list-item-app', defineCustomElement(NListItemApp))
 customElements.define('n-list-item-date', defineCustomElement(NListItemDate))
 customElements.define('n-list-item-komazu', defineCustomElement(NListItemKomazu))
 customElements.define('n-list-item-stepper', defineCustomElement(NListItemStepper))
-customElements.define('n-list-nav', defineCustomElement(NListNav))
-customElements.define('n-list-nav-row', defineCustomElement(NListNavRow))
 customElements.define('n-list-news', defineCustomElement(NListNews))
 customElements.define('n-list-simple', defineCustomElement(NListSimple))
 customElements.define('n-modal', defineCustomElement(NModal))
