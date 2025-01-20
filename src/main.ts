@@ -21,6 +21,7 @@ import NElapsed from './components/atoms/NElapsed.ce.vue'
 import NExhibitorsNexpo from './components/organisms/NExhibitorsNexpo.ce.vue'
 import NIcon from './components/atoms/NIcon.ce.vue'
 import NImage from './components/molecules/NImage.ce.vue'
+import NImageBanner from './components/molecules/NImageBanner.ce.vue'
 import NInputWrapper from './components/atoms/NInputWrapper.ce.vue'
 import NLink from './components/atoms/NLink.ce.vue'
 import NListDecimal from './components/atoms/NListDecimal.ce.vue'
@@ -64,6 +65,7 @@ customElements.define('n-elapsed', defineCustomElement(NElapsed))
 customElements.define('n-exhibitors-nexpo', defineCustomElement(NExhibitorsNexpo))
 customElements.define('n-icon', defineCustomElement(NIcon))
 customElements.define('n-image', defineCustomElement(NImage))
+customElements.define('n-image-banner', defineCustomElement(NImageBanner))
 customElements.define('n-input-wrapper', defineCustomElement(NInputWrapper))
 customElements.define('n-link', defineCustomElement(NLink))
 customElements.define('n-list-decimal', defineCustomElement(NListDecimal))
