@@ -2,23 +2,20 @@
 import NBtn from '@/components/atoms/NBtn.vue'
 import NModalBase from '@/components/molecules/NModalBase.vue'
 import { useModal } from '@/composables/useModal'
-import type { Color } from '@/types/color'
 
-withDefaults(
-  defineProps<{
-    btnTitle: string
-    btnColor?: Color
-  }>(),
-  {
-    btnColor: 'primary',
-  },
-)
+defineProps<{
+  btnTitle?: string
+}>()
 
 const { visible, show, dismiss } = useModal()
 </script>
 
 <template>
-  <NBtn :color="btnColor" :action="show">{{ btnTitle }}</NBtn>
+  <button type="button" @click="show">
+    <slot name="btn">
+      {{ btnTitle }}
+    </slot>
+  </button>
   <NModalBase :visible :close-action="dismiss">
     <slot />
     <template #footer>
