@@ -2,14 +2,15 @@
 import NImage from '@/components/molecules/NImage.ce.vue'
 import { useLink } from '@/utils/useLink'
 import type { LinkType } from '@/types/link'
-import type { Image } from '@/types/image'
 
-const props = defineProps<
-  Image & {
-    href?: string
-    type?: LinkType
-  }
->()
+const props = defineProps<{
+  src: string
+  alt: string
+  width: number
+  height: number
+  href?: string
+  type?: LinkType
+}>()
 
 const { linkTarget, linkIcon } = useLink()
 
