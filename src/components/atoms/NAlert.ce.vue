@@ -18,8 +18,8 @@ const colorStyles = [textColor(props.type), borderColor(props.type)]
 </script>
 
 <template>
-  <div class="flex items-center gap-2 rounded border p-2" :class="colorStyles">
-    <div class="p-2 text-4xl text-current opacity-50">
+  <div class="flex flex-col items-center gap-2 rounded border p-2 md:flex-row" :class="colorStyles">
+    <div class="p-0 text-4xl text-current opacity-50 md:p-2">
       <component :is="type === 'info' ? IconInfo : IconWaring" />
     </div>
     <div class="text-current">
