@@ -1,41 +1,39 @@
 <script setup lang="ts">
-withDefaults(
+import { alignItemsOptions } from '@/utils/styleHelpers/useLayoutStyle'
+import type { AlignItems } from '@/utils/styleHelpers/useLayoutStyle'
+
+const props = withDefaults(
   defineProps<{
-    gap?: 0 | 0.5 | 1 | 2 | 4 | 8 | 12
+    gap?: GapOptions
+    aline?: AlignItems
   }>(),
   {
     gap: 2,
+    aline: 'stretch',
   },
 )
 
-const gapStyle = (num: number): string => {
-  switch (num) {
-    case 0:
-      return 'gap-0'
-    case 0.5:
-      return 'gap-0.5'
-    case 1:
-      return 'gap-1'
-    case 2:
-      return 'gap-2'
-    case 4:
-      return 'gap-4'
-    case 8:
-      return 'gap-8'
-    case 12:
-      return 'gap-12'
-    default:
-      return 'gap-2'
-  }
+const gapOptions = {
+  0: 'gap-0',
+  0.5: 'gap-0.5',
+  1: 'gap-1',
+  2: 'gap-2',
+  4: 'gap-4',
+  8: 'gap-8',
+  12: 'gap-12',
 }
+
+type GapOptions = keyof typeof gapOptions
+
+const variant: string[] = [gapOptions[props.gap], alignItemsOptions[props.aline]]
 </script>
 
 <template>
-  <div class="flex flex-col" :class="gapStyle(gap)">
+  <div class="flex flex-col" :class="variant">
     <slot />
   </div>
 </template>
 
 <style>
-@import url(@/assets/css/main.css);
+@import url('@/assets/css/main.css');
 </style>
