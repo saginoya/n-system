@@ -15,6 +15,25 @@
       </n-card>
 
       <n-card>
+        <n-title-lv3>コンテナー</n-title-lv3>
+        <n-container-flex justify="center" justify-md="end">
+          <span>要素</span>
+          <span>要素</span>
+          <span>要素</span>
+          <span>要素</span>
+          <span>要素</span>
+          <span>要素</span>
+          <span>要素</span>
+          <span>要素</span>
+          <span>要素</span>
+          <span>要素</span>
+          <span>要素</span>
+          <span>要素</span>
+          <span>要素</span>
+          <span>要素</span>
+        </n-container-flex>
+      </n-card>
+      <n-card>
         <n-title-lv3>画像バナー</n-title-lv3>
         <n-image-banner
           src="./public/images/banners/bnr-pre-registration.png"
@@ -27,6 +46,8 @@
         <n-image-banner
           src="./public/images/banners/bnr-pre-registration.png"
           alt="サンプルバナー"
+          width="600"
+          height="80"
           href="./"
           type="internal"
         ></n-image-banner>
@@ -35,6 +56,8 @@
             slot="btn"
             src="./public/images/banners/bnr-pre-registration.png"
             alt="サンプルバナー"
+            width="600"
+            height="80"
           ></n-image-banner>
           <p>モーダル</p>
         </n-modal>
@@ -384,6 +407,31 @@
           </n-list-item-date>
         </n-list-news>
       </n-card>
+
+      <n-breakpoint-switcher xl>
+        <n-fixed position="bottom">
+          <n-banner color="warning" size="xs" href="./"> 入場事前登録はこちら </n-banner>
+          <n-banner color="green" size="xs" href="./"> 10名様以上団体事前登録はこちら </n-banner>
+        </n-fixed>
+
+        <n-fixed position="right" slot="xl">
+          <n-circular-banner color="warning" size="lg" href="./">
+            <n-container-1col gap="0" aline="center">
+              <n-text size="4xl">入場</n-text>
+              <n-text size="xl">事前登録</n-text>
+              <n-text>はこちら<n-icon name="chevron-right" size="sm"></n-icon></n-text>
+            </n-container-1col>
+          </n-circular-banner>
+          <n-circular-banner color="green" size="lg" href="./">
+            <n-container-1col gap="0" aline="center">
+              <n-text size="md">10名様以上</n-text>
+              <n-text size="4xl">団体</n-text>
+              <n-text size="xl">事前登録</n-text>
+              <n-text>はこちら<n-icon name="chevron-right" size="sm"></n-icon></n-text>
+            </n-container-1col>
+          </n-circular-banner>
+        </n-fixed>
+      </n-breakpoint-switcher>
     </n-app>
     <script type="module" src="/src/main.ts"></script>
   </body>
