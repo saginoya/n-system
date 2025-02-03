@@ -7,8 +7,10 @@ import NAlert from './components/atoms/NAlert.ce.vue'
 import NAnnotation from './components/atoms/NAnnotation.ce.vue'
 import NAnnotationLight from './components/atoms/NAnnotationLight.ce.vue'
 import NBanner from './components/molecules/NBanner.ce.vue'
+import NBreakpointSwitcher from './components/atoms/NBreakpointSwitcher.ce.vue'
 import NCard from './components/atoms/NCard.ce.vue'
 import NChip from './components/atoms/NChip.ce.vue'
+import NCircularBanner from './components/atoms/NCircularBanner.ce.vue'
 import NCode from './components/atoms/NCode.ce.vue'
 import NContainer1col from './components/atoms/NContainer1col.ce.vue'
 import NContainer2col from './components/atoms/NContainer2col.ce.vue'
@@ -19,6 +21,7 @@ import NContainerVerticalGrow from './components/molecules/NContainerVerticalGro
 import NContainerXScroll from './components/atoms/NContainerXScroll.ce.vue'
 import NElapsed from './components/atoms/NElapsed.ce.vue'
 import NExhibitorsNexpo from './components/organisms/NExhibitorsNexpo.ce.vue'
+import NFixed from './components/atoms/NFixed.ce.vue'
 import NIcon from './components/atoms/NIcon.ce.vue'
 import NImage from './components/molecules/NImage.ce.vue'
 import NImageBanner from './components/molecules/NImageBanner.ce.vue'
@@ -38,6 +41,7 @@ import NModal from './components/molecules/NModal.ce.vue'
 import NSheet from './components/atoms/NSheet.ce.vue'
 import NSignature from './components/atoms/NSignature.ce.vue'
 import NStrong from './components/atoms/NStrong.ce.vue'
+import NText from './components/atoms/NText.ce.vue'
 import NTitleLv2Index from './components/atoms/NTitleLv2Index.ce.vue'
 import NTitleLv2Page from './components/atoms/NTitleLv2Page.ce.vue'
 import NTitleLv3 from './components/atoms/NTitleLv3.ce.vue'
@@ -51,6 +55,7 @@ customElements.define('n-alert', defineCustomElement(NAlert))
 customElements.define('n-annotation', defineCustomElement(NAnnotation))
 customElements.define('n-annotation-light', defineCustomElement(NAnnotationLight))
 customElements.define('n-banner', defineCustomElement(NBanner))
+customElements.define('n-breakpoint-switcher', defineCustomElement(NBreakpointSwitcher))
 customElements.define('n-card', defineCustomElement(NCard))
 customElements.define('n-chip', defineCustomElement(NChip))
 customElements.define('n-code', defineCustomElement(NCode))
@@ -63,6 +68,7 @@ customElements.define('n-container-vertical-grow', defineCustomElement(NContaine
 customElements.define('n-container-x-scroll', defineCustomElement(NContainerXScroll))
 customElements.define('n-elapsed', defineCustomElement(NElapsed))
 customElements.define('n-exhibitors-nexpo', defineCustomElement(NExhibitorsNexpo))
+customElements.define('n-fixed', defineCustomElement(NFixed))
 customElements.define('n-icon', defineCustomElement(NIcon))
 customElements.define('n-image', defineCustomElement(NImage))
 customElements.define('n-image-banner', defineCustomElement(NImageBanner))
@@ -79,9 +85,11 @@ customElements.define('n-list-item-stepper', defineCustomElement(NListItemSteppe
 customElements.define('n-list-news', defineCustomElement(NListNews))
 customElements.define('n-list-simple', defineCustomElement(NListSimple))
 customElements.define('n-modal', defineCustomElement(NModal))
+customElements.define('n-circular-banner', defineCustomElement(NCircularBanner))
 customElements.define('n-sheet', defineCustomElement(NSheet))
 customElements.define('n-signature', defineCustomElement(NSignature))
 customElements.define('n-strong', defineCustomElement(NStrong))
+customElements.define('n-text', defineCustomElement(NText))
 customElements.define('n-title-lv2-index', defineCustomElement(NTitleLv2Index))
 customElements.define('n-title-lv2-page', defineCustomElement(NTitleLv2Page))
 customElements.define('n-title-lv3', defineCustomElement(NTitleLv3))
