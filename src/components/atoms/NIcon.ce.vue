@@ -1,46 +1,45 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import IconBus from '@/components/icons/IconBus.vue'
 import IconCar from '@/components/icons/IconCar.vue'
-import IconDisabledByDefault from '@/components/icons/IconDisabledByDefault.vue'
 import IconTrain from '@/components/icons/IconTrain.vue'
+import IconChevronRight from '@/components/icons/IconChevronRight.vue'
 
-const props = defineProps<{
-  name: 'bus' | 'car' | 'train'
-  size?: 'sm' | 'md' | 'lg'
-}>()
+withDefaults(
+  defineProps<{
+    name: IconsOptions
+    size?: SizeOptions
+  }>(),
+  {
+    size: 'md',
+  },
+)
 
-const icon = computed(() => {
-  switch (props.name) {
-    case 'bus':
-      return IconBus
-    case 'car':
-      return IconCar
-    case 'train':
-      return IconTrain
-    default:
-      return IconDisabledByDefault
-  }
-})
+const iconOptions = {
+  bus: IconBus,
+  car: IconCar,
+  train: IconTrain,
+  'chevron-right': IconChevronRight,
+}
 
-const sizeClass = computed(() => {
-  switch (props.size) {
-    case 'sm':
-      return 'size-6'
-    case 'md':
-      return 'size-8'
-    case 'lg':
-      return 'size-10'
-    default:
-      return 'size-8'
-  }
-})
+type IconsOptions = keyof typeof iconOptions
+
+const sizeOptions = {
+  sm: 'size-6',
+  md: 'size-8',
+  lg: 'size-10',
+}
+
+type SizeOptions = keyof typeof sizeOptions
 </script>
 
 <template>
-  <component :is="icon" class="inline-block align-middle" :class="sizeClass" />
+  <component
+    :is="iconOptions[name]"
+    class="inline-block align-middle"
+    :class="sizeOptions[size]"
+  ></component>
 </template>
 
 <style>
-@import url(@/assets/css/main.css);
+@import url('@/assets/css/main.css');
 </style>
