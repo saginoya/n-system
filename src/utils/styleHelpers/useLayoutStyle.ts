@@ -23,3 +23,13 @@ export const justifyMdOptions: Record<Justify, string> = {
   baseline: 'md:justify-baseline',
   normal: 'md:justify-normal',
 }
+
+export const alignItemsOptions = {
+  start: 'items-start',
+  end: 'items-end',
+  center: 'items-center',
+  baseline: 'items-baseline',
+  stretch: 'items-stretch',
+}
+
+export type AlignItems = keyof typeof alignItemsOptions
