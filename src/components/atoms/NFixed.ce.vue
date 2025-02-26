@@ -10,8 +10,8 @@ defineProps<{
 const positionOptions = {
   top: 'inset-x-0 top-0 bg-black/20 md:flex-row py-1',
   bottom: 'inset-x-0 bottom-0 bg-black/20 md:flex-row py-1',
-  left: 'left-[calc(50%-680px)] inset-y-0',
-  right: 'right-[calc(50%-680px)] inset-y-0',
+  left: 'left-2 2xl:left-[calc(50%-680px)] inset-y-0',
+  right: 'right-2 2xl:right-[calc(50%-680px)] inset-y-0',
 }
 
 type Position = keyof typeof positionOptions
