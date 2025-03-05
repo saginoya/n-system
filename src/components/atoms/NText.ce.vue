@@ -1,7 +1,12 @@
 <script setup lang="ts">
-defineProps<{
-  size: SizeOptions
-}>()
+withDefaults(
+  defineProps<{
+    size?: SizeOptions
+  }>(),
+  {
+    size: 'base',
+  },
+)
 
 const sizeOptions = {
   xs: 'text-xs',
