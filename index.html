@@ -42,6 +42,7 @@
           height="80"
           href="./"
           type="external"
+          no-icon
         ></n-image-banner>
         <n-image-banner
           src="./public/images/banners/bnr-pre-registration.png"
@@ -50,6 +51,7 @@
           height="80"
           href="./"
           type="internal"
+          state="preparation"
         ></n-image-banner>
         <n-modal>
           <n-image-banner
@@ -289,7 +291,7 @@
       <n-card>
         <n-title-lv3>モーダル</n-title-lv3>
         <n-modal btn-title="ボタン"> <p>モーダルの内容</p> </n-modal>
-        <n-modal btn-title="色変更" btn-color="info"> <p>モーダルの内容</p> </n-modal>
+        <n-modal btn-title="色変更"> <p>モーダルの内容</p> </n-modal>
       </n-card>
       <n-card>
         <n-title-lv3>リンク・チップ</n-title-lv3>
@@ -415,14 +417,14 @@
         </n-fixed>
 
         <n-fixed position="right" slot="xl">
-          <n-circular-banner color="warning" size="lg" href="./">
+          <n-circular-banner color="warning" size="lg" href="./" type="internal">
             <n-container-1col gap="0" aline="center">
               <n-text size="4xl">入場</n-text>
               <n-text size="xl">事前登録</n-text>
               <n-text>はこちら<n-icon name="chevron-right" size="sm"></n-icon></n-text>
             </n-container-1col>
           </n-circular-banner>
-          <n-circular-banner color="green" size="lg" href="./">
+          <n-circular-banner color="green" size="lg" href="./" type="external">
             <n-container-1col gap="0" aline="center">
               <n-text size="md">10名様以上</n-text>
               <n-text size="4xl">団体</n-text>
