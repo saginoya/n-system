@@ -8,9 +8,9 @@ type Breakpoint = 'md' | 'lg' | 'xl'
  * 空のスロットを無視する処理が必要なため
  */
 const props = defineProps<{
-  md: boolean
-  lg: boolean
-  xl: boolean
+  md?: boolean
+  lg?: boolean
+  xl?: boolean
 }>()
 
 // TailwindCSSのブレークポイント
