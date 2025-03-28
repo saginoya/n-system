@@ -51,9 +51,9 @@ const isLink = computed(() => {
 
     <!-- ホバー時の表示 -->
     <div
-      class="absolute left-0 top-0 flex size-full items-center justify-center"
+      class="absolute left-0 top-0 flex size-full items-center justify-center opacity-0"
       :class="{
-        'opacity-0 group-hover:bg-blue-200/20 group-hover:opacity-100 group-focus:bg-blue-200/20 group-focus:opacity-100':
+        'group-hover:bg-blue-200/20 group-hover:opacity-100 group-focus:bg-blue-200/20 group-focus:opacity-100':
           isLink,
       }"
     >
