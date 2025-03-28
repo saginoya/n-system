@@ -44,15 +44,21 @@ const isLink = computed(() => {
     :is="isLink ? 'a' : 'span'"
     :href="isLink ? href : null"
     :target="isLink ? (type ? linkTarget(type) : '_self') : null"
-    class="relative inline-block w-fit max-w-full"
-    :class="{ 'hover:opacity-60': isLink }"
+    class="group relative inline-block w-fit max-w-full"
   >
     <!-- 画像コンポーネント -->
     <NImage :src="src" :alt="alt" :width="width" :height="height" />
 
-    <!-- アイコン表示 -->
-    <div v-if="icon" class="absolute left-0 top-0 flex size-full items-center justify-end">
-      <span class="rounded-l-full bg-info py-2 pl-1.5 text-white">
+    <!-- ホバー時の表示 -->
+    <div
+      class="absolute left-0 top-0 flex size-full items-center justify-center"
+      :class="{
+        'opacity-0 group-hover:bg-blue-200/20 group-hover:opacity-100 group-focus:bg-blue-200/20 group-focus:opacity-100':
+          isLink,
+      }"
+    >
+      <!-- アイコン表示 -->
+      <span v-if="icon" class="rounded-full bg-blue-500/80 p-2 text-white">
         <component :is="icon" class="size-6" />
       </span>
     </div>
