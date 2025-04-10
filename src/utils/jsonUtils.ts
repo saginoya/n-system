@@ -1,8 +1,7 @@
-export const useJson = async (src: string) => {
+export const getJson = async (src: string) => {
   try {
     const res = await fetch(src)
-    const result = await res.json()
-    return result
+    return await res.json()
   } catch (e) {
     console.error(e)
     return {}

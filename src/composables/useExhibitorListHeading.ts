@@ -1,5 +1,5 @@
 import { computed } from 'vue'
-import { useTextFormatter } from '@/utils'
+import { isSingleByte } from '@/utils'
 import type { Ref } from 'vue'
 import type { Lang, SortType, Exhibitor } from '@/types'
 
@@ -9,8 +9,6 @@ export const useExhibitorListHeading = (
   lang: Lang,
   filterFunc: (value: Exhibitor) => boolean,
 ) => {
-  const { isSingleByteChara } = useTextFormatter()
-
   // 見出しの一覧
   const headings = computed<string[]>(() => {
     // 見出しを比較する変数のリセット
@@ -52,7 +50,7 @@ export const useExhibitorListHeading = (
   // 海外の出展社かの判定（日本語限定）
   const isOverseas = (order: string): boolean | undefined => {
     if (lang !== 'ja') return undefined
-    return isSingleByteChara(order)
+    return isSingleByte(order)
   }
 
   return {

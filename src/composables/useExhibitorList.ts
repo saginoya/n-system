@@ -1,5 +1,5 @@
 import { ref, computed, onMounted } from 'vue'
-import { useJson } from '@/utils'
+import { getJson } from '@/utils'
 import { useGenres } from '@/composables/useGenres'
 import type { Lang, Exhibitor, JsonExhibitor, Exhibitions } from '@/types'
 
@@ -19,7 +19,7 @@ export const useExhibitorList = (
   // JSONファイルを取得して出展社リストを初期化
   onMounted(async () => {
     await genres.value
-    const json = await useJson(listSrc)
+    const json = await getJson(listSrc)
 
     await json.map((items: JsonExhibitor) => {
       if (!isJapanese && !items.nameEng) return

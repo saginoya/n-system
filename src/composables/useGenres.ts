@@ -1,5 +1,5 @@
 import { ref, onMounted } from 'vue'
-import { useJson } from '@/utils'
+import { getJson } from '@/utils'
 import type { Lang, Genre } from '@/types'
 
 export const useGenres = (src: string) => {
@@ -7,7 +7,7 @@ export const useGenres = (src: string) => {
   const genres = ref<Genre[]>()
 
   onMounted(async () => {
-    genres.value = await useJson(src)
+    genres.value = await getJson(src)
   })
 
   // ジャンル記号からジャンル名を取得する関数

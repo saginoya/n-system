@@ -1,5 +1,5 @@
 import { ref, computed } from 'vue'
-import { useTextFormatter } from '@/utils'
+import { convertKatakanaToHiragana } from '@/utils'
 import type { Ref } from 'vue'
 import type { Exhibitor, Favorites } from '@/types'
 
@@ -7,9 +7,6 @@ export const useExhibitorListFilter = (
   exhibitorList: Ref<Exhibitor[]>,
   favorites?: Ref<Favorites>,
 ) => {
-  // モジュールの読み込み
-  const { katakanaToHiragana } = useTextFormatter()
-
   // 状態管理
   // フィルターの条件（キーワード）
   const stateKeyword = ref<string>('')
@@ -47,7 +44,7 @@ export const useExhibitorListFilter = (
     if (!stateKeyword.value) return true
 
     // キーワードが含まれるかの検証
-    const keyword = katakanaToHiragana(stateKeyword.value.toLowerCase())
+    const keyword = convertKatakanaToHiragana(stateKeyword.value.toLowerCase())
     const subjects = [
       value.name,
       value.subName,
@@ -56,7 +53,7 @@ export const useExhibitorListFilter = (
       value.contents,
       value.categories,
     ]
-    const subject = katakanaToHiragana(subjects.join('・').toLowerCase())
+    const subject = convertKatakanaToHiragana(subjects.join('・').toLowerCase())
     return subject.includes(keyword)
   }
 

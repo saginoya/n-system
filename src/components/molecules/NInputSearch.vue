@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { watch } from 'vue'
-import { useTextFormatter } from '@/utils'
+import { convertFullWidthToHalfWidth, convertSymbolToHalfWidth } from '@/utils'
 import IconSearch from '@/components/icons/IconSearch.vue'
 
 defineProps<{
@@ -9,10 +9,8 @@ defineProps<{
 
 const model = defineModel<string>()
 
-const { convertFullWidthToHalfWidth, convertFullWidthSymbolToHalfWidth } = useTextFormatter()
-
 watch(model, () => {
-  model.value = convertFullWidthSymbolToHalfWidth(convertFullWidthToHalfWidth(model.value))
+  model.value = convertSymbolToHalfWidth(convertFullWidthToHalfWidth(model.value))
 })
 </script>
 

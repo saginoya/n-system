@@ -1,5 +1,5 @@
 import { onMounted, ref } from 'vue'
-import { useJson } from '@/utils'
+import { getJson } from '@/utils'
 import type { GlobalNav, Image } from '@/types'
 
 type MainVisual = {
@@ -13,7 +13,7 @@ export const useConfig = (jsonPath: string) => {
   const mainVisual = ref<MainVisual>()
   const navigation = ref<GlobalNav>()
   onMounted(async () => {
-    const config = await useJson(jsonPath)
+    const config = await getJson(jsonPath)
     siteTitle.value = config.siteTitle
     copyright.value = config.copyright
     mainVisual.value = config.mainVisual
