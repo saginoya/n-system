@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref } from 'vue'
+import { useEventListener } from '@/composables/useEventListener'
 
 type Breakpoint = 'md' | 'lg' | 'xl'
 
@@ -32,15 +33,7 @@ const isVisible = (value: Breakpoint): boolean => {
   return props[value] && screenWidth.value >= breakpoint[value]
 }
 
-// マウント時にイベントリスナー発火
-onMounted(() => {
-  window.addEventListener('resize', updateWidth)
-})
-
-// イベントリスナーの停止
-onBeforeUnmount(() => {
-  window.removeEventListener('resize', updateWidth)
-})
+useEventListener(window, 'resize', updateWidth)
 </script>
 
 <template>

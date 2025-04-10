@@ -1,4 +1,5 @@
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
+import { useEventListener } from '@/composables/useEventListener'
 
 export const useScroll = () => {
   const scrollX = ref()
@@ -8,9 +9,8 @@ export const useScroll = () => {
     scrollX.value = window.scrollX
     scrollY.value = window.scrollY
   }
-  onMounted(() => {
-    window.addEventListener('scroll', getScroll)
-  })
+
+  useEventListener(window, 'scroll', getScroll)
 
   return {
     scrollX,
