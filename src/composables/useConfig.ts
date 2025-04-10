@@ -1,5 +1,5 @@
 import { onMounted, ref } from 'vue'
-import { useJson } from '@/utils/useJson'
+import { useJson } from '@/utils'
 import type { GlobalNav } from '@/types/link'
 import type { Image } from '@/types/image'
 

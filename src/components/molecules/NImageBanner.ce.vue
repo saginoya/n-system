@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import NImage from '@/components/molecules/NImage.ce.vue'
-import { useLink } from '@/utils/useLink'
+import { useLink } from '@/utils'
 import { usePublishedState } from '@/composables/usePublishedState'
 
 import type { LinkType } from '@/types/link'

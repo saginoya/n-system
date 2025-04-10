@@ -1,5 +1,5 @@
 import { ref, computed, watchEffect } from 'vue'
-import { useSort } from '@/utils/useSort'
+import { useSort } from '@/utils'
 import type { Ref } from 'vue'
 import type { Exhibitor, SortType } from '@/types/exhibitorList'
 

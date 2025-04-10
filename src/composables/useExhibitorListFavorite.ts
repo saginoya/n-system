@@ -1,5 +1,5 @@
 import { ref, onMounted } from 'vue'
-import { useLocalStorage } from '@/utils/useLocalStorage'
+import { useLocalStorage } from '@/utils'
 import { useLang } from '@/composables/useLang'
 import type { Favorites } from '@/types/exhibitorList'
 

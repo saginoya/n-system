@@ -1,10 +1,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { usePublishedState } from '@/composables/usePublishedState'
-import { useVariantStyle } from '@/utils/styleHelpers/useVariantStyle'
-import { useSizeStyle } from '@/utils/styleHelpers/useSizeStyle'
-import { useLink } from '@/utils/useLink'
-import { useDateFormatter } from '@/utils/formatter/useDateFormatter'
+import { useVariantStyle, useSizeStyle } from '@/styles'
+import { useLink, useDateFormatter } from '@/utils'
 import IconClock from '@/components/icons/IconClock.vue'
 import type { Color } from '@/types/color'
 import type { Variant } from '@/types/variant'

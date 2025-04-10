@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { justifyOptions, justifyMdOptions } from '@/utils/styleHelpers/useLayoutStyle'
-import type { Justify } from '@/utils/styleHelpers/useLayoutStyle'
+import { justifyOptions, justifyMdOptions } from '@/styles'
+import type { Justify } from '@/styles'
 
 const props = defineProps<{
   justify?: Justify

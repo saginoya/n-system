@@ -2,9 +2,9 @@
 import { ref } from 'vue'
 import NContainerFlex from '@/components/atoms/NContainerFlex.ce.vue'
 import { useLang } from '@/composables/useLang'
-import { useSDGs } from '@/utils/useSDGs'
+import { useSDGs } from '@/utils'
 
-import type { SDGsNumType } from '@/utils/useSDGs'
+import type { SDGsNumType } from '@/utils'
 
 defineProps<{
   numbers: SDGsNumType[]

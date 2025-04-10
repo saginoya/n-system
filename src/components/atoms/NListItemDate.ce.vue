@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useDateFormatter } from '@/utils/formatter/useDateFormatter'
-import { useHTML } from '@/utils/useHTML'
+import { useDateFormatter } from '@/utils'
+import { useHTML } from '@/utils'
 
 const props = defineProps<{
   datetime: string

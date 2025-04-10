@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useLink } from '@/utils/useLink'
+import { useLink } from '@/utils'
 import type { LinkType } from '@/types/link'
 
 defineProps<{

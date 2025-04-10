@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { alignItemsOptions } from '@/utils/styleHelpers/useLayoutStyle'
-import type { AlignItems } from '@/utils/styleHelpers/useLayoutStyle'
+import { alignItemsOptions } from '@/styles'
+import type { AlignItems } from '@/styles'
 
 const props = withDefaults(
   defineProps<{

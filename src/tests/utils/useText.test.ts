@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest'
-import { useTextFormatter } from '@/utils/formatter/useTextFormatter'
+import { useTextFormatter } from '@/utils'
 
 const { trim, isSingleByteChara, katakanaToHiragana } = useTextFormatter()
 

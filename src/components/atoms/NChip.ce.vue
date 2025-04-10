@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import NLinkText from '@/components/atoms/NLinkText.vue'
-import { useColorStyle } from '@/utils/styleHelpers/useColorStyle'
+import { useColorStyle } from '@/styles'
 import type { Color } from '@/types/color'
 import type { LinkType } from '@/types/link'
 

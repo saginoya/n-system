@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import IconInfo from '@/components/icons/IconInfo.vue'
 import IconWaring from '@/components/icons/IconWarning.vue'
-import { useColorStyle } from '@/utils/styleHelpers/useColorStyle'
+import { useColorStyle } from '@/styles'
 
 const props = withDefaults(
   defineProps<{

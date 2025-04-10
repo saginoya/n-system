@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { watch } from 'vue'
-import { useTextFormatter } from '@/utils/formatter/useTextFormatter'
+import { useTextFormatter } from '@/utils'
 import IconSearch from '@/components/icons/IconSearch.vue'
 
 defineProps<{

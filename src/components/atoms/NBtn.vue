@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useVariantStyle } from '@/utils/styleHelpers/useVariantStyle'
+import { useVariantStyle } from '@/styles'
 import type { Color } from '@/types/color'
 import type { Variant } from '@/types/variant'
 

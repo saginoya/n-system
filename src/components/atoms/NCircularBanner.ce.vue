@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useLink } from '@/utils/useLink'
-import { useColorStyle } from '@/utils/styleHelpers/useColorStyle'
+import { useLink } from '@/utils'
+import { useColorStyle } from '@/styles'
 import type { Color } from '@/types/color'
 import type { LinkType } from '@/types/link'
 

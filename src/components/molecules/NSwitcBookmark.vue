@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import NTooltipBookmark from '@/components/atoms/NTooltipBookmark.vue'
-import { useColorStyle } from '@/utils/styleHelpers/useColorStyle'
+import { useColorStyle } from '@/styles'
 import { useLang } from '@/composables/useLang'
 import type { Color } from '@/types/color'
 

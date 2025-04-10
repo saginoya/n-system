@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import IconBookmark from '@/components/icons/IconBookmark.vue'
-import { useColorStyle } from '@/utils/styleHelpers/useColorStyle'
+import { useColorStyle } from '@/styles'
 import type { Color } from '@/types/color'
 
 const props = withDefaults(

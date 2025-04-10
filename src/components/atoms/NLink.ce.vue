@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import NLinkText from '@/components/atoms/NLinkText.vue'
-import { useURL } from '@/utils/useURL'
+import { useURL } from '@/utils'
 import type { LinkType } from '@/types/link'
 
 defineProps<{

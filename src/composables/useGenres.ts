@@ -1,5 +1,5 @@
 import { ref, onMounted } from 'vue'
-import { useJson } from '@/utils/useJson'
+import { useJson } from '@/utils'
 import type { Lang } from '@/types/lang'
 import type { Genre } from '@/types/genre'
 

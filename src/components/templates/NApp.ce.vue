@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
-import { useHTML } from '@/utils/useHTML'
+import { useHTML } from '@/utils'
 
 import NLayoutDefault from '@/components/templates/NLayoutDefault.vue'
 import NLayoutIndex from '@/components/templates/NLayoutIndex.vue'
