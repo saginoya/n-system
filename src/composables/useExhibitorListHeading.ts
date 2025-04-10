@@ -1,9 +1,7 @@
 import { computed } from 'vue'
 import { useTextFormatter } from '@/utils'
 import type { Ref } from 'vue'
-import type { Lang } from '@/types/lang'
-import type { SortType } from '@/types/exhibitorList'
-import type { Exhibitor } from '@/types/exhibitorList'
+import type { Lang, SortType, Exhibitor } from '@/types'
 
 export const useExhibitorListHeading = (
   exhibitorList: Ref<Exhibitor[]>,

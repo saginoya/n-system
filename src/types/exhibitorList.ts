@@ -1,4 +1,4 @@
-import type { Color } from '@/types/color'
+import type { Color } from '@/types'
 
 export type SortType = 'name' | 'koma'
 export type Exhibitions = {

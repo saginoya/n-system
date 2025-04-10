@@ -2,8 +2,7 @@
 import NChip from '@/components/atoms/NChip.ce.vue'
 import NLink from '@/components/atoms/NLink.ce.vue'
 import NSDGsIcons from '@/components/molecules/NSDGsIcons.vue'
-import type { Exhibitor } from '@/types/exhibitorList'
-import type { Lang } from '@/types/lang'
+import type { Exhibitor, Lang } from '@/types'
 import type { SDGsNumType } from '@/utils'
 
 defineProps<{

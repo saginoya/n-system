@@ -1,4 +1,4 @@
-import type { Color } from '@/types/color'
+import type { Color } from '@/types'
 
 export const useColorStyle = () => {
   const textColor = (color: Color) => {

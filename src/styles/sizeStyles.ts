@@ -1,4 +1,4 @@
-import type { Size } from '@/types/size'
+import type { Size } from '@/types'
 
 export const useSizeStyle = () => {
   const widthSize = (size: Size) => {

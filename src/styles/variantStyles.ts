@@ -1,6 +1,5 @@
 import { useColorStyle } from '@/styles'
-import type { Color } from '@/types/color'
-import type { Variant } from '@/types/variant'
+import type { Color, Variant } from '@/types'
 
 export const useVariantStyle = () => {
   const { textColor, bgColor, borderColor } = useColorStyle()

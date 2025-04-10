@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { useVariantStyle } from '@/styles'
-import type { Color } from '@/types/color'
-import type { Variant } from '@/types/variant'
+import type { Color, Variant } from '@/types'
 
 withDefaults(
   defineProps<{

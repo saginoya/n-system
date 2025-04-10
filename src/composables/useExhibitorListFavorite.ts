@@ -1,7 +1,7 @@
 import { ref, onMounted } from 'vue'
 import { useLocalStorage } from '@/utils'
 import { useLang } from '@/composables/useLang'
-import type { Favorites } from '@/types/exhibitorList'
+import type { Favorites } from '@/types'
 
 export const useExhibitorListFavorite = (key: string) => {
   type Value = string

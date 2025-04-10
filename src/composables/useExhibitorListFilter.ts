@@ -1,7 +1,7 @@
 import { ref, computed } from 'vue'
 import { useTextFormatter } from '@/utils'
 import type { Ref } from 'vue'
-import type { Exhibitor, Favorites } from '@/types/exhibitorList'
+import type { Exhibitor, Favorites } from '@/types'
 
 export const useExhibitorListFilter = (
   exhibitorList: Ref<Exhibitor[]>,

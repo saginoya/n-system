@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 import IconBookmark from '@/components/icons/IconBookmark.vue'
 import { useColorStyle } from '@/styles'
-import type { Color } from '@/types/color'
+import type { Color } from '@/types'
 
 const props = withDefaults(
   defineProps<{

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import NTitleLv1Site from '@/components/atoms/NTitleLv1Site.vue'
 import NListNav from '@/components/molecules/NListNav.vue'
-import type { GlobalNav } from '@/types/link'
+import type { GlobalNav } from '@/types'
 
 defineProps<{
   titleList: string[]

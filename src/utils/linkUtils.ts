@@ -1,7 +1,7 @@
 import IconOpenInNew from '@/components/icons/IconOpenInNew.vue'
 import IconDownload from '@/components/icons/IconDownload.vue'
 import IconPdf from '@/components/icons/IconPdf.vue'
-import type { LinkType } from '@/types/link'
+import type { LinkType } from '@/types'
 import type { Component } from 'vue'
 
 export const useLink = () => {

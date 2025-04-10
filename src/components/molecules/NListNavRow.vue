@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import NLink from '@/components/atoms/NLink.ce.vue'
-import type { Link } from '@/types/link'
+import type { Link } from '@/types'
 
 defineProps<{
   links: Link[]

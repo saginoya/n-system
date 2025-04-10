@@ -2,7 +2,7 @@
 import NTooltipBookmark from '@/components/atoms/NTooltipBookmark.vue'
 import { useColorStyle } from '@/styles'
 import { useLang } from '@/composables/useLang'
-import type { Color } from '@/types/color'
+import type { Color } from '@/types'
 
 withDefaults(
   defineProps<{

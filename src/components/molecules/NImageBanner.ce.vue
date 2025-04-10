@@ -4,8 +4,7 @@ import NImage from '@/components/molecules/NImage.ce.vue'
 import { useLink } from '@/utils'
 import { usePublishedState } from '@/composables/usePublishedState'
 
-import type { LinkType } from '@/types/link'
-import type { PublishedState } from '@/types/publishedState'
+import type { LinkType, PublishedState } from '@/types'
 
 const props = withDefaults(
   defineProps<{

@@ -1,5 +1,5 @@
 import { ref } from 'vue'
-import type { Lang } from '@/types/lang'
+import type { Lang } from '@/types'
 
 export const useLang = () => {
   const lang = ref<Lang>('en')

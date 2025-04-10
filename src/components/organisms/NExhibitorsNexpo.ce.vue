@@ -21,7 +21,7 @@ import NTitleLv3 from '@/components/atoms/NTitleLv3.ce.vue'
 import NTooltipInfo from '@/components/molecules/NTooltipInfo.ce.vue'
 import NBtn from '@/components/atoms/NBtn.vue'
 
-import type { Exhibitor, Exhibitions } from '@/types/exhibitorList'
+import type { Exhibitor, Exhibitions } from '@/types'
 
 const props = defineProps<{
   listSrc: string

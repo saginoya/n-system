@@ -1,7 +1,7 @@
 import { ref, computed, watchEffect } from 'vue'
 import { useSort } from '@/utils'
 import type { Ref } from 'vue'
-import type { Exhibitor, SortType } from '@/types/exhibitorList'
+import type { Exhibitor, SortType } from '@/types'
 
 export const useExhibitorListSort = (exhibitorList: Ref<Exhibitor[]>) => {
   // ソートの条件

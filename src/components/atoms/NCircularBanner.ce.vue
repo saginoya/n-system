@@ -2,8 +2,7 @@
 import { computed } from 'vue'
 import { useLink } from '@/utils'
 import { useColorStyle } from '@/styles'
-import type { Color } from '@/types/color'
-import type { LinkType } from '@/types/link'
+import type { Color, LinkType } from '@/types'
 
 const props = defineProps<{
   color: Color

@@ -4,11 +4,7 @@ import { usePublishedState } from '@/composables/usePublishedState'
 import { useVariantStyle, useSizeStyle } from '@/styles'
 import { useLink, useDateFormatter } from '@/utils'
 import IconClock from '@/components/icons/IconClock.vue'
-import type { Color } from '@/types/color'
-import type { Variant } from '@/types/variant'
-import type { Size } from '@/types/size'
-import type { LinkType } from '@/types/link'
-import type { PublishedState } from '@/types/publishedState'
+import type { Color, Variant, Size, LinkType, PublishedState } from '@/types'
 
 const props = defineProps<{
   color: Color

@@ -1,5 +1,5 @@
 import { ref, computed, watchEffect, readonly } from 'vue'
-import type { PublishedState } from '@/types/publishedState'
+import type { PublishedState } from '@/types'
 
 /**
  * 公開状態を管理するためのコンポーザブル
