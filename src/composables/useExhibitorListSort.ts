@@ -1,5 +1,5 @@
 import { ref, computed, watchEffect } from 'vue'
-import { useSort } from '@/utils'
+import { sortObjects } from '@/utils'
 import type { Ref } from 'vue'
 import type { Exhibitor, SortType } from '@/types'
 
@@ -16,9 +16,6 @@ export const useExhibitorListSort = (exhibitorList: Ref<Exhibitor[]>) => {
     name: 'order',
     koma: 'koma',
   }
-
-  // ソートの関数読み込み
-  const { sortObjects } = useSort()
 
   // リストをソートする関数
   const sortExhibitorList = () => {
