@@ -1,16 +1,15 @@
-import { useColorStyle } from '@/styles'
+import { textColorMap, bgColorMap, borderColorMap } from '@/styles'
 import type { Color, Variant } from '@/types'
 
 export const useVariantStyle = () => {
-  const { textColor, bgColor, borderColor } = useColorStyle()
   const getStyles = (color: Color, variant?: Variant): string[] => {
-    const text: string = textColor(color)
-    const bg: string = bgColor(color)
-    const border: string = borderColor(color)
+    const text: string = textColorMap[color]
+    const bg: string = bgColorMap[color]
+    const border: string = borderColorMap[color]
 
-    const textWhite: string = textColor('white')
-    const bgWhite: string = bgColor('white')
-    const borderWhite: string = borderColor('white')
+    const textWhite: string = textColorMap['white']
+    const bgWhite: string = bgColorMap['white']
+    const borderWhite: string = borderColorMap['white']
 
     switch (variant) {
       case 'outlined':
@@ -23,12 +22,12 @@ export const useVariantStyle = () => {
   }
 
   const getCardStyles = (color: Color, variant?: Variant): string[] => {
-    const bg: string = bgColor(color)
-    const border: string = borderColor(color)
+    const bg: string = bgColorMap[color]
+    const border: string = borderColorMap[color]
 
-    const textWhite: string = textColor('white')
-    const bgWhite: string = bgColor('white')
-    const borderWhite: string = borderColor('white')
+    const textWhite: string = textColorMap['white']
+    const bgWhite: string = bgColorMap['white']
+    const borderWhite: string = borderColorMap['white']
 
     switch (variant) {
       case 'flat':

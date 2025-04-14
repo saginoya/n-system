@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useColorStyle } from '@/styles'
+import { textColorMap, borderColorMap } from '@/styles'
 import type { Color } from '@/types'
 
 const props = withDefaults(
@@ -14,9 +14,12 @@ const props = withDefaults(
   },
 )
 
-const { textColor, borderColor } = useColorStyle()
-
-const selectedClass = [textColor(props.color), 'font-bold', borderColor(props.color), 'bg-slate-50']
+const selectedClass = [
+  textColorMap[props.color],
+  'font-bold',
+  borderColorMap[props.color],
+  'bg-slate-50',
+]
 
 const model = defineModel<string>()
 const setModel = (value: string): void => {

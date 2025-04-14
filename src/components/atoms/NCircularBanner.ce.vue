@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useLink } from '@/utils'
-import { useColorStyle } from '@/styles'
+import { bgColorMap } from '@/styles'
 import type { Color, LinkType } from '@/types'
 
 const props = defineProps<{
@@ -12,7 +12,6 @@ const props = defineProps<{
 }>()
 
 const { linkTarget } = useLink()
-const { bgColor } = useColorStyle()
 
 const sizeOptions = {
   xs: 'size-16',
@@ -26,7 +25,7 @@ type SizeOptions = keyof typeof sizeOptions
 
 const variant = computed<string[]>(() => {
   const array = []
-  array.push(bgColor(props.color))
+  array.push(bgColorMap[props.color])
   array.push(sizeOptions[props.size])
 
   return array

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import IconInfo from '@/components/icons/IconInfo.vue'
 import IconWaring from '@/components/icons/IconWarning.vue'
-import { useColorStyle } from '@/styles'
+import { textColorMap, borderColorMap } from '@/styles'
 
 const props = withDefaults(
   defineProps<{
@@ -12,9 +12,7 @@ const props = withDefaults(
   },
 )
 
-const { textColor, borderColor } = useColorStyle()
-
-const colorStyles = [textColor(props.type), borderColor(props.type)]
+const colorStyles = [textColorMap[props.type], borderColorMap[props.type]]
 </script>
 
 <template>

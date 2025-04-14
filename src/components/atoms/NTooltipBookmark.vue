@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import IconBookmark from '@/components/icons/IconBookmark.vue'
-import { useColorStyle } from '@/styles'
+import { textColorMap } from '@/styles'
 import type { Color } from '@/types'
 
 const props = withDefaults(
@@ -13,9 +13,8 @@ const props = withDefaults(
     color: 'primary',
   },
 )
-const { textColor } = useColorStyle()
 
-const avtiveClass = [textColor(props.color)]
+const avtiveClass = [textColorMap[props.color]]
 const defaultClass = ['text-gray-200']
 
 const classState = computed(() => {

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useColorStyle } from '@/styles'
+import { bgColorMap, textColorMap } from '@/styles'
 import type { Color } from '@/types'
 
 withDefaults(
@@ -13,8 +13,6 @@ withDefaults(
   },
 )
 
-const { bgColor, textColor } = useColorStyle()
-
 const active = defineModel<boolean>()
 </script>
 
@@ -24,7 +22,7 @@ const active = defineModel<boolean>()
     <label
       :for="id"
       class="inline-flex rounded-full border-2 p-0.5"
-      :class="active ? bgColor(color) : 'bg-slate-400'"
+      :class="active ? bgColorMap[color] : 'bg-slate-400'"
     >
       <div
         class="size-5 rounded-full bg-white transition-all duration-150 ease-in-out"
@@ -36,7 +34,7 @@ const active = defineModel<boolean>()
         >{{ active ? 'ON' : 'OFF' }}
       </span>
     </label>
-    <label if="label" :for="id" :class="active ? textColor(color) : 'text-slate-400'">{{
+    <label if="label" :for="id" :class="active ? textColorMap[color] : 'text-slate-400'">{{
       label
     }}</label>
   </button>

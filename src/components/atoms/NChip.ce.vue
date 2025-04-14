@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import NLinkText from '@/components/atoms/NLinkText.vue'
-import { useColorStyle } from '@/styles'
+import { bgColorMap } from '@/styles'
 import type { Color, LinkType } from '@/types'
 
 defineProps<{
@@ -8,8 +8,6 @@ defineProps<{
   href?: string
   type?: LinkType
 }>()
-
-const { bgColor } = useColorStyle()
 </script>
 
 <template>
@@ -18,7 +16,7 @@ const { bgColor } = useColorStyle()
     :href="href ? href : null"
     :type="href ? type || 'internal' : null"
     class="inline-block overflow-hidden rounded-full px-3 py-1 align-middle text-white"
-    :class="bgColor(color)"
+    :class="bgColorMap[color]"
   >
     <slot />
   </component>

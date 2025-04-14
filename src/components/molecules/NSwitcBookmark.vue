@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import NTooltipBookmark from '@/components/atoms/NTooltipBookmark.vue'
-import { useColorStyle } from '@/styles'
+import { borderColorMap, textColorMap } from '@/styles'
 import { useLang } from '@/composables/useLang'
 import type { Color } from '@/types'
 
@@ -26,14 +26,12 @@ const text = {
     en: 'Show only favorites',
   },
 }
-
-const { borderColor, textColor } = useColorStyle()
 </script>
 
 <template>
   <div
     class="inline-flex items-center rounded border-2 bg-slate-50 px-2 py-1"
-    :class="[textColor(color), borderColor(color)]"
+    :class="[textColorMap[color], borderColorMap[color]]"
   >
     <NTooltipBookmark :active="model || false" :color="color" />
     <select :name v-model="model" class="bg-inherit">

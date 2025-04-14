@@ -1,150 +1,70 @@
 import type { Color } from '@/types'
 
-export const useColorStyle = () => {
-  const textColor = (color: Color) => {
-    switch (color) {
-      case 'primary':
-        return 'text-primary'
-      case 'secondary':
-        return 'text-secondary'
-      case 'accent':
-        return 'text-accent'
-      case 'exhibition-a':
-        return 'text-exhibition-a'
-      case 'exhibition-b':
-        return 'text-exhibition-b'
-      case 'info':
-        return 'text-info'
-      case 'success':
-        return 'text-success'
-      case 'error':
-        return 'text-error'
-      case 'warning':
-        return 'text-warning'
-      case 'white':
-        return 'text-white'
-      case 'gray':
-        return 'text-gray-500'
-      case 'orange':
-        return 'text-orange-500'
-      case 'yellow':
-        return 'text-yellow-500'
-      case 'green':
-        return 'text-green-500'
-      case 'blue':
-        return 'text-blue-500'
-      case 'gray-light':
-        return 'text-gray-300'
-      case 'orange-light':
-        return 'text-orange-400'
-      case 'yellow-light':
-        return 'text-yellow-400'
-      case 'green-light':
-        return 'text-green-400'
-      case 'blue-light':
-        return 'text-blue-400'
-      default:
-        return 'text-white'
-    }
-  }
+export const textColorMap: Record<Color, string> = {
+  primary: 'text-primary',
+  secondary: 'text-secondary',
+  accent: 'text-accent',
+  'exhibition-a': 'text-exhibition-a',
+  'exhibition-b': 'text-exhibition-b',
+  info: 'text-info',
+  success: 'text-success',
+  error: 'text-error',
+  warning: 'text-warning',
+  white: 'text-white',
+  gray: 'text-gray-500',
+  orange: 'text-orange-500',
+  yellow: 'text-yellow-500',
+  green: 'text-green-500',
+  blue: 'text-blue-500',
+  'gray-light': 'text-gray-300',
+  'orange-light': 'text-orange-400',
+  'yellow-light': 'text-yellow-400',
+  'green-light': 'text-green-400',
+  'blue-light': 'text-blue-400',
+}
 
-  const bgColor = (color: Color) => {
-    switch (color) {
-      case 'primary':
-        return 'bg-primary'
-      case 'secondary':
-        return 'bg-secondary'
-      case 'accent':
-        return 'bg-accent'
-      case 'exhibition-a':
-        return 'bg-exhibition-a'
-      case 'exhibition-b':
-        return 'bg-exhibition-b'
-      case 'info':
-        return 'bg-info'
-      case 'success':
-        return 'bg-success'
-      case 'error':
-        return 'bg-error'
-      case 'warning':
-        return 'bg-warning'
-      case 'white':
-        return 'bg-white'
-      case 'gray':
-        return 'bg-gray-500'
-      case 'orange':
-        return 'bg-orange-500'
-      case 'yellow':
-        return 'bg-yellow-500'
-      case 'green':
-        return 'bg-green-500'
-      case 'blue':
-        return 'bg-blue-500'
-      case 'gray-light':
-        return 'bg-gray-300'
-      case 'orange-light':
-        return 'bg-orange-400'
-      case 'yellow-light':
-        return 'bg-yellow-400'
-      case 'green-light':
-        return 'bg-green-400'
-      case 'blue-light':
-        return 'bg-blue-400'
-      default:
-        return 'bg-white'
-    }
-  }
+export const bgColorMap: Record<Color, string> = {
+  primary: 'bg-primary',
+  secondary: 'bg-secondary',
+  accent: 'bg-accent',
+  'exhibition-a': 'bg-exhibition-a',
+  'exhibition-b': 'bg-exhibition-b',
+  info: 'bg-info',
+  success: 'bg-success',
+  error: 'bg-error',
+  warning: 'bg-warning',
+  white: 'bg-white',
+  gray: 'bg-gray-500',
+  orange: 'bg-orange-500',
+  yellow: 'bg-yellow-500',
+  green: 'bg-green-500',
+  blue: 'bg-blue-500',
+  'gray-light': 'bg-gray-300',
+  'orange-light': 'bg-orange-400',
+  'yellow-light': 'bg-yellow-400',
+  'green-light': 'bg-green-400',
+  'blue-light': 'bg-blue-400',
+}
 
-  const borderColor = (color: Color) => {
-    switch (color) {
-      case 'primary':
-        return 'border-primary'
-      case 'secondary':
-        return 'border-secondary'
-      case 'accent':
-        return 'border-accent'
-      case 'exhibition-a':
-        return 'border-exhibition-a'
-      case 'exhibition-b':
-        return 'border-exhibition-b'
-      case 'info':
-        return 'border-info'
-      case 'success':
-        return 'border-success'
-      case 'error':
-        return 'border-error'
-      case 'warning':
-        return 'border-warning'
-      case 'white':
-        return 'border-white'
-      case 'gray':
-        return 'border-gray-500'
-      case 'orange':
-        return 'border-orange-500'
-      case 'yellow':
-        return 'border-yellow-500'
-      case 'green':
-        return 'border-green-500'
-      case 'blue':
-        return 'border-blue-500'
-      case 'gray-light':
-        return 'border-gray-300'
-      case 'orange-light':
-        return 'border-orange-400'
-      case 'yellow-light':
-        return 'border-yellow-400'
-      case 'green-light':
-        return 'border-green-400'
-      case 'blue-light':
-        return 'border-blue-400'
-      default:
-        return 'border-white'
-    }
-  }
-
-  return {
-    textColor,
-    bgColor,
-    borderColor,
-  }
+export const borderColorMap: Record<Color, string> = {
+  primary: 'border-primary',
+  secondary: 'border-secondary',
+  accent: 'border-accent',
+  'exhibition-a': 'border-exhibition-a',
+  'exhibition-b': 'border-exhibition-b',
+  info: 'border-info',
+  success: 'border-success',
+  error: 'border-error',
+  warning: 'border-warning',
+  white: 'border-white',
+  gray: 'border-gray-500',
+  orange: 'border-orange-500',
+  yellow: 'border-yellow-500',
+  green: 'border-green-500',
+  blue: 'border-blue-500',
+  'gray-light': 'border-gray-300',
+  'orange-light': 'border-orange-400',
+  'yellow-light': 'border-yellow-400',
+  'green-light': 'border-green-400',
+  'blue-light': 'border-blue-400',
 }
