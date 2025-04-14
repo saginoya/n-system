@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { usePublishedState } from '@/composables/usePublishedState'
-import { useVariantStyle, useSizeStyle } from '@/styles'
+import { useVariantStyle, widthSizeMap, heightSizeMap } from '@/styles'
 import { useLink, useDateFormatter } from '@/utils'
 import IconClock from '@/components/icons/IconClock.vue'
 import type { Color, Variant, Size, LinkType, PublishedState } from '@/types'
@@ -19,7 +19,6 @@ const props = defineProps<{
 }>()
 
 const { getStyles } = useVariantStyle()
-const { widthSize, heightSize } = useSizeStyle()
 const { linkTarget, linkIcon } = useLink()
 
 const {
@@ -86,7 +85,7 @@ const deadlineFormat = (): string | undefined => {
   <component
     :is="isLink ? 'a' : 'div'"
     class="group relative block max-w-full overflow-hidden rounded border-2"
-    :class="[widthSize(size), heightSize(size), ...getStyles(color, variant)]"
+    :class="[widthSizeMap[size], heightSizeMap[size], ...getStyles(color, variant)]"
     :href="isLink ? href : null"
     :target="isLink ? (type ? linkTarget(type) : '_self') : null"
   >

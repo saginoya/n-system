@@ -1,44 +1,21 @@
 import type { Size } from '@/types'
 
-export const useSizeStyle = () => {
-  const widthSize = (size: Size) => {
-    switch (size) {
-      case 'xs':
-        return 'w-52'
-      case 'sm':
-        return 'w-64'
-      case 'lg':
-        return 'w-80'
-      case 'xl':
-        return 'w-96'
-      case 'free':
-        return 'w-fit'
-      case 'w-full':
-        return 'w-full'
-      default:
-        return 'w-72'
-    }
-  }
+export const widthSizeMap: Record<Size, string> = {
+  xs: 'w-52',
+  sm: 'w-64',
+  md: 'w-72',
+  lg: 'w-80',
+  xl: 'w-96',
+  free: 'w-fit',
+  'w-full': 'w-full',
+}
 
-  const heightSize = (size: Size) => {
-    switch (size) {
-      case 'xs':
-        return 'h-14'
-      case 'sm':
-        return 'h-16'
-      case 'lg':
-        return 'h-20'
-      case 'xl':
-        return 'h-24'
-      case 'free':
-        return 'h-fit'
-      default:
-        return 'h-20'
-    }
-  }
-
-  return {
-    widthSize,
-    heightSize,
-  }
+export const heightSizeMap: Record<Size, string> = {
+  xs: 'h-14',
+  sm: 'h-16',
+  md: 'h-20',
+  lg: 'h-20',
+  xl: 'h-24',
+  free: 'h-fit',
+  'w-full': 'h-20',
 }
