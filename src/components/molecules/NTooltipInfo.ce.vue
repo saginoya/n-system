@@ -14,9 +14,9 @@ const locationStyles = (): string[] => {
     case 'bottom':
       return ['sm:bottom-1', 'sm:top-auto', 'sm:translate-y-full']
     case 'right':
-      return ['sm:-left-1', 'sm:-translate-x-full']
-    case 'left':
       return ['sm:-right-1', 'sm:left-auto', 'sm:translate-x-full']
+    case 'left':
+      return ['sm:-left-1', 'sm:-translate-x-full']
     default:
       return ['sm:top-1', 'sm:-translate-y-full']
   }
