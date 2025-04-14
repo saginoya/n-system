@@ -1,5 +1,5 @@
 import { ref, onMounted } from 'vue'
-import { useLocalStorage } from '@/utils'
+import { localStorageManager } from '@/utils'
 import { useLang } from '@/composables/useLang'
 import type { Favorites } from '@/types'
 
@@ -9,7 +9,7 @@ export const useExhibitorListFavorite = (key: string) => {
   const { lang } = useLang()
 
   // ローカルストレージを利用する関数
-  const { set, get } = useLocalStorage(key)
+  const { set, get } = localStorageManager(key)
 
   // お気に入りリスト
   const myFavorites = ref<Favorites>([])
