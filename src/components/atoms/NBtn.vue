@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useVariantStyle } from '@/styles'
+import { getStyles } from '@/styles'
 import type { Color, Variant } from '@/types'
 
 withDefaults(
@@ -17,8 +17,6 @@ withDefaults(
     disabled: false,
   },
 )
-
-const { getStyles } = useVariantStyle()
 </script>
 
 <template>

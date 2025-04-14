@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { usePublishedState } from '@/composables/usePublishedState'
-import { useVariantStyle, widthSizeMap, heightSizeMap } from '@/styles'
+import { getStyles, widthSizeMap, heightSizeMap } from '@/styles'
 import { useLink, useDateFormatter } from '@/utils'
 import IconClock from '@/components/icons/IconClock.vue'
 import type { Color, Variant, Size, LinkType, PublishedState } from '@/types'
@@ -18,7 +18,6 @@ const props = defineProps<{
   note?: string
 }>()
 
-const { getStyles } = useVariantStyle()
 const { linkTarget, linkIcon } = useLink()
 
 const {
