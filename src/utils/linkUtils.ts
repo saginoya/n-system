@@ -4,26 +4,13 @@ import IconPdf from '@/components/icons/IconPdf.vue'
 import type { LinkType } from '@/types'
 import type { Component } from 'vue'
 
-export const useLink = () => {
-  const linkTarget = (type: LinkType): string => {
-    return type === 'internal' ? '_self' : '_blank'
-  }
+export const getLinkTarget = (type: LinkType): string => {
+  return type === 'internal' ? '_self' : '_blank'
+}
 
-  const linkIcon = (type: LinkType): Component | undefined => {
-    switch (type) {
-      case 'pdf':
-        return IconPdf
-      case 'download':
-        return IconDownload
-      case 'external':
-        return IconOpenInNew
-      default:
-        return undefined
-    }
-  }
-
-  return {
-    linkTarget,
-    linkIcon,
-  }
+export const linkIconMap: Record<LinkType, Component | undefined> = {
+  internal: undefined,
+  external: IconOpenInNew,
+  pdf: IconPdf,
+  download: IconDownload,
 }

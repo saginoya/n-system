@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useLink } from '@/utils'
+import { getLinkTarget } from '@/utils'
 import { bgColorMap } from '@/styles'
 import type { Color, LinkType } from '@/types'
 
@@ -10,8 +10,6 @@ const props = defineProps<{
   href: string
   type: LinkType
 }>()
-
-const { linkTarget } = useLink()
 
 const sizeOptions = {
   xs: 'size-16',
@@ -37,7 +35,7 @@ const variant = computed<string[]>(() => {
     class="inline-flex items-center justify-center rounded-full text-white transition-opacity hover:opacity-80 focus:opacity-80"
     :class="variant"
     :href="href"
-    :target="linkTarget(type)"
+    :target="getLinkTarget(type)"
   >
     <slot />
   </a>

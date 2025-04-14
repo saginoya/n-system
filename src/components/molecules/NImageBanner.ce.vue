@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import NImage from '@/components/molecules/NImage.ce.vue'
-import { useLink } from '@/utils'
+import { getLinkTarget, linkIconMap } from '@/utils'
 import { usePublishedState } from '@/composables/usePublishedState'
 
 import type { LinkType, PublishedState } from '@/types'
@@ -31,8 +31,7 @@ const { isPreparation, setPublishedState, isClosing } = usePublishedState()
 })()
 
 // リンク関連のロジック
-const { linkTarget, linkIcon } = useLink()
-const icon = computed(() => (props.type && !props.noIcon ? linkIcon(props.type) : undefined))
+const icon = computed(() => (props.type && !props.noIcon ? linkIconMap[props.type] : undefined))
 const isLink = computed(() => {
   return Boolean(props.href) && !isPreparation.value && !isClosing.value
 })
@@ -42,7 +41,7 @@ const isLink = computed(() => {
   <component
     :is="isLink ? 'a' : 'span'"
     :href="isLink ? href : null"
-    :target="isLink ? (type ? linkTarget(type) : '_self') : null"
+    :target="isLink ? (type ? getLinkTarget(type) : '_self') : null"
     class="group relative inline-block w-fit max-w-full"
   >
     <!-- 画像コンポーネント -->

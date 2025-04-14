@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 import { usePublishedState } from '@/composables/usePublishedState'
 import { getStyles, widthSizeMap, heightSizeMap } from '@/styles'
-import { useLink, useDateFormatter } from '@/utils'
+import { getLinkTarget, linkIconMap, useDateFormatter } from '@/utils'
 import IconClock from '@/components/icons/IconClock.vue'
 import type { Color, Variant, Size, LinkType, PublishedState } from '@/types'
 
@@ -17,8 +17,6 @@ const props = defineProps<{
   variant?: Variant
   note?: string
 }>()
-
-const { linkTarget, linkIcon } = useLink()
 
 const {
   isPreparation,
@@ -86,7 +84,7 @@ const deadlineFormat = (): string | undefined => {
     class="group relative block max-w-full overflow-hidden rounded border-2"
     :class="[widthSizeMap[size], heightSizeMap[size], ...getStyles(color, variant)]"
     :href="isLink ? href : null"
-    :target="isLink ? (type ? linkTarget(type) : '_self') : null"
+    :target="isLink ? (type ? getLinkTarget(type) : '_self') : null"
   >
     <div
       class="flex size-full flex-col items-center justify-center text-center leading-tight"
@@ -94,7 +92,7 @@ const deadlineFormat = (): string | undefined => {
     >
       <div class="flex items-center gap-1 text-balance font-bold tracking-tight">
         <slot />
-        <component v-if="type" :is="linkIcon(type)" class="size-6" />
+        <component v-if="type" :is="linkIconMap[type]" class="size-6" />
       </div>
       <p v-if="note" class="text-sm">{{ note }}</p>
     </div>

@@ -1,18 +1,16 @@
 <script setup lang="ts">
-import { useLink } from '@/utils'
+import { getLinkTarget, linkIconMap } from '@/utils'
 import type { LinkType } from '@/types'
 
 defineProps<{
   href: string
   type: LinkType
 }>()
-
-const { linkTarget, linkIcon } = useLink()
 </script>
 
 <template>
-  <a :href :target="linkTarget(type)">
+  <a :href :target="getLinkTarget(type)">
     <slot />
-    <component v-if="type !== 'internal'" :is="linkIcon(type)" class="ml-1 inline" />
+    <component v-if="type !== 'internal'" :is="linkIconMap[type]" class="ml-1 inline" />
   </a>
 </template>
