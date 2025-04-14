@@ -73,110 +73,87 @@ export type SDGsNumType =
   | 17
 type SDGsObj = Record<SDGsNumType, string>
 type SDGsCompObj = Record<SDGsNumType, Component>
-type GetSDGs = {
-  ja: string
-  en: string
-  iconJa: Component
-  iconEn: Component
+
+export const SDGsNumList: SDGsNumType[] = [
+  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,
+]
+
+export const SDGsJaMap: SDGsObj = {
+  1: '貧困をなくそう',
+  2: '飢餓をゼロに',
+  3: 'すべての人に健康と福祉を',
+  4: '質の高い教育をみんなに',
+  5: 'ジェンダー平等を実現しよう',
+  6: '安全な水とトイレを世界中に',
+  7: 'エネルギーをみんなにそしてクリーンに',
+  8: '働きがいも経済成長も',
+  9: '産業と技術革新の基盤をつくろう',
+  10: '人や国の不平等をなくそう',
+  11: '住み続けられるまちづくりを',
+  12: 'つくる責任つかう責任',
+  13: '気候変動に具体的な対策を',
+  14: '海の豊かさを守ろう',
+  15: '陸の豊かさも守ろう',
+  16: '平和と公正をすべての人に',
+  17: 'パートナーシップで目標を達成しよう',
 }
 
-export const useSDGs = () => {
-  const SDGsNum: SDGsNumType[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+export const SDGsEnMap: SDGsObj = {
+  1: 'No Poverty',
+  2: 'Zero Hunger',
+  3: 'Good Health and Well-Being',
+  4: 'Quality Education',
+  5: 'Gender Equality',
+  6: 'Clean Water and Sanitation',
+  7: 'Affordable and Clean Energy',
+  8: 'Decent Work and Economic Growth',
+  9: 'Industry, Innovation and Infrastructure',
+  10: 'Reduced Inequalities',
+  11: 'Sustainable Cities and Communities',
+  12: 'Responsible Consumption and Production',
+  13: 'Climate Action',
+  14: 'Life Below Water',
+  15: 'Life On Land',
+  16: 'Peace, Justice and Strong Institutions',
+  17: 'Partnerships for the Goals',
+}
 
-  const SDGsJa: SDGsObj = {
-    1: '貧困をなくそう',
-    2: '飢餓をゼロに',
-    3: 'すべての人に健康と福祉を',
-    4: '質の高い教育をみんなに',
-    5: 'ジェンダー平等を実現しよう',
-    6: '安全な水とトイレを世界中に',
-    7: 'エネルギーをみんなにそしてクリーンに',
-    8: '働きがいも経済成長も',
-    9: '産業と技術革新の基盤をつくろう',
-    10: '人や国の不平等をなくそう',
-    11: '住み続けられるまちづくりを',
-    12: 'つくる責任つかう責任',
-    13: '気候変動に具体的な対策を',
-    14: '海の豊かさを守ろう',
-    15: '陸の豊かさも守ろう',
-    16: '平和と公正をすべての人に',
-    17: 'パートナーシップで目標を達成しよう',
-  }
-  const SDGsEn: SDGsObj = {
-    1: 'No Poverty',
-    2: 'Zero Hunger',
-    3: 'Good Health and Well-Being',
-    4: 'Quality Education',
-    5: 'Gender Equality',
-    6: 'Clean Water and Sanitation',
-    7: 'Affordable and Clean Energy',
-    8: 'Decent Work and Economic Growth',
-    9: 'Industry, Innovation and Infrastructure',
-    10: 'Reduced Inequalities',
-    11: 'Sustainable Cities and Communities',
-    12: 'Responsible Consumption and Production',
-    13: 'Climate Action',
-    14: 'Life Below Water',
-    15: 'Life On Land',
-    16: 'Peace, Justice and Strong Institutions',
-    17: 'Partnerships for the Goals',
-  }
+export const SDGsJaImgMap: SDGsCompObj = {
+  1: IconSDGsJa01,
+  2: IconSDGsJa02,
+  3: IconSDGsJa03,
+  4: IconSDGsJa04,
+  5: IconSDGsJa05,
+  6: IconSDGsJa06,
+  7: IconSDGsJa07,
+  8: IconSDGsJa08,
+  9: IconSDGsJa09,
+  10: IconSDGsJa10,
+  11: IconSDGsJa11,
+  12: IconSDGsJa12,
+  13: IconSDGsJa13,
+  14: IconSDGsJa14,
+  15: IconSDGsJa15,
+  16: IconSDGsJa16,
+  17: IconSDGsJa17,
+}
 
-  const SDGsJaImg: SDGsCompObj = {
-    1: IconSDGsJa01,
-    2: IconSDGsJa02,
-    3: IconSDGsJa03,
-    4: IconSDGsJa04,
-    5: IconSDGsJa05,
-    6: IconSDGsJa06,
-    7: IconSDGsJa07,
-    8: IconSDGsJa08,
-    9: IconSDGsJa09,
-    10: IconSDGsJa10,
-    11: IconSDGsJa11,
-    12: IconSDGsJa12,
-    13: IconSDGsJa13,
-    14: IconSDGsJa14,
-    15: IconSDGsJa15,
-    16: IconSDGsJa16,
-    17: IconSDGsJa17,
-  }
-
-  const SDGsEnImg: SDGsCompObj = {
-    1: IconSDGsEn01,
-    2: IconSDGsEn02,
-    3: IconSDGsEn03,
-    4: IconSDGsEn04,
-    5: IconSDGsEn05,
-    6: IconSDGsEn06,
-    7: IconSDGsEn07,
-    8: IconSDGsEn08,
-    9: IconSDGsEn09,
-    10: IconSDGsEn10,
-    11: IconSDGsEn11,
-    12: IconSDGsEn12,
-    13: IconSDGsEn13,
-    14: IconSDGsEn14,
-    15: IconSDGsEn15,
-    16: IconSDGsEn16,
-    17: IconSDGsEn17,
-  }
-
-  const getSDGs = (num: SDGsNumType): GetSDGs => {
-    return {
-      ja: SDGsJa[num],
-      en: SDGsEn[num],
-      iconJa: SDGsJaImg[num],
-      iconEn: SDGsEnImg[num],
-    }
-  }
-
-  return {
-    SDGsNum,
-    SDGsJa,
-    SDGsEn,
-    SDGsJaImg,
-    SDGsEnImg,
-    getSDGs,
-  }
+export const SDGsEnImgMap: SDGsCompObj = {
+  1: IconSDGsEn01,
+  2: IconSDGsEn02,
+  3: IconSDGsEn03,
+  4: IconSDGsEn04,
+  5: IconSDGsEn05,
+  6: IconSDGsEn06,
+  7: IconSDGsEn07,
+  8: IconSDGsEn08,
+  9: IconSDGsEn09,
+  10: IconSDGsEn10,
+  11: IconSDGsEn11,
+  12: IconSDGsEn12,
+  13: IconSDGsEn13,
+  14: IconSDGsEn14,
+  15: IconSDGsEn15,
+  16: IconSDGsEn16,
+  17: IconSDGsEn17,
 }
