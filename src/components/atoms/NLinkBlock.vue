@@ -1,22 +1,20 @@
 <script setup lang="ts">
 import NLinkText from '@/components/atoms/NLinkText.vue'
-import { useURL } from '@/utils'
+import { isCurrentPage } from '@/utils'
 import type { LinkType } from '@/types'
 
 defineProps<{
   href: string
   type: LinkType
 }>()
-
-const { isSamePage } = useURL()
 </script>
 
 <template>
   <NLinkText
     class="block rounded-full px-3 py-1 hover:bg-blue-200/30 focus:bg-blue-200/30"
     :class="{
-      'bg-slate-900/40': isSamePage(href),
-      'contrast-75': isSamePage(href),
+      'bg-slate-900/40': isCurrentPage(href),
+      'contrast-75': isCurrentPage(href),
     }"
     :href
     :type
