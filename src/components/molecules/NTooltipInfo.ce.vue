@@ -12,13 +12,26 @@ const text = lang.value === 'en' ? 'Information' : 'インフォメーション'
 const locationStyles = (): string[] => {
   switch (props.location) {
     case 'bottom':
-      return ['sm:bottom-1', 'sm:top-auto', 'sm:translate-y-full']
+      return [
+        'sm:-bottom-1',
+        'sm:top-auto',
+        'sm:left-1/2',
+        'sm:right-auto',
+        'sm:translate-y-full',
+        'sm:-translate-x-1/2',
+      ]
     case 'right':
       return ['sm:-right-1', 'sm:left-auto', 'sm:translate-x-full']
     case 'left':
-      return ['sm:-left-1', 'sm:-translate-x-full']
+      return ['sm:-left-1', 'sm:right-auto', 'sm:-translate-x-full']
     default:
-      return ['sm:top-1', 'sm:-translate-y-full']
+      return [
+        'sm:-top-1',
+        'sm:left-1/2',
+        'sm:right-auto',
+        'sm:-translate-y-full',
+        'sm:-translate-x-1/2',
+      ]
   }
 }
 </script>
@@ -30,7 +43,7 @@ const locationStyles = (): string[] => {
     <IconInfo class="inline text-xl" />
     <span class="hidden text-xs font-bold tracking-tight md:inline-block">{{ text }}</span>
     <div
-      class="invisible fixed left-0 top-1/2 z-50 m-2 -translate-y-1/2 rounded bg-slate-800 p-2 text-sm text-white opacity-0 transition-all delay-150 ease-in-out group-hover:visible group-hover:opacity-100 group-focus:visible group-focus:opacity-100 sm:absolute sm:m-0 sm:w-96"
+      class="invisible fixed inset-x-0 top-1/2 z-50 m-2 -translate-y-1/2 rounded bg-slate-800 p-2 text-sm text-white opacity-0 transition-all delay-150 ease-in-out group-hover:visible group-hover:opacity-100 group-focus:visible group-focus:opacity-100 sm:absolute sm:m-0 sm:inline-block sm:whitespace-nowrap"
       :class="locationStyles()"
     >
       <slot />
