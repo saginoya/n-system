@@ -1,17 +1,15 @@
 <script setup lang="ts">
-import { useDateFormatter } from '@/utils'
-import { useHTML } from '@/utils'
+import { useDateFormatter, getDocumentLanguage } from '@/utils'
 
 const props = defineProps<{
   datetime: string
 }>()
 
 const { year, month, date } = useDateFormatter(props.datetime)
-const { getLang } = useHTML()
 
 const labelTimeJa = `${year}年${month}月${date}日`
 const labelTimeEn = `${year}-${month}-${date}`
-const labelTime = getLang() === 'ja' ? labelTimeJa : labelTimeEn
+const labelTime = getDocumentLanguage() === 'ja' ? labelTimeJa : labelTimeEn
 </script>
 
 <template>

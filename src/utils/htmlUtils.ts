@@ -1,16 +1,18 @@
-export const useHTML = () => {
-  type Lang = 'ja' | 'en'
-  const getLang = (): Lang => {
-    const docLang = document.documentElement.lang
-    return docLang === 'ja' ? 'ja' : 'en'
-  }
+import type { Lang } from '@/types'
 
-  const toBodyStyleVisible = () => {
-    document.body.style.visibility = 'visible'
+export const getDocumentLanguage = (): Lang => {
+  const docLang = document.documentElement.lang
+  if (!docLang) {
+    console.warn('Document language is not set. Defaulting to "en".')
+    return 'en'
   }
+  return docLang === 'ja' ? 'ja' : 'en'
+}
 
-  return {
-    getLang,
-    toBodyStyleVisible,
+export const setBodyVisibility = (visible: boolean = true) => {
+  if (!document.body) {
+    console.error('Document body is not available.')
+    return
   }
+  document.body.style.visibility = visible ? 'visible' : 'hidden'
 }

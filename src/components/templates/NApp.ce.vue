@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
-import { useHTML } from '@/utils'
+import { setBodyVisibility } from '@/utils'
 
 import NLayoutDefault from '@/components/templates/NLayoutDefault.vue'
 import NLayoutIndex from '@/components/templates/NLayoutIndex.vue'
@@ -24,8 +24,7 @@ const layoutComp = computed(() => {
 
 // HTMLのbodyを表示する
 // HTMLやCSSでbodyが隠されている前提
-const { toBodyStyleVisible } = useHTML()
-toBodyStyleVisible()
+setBodyVisibility()
 
 // ページ全体をフェードさせるための仕組み
 const isLoading = ref<boolean>(true)
