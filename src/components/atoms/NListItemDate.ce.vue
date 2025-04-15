@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { useDateFormatter, getDocumentLanguage } from '@/utils'
+import { formatDate, getDocumentLanguage } from '@/utils'
 
 const props = defineProps<{
   datetime: string
 }>()
 
-const { year, month, date } = useDateFormatter(props.datetime)
+const formattedDate = formatDate(props.datetime)
+const { year, month, date } = formattedDate || { year: '', month: '', date: '' }
 
 const labelTimeJa = `${year}年${month}月${date}日`
 const labelTimeEn = `${year}-${month}-${date}`

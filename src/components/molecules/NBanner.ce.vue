@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 import { usePublishedState } from '@/composables/usePublishedState'
 import { getStyles, widthSizeMap, heightSizeMap } from '@/styles'
-import { getLinkTarget, linkIconMap, useDateFormatter } from '@/utils'
+import { getLinkTarget, linkIconMap, formatDate } from '@/utils'
 import IconClock from '@/components/icons/IconClock.vue'
 import type { Color, Variant, Size, LinkType, PublishedState } from '@/types'
 
@@ -73,7 +73,14 @@ const overlayContent = computed<OverlayContent | false>(() => {
 
 const deadlineFormat = (): string | undefined => {
   if (!props.deadline) return undefined
-  const { year, month, date, twoDigitHour, twoDigitMinutes } = useDateFormatter(props.deadline)
+  const formattedDate = formatDate(props.deadline)
+  const { year, month, date, twoDigitHour, twoDigitMinutes } = formattedDate || {
+    year: '',
+    month: '',
+    date: '',
+    twoDigitHour: '',
+    twoDigitMinutes: '',
+  }
   return `${year}年${month}月${date}日 ${twoDigitHour}:${twoDigitMinutes}`
 }
 </script>
