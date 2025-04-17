@@ -1,22 +1,30 @@
 <script setup lang="ts">
+import type { Color, Size, LinkType, PublishedState } from '@/types'
+
 import { computed } from 'vue'
 import { usePublishedState } from '@/composables/usePublishedState'
-import { getStyles, widthSizeMap, heightSizeMap } from '@/styles'
+import { variantConceptMap, widthSizeMap, heightSizeMap, Variant } from '@/styles'
 import { getLinkTarget, linkIconMap, formatDate } from '@/utils'
-import IconClock from '@/components/icons/IconClock.vue'
-import type { Color, Variant, Size, LinkType, PublishedState } from '@/types'
+import { cn } from '@/lib/cn'
 
-const props = defineProps<{
-  color: Color
-  size: Size
-  href?: string
-  type?: LinkType
-  state?: PublishedState
-  deadline?: string
-  revokeAutoDeadline?: boolean
-  variant?: Variant
-  note?: string
-}>()
+import IconClock from '@/components/icons/IconClock.vue'
+
+const props = withDefaults(
+  defineProps<{
+    color: Color
+    size: Size
+    href?: string
+    type?: LinkType
+    state?: PublishedState
+    deadline?: string
+    revokeAutoDeadline?: boolean
+    variant?: Variant
+    note?: string
+  }>(),
+  {
+    variant: 'flat',
+  },
+)
 
 const {
   isPreparation,
@@ -89,7 +97,7 @@ const deadlineFormat = (): string | undefined => {
   <component
     :is="isLink ? 'a' : 'div'"
     class="group relative block max-w-full overflow-hidden rounded border-2"
-    :class="[widthSizeMap[size], heightSizeMap[size], ...getStyles(color, variant)]"
+    :class="cn(widthSizeMap[size], heightSizeMap[size], variantConceptMap[variant](color))"
     :href="isLink ? href : null"
     :target="isLink ? (type ? getLinkTarget(type) : '_self') : null"
   >

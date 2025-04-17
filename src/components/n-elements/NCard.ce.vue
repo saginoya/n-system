@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import { getCardStyles } from '@/styles'
-import type { Variant, Color } from '@/types'
+import type { Color } from '@/types'
+
+import { variantConceptMap, Variant } from '@/styles'
+import { cn } from '@/lib/cn'
 
 withDefaults(
   defineProps<{
@@ -9,6 +11,7 @@ withDefaults(
     color?: Color
   }>(),
   {
+    variant: 'text',
     color: 'white',
   },
 )
@@ -17,7 +20,11 @@ withDefaults(
 <template>
   <div
     class="flex flex-col gap-4 rounded border-2 px-6 py-4"
-    :class="[{ 'h-full': heightFull === true }, ...getCardStyles(color, variant)]"
+    :class="
+      cn({ 'h-full': heightFull === true }, variantConceptMap[variant](color), {
+        'text-inherit': variant === 'outlined',
+      })
+    "
   >
     <slot />
   </div>

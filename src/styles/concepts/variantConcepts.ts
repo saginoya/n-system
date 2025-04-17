@@ -1,41 +1,35 @@
+import type { Color } from '@/types'
 import { textColorMap, bgColorMap, borderColorMap } from '@/styles'
-import type { Color, Variant } from '@/types'
+import { cn } from '@/lib/cn'
 
-export const getStyles = (color: Color, variant?: Variant): string[] => {
-  const text: string = textColorMap[color]
-  const bg: string = bgColorMap[color]
-  const border: string = borderColorMap[color]
+export type Variant = 'flat' | 'outlined' | 'text'
 
-  const textWhite: string = textColorMap['white']
-  const bgWhite: string = bgColorMap['white']
-  const borderWhite: string = borderColorMap['white']
-
-  switch (variant) {
-    case 'outlined':
-      return [text, bgWhite, border]
-    case 'text':
-      return [text, bgWhite, borderWhite]
-    default:
-      return [textWhite, bg, border]
-  }
+export const variantFlatConcept = (color: Color): string => {
+  return cn(
+    color !== 'white' ? textColorMap['white'] : 'text-inherit',
+    bgColorMap[color],
+    borderColorMap[color],
+  )
 }
 
-export const getCardStyles = (color: Color, variant?: Variant): string[] => {
-  const bg: string = bgColorMap[color]
-  const border: string = borderColorMap[color]
+export const variantOutlinedConcept = (color: Color): string => {
+  return cn(
+    color !== 'white' ? textColorMap[color] : 'text-inherit',
+    bgColorMap['white'],
+    borderColorMap[color],
+  )
+}
 
-  const textWhite: string = textColorMap['white']
-  const bgWhite: string = bgColorMap['white']
-  const borderWhite: string = borderColorMap['white']
+export const variantTextConcept = (color: Color): string => {
+  return cn(
+    color !== 'white' ? textColorMap[color] : 'text-inherit',
+    bgColorMap['white'],
+    borderColorMap['white'],
+  )
+}
 
-  switch (variant) {
-    case 'flat':
-      return [textWhite, bg, border]
-    case 'outlined':
-      return [bgWhite, border]
-    case 'text':
-      return [bgWhite, borderWhite]
-    default:
-      return [bgWhite, borderWhite]
-  }
+export const variantConceptMap: Record<Variant, (color: Color) => string> = {
+  flat: variantFlatConcept,
+  outlined: variantOutlinedConcept,
+  text: variantTextConcept,
 }
