@@ -14,6 +14,8 @@ components/
 
 composables/        # 再利用可能なロジック（useFetchData, useFormValidation など）
 
+lib/                # 外部ライブラリを扱う（ラッパー関数など）
+
 styles/             # CSSのクラスを取得するための関数
 
 tests/              # テストファイル
