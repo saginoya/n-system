@@ -1,4 +1,2 @@
-export * from './colorStyles'
-export * from './layoutStyles'
-export * from './sizeStyles'
-export * from './variantStyles'
+export * from './atoms'
+export * from './concepts'
