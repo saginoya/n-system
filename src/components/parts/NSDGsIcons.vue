@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import NContainerFlex from '@/components/atoms/NContainerFlex.ce.vue'
+import NContainerFlex from '@/components/n-elements/NContainerFlex.ce.vue'
 import { useLang } from '@/composables/useLang'
 import { SDGsJaMap, SDGsJaImgMap, SDGsEnMap, SDGsEnImgMap } from '@/utils'
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import NLinkBlock from '@/components/atoms/NLinkBlock.vue'
+import NLinkBlock from '@/components/parts/NLinkBlock.vue'
 import type { Link } from '@/types'
 
 defineProps<{

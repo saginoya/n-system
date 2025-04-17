@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import NContainer1col from '@/components/atoms/NContainer1col.ce.vue'
-import NContainerFlex from '@/components/atoms/NContainerFlex.ce.vue'
-import NChip from '@/components/atoms/NChip.ce.vue'
+import NContainer1col from '@/components/n-elements/NContainer1col.ce.vue'
+import NContainerFlex from '@/components/n-elements/NContainerFlex.ce.vue'
+import NChip from '@/components/n-elements/NChip.ce.vue'
 
 defineProps<{
   title: string

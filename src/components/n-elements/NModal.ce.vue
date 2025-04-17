@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import NBtn from '@/components/atoms/NBtn.vue'
-import NModalBase from '@/components/molecules/NModalBase.vue'
+import NBtn from '@/components/parts/NBtn.vue'
+import NModalBase from '@/components/parts/NModalBase.vue'
 import { useModal } from '@/composables/useModal'
 
 defineProps<{

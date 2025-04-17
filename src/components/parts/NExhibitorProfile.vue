@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import NChip from '@/components/atoms/NChip.ce.vue'
-import NLink from '@/components/atoms/NLink.ce.vue'
-import NSDGsIcons from '@/components/molecules/NSDGsIcons.vue'
+import NChip from '@/components/n-elements/NChip.ce.vue'
+import NLink from '@/components/n-elements/NLink.ce.vue'
+import NSDGsIcons from '@/components/parts/NSDGsIcons.vue'
 import type { Exhibitor, Lang } from '@/types'
 import type { SDGsNumType } from '@/utils'
 

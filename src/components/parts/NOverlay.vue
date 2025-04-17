@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import NTransitionFade from '@/components/atoms/NTransitionFade.vue'
+import NTransitionFade from '@/components/parts/NTransitionFade.vue'
 </script>
 
 <template>

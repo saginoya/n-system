@@ -9,7 +9,6 @@ components/
   ├── container/    # レイアウトなど他の要素を整理するためのコンポーネント
   ├── parts/        # 最小単位のUIコンポーネント（Button, Input など）
   ├── icons/        # アイコン
-  ├── templates/    # container・partsなどを組み合わせたコンポーネント
   ├── layouts/      # ページ単位でのレイアウト
   ├── n-elements/   # 実際にビルドされるコンポーネント
 

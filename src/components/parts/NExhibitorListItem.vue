@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import NChip from '@/components/atoms/NChip.ce.vue'
-import NTooltipBookmark from '@/components/atoms/NTooltipBookmark.vue'
+import NChip from '@/components/n-elements/NChip.ce.vue'
+import NTooltipBookmark from '@/components/parts/NTooltipBookmark.vue'
 import type { Exhibitor } from '@/types'
 
 const props = defineProps<{

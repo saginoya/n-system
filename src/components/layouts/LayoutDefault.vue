@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import NHeader from '@/components/organisms/NHeader.vue'
-import NHeaderTool from '@/components/atoms/NHeaderTool.vue'
-import NMainVisual from '@/components/molecules/NMainVisual.vue'
-import NListNavRow from '@/components/molecules/NListNavRow.vue'
-import NOverlay from '@/components/atoms/NOverlay.vue'
+import NHeader from '@/components/parts/NHeader.vue'
+import NHeaderTool from '@/components/parts/NHeaderTool.vue'
+import NMainVisual from '@/components/parts/NMainVisual.vue'
+import NListNavRow from '@/components/parts/NListNavRow.vue'
+import NOverlay from '@/components/parts/NOverlay.vue'
 import { useConfig } from '@/composables/useConfig'
 import { useDrawer } from '@/composables/useDrawer'
 

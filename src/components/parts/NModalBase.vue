@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import NCard from '@/components/atoms/NCard.ce.vue'
-import NBtnClose from '@/components/atoms/NBtnClose.vue'
-import NOverlay from '@/components/atoms/NOverlay.vue'
-import NTransitionScale from '@/components/atoms/NTransitionScale.vue'
+import NCard from '@/components/n-elements/NCard.ce.vue'
+import NBtnClose from '@/components/parts/NBtnClose.vue'
+import NOverlay from '@/components/parts/NOverlay.vue'
+import NTransitionScale from '@/components/parts/NTransitionScale.vue'
 
 defineProps<{
   visible: boolean

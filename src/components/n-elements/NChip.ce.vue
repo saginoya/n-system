@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import NLinkText from '@/components/atoms/NLinkText.vue'
+import NLinkText from '@/components/parts/NLinkText.vue'
 import { bgColorMap } from '@/styles'
 import type { Color, LinkType } from '@/types'
 

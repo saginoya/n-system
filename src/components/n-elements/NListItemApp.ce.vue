@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import NChip from '@/components/atoms/NChip.ce.vue'
+import NChip from '@/components/n-elements/NChip.ce.vue'
 
 defineProps<{
   id: string

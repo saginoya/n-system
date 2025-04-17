@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import NImage from '@/components/molecules/NImage.ce.vue'
+import NImage from '@/components/n-elements/NImage.ce.vue'
 import type { Link, Image } from '@/types'
 
 defineProps<{

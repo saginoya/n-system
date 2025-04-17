@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import NImage from '@/components/molecules/NImage.ce.vue'
+import NImage from '@/components/n-elements/NImage.ce.vue'
 import { getLinkTarget, linkIconMap } from '@/utils'
 import { usePublishedState } from '@/composables/usePublishedState'
 

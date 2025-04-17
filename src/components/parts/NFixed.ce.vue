@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useModal } from '@/composables/useModal'
-import NBtnClose from '@/components/atoms/NBtnClose.vue'
+import NBtnClose from '@/components/parts/NBtnClose.vue'
 
 defineProps<{
   position: Position

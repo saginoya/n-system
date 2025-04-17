@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import NImage from '@/components/molecules/NImage.ce.vue'
-import NSheet from '@/components/atoms/NSheet.ce.vue'
-import NChip from '@/components/atoms/NChip.ce.vue'
+import NImage from '@/components/n-elements/NImage.ce.vue'
+import NSheet from '@/components/n-elements/NSheet.ce.vue'
+import NChip from '@/components/n-elements/NChip.ce.vue'
 
 defineProps<{
   width: number

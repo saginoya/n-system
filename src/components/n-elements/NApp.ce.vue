@@ -4,8 +4,8 @@ import { setBodyVisibility } from '@/utils'
 
 import LayoutDefault from '@/components/layouts/LayoutDefault.vue'
 import LayoutIndex from '@/components/layouts/LayoutIndex.vue'
-import NTransitionFade from '@/components/atoms/NTransitionFade.vue'
-import NModalPageLoading from '@/components/atoms/NModalPageLoading.vue'
+import NTransitionFade from '@/components/parts/NTransitionFade.vue'
+import NModalPageLoading from '@/components/parts/NModalPageLoading.vue'
 
 const props = defineProps<{
   jsonPath: string
