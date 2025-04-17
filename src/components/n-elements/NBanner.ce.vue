@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { Color, Size, LinkType, PublishedState } from '@/types'
+import type { Color, LinkType, PublishedState } from '@/types'
 
 import { computed } from 'vue'
 import { usePublishedState } from '@/composables/usePublishedState'
-import { variantConceptMap, widthSizeMap, heightSizeMap, Variant } from '@/styles'
+import { variantConceptMap, Variant } from '@/styles'
 import { getLinkTarget, linkIconMap, formatDate } from '@/utils'
 import { cn } from '@/lib/cn'
 
@@ -91,13 +91,25 @@ const deadlineFormat = (): string | undefined => {
   }
   return `${year}年${month}月${date}日 ${twoDigitHour}:${twoDigitMinutes}`
 }
+
+const sizeMap = {
+  xs: 'w-52 h-14',
+  sm: 'w-64 h-16',
+  md: 'w-72 h-20',
+  lg: 'w-80 h-20',
+  xl: 'w-96 h-24',
+  free: 'w-fit h-fit',
+  'w-full': 'w-full h-20',
+} as const
+
+type Size = keyof typeof sizeMap
 </script>
 
 <template>
   <component
     :is="isLink ? 'a' : 'div'"
     class="group relative block max-w-full overflow-hidden rounded border-2"
-    :class="cn(widthSizeMap[size], heightSizeMap[size], variantConceptMap[variant](color))"
+    :class="cn(sizeMap[size], variantConceptMap[variant](color))"
     :href="isLink ? href : null"
     :target="isLink ? (type ? getLinkTarget(type) : '_self') : null"
   >
