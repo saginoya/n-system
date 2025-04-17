@@ -2,7 +2,7 @@ import { defineCustomElement } from 'vue'
 import './assets/css/main.css'
 
 // Components
-import NApp from './components/templates/NApp.ce.vue'
+import NApp from './components/n-elements/NApp.ce.vue'
 import NAlert from './components/atoms/NAlert.ce.vue'
 import NAnnotation from './components/atoms/NAnnotation.ce.vue'
 import NAnnotationLight from './components/atoms/NAnnotationLight.ce.vue'

@@ -2,8 +2,8 @@
 import { ref, computed, onMounted } from 'vue'
 import { setBodyVisibility } from '@/utils'
 
-import NLayoutDefault from '@/components/templates/NLayoutDefault.vue'
-import NLayoutIndex from '@/components/templates/NLayoutIndex.vue'
+import LayoutDefault from '@/components/layouts/LayoutDefault.vue'
+import LayoutIndex from '@/components/layouts/LayoutIndex.vue'
 import NTransitionFade from '@/components/atoms/NTransitionFade.vue'
 import NModalPageLoading from '@/components/atoms/NModalPageLoading.vue'
 
@@ -16,9 +16,9 @@ const props = defineProps<{
 const layoutComp = computed(() => {
   switch (props.layout) {
     case 'toppage':
-      return NLayoutIndex
+      return LayoutIndex
     default:
-      return NLayoutDefault
+      return LayoutDefault
   }
 })
 
