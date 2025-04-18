@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { cn } from '@/lib/cn'
-import { variantConceptMap, Variant } from '@/styles'
+import { variantConceptMap } from '@/styles'
+import type { Variant } from '@/styles'
 import type { Color } from '@/types'
 
 withDefaults(
