@@ -1,6 +1,7 @@
 import { onMounted, ref } from 'vue'
-import { getJson } from '@/utils'
+
 import type { GlobalNav, Image } from '@/types'
+import { getJson } from '@/utils'
 
 type MainVisual = {
   top: Image

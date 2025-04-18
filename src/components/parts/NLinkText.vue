@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { getLinkTarget, linkIconMap } from '@/utils'
 import type { LinkType } from '@/types'
+import { getLinkTarget, linkIconMap } from '@/utils'
 
 defineProps<{
   href: string

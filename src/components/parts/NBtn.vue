@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import type { Variant } from '@/styles'
+import { variantConceptMap } from '@/styles'
 import type { Color } from '@/types'
-
-import { variantConceptMap, Variant } from '@/styles'
 
 withDefaults(
   defineProps<{

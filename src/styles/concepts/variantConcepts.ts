@@ -1,6 +1,6 @@
-import type { Color } from '@/types'
-import { textColorMap, bgColorMap, borderColorMap } from '@/styles'
 import { cn } from '@/lib/cn'
+import { textColorMap, bgColorMap, borderColorMap } from '@/styles'
+import type { Color } from '@/types'
 
 export type Variant = 'flat' | 'outlined' | 'text'
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import IconMenu from '@/components/icons/IconMenu.vue'
 import IconClose from '@/components/icons/IconClose.vue'
+import IconMenu from '@/components/icons/IconMenu.vue'
 defineProps<{
   active: boolean
 }>()

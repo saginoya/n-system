@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import NTitleLv1Site from '@/components/parts/NTitleLv1Site.vue'
 import NListNav from '@/components/parts/NListNav.vue'
+import NTitleLv1Site from '@/components/parts/NTitleLv1Site.vue'
 import type { GlobalNav } from '@/types'
 
 defineProps<{

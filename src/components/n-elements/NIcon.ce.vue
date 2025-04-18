@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import IconBus from '@/components/icons/IconBus.vue'
 import IconCar from '@/components/icons/IconCar.vue'
-import IconTrain from '@/components/icons/IconTrain.vue'
 import IconChevronRight from '@/components/icons/IconChevronRight.vue'
+import IconTrain from '@/components/icons/IconTrain.vue'
 
 withDefaults(
   defineProps<{

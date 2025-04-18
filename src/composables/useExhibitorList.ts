@@ -1,7 +1,8 @@
 import { ref, computed, onMounted } from 'vue'
-import { getJson } from '@/utils'
+
 import { useGenres } from '@/composables/useGenres'
 import type { Lang, Exhibitor, JsonExhibitor, Exhibitions } from '@/types'
+import { getJson } from '@/utils'
 
 export const useExhibitorList = (
   lang: Lang,

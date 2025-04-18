@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { watch } from 'vue'
-import { convertFullWidthToHalfWidth, convertSymbolToHalfWidth } from '@/utils'
+
 import IconSearch from '@/components/icons/IconSearch.vue'
+import { convertFullWidthToHalfWidth, convertSymbolToHalfWidth } from '@/utils'
 
 defineProps<{
   datalist?: string[]

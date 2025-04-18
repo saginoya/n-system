@@ -1,7 +1,9 @@
 import { computed } from 'vue'
-import { isSingleByte } from '@/utils'
-import type { Ref } from 'vue'
+
 import type { Lang, SortType, Exhibitor } from '@/types'
+import { isSingleByte } from '@/utils'
+
+import type { Ref } from 'vue'
 
 export const useExhibitorListHeading = (
   exhibitorList: Ref<Exhibitor[]>,

@@ -1,4 +1,5 @@
 import { ref } from 'vue'
+
 import { useEventListener } from '@/composables/useEventListener'
 
 export const useScroll = () => {

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import NTooltipBookmark from '@/components/parts/NTooltipBookmark.vue'
-import { borderColorMap, textColorMap } from '@/styles'
 import { useLang } from '@/composables/useLang'
+import { borderColorMap, textColorMap } from '@/styles'
 import type { Color } from '@/types'
 
 withDefaults(

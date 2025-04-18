@@ -1,4 +1,5 @@
 import { expect, test } from 'vitest'
+
 import { trim, isSingleByte, convertKatakanaToHiragana } from '@/utils'
 
 test('trim function', () => {

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import NLinkText from '@/components/parts/NLinkText.vue'
-import { isCurrentPage } from '@/utils'
 import type { LinkType } from '@/types'
+import { isCurrentPage } from '@/utils'
 
 defineProps<{
   href: string

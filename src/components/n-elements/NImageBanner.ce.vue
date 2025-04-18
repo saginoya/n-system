@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import NImage from '@/components/n-elements/NImage.ce.vue'
-import { getLinkTarget, linkIconMap } from '@/utils'
-import { usePublishedState } from '@/composables/usePublishedState'
 
+import NImage from '@/components/n-elements/NImage.ce.vue'
+import { usePublishedState } from '@/composables/usePublishedState'
 import type { LinkType, PublishedState } from '@/types'
+import { getLinkTarget, linkIconMap } from '@/utils'
 
 const props = withDefaults(
   defineProps<{

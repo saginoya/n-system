@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+
 import IconBookmark from '@/components/icons/IconBookmark.vue'
 import { textColorMap } from '@/styles'
 import type { Color } from '@/types'

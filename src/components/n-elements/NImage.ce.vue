@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+
 import type { Image } from '@/types'
 
 const props = defineProps<

@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import type { Color, LinkType, PublishedState } from '@/types'
-
 import { computed } from 'vue'
-import { usePublishedState } from '@/composables/usePublishedState'
-import { variantConceptMap, Variant } from '@/styles'
-import { getLinkTarget, linkIconMap, formatDate } from '@/utils'
-import { cn } from '@/lib/cn'
 
 import IconClock from '@/components/icons/IconClock.vue'
+import { usePublishedState } from '@/composables/usePublishedState'
+import { cn } from '@/lib/cn'
+import { variantConceptMap, Variant } from '@/styles'
+import type { Color, LinkType, PublishedState } from '@/types'
+import { getLinkTarget, linkIconMap, formatDate } from '@/utils'
 
 const props = withDefaults(
   defineProps<{

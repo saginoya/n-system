@@ -15,7 +15,6 @@ import IconSDGsEn14 from '@/components/icons/SDGs/IconSDGsEn14.vue'
 import IconSDGsEn15 from '@/components/icons/SDGs/IconSDGsEn15.vue'
 import IconSDGsEn16 from '@/components/icons/SDGs/IconSDGsEn16.vue'
 import IconSDGsEn17 from '@/components/icons/SDGs/IconSDGsEn17.vue'
-
 import IconSDGsJa01 from '@/components/icons/SDGs/IconSDGsJa01.vue'
 import IconSDGsJa02 from '@/components/icons/SDGs/IconSDGsJa02.vue'
 import IconSDGsJa03 from '@/components/icons/SDGs/IconSDGsJa03.vue'

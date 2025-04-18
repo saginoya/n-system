@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { getLinkTarget } from '@/utils'
+
 import { bgColorMap } from '@/styles'
 import type { Color, LinkType } from '@/types'
+import { getLinkTarget } from '@/utils'
 
 const props = defineProps<{
   color: Color

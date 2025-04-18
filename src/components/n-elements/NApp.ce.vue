@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
-import { setBodyVisibility } from '@/utils'
 
 import LayoutDefault from '@/components/layouts/LayoutDefault.vue'
 import LayoutIndex from '@/components/layouts/LayoutIndex.vue'
-import NTransitionFade from '@/components/parts/NTransitionFade.vue'
 import NModalPageLoading from '@/components/parts/NModalPageLoading.vue'
+import NTransitionFade from '@/components/parts/NTransitionFade.vue'
+import { setBodyVisibility } from '@/utils'
 
 const props = defineProps<{
   jsonPath: string

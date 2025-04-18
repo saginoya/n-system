@@ -2,10 +2,10 @@ import { defineCustomElement } from 'vue'
 import './assets/css/main.css'
 
 // Components
-import NApp from './components/n-elements/NApp.ce.vue'
 import NAlert from './components/n-elements/NAlert.ce.vue'
 import NAnnotation from './components/n-elements/NAnnotation.ce.vue'
 import NAnnotationLight from './components/n-elements/NAnnotationLight.ce.vue'
+import NApp from './components/n-elements/NApp.ce.vue'
 import NBanner from './components/n-elements/NBanner.ce.vue'
 import NBreakpointSwitcher from './components/n-elements/NBreakpointSwitcher.ce.vue'
 import NCard from './components/n-elements/NCard.ce.vue'
@@ -21,7 +21,6 @@ import NContainerVerticalGrow from './components/n-elements/NContainerVerticalGr
 import NContainerXScroll from './components/n-elements/NContainerXScroll.ce.vue'
 import NElapsed from './components/n-elements/NElapsed.ce.vue'
 import NExhibitorsNexpo from './components/n-elements/NExhibitorsNexpo.ce.vue'
-import NFixed from './components/parts/NFixed.ce.vue'
 import NIcon from './components/n-elements/NIcon.ce.vue'
 import NImage from './components/n-elements/NImage.ce.vue'
 import NImageBanner from './components/n-elements/NImageBanner.ce.vue'
@@ -49,6 +48,7 @@ import NTitleLv4 from './components/n-elements/NTitleLv4.ce.vue'
 import NTitleLv5 from './components/n-elements/NTitleLv5.ce.vue'
 import NTooltipInfo from './components/n-elements/NTooltipInfo.ce.vue'
 import NYoutube from './components/n-elements/NYoutube.ce.vue'
+import NFixed from './components/parts/NFixed.ce.vue'
 
 customElements.define('n-app', defineCustomElement(NApp))
 customElements.define('n-alert', defineCustomElement(NAlert))

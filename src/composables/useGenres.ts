@@ -1,6 +1,7 @@
 import { ref, onMounted } from 'vue'
-import { getJson } from '@/utils'
+
 import type { Lang, Genre } from '@/types'
+import { getJson } from '@/utils'
 
 export const useGenres = (src: string) => {
   // ジャンルのリスト

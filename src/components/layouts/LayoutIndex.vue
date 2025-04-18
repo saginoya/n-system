@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import NHeader from '@/components/parts/NHeader.vue'
 import NHeaderTool from '@/components/parts/NHeaderTool.vue'
-import NMainVisual from '@/components/parts/NMainVisual.vue'
 import NListNavRow from '@/components/parts/NListNavRow.vue'
+import NMainVisual from '@/components/parts/NMainVisual.vue'
 import NOverlay from '@/components/parts/NOverlay.vue'
 import { useConfig } from '@/composables/useConfig'
 import { useDrawer } from '@/composables/useDrawer'
