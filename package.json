@@ -29,6 +29,7 @@
     "autoprefixer": "^10.4.20",
     "clsx": "^2.1.1",
     "eslint": "^9.17.0",
+    "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-tailwindcss": "^3.17.0",
     "eslint-plugin-vue": "^9.23.0",
     "jsdom": "^25.0.1",
