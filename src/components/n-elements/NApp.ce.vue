@@ -3,8 +3,8 @@ import { ref, computed, onMounted } from 'vue'
 
 import LayoutDefault from '@/components/layouts/LayoutDefault.vue'
 import LayoutIndex from '@/components/layouts/LayoutIndex.vue'
-import NModalPageLoading from '@/components/parts/NModalPageLoading.vue'
-import NTransitionFade from '@/components/parts/NTransitionFade.vue'
+import ModalPageLoading from '@/components/parts/ModalPageLoading.vue'
+import TransitionFade from '@/components/parts/TransitionFade.vue'
 import { setBodyVisibility } from '@/utils'
 
 const props = defineProps<{
@@ -34,16 +34,16 @@ onMounted(() => {
 </script>
 
 <template>
-  <NTransitionFade>
+  <TransitionFade>
     <div v-if="isLoading">
-      <NModalPageLoading />
+      <ModalPageLoading />
     </div>
     <div v-else>
       <component :is="layoutComp" :json-path="jsonPath">
         <slot />
       </component>
     </div>
-  </NTransitionFade>
+  </TransitionFade>
 </template>
 
 <style>

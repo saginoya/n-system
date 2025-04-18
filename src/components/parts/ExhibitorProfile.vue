@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import NChip from '@/components/n-elements/NChip.ce.vue'
 import NLink from '@/components/n-elements/NLink.ce.vue'
-import NSDGsIcons from '@/components/parts/NSDGsIcons.vue'
+import SDGsIcons from '@/components/parts/SDGsIcons.vue'
 import type { Exhibitor, Lang } from '@/types'
 import type { SDGsNumType } from '@/utils'
 
@@ -74,7 +74,7 @@ const texts = {
       <div v-if="exhibitor.sdgs" class="grid grid-cols-1 gap-2 py-2 sm:grid-cols-4 md:grid-cols-6">
         <dt class="font-bold">{{ texts[lang].sdgs }}</dt>
         <dd class="sm:col-span-3 md:col-span-5">
-          <NSDGsIcons :numbers="exhibitor.sdgs as SDGsNumType[]"></NSDGsIcons>
+          <SDGsIcons :numbers="exhibitor.sdgs as SDGsNumType[]"></SDGsIcons>
         </dd>
       </div>
     </dl>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import NLinkText from '@/components/parts/NLinkText.vue'
+import LinkText from '@/components/parts/LinkText.vue'
 import { bgColorMap } from '@/styles'
 import type { Color, LinkType } from '@/types'
 
@@ -12,7 +12,7 @@ defineProps<{
 
 <template>
   <component
-    :is="href ? NLinkText : 'span'"
+    :is="href ? LinkText : 'span'"
     :href="href ? href : null"
     :type="href ? type || 'internal' : null"
     class="inline-block overflow-hidden rounded-full px-3 py-1 align-middle text-white"

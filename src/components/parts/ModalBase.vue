@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import NCard from '@/components/n-elements/NCard.ce.vue'
-import NBtnClose from '@/components/parts/NBtnClose.vue'
-import NOverlay from '@/components/parts/NOverlay.vue'
-import NTransitionScale from '@/components/parts/NTransitionScale.vue'
+import BtnClose from '@/components/parts/BtnClose.vue'
+import OverlayBase from '@/components/parts/OverlayBase.vue'
+import TransitionScale from '@/components/parts/TransitionScale.vue'
 
 defineProps<{
   visible: boolean
@@ -11,15 +11,15 @@ defineProps<{
 </script>
 
 <template>
-  <NOverlay v-show="visible" class="z-50" @click="closeAction">
-    <NTransitionScale>
+  <OverlayBase v-show="visible" class="z-50" @click="closeAction">
+    <TransitionScale>
       <NCard
         v-show="visible"
         @click.stop
         class="relative max-h-full min-w-[60%] max-w-full"
         role="dialog"
       >
-        <NBtnClose class="absolute -right-4 -top-4" @click="closeAction"></NBtnClose>
+        <BtnClose class="absolute -right-4 -top-4" @click="closeAction"></BtnClose>
         <header>
           <slot name="header" />
         </header>
@@ -30,6 +30,6 @@ defineProps<{
           <slot name="footer" />
         </footer>
       </NCard>
-    </NTransitionScale>
-  </NOverlay>
+    </TransitionScale>
+  </OverlayBase>
 </template>

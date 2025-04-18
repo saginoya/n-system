@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import NChip from '@/components/n-elements/NChip.ce.vue'
-import NTooltipBookmark from '@/components/parts/NTooltipBookmark.vue'
+import TooltipBookmark from '@/components/parts/TooltipBookmark.vue'
 import type { Exhibitor } from '@/types'
 
 const props = defineProps<{
@@ -27,11 +27,11 @@ const { id, koma, name, contents, color } = props.items
         <p v-html="contents" class="truncate text-gray-400"></p>
       </div>
       <div class="text-center">
-        <NTooltipBookmark
+        <TooltipBookmark
           :active="favorite"
           color="success"
           @click.stop="favoriteMethod(id)"
-        ></NTooltipBookmark>
+        ></TooltipBookmark>
       </div>
     </div>
   </li>

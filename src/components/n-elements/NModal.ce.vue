@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import NBtn from '@/components/parts/NBtn.vue'
-import NModalBase from '@/components/parts/NModalBase.vue'
+import Btn from '@/components/parts/BtnBase.vue'
+import ModalBase from '@/components/parts/ModalBase.vue'
 import { useModal } from '@/composables/useModal'
 
 defineProps<{
@@ -16,12 +16,12 @@ const { visible, show, dismiss } = useModal()
       {{ btnTitle }}
     </slot>
   </button>
-  <NModalBase :visible :close-action="dismiss">
+  <ModalBase :visible :close-action="dismiss">
     <slot />
     <template #footer>
-      <NBtn color="gray" variant="text" :action="dismiss">Close</NBtn>
+      <Btn color="gray" variant="text" :action="dismiss">Close</Btn>
     </template>
-  </NModalBase>
+  </ModalBase>
 </template>
 
 <style>

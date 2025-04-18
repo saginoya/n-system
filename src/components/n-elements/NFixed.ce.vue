@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import NBtnClose from '@/components/parts/NBtnClose.vue'
+import BtnClose from '@/components/parts/BtnClose.vue'
 import { useModal } from '@/composables/useModal'
 
 defineProps<{
@@ -32,7 +32,7 @@ const displayClass = computed<string>(() => {
 <template>
   <div class="fixed" :class="`${displayClass} ${positionOptions[position]}`">
     <slot />
-    <NBtnClose size="sm" @click="dismiss()"></NBtnClose>
+    <BtnClose size="sm" @click="dismiss()"></BtnClose>
   </div>
 </template>
 

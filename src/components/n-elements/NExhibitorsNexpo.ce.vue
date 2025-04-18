@@ -4,15 +4,15 @@ import { ref, computed, watchEffect } from 'vue'
 import NListDisc from '@/components/n-elements/NListDisc.ce.vue'
 import NTitleLv3 from '@/components/n-elements/NTitleLv3.ce.vue'
 import NTooltipInfo from '@/components/n-elements/NTooltipInfo.ce.vue'
-import NBtn from '@/components/parts/NBtn.vue'
-import NExhibitorListHeading from '@/components/parts/NExhibitorListHeading.vue'
-import NExhibitorListItem from '@/components/parts/NExhibitorListItem.vue'
-import NExhibitorProfile from '@/components/parts/NExhibitorProfile.vue'
-import NInputSearch from '@/components/parts/NInputSearch.vue'
-import NModalBase from '@/components/parts/NModalBase.vue'
-import NSwitcBookmark from '@/components/parts/NSwitcBookmark.vue'
-import NSwitch from '@/components/parts/NSwitch.vue'
-import NTabs from '@/components/parts/NTabs.vue'
+import Btn from '@/components/parts/BtnBase.vue'
+import ExhibitorListHeading from '@/components/parts/ExhibitorListHeading.vue'
+import ExhibitorListItem from '@/components/parts/ExhibitorListItem.vue'
+import ExhibitorProfile from '@/components/parts/ExhibitorProfile.vue'
+import InputSearch from '@/components/parts/InputSearch.vue'
+import ModalBase from '@/components/parts/ModalBase.vue'
+import SwitcBookmark from '@/components/parts/SwitcBookmark.vue'
+import SwitchBase from '@/components/parts/SwitchBase.vue'
+import TabsBase from '@/components/parts/TabsBase.vue'
 import { useExhibitorList } from '@/composables/useExhibitorList'
 import { useExhibitorListFavorite } from '@/composables/useExhibitorListFavorite'
 import { useExhibitorListFilter } from '@/composables/useExhibitorListFilter'
@@ -111,17 +111,17 @@ const showModal = (exhibitor: Exhibitor) => {
     <div class="flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
       <!-- ソートの条件タブ -->
       <div class="text-center">
-        <NTabs
+        <TabsBase
           v-model="stateSort"
           name="sort"
           :values="['name', 'koma']"
           :labels="sortLabel[lang]"
-        ></NTabs>
+        ></TabsBase>
       </div>
 
       <div class="flex flex-col sm:flex-row sm:items-center">
         <!-- キーワードフィルターのインプット -->
-        <NInputSearch v-model="stateKeyword" :datalist="genresList"></NInputSearch>
+        <InputSearch v-model="stateKeyword" :datalist="genresList"></InputSearch>
         <!-- キーワードフィルターのインフォメーション -->
         <NTooltipInfo location="left">
           <div v-if="lang === 'ja'">
@@ -152,23 +152,23 @@ const showModal = (exhibitor: Exhibitor) => {
     <div class="flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
       <!-- 展示会フィルターのスイッチ -->
       <div class="flex gap-2">
-        <NSwitch
+        <SwitchBase
           id="nexpo"
           v-model="nexpo"
           :label="exhibitions.nexpo[lang]"
           :color="exhibitions.nexpo.color"
-        ></NSwitch>
-        <NSwitch
+        ></SwitchBase>
+        <SwitchBase
           id="gwpe"
           v-model="gwpe"
           :label="exhibitions.gwpe[lang]"
           :color="exhibitions.gwpe.color"
-        ></NSwitch>
+        ></SwitchBase>
       </div>
 
       <div class="flex flex-col sm:flex-row sm:items-center">
         <!-- お気に入りフィルターのタブ -->
-        <NSwitcBookmark name="bookmark" v-model="stateFavorite" color="success"></NSwitcBookmark>
+        <SwitcBookmark name="bookmark" v-model="stateFavorite" color="success"></SwitcBookmark>
 
         <!-- お気に入りフィルターのインフォメーション -->
         <NTooltipInfo location="left">
@@ -226,31 +226,31 @@ const showModal = (exhibitor: Exhibitor) => {
   <!-- 出展社の一覧リスト -->
   <ul class="divide-y">
     <template v-for="(exhibitor, index) in exhibitorList" :key="exhibitor.id">
-      <NExhibitorListHeading v-if="headings[index]">
+      <ExhibitorListHeading v-if="headings[index]">
         {{ headings[index] }}
-      </NExhibitorListHeading>
-      <NExhibitorListItem
+      </ExhibitorListHeading>
+      <ExhibitorListItem
         v-show="validateExhibitor(exhibitor)"
         :items="exhibitor"
         :favorite="myFavorites.includes(exhibitor.id)"
         :favorite-method="switchFavorite"
         @click="showModal(exhibitor)"
-      ></NExhibitorListItem>
+      ></ExhibitorListItem>
     </template>
   </ul>
 
   <!-- モーダルウインドウ（出展社の詳細情報） -->
-  <NModalBase :visible :close-action="dismiss">
-    <NExhibitorProfile
+  <ModalBase :visible :close-action="dismiss">
+    <ExhibitorProfile
       v-if="currentExhibitor"
       :lang="lang"
       :exhibitor="currentExhibitor"
-    ></NExhibitorProfile>
+    ></ExhibitorProfile>
     <p v-else>情報がありません。</p>
     <template #footer>
-      <NBtn color="gray" variant="text" @click="dismiss()">Close</NBtn>
+      <Btn color="gray" variant="text" @click="dismiss()">Close</Btn>
     </template>
-  </NModalBase>
+  </ModalBase>
 </template>
 
 <style>

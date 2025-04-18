@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import NTransitionFade from '@/components/parts/NTransitionFade.vue'
+import TransitionFade from '@/components/parts/TransitionFade.vue'
 </script>
 
 <template>
-  <NTransitionFade>
+  <TransitionFade>
     <div
       class="fixed left-0 top-0 flex h-screen w-full items-center justify-center bg-black/20 p-6 backdrop-blur-sm"
     >
       <slot />
     </div>
-  </NTransitionFade>
+  </TransitionFade>
 </template>
