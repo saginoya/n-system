@@ -1,4 +1,4 @@
-export const justifyOptions = {
+export const justifyMap = {
   start: 'justify-start',
   end: 'justify-end',
   center: 'justify-center',
@@ -8,11 +8,11 @@ export const justifyOptions = {
   stretch: 'justify-stretch',
   baseline: 'justify-baseline',
   normal: 'justify-normal',
-}
+} as const
 
-export type Justify = keyof typeof justifyOptions
+export type Justify = keyof typeof justifyMap
 
-export const justifyMdOptions: Record<Justify, string> = {
+export const justifyMdMap: Record<Justify, string> = {
   start: 'md:justify-start',
   end: 'md:justify-end',
   center: 'md:justify-center',
@@ -22,14 +22,14 @@ export const justifyMdOptions: Record<Justify, string> = {
   stretch: 'md:justify-stretch',
   baseline: 'md:justify-baseline',
   normal: 'md:justify-normal',
-}
+} as const
 
-export const alignItemsOptions = {
+export const alignItemsMap = {
   start: 'items-start',
   end: 'items-end',
   center: 'items-center',
   baseline: 'items-baseline',
   stretch: 'items-stretch',
-}
+} as const
 
-export type AlignItems = keyof typeof alignItemsOptions
+export type AlignItems = keyof typeof alignItemsMap

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { justifyOptions, justifyMdOptions } from '@/styles'
+import { justifyMap, justifyMdMap } from '@/styles'
 import type { Justify } from '@/styles'
 
 const props = defineProps<{
@@ -9,8 +9,8 @@ const props = defineProps<{
 
 const justifyStyles = (): (string | null)[] => {
   return [
-    props.justify ? justifyOptions[props.justify] : null,
-    props.justifyMd ? justifyMdOptions[props.justifyMd] : null,
+    props.justify ? justifyMap[props.justify] : null,
+    props.justifyMd ? justifyMdMap[props.justifyMd] : null,
   ]
 }
 </script>

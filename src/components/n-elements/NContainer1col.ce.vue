@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { alignItemsOptions } from '@/styles'
+import { alignItemsMap } from '@/styles'
 import type { AlignItems } from '@/styles'
 
 const props = withDefaults(
@@ -25,7 +25,7 @@ const gapOptions = {
 
 type GapOptions = keyof typeof gapOptions
 
-const variant: string[] = [gapOptions[props.gap], alignItemsOptions[props.aline]]
+const variant: string[] = [gapOptions[props.gap], alignItemsMap[props.aline]]
 </script>
 
 <template>
