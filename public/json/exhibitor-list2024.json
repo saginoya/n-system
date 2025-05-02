@@ -10,7 +10,7 @@
     "order": "ルウフ",
     "orderEng": "ROOPCORPORATION",
     "webSite": "https://www.loop-create.com/",
-    "contents": "映像制作 ホームページ制作 WEBマーケティング全般",
+    "contents": "映像制作 ホームページ制作 WEBマーケティング全般&#174;",
     "contentsEng": null,
     "categories": ["地球温暖化防止展 その他", "NEW環境展 その他"],
     "categoriesEng": ["GWPE Others", "N-Expo Others"],
@@ -29,11 +29,7 @@
     "webSite": "http://www.eco-material-metal.jp",
     "contents": "工業用の非鉄金属・レアメタル・貴金属の買取 インゴットの精錬",
     "contentsEng": "Purchase of non-ferrous metals and precious metals for industrial use Refining of ingots",
-    "categories": [
-      "金属回収・リサイクル",
-      "レアメタル回収・リサイクル",
-      "廃電線リサイクル・剥離"
-    ],
+    "categories": ["金属回収・リサイクル", "レアメタル回収・リサイクル", "廃電線リサイクル・剥離"],
     "categoriesEng": [
       "Metal Recovery, Recycling",
       "Rare Metal Recovery, Recycling",
@@ -109,11 +105,7 @@
       "冷却アイテム",
       "地球温暖化防止展ベンチャーコーナー"
     ],
-    "categoriesEng": [
-      "Wear with Fans, Cooling Clothing",
-      "Cooling Items",
-      "GWPE Venture"
-    ],
+    "categoriesEng": ["Wear with Fans, Cooling Clothing", "Cooling Items", "GWPE Venture"],
     "sdgs": [3, 8, 16, 17]
   },
   {
@@ -129,16 +121,8 @@
     "webSite": "https://www.kajiwara-ltd.co.jp/",
     "contents": "イタリア・ZUCCATO ENERGIA社製ORC発電システム",
     "contentsEng": "ORC system by Zuccato Energia/Italy We transform unused and wasted power into clean electricity",
-    "categories": [
-      "地球温暖化防止展ベンチャーコーナー",
-      "バイナリー発電",
-      "廃熱有効利用"
-    ],
-    "categoriesEng": [
-      "GWPE Venture",
-      "Binary Power",
-      "Waste Heat (effective) Utilization"
-    ],
+    "categories": ["地球温暖化防止展ベンチャーコーナー", "バイナリー発電", "廃熱有効利用"],
+    "categoriesEng": ["GWPE Venture", "Binary Power", "Waste Heat (effective) Utilization"],
     "sdgs": [3, 7, 8, 9, 11, 12, 13, 17]
   },
   {
@@ -180,10 +164,7 @@
     "contents": "廃食用油から生分解性潤滑油やCO2削減にバイオ燃料を製造販売の提案",
     "contentsEng": "Recyclers",
     "categories": ["廃油、廃酸、廃アルカリ処理関連", "リサイクル業者"],
-    "categoriesEng": [
-      "Waste Oil, Wasted acid, Wasted alkali Treatment",
-      "Recyclers"
-    ],
+    "categoriesEng": ["Waste Oil, Wasted acid, Wasted alkali Treatment", "Recyclers"],
     "sdgs": [6, 7, 13, 14, 15]
   },
   {
@@ -224,16 +205,8 @@
     "webSite": "https://takumi-w.co.jp/",
     "contents": "水冷式冷却ベスト「クールガイアクア」",
     "contentsEng": null,
-    "categories": [
-      "冷却アイテム",
-      "ファン付きウェア・冷感ウェア",
-      "防護服関連"
-    ],
-    "categoriesEng": [
-      "Cooling Items",
-      "Wear with Fans, Cooling Clothing",
-      "Protective Clothing"
-    ],
+    "categories": ["冷却アイテム", "ファン付きウェア・冷感ウェア", "防護服関連"],
+    "categoriesEng": ["Cooling Items", "Wear with Fans, Cooling Clothing", "Protective Clothing"],
     "sdgs": null
   },
   {
@@ -359,10 +332,7 @@
     "contents": "省電力除湿冷暖装置「E-Comfort」と空調機節電器を展示",
     "contentsEng": "Energy Saving in General",
     "categories": ["冷風機・エアコン", "省エネ総合"],
-    "categoriesEng": [
-      "Cool Air Machines, Air Conditioning",
-      "Energy Saving in General"
-    ],
+    "categoriesEng": ["Cool Air Machines, Air Conditioning", "Energy Saving in General"],
     "sdgs": [13]
   },
   {
@@ -395,10 +365,7 @@
     "webSite": "https://www.toki-water.jp/",
     "contents": "火災、震災等各災害から企業様、社員様を守るための設備を案内",
     "contentsEng": null,
-    "categories": [
-      "安全・防火・防塵・周辺住民対策、作業環境改善、体調管理",
-      "救急・BCP関連"
-    ],
+    "categories": ["安全・防火・防塵・周辺住民対策、作業環境改善、体調管理", "救急・BCP関連"],
     "categoriesEng": [
       "Accident Prevention, Fire Prevention, Dust Prevention, Measures for Neighborhood, Working Environment Improvement, Health Management",
       "Emergency, Business Continuity Plans"
@@ -418,11 +385,7 @@
     "webSite": "https://www.kayama-k.co.jp/",
     "contents": "産業廃棄物中間処理、太陽光パネルリサイクル、SDGs実装支援",
     "contentsEng": null,
-    "categories": [
-      "廃棄物処理・リサイクル事業者",
-      "太陽光パネルリサイクル",
-      "SDGs活動・支援事業"
-    ],
+    "categories": ["廃棄物処理・リサイクル事業者", "太陽光パネルリサイクル", "SDGs活動・支援事業"],
     "categoriesEng": [
       "Waste Disposer, Recyclers",
       "Solar Panel Recycling",
@@ -444,11 +407,7 @@
     "contents": "安藤ハザマが手掛ける脱炭素対策と水素社会実現に向けた技術を紹介",
     "contentsEng": null,
     "categories": ["太陽光発電", "水素・燃料電池", "地球温暖化防止展 その他"],
-    "categoriesEng": [
-      "Solar Photovoltaic Generation",
-      "Hydrogen, Fuel Cells",
-      "GWPE Others"
-    ],
+    "categoriesEng": ["Solar Photovoltaic Generation", "Hydrogen, Fuel Cells", "GWPE Others"],
     "sdgs": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
   },
   {
@@ -516,11 +475,7 @@
     "contents": "流動床式バイオマスボイラ、真空乾燥機、流動床式焼却炉、鶏糞ボイラ",
     "contentsEng": null,
     "categories": ["肥料化プラント", "焼却", "バイオマスボイラー"],
-    "categoriesEng": [
-      "Fertilizer Production Plants",
-      "Incineration",
-      "Biomass Boilers"
-    ],
+    "categoriesEng": ["Fertilizer Production Plants", "Incineration", "Biomass Boilers"],
     "sdgs": [13]
   },
   {
@@ -536,11 +491,7 @@
     "webSite": "https://www.maruei-gas.co.jp/",
     "contents": "廃棄物を燃料とするRPFボイラー、万能型燃焼炉ボイラーの紹介",
     "contentsEng": null,
-    "categories": [
-      "炭化・乾燥・ボイラー",
-      "廃棄物焼却熱利用関連技術",
-      "バイオマスボイラー"
-    ],
+    "categories": ["炭化・乾燥・ボイラー", "廃棄物焼却熱利用関連技術", "バイオマスボイラー"],
     "categoriesEng": [
       "Carbonizers, Dryers, Boilers",
       "Waste Heat Recovery Technologies",
@@ -595,11 +546,7 @@
     "webSite": "http://www.supersol.jp/",
     "contents": "廃ガラスから生まれた軽量資材スーパーソルの特長や幅広い用途を紹介",
     "contentsEng": null,
-    "categories": [
-      "土木資材",
-      "建設コンサルティング",
-      "地盤改良材(道路・上下水道)"
-    ],
+    "categories": ["土木資材", "建設コンサルティング", "地盤改良材(道路・上下水道)"],
     "categoriesEng": [
       "Civil Engineering Materials",
       "Construction Consulting",
@@ -764,11 +711,7 @@
     "webSite": "https://www.und-meer.com/",
     "contents": "産廃・金属リサイクル業界向け配車管理システム ecoA DP",
     "contentsEng": null,
-    "categories": [
-      "配車システム",
-      "物流システム・廃棄物輸送システム",
-      "物流事務ソフト"
-    ],
+    "categories": ["配車システム", "物流システム・廃棄物輸送システム", "物流事務ソフト"],
     "categoriesEng": [
       "Car Dispatch Systems",
       "Logistics Systems, Waste Transport Systems",
@@ -790,10 +733,7 @@
     "contents": "e-マニフェストASP、マニプラ2、DustBank",
     "contentsEng": null,
     "categories": ["廃棄物管理ソフト", "マニフェスト管理ソフト"],
-    "categoriesEng": [
-      "Waste Management Software",
-      "Manifest Management Software"
-    ],
+    "categoriesEng": ["Waste Management Software", "Manifest Management Software"],
     "sdgs": null
   },
   {
@@ -860,9 +800,7 @@
     "contents": "膜モジュールポリエチレンヘッダー管・BioPVC素材バルブ",
     "contentsEng": "Membrane module polyethylene header pipe and Bio-PVC material ball-valve",
     "categories": ["バイオプラスチック関連製品・環境対応新素材"],
-    "categoriesEng": [
-      "Bioplastic and Related Products, New Ecological Materials"
-    ],
+    "categoriesEng": ["Bioplastic and Related Products, New Ecological Materials"],
     "sdgs": [6, 11, 12, 13]
   },
   {
@@ -920,11 +858,7 @@
     "webSite": "https://mirai-connect.com/",
     "contents": "使用済みプラスチックの熱分解ケミカルリサイクル技術:パイロリナジー",
     "contentsEng": "Pyrorenergy; Pyrolysis chemical recycling technology for Used Plastics",
-    "categories": [
-      "ケミカル・マテリアルリサイクル",
-      "廃プラ処理・再資源化",
-      "リサイクル装置"
-    ],
+    "categories": ["ケミカル・マテリアルリサイクル", "廃プラ処理・再資源化", "リサイクル装置"],
     "categoriesEng": [
       "Chemical Recycling, Material Recycling",
       "Treatment of Disposed Plastics and Recycling",
@@ -963,10 +897,7 @@
     "contents": "ダンプアップをすることなく荷物を下ろす事ができるセミトレーラー",
     "contentsEng": null,
     "categories": ["建設機械", "収集運搬車両"],
-    "categoriesEng": [
-      "Construction Machinery",
-      "Collection, Transport Vehicles"
-    ],
+    "categoriesEng": ["Construction Machinery", "Collection, Transport Vehicles"],
     "sdgs": [8]
   },
   {
@@ -999,10 +930,7 @@
     "webSite": "https://www.kaisuimaren.co.jp",
     "contents": "業務用ゴミ箱、カート、ゴミステーションなどの環境用品を展示",
     "contentsEng": null,
-    "categories": [
-      "自治体・行政・団体の販路開拓事業・環境活動",
-      "コンテナ・ボックス"
-    ],
+    "categories": ["自治体・行政・団体の販路開拓事業・環境活動", "コンテナ・ボックス"],
     "categoriesEng": [
       "Environmental Activities and Market Development Business of Local Governments",
       "Container and Box"
@@ -1022,11 +950,7 @@
     "webSite": "https://tani-k.jp/",
     "contents": "産廃用コンテナ・コンテナ位置情報管理システム・自動手動開閉シート",
     "contentsEng": "Container and Box",
-    "categories": [
-      "コンテナ・ボックス",
-      "フレコンバック",
-      "物流管理システム・位置検知システム"
-    ],
+    "categories": ["コンテナ・ボックス", "フレコンバック", "物流管理システム・位置検知システム"],
     "categoriesEng": [
       "Container and Box",
       "Flexible Container Bags",
@@ -1047,11 +971,7 @@
     "webSite": "https://www.maruhou.co.jp/",
     "contents": "アスベスト調査分析から除去工事までワンストップで提案",
     "contentsEng": null,
-    "categories": [
-      "アスベスト除去工法",
-      "アスベスト調査・測定・分析機器",
-      "石綿事前調査システム"
-    ],
+    "categories": ["アスベスト除去工法", "アスベスト調査・測定・分析機器", "石綿事前調査システム"],
     "categoriesEng": [
       "Asbestos Removal Technologies",
       "Asbestos Inspection, Measuring, Analysis Machinery ",
@@ -1090,10 +1010,7 @@
     "contents": "新型負圧集塵機",
     "contentsEng": null,
     "categories": ["ダイオキシン関連", "環境対策(騒音・振動・粉じん対策)"],
-    "categoriesEng": [
-      "Dioxin",
-      "Environmental Measure (Noise, Vibration, Dust Control)"
-    ],
+    "categoriesEng": ["Dioxin", "Environmental Measure (Noise, Vibration, Dust Control)"],
     "sdgs": [11]
   },
   {
@@ -1134,11 +1051,7 @@
     "webSite": "http://www.kyowakako.co.jp/",
     "contents": "排ガス処理装置、脱臭装置、FRPファン、ボックスファン",
     "contentsEng": null,
-    "categories": [
-      "集塵・排ガス処理",
-      "脱臭・消臭装置(剤)・バイオ製剤",
-      "スクラバー・洗浄機"
-    ],
+    "categories": ["集塵・排ガス処理", "脱臭・消臭装置(剤)・バイオ製剤", "スクラバー・洗浄機"],
     "categoriesEng": [
       "Dust Collection and Exhaust Gas Treatment",
       "Deodorization Devices (agents) and Biological Products",
@@ -1184,11 +1097,7 @@
     "webSite": "https://www.ryosei-gc.co.jp/",
     "contents": "集塵機",
     "contentsEng": null,
-    "categories": [
-      "環境対策(騒音・振動・粉じん対策)",
-      "粉塵・騒音・振動対策",
-      "集塵・排ガス処理"
-    ],
+    "categories": ["環境対策(騒音・振動・粉じん対策)", "粉塵・騒音・振動対策", "集塵・排ガス処理"],
     "categoriesEng": [
       "Environmental Measure (Noise, Vibration, Dust Control)",
       "Dust, Noise and Vibration Countermeasures",
@@ -1313,10 +1222,7 @@
     "contents": "バードコントロールサービス / 感動洗浄",
     "contentsEng": "Bird Control Services",
     "categories": ["NEW環境展 ベンチャー", "鳥獣害対策"],
-    "categoriesEng": [
-      "N-Expo Venture Corner",
-      "Bird and Beast Damage Countermeasures"
-    ],
+    "categoriesEng": ["N-Expo Venture Corner", "Bird and Beast Damage Countermeasures"],
     "sdgs": [3, 12]
   },
   {
@@ -1357,11 +1263,7 @@
     "webSite": "https://www.wako-industry.jp/",
     "contents": "オリジナルの機械開発、既存の建設機械、産業機械修理等相談下さい",
     "contentsEng": null,
-    "categories": [
-      "選別関連(振動・ふるい・風力・磁力・比重)",
-      "剥離機・分離機",
-      "建設機械"
-    ],
+    "categories": ["選別関連(振動・ふるい・風力・磁力・比重)", "剥離機・分離機", "建設機械"],
     "categoriesEng": [
       "Sorter (Vibration, Wind Power, Magnetic intensity, Density)",
       "Peeling Machines, Separator",
@@ -1441,11 +1343,7 @@
     "webSite": "https://www.toyo.ac.jp/research/industry-government/ciit/",
     "contents": "極限環境微生物で循環型社会を実現し、生活環境を豊かに",
     "contentsEng": "Realize a recycling-oriented society using Extremophiles and enrich our living conditions",
-    "categories": [
-      "廃プラ処理・再資源化",
-      "食品リサイクル関連",
-      "大学・研究機関"
-    ],
+    "categories": ["廃プラ処理・再資源化", "食品リサイクル関連", "大学・研究機関"],
     "categoriesEng": [
       "Treatment of Disposed Plastics and Recycling",
       "Food Recycling",
@@ -1486,10 +1384,7 @@
     "webSite": "https://www.maxis.co.jp",
     "contents": "解体・産廃用建設機械アタッチメント/完全油圧式ワンタッチカプラ",
     "contentsEng": null,
-    "categories": [
-      "建機用アタッチメント",
-      "ドライブレコーダー・バックモニター"
-    ],
+    "categories": ["建機用アタッチメント", "ドライブレコーダー・バックモニター"],
     "categoriesEng": [
       "Working Attachment For Construction Machinery",
       "Drive Recorders, Back Monitors"
@@ -1531,10 +1426,7 @@
     "contents": "複合材を単体分離出来るチェーン式破砕機",
     "contentsEng": null,
     "categories": ["破砕・粉砕・破袋関連", "剥離機・分離機"],
-    "categoriesEng": [
-      "Crushing, Comminution, Bag Breaking ",
-      "Peeling Machines, Separator"
-    ],
+    "categoriesEng": ["Crushing, Comminution, Bag Breaking ", "Peeling Machines, Separator"],
     "sdgs": null
   }
 ]

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import NChip from '@/components/n-elements/NChip.ce.vue'
+import MarkupText from '@/components/parts/MarkupText.vue'
 import TooltipBookmark from '@/components/parts/TooltipBookmark.vue'
 import type { Exhibitor } from '@/types'
 
@@ -23,8 +24,8 @@ const { id, koma, name, contents, color } = props.items
         </NChip>
       </div>
       <div class="col-span-3 sm:col-span-5 md:col-span-7 lg:col-span-10">
-        <p v-html="name" class="font-bold"></p>
-        <p v-html="contents" class="truncate text-gray-400"></p>
+        <MarkupText :content="name" class="font-bold"></MarkupText>
+        <MarkupText v-if="contents" :content="contents" class="truncate text-gray-400"></MarkupText>
       </div>
       <div class="text-center">
         <TooltipBookmark

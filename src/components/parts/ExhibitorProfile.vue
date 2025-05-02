@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import NChip from '@/components/n-elements/NChip.ce.vue'
 import NLink from '@/components/n-elements/NLink.ce.vue'
+import MarkupText from '@/components/parts/MarkupText.vue'
 import SDGsIcons from '@/components/parts/SDGsIcons.vue'
 import type { Exhibitor, Lang } from '@/types'
 import type { SDGsNumType } from '@/utils'
@@ -37,11 +38,8 @@ const texts = {
         <p v-if="exhibitor.subName">{{ exhibitor.subName }}</p>
       </div>
     </header>
-    <div v-if="exhibitor.contents">
-      <p class="bg-gray-100 py-1">
-        {{ exhibitor.contents }}
-      </p>
-    </div>
+    <MarkupText v-if="exhibitor.contents" :content="exhibitor.contents" class="bg-gray-100 py-1">
+    </MarkupText>
     <dl class="divide-y">
       <div class="grid grid-cols-1 gap-2 py-2 sm:grid-cols-4 md:grid-cols-6">
         <dt class="font-bold">{{ exhibitor.exhibition }}</dt>
