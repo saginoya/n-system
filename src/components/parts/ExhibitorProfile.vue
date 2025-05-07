@@ -34,7 +34,9 @@ const texts = {
         }}</NChip>
       </div>
       <div>
-        <h1>{{ exhibitor.name }}</h1>
+        <h1>
+          <MarkupText :content="exhibitor.name"></MarkupText>
+        </h1>
         <p v-if="exhibitor.subName">{{ exhibitor.subName }}</p>
       </div>
     </header>
