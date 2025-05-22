@@ -37,7 +37,7 @@ const texts = {
         <h1>
           <MarkupText :content="exhibitor.name"></MarkupText>
         </h1>
-        <p v-if="exhibitor.subName">{{ exhibitor.subName }}</p>
+        <MarkupText v-if="exhibitor.subName" :content="exhibitor.subName"></MarkupText>
       </div>
     </header>
     <MarkupText v-if="exhibitor.contents" :content="exhibitor.contents" class="bg-gray-100 py-1">
