@@ -20,7 +20,7 @@ export const useExhibitorList = (
   // JSONファイルを取得して出展社リストを初期化
   onMounted(async () => {
     await genres.value
-    const json = await getJson(listSrc)
+    const json = await getJson<JsonExhibitor[]>(listSrc)
 
     await json.map((items: JsonExhibitor) => {
       if (!isJapanese && !items.nameEng) return

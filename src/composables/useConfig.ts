@@ -8,13 +8,20 @@ type MainVisual = {
   lower: Image
 }
 
+type Config = {
+  siteTitle: string[]
+  copyright: string
+  mainVisual: MainVisual
+  navigation: GlobalNav
+}
+
 export const useConfig = (jsonPath: string) => {
   const siteTitle = ref<string[]>()
   const copyright = ref<string>()
   const mainVisual = ref<MainVisual>()
   const navigation = ref<GlobalNav>()
   onMounted(async () => {
-    const config = await getJson(jsonPath)
+    const config = await getJson<Config>(jsonPath)
     siteTitle.value = config.siteTitle
     copyright.value = config.copyright
     mainVisual.value = config.mainVisual
