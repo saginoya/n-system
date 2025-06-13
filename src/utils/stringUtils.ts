@@ -38,7 +38,7 @@ export const convertKatakanaToHiragana = (value: string): string => {
  * @returns 全角英数字が半角に変換された文字列、入力がundefinedの場合はundefined
  */
 export const convertFullWidthToHalfWidth = (value: string | undefined): string | undefined => {
-  if (!value) return undefined
+  if (value === undefined) return undefined
   return value.replace(/[Ａ-Ｚａ-ｚ０-９]/g, (s) => {
     return String.fromCharCode(s.charCodeAt(0) - 0xfee0)
   })
@@ -50,7 +50,7 @@ export const convertFullWidthToHalfWidth = (value: string | undefined): string |
  * @returns 全角記号が半角に変換された文字列、入力がundefinedの場合はundefined
  */
 export const convertSymbolToHalfWidth = (value: string | undefined): string | undefined => {
-  if (!value) return undefined
+  if (value === undefined) return undefined
 
   const symbolMap: { [key: string]: string } = {
     '！': '!',
