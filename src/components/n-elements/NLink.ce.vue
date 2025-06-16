@@ -1,28 +1,34 @@
 <script setup lang="ts">
-import LinkText from '@/components/parts/LinkText.vue'
 import type { LinkType } from '@/types'
-import { isCurrentPage } from '@/utils'
+import { getLinkTarget, linkIconMap, isCurrentPage } from '@/utils'
 
-defineProps<{
+const props = defineProps<{
   href: string
   type: LinkType
-  textAligned?: boolean
+  block?: boolean
 }>()
+
+const displayStyle = props.block ? 'flex' : 'inline-flex'
 </script>
 
 <template>
-  <LinkText
-    class="inline-flex items-center justify-center rounded-full bg-blue-200/10 px-3 py-1 hover:bg-blue-200/30 focus:bg-blue-200/30"
-    :class="{
-      'bg-slate-900/40': isCurrentPage(href),
-      'contrast-75': isCurrentPage(href),
-      '-translate-x-3': textAligned,
-    }"
+  <a
     :href
-    :type
+    :target="getLinkTarget(type)"
+    class="items-center justify-center gap-0.5 border-b border-b-current hover:bg-blue-200/30 focus:bg-blue-200/30"
+    :class="[
+      displayStyle,
+      {
+        'bg-slate-900/40': isCurrentPage(href),
+        'contrast-75': isCurrentPage(href),
+      },
+    ]"
   >
-    <slot />
-  </LinkText>
+    <span>
+      <slot />
+    </span>
+    <component :is="linkIconMap[type]" class="inline" />
+  </a>
 </template>
 
 <style>

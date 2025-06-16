@@ -1,4 +1,4 @@
-import IconChevronRight from '@/components/icons/IconChevronRight.vue'
+import IconArrowRight from '@/components/icons/IconArrowRight.vue'
 import IconDownload from '@/components/icons/IconDownload.vue'
 import IconOpenInNew from '@/components/icons/IconOpenInNew.vue'
 import IconPdf from '@/components/icons/IconPdf.vue'
@@ -11,7 +11,7 @@ export const getLinkTarget = (type: LinkType): '_self' | '_blank' => {
 }
 
 export const linkIconMap: Record<LinkType, Component> = {
-  internal: IconChevronRight,
+  internal: IconArrowRight,
   external: IconOpenInNew,
   pdf: IconPdf,
   download: IconDownload,
