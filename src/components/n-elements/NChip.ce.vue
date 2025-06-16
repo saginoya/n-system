@@ -1,24 +1,34 @@
 <script setup lang="ts">
-import LinkText from '@/components/parts/LinkText.vue'
 import { bgColorMap } from '@/styles'
 import type { Color, LinkType } from '@/types'
+import { getLinkTarget, linkIconMap } from '@/utils'
 
-defineProps<{
-  color: Color
-  href?: string
-  type?: LinkType
-}>()
+defineProps<
+  | {
+      color: Color
+      href: string
+      type: LinkType
+    }
+  | {
+      color: Color
+      href?: undefined
+      type?: undefined
+    }
+>()
 </script>
 
 <template>
   <component
-    :is="href ? LinkText : 'span'"
+    :is="href ? 'a' : 'span'"
     :href="href ? href : null"
-    :type="href ? type || 'internal' : null"
-    class="inline-block overflow-hidden rounded-full px-3 py-1 align-middle text-white"
+    :target="type ? getLinkTarget(type) : null"
+    class="inline-flex items-center justify-center gap-0.5 overflow-hidden rounded-full px-3 py-1 align-middle text-white"
     :class="bgColorMap[color]"
   >
-    <slot />
+    <span>
+      <slot />
+    </span>
+    <component v-if="type" :is="linkIconMap[type]" class="inline" />
   </component>
 </template>
 
