@@ -9,7 +9,7 @@ const props = defineProps<{
 
 const linkOptions = getLinkOptions(props.link.path, props.link.type)
 
-const commonClasses = 'flex items-center justify-between gap-0.5 px-2 py-0.5 font-bold rounded-full'
+const commonClasses = 'flex items-center justify-between gap-0.5 px-2 py-0.5 font-bold rounded-lg'
 </script>
 
 <template>
