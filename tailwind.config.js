@@ -12,9 +12,9 @@ export default {
         info: 'var(--color-info)',
         success: 'var(--color-success)',
         error: 'var(--color-error)',
-        warning: 'var(--color-warning)'
-      }
-    }
+        warning: 'var(--color-warning)',
+      },
+    },
   },
-  plugins: []
+  plugins: [],
 }

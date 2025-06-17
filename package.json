@@ -5,13 +5,14 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "run-p type-check \"build-only {@}\" --",
+    "build": "run-s type-check test build-only",
     "preview": "vite preview",
-    "test:unit": "vitest",
+    "test": "vitest --run",
+    "test:watch": "vitest",
     "build-only": "vite build",
     "type-check": "vue-tsc --build",
     "lint": "eslint . --fix",
-    "format": "prettier --write src/"
+    "format": "prettier --write ."
   },
   "dependencies": {
     "marked": "^15.0.11",
