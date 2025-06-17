@@ -11,11 +11,16 @@
     <noscript><iframe src="./noscript.html"></iframe></noscript>
     <n-app json-path="/json/config.json" layout="toppage">
       <n-card>
-        <n-title-lv2-index>サンプル</n-title-lv2-index>
+        <n-title-lv-2-index>サンプル</n-title-lv-2-index>
       </n-card>
 
       <n-card>
-        <n-title-lv3>ツールチップ</n-title-lv3>
+        <n-title-lv-3>ドロップダウン</n-title-lv-3>
+        <n-dropdown></n-dropdown>
+      </n-card>
+
+      <n-card>
+        <n-title-lv-3>ツールチップ</n-title-lv-3>
         <n-tooltip-info>
           <b>内容の文章 location:top</b>
         </n-tooltip-info>
@@ -52,7 +57,7 @@
       </n-card>
 
       <n-card>
-        <n-title-lv3>コンテナー</n-title-lv3>
+        <n-title-lv-3>コンテナー</n-title-lv-3>
         <n-container-flex justify="center" justify-md="end">
           <span>要素</span>
           <span>要素</span>
@@ -71,7 +76,7 @@
         </n-container-flex>
       </n-card>
       <n-card>
-        <n-title-lv3>画像バナー</n-title-lv3>
+        <n-title-lv-3>画像バナー</n-title-lv-3>
         <n-image-banner
           src="./public/images/banners/bnr-pre-registration.png"
           alt="サンプルバナー"
@@ -102,7 +107,7 @@
       </n-card>
 
       <n-card>
-        <n-title-lv3>リスト</n-title-lv3>
+        <n-title-lv-3>リスト</n-title-lv-3>
 
         <n-list>
           <n-list-item-app
@@ -182,7 +187,7 @@
       </n-card>
 
       <n-card variant="outlined" color="blue">
-        <n-title-lv3>ステッパー</n-title-lv3>
+        <n-title-lv-3>ステッパー</n-title-lv-3>
         <ul>
           <n-list-item-stepper mark="1">
             <n-title-lv4>タイトル</n-title-lv4>
@@ -214,7 +219,7 @@
       </n-card>
 
       <n-card>
-        <n-title-lv3>バナー</n-title-lv3>
+        <n-title-lv-3>バナー</n-title-lv-3>
         <n-banner color="orange" size="w-full" href="./">w-full</n-banner>
         <n-banner color="yellow" size="xs" href="./" type="pdf" note="補足説明">xs </n-banner>
         <n-banner color="green" size="sm" href="./">sm</n-banner>
@@ -233,9 +238,9 @@
       </n-card>
 
       <n-card>
-        <n-title-lv3 note="※注釈をつけられます">インライン要素</n-title-lv3>
-        <n-title-lv4>レベル4タイトル</n-title-lv4>
-        <n-title-lv5>レベル5タイトル</n-title-lv5>
+        <n-title-lv-3 note="※注釈をつけられます">インライン要素</n-title-lv-3>
+        <n-title-lv-4>レベル4タイトル</n-title-lv-4>
+        <n-title-lv-5>レベル5タイトル</n-title-lv-5>
         <p>
           テキストテキストテキストテキストテキスト<n-strong>強調強調</n-strong>テキストテキストテキストテキストテキストテキストテキストテキストテキスト
         </p>
@@ -255,7 +260,7 @@
       </n-card>
 
       <n-card>
-        <n-title-lv3>メディアコンテナ</n-title-lv3>
+        <n-title-lv-3>メディアコンテナ</n-title-lv-3>
         <n-container-media
           src="/images/photos/2024-01.png"
           alt=""
