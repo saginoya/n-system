@@ -4,7 +4,7 @@ import { computed } from 'vue'
 import NImage from '@/components/n-elements/NImage.ce.vue'
 import { usePublishedState } from '@/composables/usePublishedState'
 import type { LinkType, PublishedState } from '@/types'
-import { getLinkTarget, linkIconMap } from '@/utils'
+import { getLinkOptions } from '@/utils'
 
 const props = withDefaults(
   defineProps<{
@@ -22,6 +22,8 @@ const props = withDefaults(
   },
 )
 
+const linkOptions = getLinkOptions(props.href, props.type)
+
 // 状態管理の初期化を即時実行関数で分離
 const { isPreparation, setPublishedState, isClosing } = usePublishedState()
 ;(() => {
@@ -31,7 +33,7 @@ const { isPreparation, setPublishedState, isClosing } = usePublishedState()
 })()
 
 // リンク関連のロジック
-const icon = computed(() => (props.type && !props.noIcon ? linkIconMap[props.type] : undefined))
+const icon = computed(() => (linkOptions.isLink && !props.noIcon ? linkOptions.icon : undefined))
 const isLink = computed(() => {
   return Boolean(props.href) && !isPreparation.value && !isClosing.value
 })
@@ -40,8 +42,8 @@ const isLink = computed(() => {
 <template>
   <component
     :is="isLink ? 'a' : 'span'"
-    :href="isLink ? href : null"
-    :target="isLink ? (type ? getLinkTarget(type) : '_self') : null"
+    :href="isLink ? linkOptions.href : null"
+    :target="isLink ? linkOptions.target : null"
     class="group relative inline-block w-fit max-w-full"
   >
     <!-- 画像コンポーネント -->

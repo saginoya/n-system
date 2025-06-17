@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { LinkType } from '@/types'
-import { getLinkTarget, linkIconMap, isCurrentPage } from '@/utils'
+import { getLinkOptions } from '@/utils'
 
 const props = defineProps<{
   href: string
@@ -9,25 +9,22 @@ const props = defineProps<{
 }>()
 
 const displayStyle = props.block ? 'flex' : 'inline-flex'
+
+const linkOptions = getLinkOptions(props.href, props.type)
 </script>
 
 <template>
   <a
-    :href
-    :target="getLinkTarget(type)"
+    v-if="linkOptions.isLink"
+    :href="linkOptions.href"
+    :target="linkOptions.target"
     class="items-center justify-center gap-0.5 border-b border-b-current hover:bg-blue-200/30 focus:bg-blue-200/30"
-    :class="[
-      displayStyle,
-      {
-        'bg-slate-900/40': isCurrentPage(href),
-        'contrast-75': isCurrentPage(href),
-      },
-    ]"
+    :class="displayStyle"
   >
     <span>
       <slot />
     </span>
-    <component :is="linkIconMap[type]" class="inline" />
+    <component :is="linkOptions.icon" class="inline" />
   </a>
 </template>
 

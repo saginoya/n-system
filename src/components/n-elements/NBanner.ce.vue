@@ -7,7 +7,7 @@ import { cn } from '@/lib/cn'
 import { variantConceptMap } from '@/styles'
 import type { Variant } from '@/styles'
 import type { Color, LinkType, PublishedState } from '@/types'
-import { getLinkTarget, linkIconMap, formatDate } from '@/utils'
+import { getLinkOptions, formatDate } from '@/utils'
 
 const props = withDefaults(
   defineProps<{
@@ -25,6 +25,8 @@ const props = withDefaults(
     variant: 'flat',
   },
 )
+
+const linkOptions = getLinkOptions(props.href, props.type)
 
 const {
   isPreparation,
@@ -46,7 +48,7 @@ if (props.revokeAutoDeadline === true) {
 }
 
 const isLink = computed(() => {
-  return props.href && !isPreparation.value && !isClosing.value
+  return linkOptions.isLink && !isPreparation.value && !isClosing.value
 })
 
 type OverlayContent = {
@@ -110,8 +112,8 @@ type Size = keyof typeof sizeMap
     :is="isLink ? 'a' : 'div'"
     class="group relative block max-w-full overflow-hidden rounded border-2"
     :class="cn(sizeMap[size], variantConceptMap[variant](color))"
-    :href="isLink ? href : null"
-    :target="isLink ? (type ? getLinkTarget(type) : '_self') : null"
+    :href="isLink ? linkOptions.href : null"
+    :target="isLink ? linkOptions.target : null"
   >
     <div
       class="flex size-full flex-col items-center justify-center text-center leading-tight"
@@ -119,7 +121,7 @@ type Size = keyof typeof sizeMap
     >
       <div class="flex items-center gap-1 text-balance font-bold tracking-tight">
         <slot />
-        <component v-if="type" :is="linkIconMap[type]" class="size-6" />
+        <component :is="linkOptions.icon" class="size-6" />
       </div>
       <p v-if="note" class="text-sm">{{ note }}</p>
     </div>

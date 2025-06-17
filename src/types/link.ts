@@ -1,4 +1,6 @@
-export type LinkType = 'internal' | 'external' | 'pdf' | 'download'
+export const linkTypes = ['internal', 'external', 'pdf', 'download'] as const
+
+export type LinkType = (typeof linkTypes)[number]
 
 export type Link = {
   name: string

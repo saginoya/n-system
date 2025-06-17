@@ -1,34 +1,29 @@
 <script setup lang="ts">
 import { bgColorMap } from '@/styles'
 import type { Color, LinkType } from '@/types'
-import { getLinkTarget, linkIconMap } from '@/utils'
+import { getLinkOptions } from '@/utils'
 
-defineProps<
-  | {
-      color: Color
-      href: string
-      type: LinkType
-    }
-  | {
-      color: Color
-      href?: undefined
-      type?: undefined
-    }
->()
+const props = defineProps<{
+  color: Color
+  href?: string
+  type?: LinkType
+}>()
+
+const linkOptions = getLinkOptions(props.href, props.type)
 </script>
 
 <template>
   <component
-    :is="href ? 'a' : 'span'"
-    :href="href ? href : null"
-    :target="type ? getLinkTarget(type) : null"
+    :is="linkOptions.isLink ? 'a' : 'span'"
+    :href="linkOptions.href"
+    :target="linkOptions.target"
     class="inline-flex items-center justify-center gap-0.5 overflow-hidden rounded-full px-3 py-1 align-middle text-white"
-    :class="bgColorMap[color]"
+    :class="[bgColorMap[color], { 'hover:opacity-75': href }]"
   >
     <span>
       <slot />
     </span>
-    <component v-if="type" :is="linkIconMap[type]" class="inline" />
+    <component v-if="linkOptions.isLink" :is="linkOptions.icon" class="inline" />
   </component>
 </template>
 

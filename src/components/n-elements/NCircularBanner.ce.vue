@@ -3,7 +3,7 @@ import { computed } from 'vue'
 
 import { bgColorMap } from '@/styles'
 import type { Color, LinkType } from '@/types'
-import { getLinkTarget } from '@/utils'
+import { getLinkOptions } from '@/utils'
 
 const props = defineProps<{
   color: Color
@@ -11,6 +11,8 @@ const props = defineProps<{
   href: string
   type: LinkType
 }>()
+
+const linkOptions = getLinkOptions(props.href, props.type)
 
 const sizeOptions = {
   xs: 'size-16',
@@ -33,10 +35,11 @@ const variant = computed<string[]>(() => {
 
 <template>
   <a
+    v-if="linkOptions.isLink"
+    :href="linkOptions.href"
+    :target="linkOptions.target"
     class="inline-flex items-center justify-center rounded-full text-white transition-opacity hover:opacity-80 focus:opacity-80"
     :class="variant"
-    :href="href"
-    :target="getLinkTarget(type)"
   >
     <slot />
   </a>
