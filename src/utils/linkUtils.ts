@@ -7,7 +7,7 @@ import { linkTypes, type LinkType } from '@/types'
 import type { Component } from 'vue'
 
 // リンクのタイプからターゲットを取得
-const getLinkTarget = (type: LinkType): '_self' | '_blank' => {
+export const getLinkTarget = (type: LinkType): '_self' | '_blank' => {
   return type === 'internal' ? '_self' : '_blank'
 }
 

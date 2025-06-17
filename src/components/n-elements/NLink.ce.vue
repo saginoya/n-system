@@ -5,10 +5,7 @@ import { getLinkOptions } from '@/utils'
 const props = defineProps<{
   href: string
   type: LinkType
-  block?: boolean
 }>()
-
-const displayStyle = props.block ? 'flex' : 'inline-flex'
 
 const linkOptions = getLinkOptions(props.href, props.type)
 </script>
@@ -18,8 +15,7 @@ const linkOptions = getLinkOptions(props.href, props.type)
     v-if="linkOptions.isLink"
     :href="linkOptions.href"
     :target="linkOptions.target"
-    class="items-center justify-center gap-0.5 border-b border-b-current hover:bg-blue-200/30 focus:bg-blue-200/30"
-    :class="displayStyle"
+    class="inline-flex items-center justify-center gap-0.5 border-b border-b-current hover:bg-blue-200/30 focus:bg-blue-200/30"
   >
     <span>
       <slot />
