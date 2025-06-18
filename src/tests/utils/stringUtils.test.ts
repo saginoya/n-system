@@ -6,6 +6,7 @@ import {
   convertKatakanaToHiragana,
   convertFullWidthToHalfWidth,
   convertSymbolToHalfWidth,
+  pascalToKebab,
 } from '@/utils/stringUtils'
 
 describe('trim', () => {
@@ -99,5 +100,28 @@ describe('convertSymbolToHalfWidth', () => {
 
   it('空文字列の場合は空文字列を返す', () => {
     expect(convertSymbolToHalfWidth('')).toBe('')
+  })
+})
+
+describe('pascalToKebab', () => {
+  it('converts PascalCase to kebab-case', () => {
+    expect(pascalToKebab('MyComponent')).toBe('my-component')
+    expect(pascalToKebab('TitleLv2')).toBe('title-lv-2')
+    expect(pascalToKebab('Container2col')).toBe('container-2col')
+    expect(pascalToKebab('SuperXMLHttpRequest')).toBe('super-x-m-l-http-request')
+  })
+
+  it('handles leading/trailing characters correctly', () => {
+    expect(pascalToKebab('ABCTest')).toBe('a-b-c-test')
+    expect(pascalToKebab('Test123')).toBe('test-123')
+    expect(pascalToKebab('Test123ABC')).toBe('test-123-a-b-c')
+  })
+
+  it('removes duplicate hyphens and trims', () => {
+    expect(pascalToKebab('Title--Lv2')).toBe('title-lv-2') // 非標準入力への防御的対応
+  })
+
+  it('returns empty string for empty input', () => {
+    expect(pascalToKebab('')).toBe('')
   })
 })

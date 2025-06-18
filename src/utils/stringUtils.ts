@@ -93,3 +93,23 @@ export const convertSymbolToHalfWidth = (value: string | undefined): string | un
     (match) => symbolMap[match] || match,
   )
 }
+
+/**
+ * PascalCase の文字列を kebab-case に変換する
+ * WEBコンポーネントの生成にも利用するため慎重に扱う
+ * - 大文字の前にハイフンを挿入
+ * - 数字の前にもハイフンを挿入（数字が続くと複数回ハイフンが入ることに注意）
+ * - 全体を小文字に変換
+ * - 先頭・末尾のハイフンを削除
+ * - 重複したハイフンは1つにまとめる
+ * @param input - PascalCase の文字列
+ * @returns kebab-case の文字列
+ */
+export const pascalToKebab = (input: string): string => {
+  return input
+    .replace(/([A-Z])/g, '-$1') // 大文字の前にハイフン
+    .replace(/(\d+)/g, '-$1') // 数字の前にハイフン
+    .toLowerCase() // 小文字に
+    .replace(/^-|-$/g, '') // 先頭・末尾のハイフン除去
+    .replace(/-+/g, '-') // 重複ハイフンを1つに
+}
