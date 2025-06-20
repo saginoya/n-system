@@ -2,30 +2,44 @@
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
 
 import IconArrowDown from '@/components/icons/IconArrowDown.vue'
-import { variantFlatConcept } from '@/styles'
-import type { Color } from '@/types'
+import IconArrowUp from '@/components/icons/IconArrowUp.vue'
 
-defineProps<{
-  title: string
-  color: Color
-}>()
+withDefaults(
+  defineProps<{
+    title: string
+    defaultOpen?: boolean
+  }>(),
+  {
+    defaultOpen: false,
+  },
+)
 </script>
 
 <template>
-  <Disclosure v-slot="{ open }">
-    <DisclosureButton
-      class="flex w-full justify-between rounded-lg px-4 py-2 text-white hover:opacity-50"
-      :class="variantFlatConcept(color)"
-    >
+  <Disclosure
+    as="div"
+    class="border-b-2 border-gray-100"
+    :default-open="defaultOpen"
+    v-slot="{ open }"
+  >
+    <DisclosureButton class="flex w-full items-center justify-between p-2">
       <span>{{ title }}</span>
-      <IconArrowDown
-        :class="open ? 'rotate-180 transform' : ''"
-        class="size-5 text-white transition-all"
-      />
+      <span class="flex size-8 items-center justify-center rounded-full bg-gray-100">
+        <component :is="open ? IconArrowUp : IconArrowDown" class="text-xl text-gray-400" />
+      </span>
     </DisclosureButton>
-    <DisclosurePanel class="px-4 pb-2 pt-4 text-sm text-gray-500">
-      <slot />
-    </DisclosurePanel>
+    <transition
+      enter-active-class="transition ease-out duration-200"
+      enter-from-class="opacity-0 -translate-y-1"
+      enter-to-class="opacity-100 translate-y-0"
+      leave-active-class="transition ease-in duration-150"
+      leave-from-class="opacity-100 translate-y-0"
+      leave-to-class="opacity-0 -translate-y-1"
+    >
+      <DisclosurePanel class="px-2 pb-2">
+        <slot />
+      </DisclosurePanel>
+    </transition>
   </Disclosure>
 </template>
 
