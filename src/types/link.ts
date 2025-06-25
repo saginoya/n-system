@@ -1,4 +1,4 @@
-export const linkTypes = ['internal', 'external', 'pdf', 'download'] as const
+export const linkTypes = ['internal', 'external', 'pdf', 'download', 'none'] as const
 
 export type LinkType = (typeof linkTypes)[number]
 
@@ -7,8 +7,9 @@ export type Link = {
   path: string
   type: LinkType
 }
-export type GlobalNav = {
-  related: Link[]
-  header: Link[]
-  footer: Link[]
+
+export type Router = Link & {
+  id: string
 }
+
+export type RouterMap = Map<string, Router>

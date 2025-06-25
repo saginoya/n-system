@@ -1,43 +1,40 @@
 import { onMounted, ref } from 'vue'
 
-import type { Image, Link } from '@/types'
+import { useRouter } from '@/composables/useRouter'
+import type { Router } from '@/types'
 import { getJson } from '@/utils'
 
-export type GlobalNav = {
-  related: Link[]
-  header: Link[]
-  footer: Link[]
-}
-
-type MainVisual = {
-  top: Image
-  lower: Image
+type Navigation = {
+  id: string
+  name: string
+  type: 'link' | 'group'
+  children: string[]
 }
 
 type Config = {
   siteTitle: string[]
   copyright: string
-  mainVisual: MainVisual
-  navigation: GlobalNav
+  navigation: Navigation[]
+  router: Router[]
 }
+
+const { updateData } = useRouter()
 
 export const useConfig = (jsonPath: string) => {
   const siteTitle = ref<string[]>()
   const copyright = ref<string>()
-  const mainVisual = ref<MainVisual>()
-  const navigation = ref<GlobalNav>()
+  const navigation = ref<Navigation[]>()
   onMounted(async () => {
     const config = await getJson<Config>(jsonPath)
     siteTitle.value = config.siteTitle
     copyright.value = config.copyright
-    mainVisual.value = config.mainVisual
     navigation.value = config.navigation
+    updateData(config.router)
   })
 
   return {
     siteTitle,
     copyright,
-    mainVisual,
     navigation,
   }
 }
