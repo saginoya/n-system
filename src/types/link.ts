@@ -1,6 +1,8 @@
-export const linkTypes = ['internal', 'external', 'pdf', 'download', 'none'] as const
+export const linkTypes = ['internal', 'external', 'pdf', 'download'] as const
 
 export type LinkType = (typeof linkTypes)[number]
+
+export type LinkTarget = '_self' | '_blank' | '_parent' | '_top'
 
 export type Link = {
   name: string

@@ -2,12 +2,12 @@ import IconArrowRight from '@/components/icons/IconArrowRight.vue'
 import IconDownload from '@/components/icons/IconDownload.vue'
 import IconOpenInNew from '@/components/icons/IconOpenInNew.vue'
 import IconPdf from '@/components/icons/IconPdf.vue'
-import { linkTypes, type LinkType } from '@/types'
+import { linkTypes, type LinkType, type LinkTarget } from '@/types'
 
 import type { Component } from 'vue'
 
 // リンクのタイプからターゲットを取得
-export const getLinkTarget = (type: LinkType): '_self' | '_blank' => {
+export const getLinkTarget = (type: LinkType): LinkTarget => {
   return type === 'internal' ? '_self' : '_blank'
 }
 
@@ -24,15 +24,11 @@ type LinkOptions =
       isLink: true
       href: string
       type: LinkType
-      target: '_self' | '_blank'
+      target: LinkTarget
       icon: Component
     }
   | {
       isLink: false
-      href: null
-      type: null
-      target: null
-      icon: null
     }
 
 /**
@@ -49,10 +45,6 @@ export const getLinkOptions = (
   if (typeof href !== 'string' || !type || !linkTypes.includes(type)) {
     return {
       isLink: false,
-      href: null,
-      type: null,
-      target: null,
-      icon: null,
     }
   }
   return {

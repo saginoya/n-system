@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import LinkBox from '@/components/parts/LinkBox.vue'
 import type { LinkType } from '@/types'
 import { formatDate, getDocumentLanguage, getLinkOptions } from '@/utils'
 
@@ -16,6 +17,8 @@ const { year, month, date } = formattedDate || { year: '', month: '', date: '' }
 const labelTimeJa = `${year}年${month}月${date}日`
 const labelTimeEn = `${year}-${month}-${date}`
 const labelTime = getDocumentLanguage() === 'ja' ? labelTimeJa : labelTimeEn
+
+const commonClasses = 'p-2 sm:col-span-3 md:col-span-5 md:p-4 text-inherit'
 </script>
 
 <template>
@@ -23,20 +26,18 @@ const labelTime = getDocumentLanguage() === 'ja' ? labelTimeJa : labelTimeEn
     <time :datetime class="p-2 font-bold md:p-4">
       {{ labelTime }}
     </time>
-    <span v-if="!linkOptions.isLink" class="p-2 sm:col-span-3 md:col-span-5 md:p-4">
+    <span v-if="!linkOptions.isLink" :class="commonClasses">
       <slot />
     </span>
-    <a
+    <LinkBox
       v-else
       :href="linkOptions.href"
       :target="linkOptions.target"
-      class="flex items-center justify-between p-2 text-inherit hover:bg-blue-200/30 focus:bg-blue-200/30 sm:col-span-3 md:col-span-5 md:p-4"
+      :icon="linkOptions.icon"
+      :class="commonClasses"
     >
-      <span>
-        <slot />
-      </span>
-      <component :is="linkOptions.icon" class="inline" />
-    </a>
+      <slot />
+    </LinkBox>
   </li>
 </template>
 
