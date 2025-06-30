@@ -1,16 +1,17 @@
 <script setup lang="ts">
-import ListNavItem from '@/components/parts/ListNavItem.vue'
-import type { Link } from '@/types'
+import ListNavRowItem from '@/components/parts/ListNavRowItem.vue'
+import type { Navigation } from '@/types'
 
 defineProps<{
-  links: Link[]
+  navigation: Navigation[]
 }>()
 </script>
 
 <template>
   <ul class="mx-auto flex max-w-5xl flex-wrap justify-around justify-items-center">
-    <li v-for="(link, index) in links" :key="index" class="text-center">
-      <ListNavItem :link> </ListNavItem>
+    <li v-for="item in navigation" :key="item.id" class="text-center">
+      <ListNavRowItem :id="item.id" :name="item.name" :type="item.type" :children="item.children">
+      </ListNavRowItem>
     </li>
   </ul>
 </template>

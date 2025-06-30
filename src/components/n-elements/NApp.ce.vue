@@ -2,21 +2,22 @@
 import { ref, computed, onMounted } from 'vue'
 
 import LayoutDefault from '@/components/layouts/LayoutDefault.vue'
-import LayoutIndex from '@/components/layouts/LayoutIndex.vue'
 import ModalPageLoading from '@/components/parts/ModalPageLoading.vue'
 import TransitionFade from '@/components/parts/TransitionFade.vue'
 import { setBodyVisibility } from '@/utils'
 
+type Layout = 'default'
+
 const props = defineProps<{
   jsonPath: string
-  layout?: 'default' | 'toppage'
+  layout?: Layout
 }>()
 
 // レイアウトのコンポーネントの選択
 const layoutComp = computed(() => {
   switch (props.layout) {
-    case 'toppage':
-      return LayoutIndex
+    case 'default':
+      return LayoutDefault
     default:
       return LayoutDefault
   }

@@ -1,28 +1,33 @@
 <script setup lang="ts">
-import { cn } from '@/lib/cn'
-import type { Link } from '@/types'
-import { getLinkOptions } from '@/utils'
+import LinkBox from '@/components/parts/LinkBox.vue'
+import { useRouter } from '@/composables/useRouter'
+import type { Navigation } from '@/types'
 
-const props = defineProps<{
-  link: Link
-}>()
+const props = defineProps<Navigation>()
 
-const linkOptions = getLinkOptions(props.link.path, props.link.type)
+const routers = useRouter().getByIds(props.children)
 
-const commonClasses = 'flex items-center justify-between gap-0.5 px-2 py-0.5 font-bold rounded-lg'
+const commonClasses =
+  'px-2 py-0.5 font-bold rounded-lg text-white hover:bg-blue-200/30 focus:bg-blue-200/30'
 </script>
 
 <template>
-  <a
-    v-if="linkOptions.isLink"
-    :href="linkOptions.href"
-    :target="linkOptions.target"
-    :class="cn(commonClasses, 'text-white hover:bg-blue-200/30 focus:bg-blue-200/30')"
-  >
-    {{ link.name }}
-    <component :is="linkOptions.icon" />
-  </a>
-  <span v-else :class="cn(commonClasses, 'text-gray-400')">
-    {{ link.name }}
-  </span>
+  <div>
+    <template v-if="type === 'group'">
+      <p v-if="type === 'group'" class="text-sm font-bold opacity-50">{{ name }}</p>
+
+      <ul class="flex flex-col gap-1 py-2">
+        <li v-for="link in routers" :key="link.id">
+          <LinkBox :href="link.path" :type="link.type" :class="commonClasses">
+            {{ link.name }}
+          </LinkBox>
+        </li>
+      </ul>
+    </template>
+    <template v-else>
+      <LinkBox :href="routers[0].path" :type="routers[0].type" :class="commonClasses">
+        {{ name }}
+      </LinkBox>
+    </template>
+  </div>
 </template>

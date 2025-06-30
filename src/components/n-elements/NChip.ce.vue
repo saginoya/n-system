@@ -9,21 +9,21 @@ const props = defineProps<{
   type?: LinkType
 }>()
 
-const linkOptions = getLinkOptions(props.href, props.type)
+const linkOptions = props.href && props.type ? getLinkOptions(props.href, props.type) : undefined
 </script>
 
 <template>
   <component
-    :is="linkOptions.isLink ? 'a' : 'span'"
-    :href="linkOptions.href"
-    :target="linkOptions.target"
+    :is="linkOptions ? 'a' : 'span'"
+    :href="linkOptions ? linkOptions.href : null"
+    :target="linkOptions ? linkOptions.target : null"
     class="inline-flex items-center justify-center gap-0.5 overflow-hidden rounded-full px-3 py-1 align-middle text-white"
     :class="[bgColorMap[color], { 'hover:opacity-75': href }]"
   >
     <span>
       <slot />
     </span>
-    <component v-if="linkOptions.isLink" :is="linkOptions.icon" class="inline" />
+    <component v-if="linkOptions" :is="linkOptions.icon" class="inline" />
   </component>
 </template>
 

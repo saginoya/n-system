@@ -26,7 +26,7 @@ const props = withDefaults(
   },
 )
 
-const linkOptions = getLinkOptions(props.href, props.type)
+const linkOptions = props.href && props.type ? getLinkOptions(props.href, props.type) : undefined
 
 const {
   isPreparation,
@@ -48,7 +48,7 @@ if (props.revokeAutoDeadline === true) {
 }
 
 const isLink = computed(() => {
-  return linkOptions.isLink && !isPreparation.value && !isClosing.value
+  return linkOptions && !isPreparation.value && !isClosing.value
 })
 
 type OverlayContent = {
@@ -112,8 +112,8 @@ type Size = keyof typeof sizeMap
     :is="isLink ? 'a' : 'div'"
     class="group relative block max-w-full overflow-hidden rounded border-2"
     :class="cn(sizeMap[size], variantConceptMap[variant](color))"
-    :href="isLink ? linkOptions.href : null"
-    :target="isLink ? linkOptions.target : null"
+    :href="linkOptions ? linkOptions.href : null"
+    :target="linkOptions ? linkOptions.target : null"
   >
     <div
       class="flex size-full flex-col items-center justify-center text-center leading-tight"
@@ -121,7 +121,7 @@ type Size = keyof typeof sizeMap
     >
       <div class="flex items-center gap-1 text-balance font-bold tracking-tight">
         <slot />
-        <component :is="linkOptions.icon" class="size-6" />
+        <component v-if="linkOptions" :is="linkOptions.icon" class="size-6" />
       </div>
       <p v-if="note" class="text-sm">{{ note }}</p>
     </div>

@@ -9,7 +9,7 @@ const props = defineProps<{
   type?: LinkType
 }>()
 
-const linkOptions = getLinkOptions(props.href, props.type)
+const linkOptions = props.href && props.type ? getLinkOptions(props.href, props.type) : undefined
 
 const formattedDate = formatDate(props.datetime)
 const { year, month, date } = formattedDate || { year: '', month: '', date: '' }
@@ -26,11 +26,9 @@ const commonClasses = 'p-2 sm:col-span-3 md:col-span-5 md:p-4 text-inherit'
     <time :datetime class="p-2 font-bold md:p-4">
       {{ labelTime }}
     </time>
-    <span v-if="!linkOptions.isLink" :class="commonClasses">
-      <slot />
-    </span>
+
     <LinkBox
-      v-else
+      v-if="linkOptions"
       :href="linkOptions.href"
       :target="linkOptions.target"
       :icon="linkOptions.icon"
@@ -38,6 +36,10 @@ const commonClasses = 'p-2 sm:col-span-3 md:col-span-5 md:p-4 text-inherit'
     >
       <slot />
     </LinkBox>
+
+    <span v-else :class="commonClasses">
+      <slot />
+    </span>
   </li>
 </template>
 

@@ -35,7 +35,6 @@ const variant = computed<string[]>(() => {
 
 <template>
   <a
-    v-if="linkOptions.isLink"
     :href="linkOptions.href"
     :target="linkOptions.target"
     class="inline-flex items-center justify-center rounded-full text-white transition-opacity hover:opacity-80 focus:opacity-80"

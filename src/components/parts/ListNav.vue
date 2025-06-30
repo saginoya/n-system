@@ -1,16 +1,22 @@
 <script setup lang="ts">
 import ListNavItem from '@/components/parts/ListNavItem.vue'
-import type { Link } from '@/types'
+import type { Navigation } from '@/types'
 
 defineProps<{
-  links: Link[]
+  navigation: Navigation[]
 }>()
 </script>
 
 <template>
-  <ul class="flex flex-col gap-1">
-    <li v-for="(link, index) in links" :key="index">
-      <ListNavItem :link> </ListNavItem>
-    </li>
-  </ul>
+  <div class="flex flex-col gap-4">
+    <ListNavItem
+      v-for="item in navigation"
+      :key="item.id"
+      :id="item.id"
+      :name="item.name"
+      :type="item.type"
+      :children="item.children"
+    >
+    </ListNavItem>
+  </div>
 </template>

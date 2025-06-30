@@ -22,7 +22,7 @@ const props = withDefaults(
   },
 )
 
-const linkOptions = getLinkOptions(props.href, props.type)
+const linkOptions = props.href && props.type ? getLinkOptions(props.href, props.type) : undefined
 
 // 状態管理の初期化を即時実行関数で分離
 const { isPreparation, setPublishedState, isClosing } = usePublishedState()
@@ -33,7 +33,7 @@ const { isPreparation, setPublishedState, isClosing } = usePublishedState()
 })()
 
 // リンク関連のロジック
-const icon = computed(() => (linkOptions.isLink && !props.noIcon ? linkOptions.icon : undefined))
+const icon = computed(() => (linkOptions ? linkOptions.icon : undefined))
 const isLink = computed(() => {
   return Boolean(props.href) && !isPreparation.value && !isClosing.value
 })
@@ -42,8 +42,8 @@ const isLink = computed(() => {
 <template>
   <component
     :is="isLink ? 'a' : 'span'"
-    :href="isLink ? linkOptions.href : null"
-    :target="isLink ? linkOptions.target : null"
+    :href="linkOptions ? linkOptions.href : null"
+    :target="linkOptions ? linkOptions.target : null"
     class="group relative inline-block w-fit max-w-full"
   >
     <!-- 画像コンポーネント -->

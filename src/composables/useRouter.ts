@@ -1,4 +1,4 @@
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 
 import type { Router, RouterMap } from '@/types'
 
@@ -11,6 +11,9 @@ declare global {
 export const useRouter = () => {
   // ルーティング情報
   const routerMap = ref<RouterMap>(new Map())
+
+  const isReady = ref<boolean>(false)
+  let pollTimer: number | undefined
 
   // Mapに変換する関数
   const convertMap = (router: Router[]): RouterMap => {
@@ -26,12 +29,29 @@ export const useRouter = () => {
   const updateData = (router: Router[]) => {
     routerMap.value = convertMap(router)
     globalThis._nSystemRouter = routerMap.value
+    isReady.value = true
   }
 
   // globalThisからデータを取得
   const getData = (): void => {
     if (!globalThis._nSystemRouter) return
     routerMap.value = globalThis._nSystemRouter
+    isReady.value = true
+  }
+
+  // ポーリングでglobalThis._nSystemRouterを監視
+  const pollGlobalRouter = () => {
+    if (globalThis._nSystemRouter) {
+      getData()
+      if (pollTimer) clearInterval(pollTimer)
+    }
+  }
+
+  if (!globalThis._nSystemRouter) {
+    pollTimer = window.setInterval(pollGlobalRouter, 200)
+  } else {
+    getData()
+    if (pollTimer) clearInterval(pollTimer)
   }
 
   // ルーティング情報からIDが一致する情報を取得する
@@ -39,12 +59,18 @@ export const useRouter = () => {
     return routerMap.value.get(id)
   }
 
-  onMounted(() => {
-    getData()
-  })
+  // 複数IDに一致する情報を配列で返す
+  const getByIds = (ids: string[]): Router[] => {
+    return ids
+      .map((id) => routerMap.value.get(id))
+      .filter((item): item is Router => item !== undefined)
+  }
 
   return {
+    routerMap,
+    isReady,
     getById,
+    getByIds,
     updateData,
   }
 }

@@ -1,49 +1,67 @@
 {
   "siteTitle": ["N-System"],
   "copyright": "n-system",
-  "mainVisual": {
-    "top": {
-      "width": 1024,
-      "height": 360,
-      "src": "/images/banners/n-system-mainvisual.png",
-      "alt": "N-System"
+  "navigation": [
+    {
+      "id": "top",
+      "name": "トップ",
+      "type": "link",
+      "children": ["top"]
     },
-    "lower": {
-      "width": 1024,
-      "height": 130,
-      "src": "/images/banners/n-system-subvisual.png",
-      "alt": "N-System"
+    {
+      "id": "summary",
+      "name": "概要",
+      "type": "group",
+      "children": ["sample", "nexpo"]
+    },
+    {
+      "id": "exhibitors",
+      "name": "出展のご案内",
+      "type": "group",
+      "children": ["no", "pdf"]
+    },
+    {
+      "id": "visitors",
+      "name": "来場のご案内",
+      "type": "group",
+      "children": ["nippo", "sample"]
     }
-  },
-  "navigation": {
-    "related": [
-      {
-        "name": "NEW環境展",
-        "path": "https://www.n-expo.jp/",
-        "type": "external"
-      }
-    ],
-    "header": [
-      {
-        "name": "トップ",
-        "path": "/",
-        "type": "internal"
-      },
-      {
-        "name": "サンプル",
-        "path": "/sample",
-        "type": "internal"
-      },
-      {
-        "name": "リンクなし"
-      }
-    ],
-    "footer": [
-      {
-        "name": "日報インターネット",
-        "path": "https://www.nippo.co.jp/",
-        "type": "external"
-      }
-    ]
-  }
+  ],
+  "router": [
+    {
+      "id": "nexpo",
+      "name": "NEW環境展",
+      "path": "https://www.n-expo.jp/",
+      "type": "external"
+    },
+    {
+      "id": "top",
+      "name": "トップ",
+      "path": "/",
+      "type": "internal"
+    },
+    {
+      "id": "sample",
+      "name": "サンプル",
+      "path": "/sample",
+      "type": "internal"
+    },
+    {
+      "id": "no",
+      "name": "リンクなし",
+      "type": "none"
+    },
+    {
+      "id": "pdf",
+      "name": "PDF",
+      "path": "/documents/pdf.pdf",
+      "type": "pdf"
+    },
+    {
+      "id": "nippo",
+      "name": "日報インターネット",
+      "path": "https://www.nippo.co.jp/",
+      "type": "external"
+    }
+  ]
 }

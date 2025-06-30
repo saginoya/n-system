@@ -1,4 +1,5 @@
 export * from './color'
+export * from './config'
 export * from './exhibitorList'
 export * from './genre'
 export * from './image'
