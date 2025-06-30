@@ -2,7 +2,7 @@ import IconArrowRight from '@/components/icons/IconArrowRight.vue'
 import IconDownload from '@/components/icons/IconDownload.vue'
 import IconOpenInNew from '@/components/icons/IconOpenInNew.vue'
 import IconPdf from '@/components/icons/IconPdf.vue'
-import { linkTypes, type LinkType, type LinkTarget } from '@/types'
+import type { LinkType, LinkTarget } from '@/types'
 
 import type { Component } from 'vue'
 
@@ -19,17 +19,12 @@ const linkIconMap: Record<LinkType, Component> = {
   download: IconDownload,
 }
 
-type LinkOptions =
-  | {
-      isLink: true
-      href: string
-      type: LinkType
-      target: LinkTarget
-      icon: Component
-    }
-  | {
-      isLink: false
-    }
+type LinkOptions = {
+  href: string
+  type: LinkType
+  target: LinkTarget
+  icon: Component
+}
 
 /**
  * リンクのオプションを取得
@@ -38,17 +33,8 @@ type LinkOptions =
  * @param type リンクのタイプ
  * @returns リンクのオプション
  */
-export const getLinkOptions = (
-  href: string | undefined,
-  type: LinkType | undefined,
-): LinkOptions => {
-  if (typeof href !== 'string' || !type || !linkTypes.includes(type)) {
-    return {
-      isLink: false,
-    }
-  }
+export const getLinkOptions = (href: string, type: LinkType): LinkOptions => {
   return {
-    isLink: true,
     href,
     type,
     target: getLinkTarget(type),

@@ -1,22 +1,8 @@
 import { onMounted, ref } from 'vue'
 
 import { useRouter } from '@/composables/useRouter'
-import type { Router } from '@/types'
+import type { Config, Navigation } from '@/types'
 import { getJson } from '@/utils'
-
-type Navigation = {
-  id: string
-  name: string
-  type: 'link' | 'group'
-  children: string[]
-}
-
-type Config = {
-  siteTitle: string[]
-  copyright: string
-  navigation: Navigation[]
-  router: Router[]
-}
 
 const { updateData } = useRouter()
 

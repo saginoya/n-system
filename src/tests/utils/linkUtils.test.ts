@@ -29,47 +29,10 @@ describe('linkUtils', () => {
       const result = getLinkOptions(href, type)
 
       expect(result).toEqual({
-        isLink: true,
         href: 'https://example.com',
         type: 'external',
         target: '_blank',
         icon: expect.any(Object),
-      })
-    })
-
-    it('hrefがundefinedの場合、リンクなしのオプションを返す', () => {
-      const result = getLinkOptions(undefined, 'internal')
-
-      expect(result).toEqual({
-        isLink: false,
-        href: null,
-        type: null,
-        target: null,
-        icon: null,
-      })
-    })
-
-    it('typeがundefinedの場合、リンクなしのオプションを返す', () => {
-      const result = getLinkOptions('https://example.com', undefined)
-
-      expect(result).toEqual({
-        isLink: false,
-        href: null,
-        type: null,
-        target: null,
-        icon: null,
-      })
-    })
-
-    it('無効なtypeが渡された場合、リンクなしのオプションを返す', () => {
-      const result = getLinkOptions('https://example.com', 'invalid' as LinkType)
-
-      expect(result).toEqual({
-        isLink: false,
-        href: null,
-        type: null,
-        target: null,
-        icon: null,
       })
     })
   })
