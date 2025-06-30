@@ -8,7 +8,7 @@ defineProps<{
 </script>
 
 <template>
-  <div class="flex flex-col gap-4">
+  <div class="flex flex-col gap-6">
     <ListNavItem
       v-for="item in navigation"
       :key="item.id"

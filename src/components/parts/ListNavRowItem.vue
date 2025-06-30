@@ -34,7 +34,11 @@ const commonClasses =
         class="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white p-2 shadow-lg ring-1 ring-black/5 focus:outline-none"
       >
         <MenuItem v-for="link in routers" :key="link.id">
-          <LinkBox :href="link.path" :type="link.type">
+          <LinkBox
+            :href="link.path"
+            :type="link.type"
+            class="px-2 py-1 text-gray-900 hover:bg-blue-200/30 focus:bg-blue-200/30"
+          >
             {{ link.name }}
           </LinkBox>
         </MenuItem>
