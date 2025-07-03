@@ -47,11 +47,6 @@
       "type": "internal"
     },
     {
-      "id": "no",
-      "name": "リンクなし",
-      "type": "none"
-    },
-    {
       "id": "pdf",
       "name": "PDF",
       "path": "/documents/pdf.pdf",
