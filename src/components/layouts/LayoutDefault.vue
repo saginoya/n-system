@@ -3,9 +3,9 @@ import { ref, watch } from 'vue'
 
 import GlobalHeader from '@/components/parts/GlobalHeader.vue'
 import HeaderTool from '@/components/parts/HeaderTool.vue'
-import ListNavRow from '@/components/parts/ListNavRow.vue'
+import ListNav from '@/components/parts/ListNav.vue'
 import OverlayBase from '@/components/parts/OverlayBase.vue'
-import { useConfig } from '@/composables/useConfigV3'
+import { useConfig } from '@/composables/useConfig'
 import { useDrawer } from '@/composables/useDrawer'
 import { useRouter } from '@/composables/useRouter'
 import type { Router } from '@/types'
@@ -40,7 +40,7 @@ watch(isReady, () => {
   <div class="flex min-h-screen w-full flex-col overflow-hidden bg-slate-200">
     <div v-if="navigation" class="hidden bg-primary px-4 py-2 text-white lg:block">
       <nav>
-        <ListNavRow :navigation />
+        <ListNav :navigation isMenu />
       </nav>
     </div>
     <main class="flex flex-1 justify-center px-4 py-8">
@@ -48,12 +48,12 @@ watch(isReady, () => {
         <slot />
       </div>
     </main>
-    <footer class="bg-primary px-4 text-center text-white">
+    <footer class="bg-primary px-4 text-white">
       <div v-if="navigation" class="hidden py-2 lg:block">
-        <ListNavRow :navigation></ListNavRow>
+        <ListNav :navigation></ListNav>
       </div>
       <hr />
-      <div class="py-2">
+      <div class="py-2 text-center">
         {{ copyright }}
       </div>
     </footer>
