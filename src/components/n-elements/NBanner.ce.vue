@@ -116,14 +116,18 @@ type Size = keyof typeof sizeMap
     :target="linkOptions ? linkOptions.target : null"
   >
     <div
-      class="flex size-full flex-col items-center justify-center text-center leading-tight"
+      class="relative flex size-full flex-col items-center justify-center px-8 text-center leading-tight"
       :class="{ 'group-hover:bg-blue-200/20 group-focus:bg-blue-200/20': isLink }"
     >
       <div class="flex items-center gap-1 text-balance font-bold tracking-tight">
         <slot />
-        <component v-if="linkOptions" :is="linkOptions.icon" class="size-6" />
       </div>
       <p v-if="note" class="text-sm">{{ note }}</p>
+      <component
+        v-if="linkOptions"
+        :is="linkOptions.icon"
+        class="absolute inset-y-auto right-2 size-6"
+      />
     </div>
     <div
       v-if="overlayContent"
