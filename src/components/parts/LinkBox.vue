@@ -7,22 +7,23 @@ import { getLinkOptions } from '@/utils'
 
 import type { Component } from 'vue'
 
-const props = defineProps<
-  | {
-      href: string
-      target: LinkTarget
-      icon: Component
-      class?: string
-    }
-  | {
-      href: string
-      type: LinkType
-      class?: string
-    }
->()
+type LinkBoxProps = {
+  href: string
+  target?: LinkTarget
+  icon?: Component
+  type?: LinkType
+  class?: string
+}
+
+const props = withDefaults(defineProps<LinkBoxProps>(), {
+  target: '_self', // デフォルト値
+  icon: undefined,
+  type: undefined,
+  class: '',
+})
 
 const linkOptions = computed(() => {
-  if ('type' in props) {
+  if (props.type) {
     return getLinkOptions(props.href, props.type)
   } else {
     return {
@@ -32,19 +33,19 @@ const linkOptions = computed(() => {
     }
   }
 })
-
-const commonClasses = 'flex items-center justify-between'
 </script>
 
 <template>
   <a
     :href="linkOptions.href"
     :target="linkOptions.target"
-    :class="cn(commonClasses, 'hover:bg-blue-200/30 focus:bg-blue-200/30', props.class)"
+    :class="
+      cn('flex items-center justify-between hover:bg-blue-200/30 focus:bg-blue-200/30', props.class)
+    "
   >
     <span>
       <slot />
     </span>
-    <component :is="linkOptions.icon" class="inline" />
+    <component v-if="linkOptions.icon" :is="linkOptions.icon" class="inline" />
   </a>
 </template>

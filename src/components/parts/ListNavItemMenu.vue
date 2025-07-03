@@ -17,7 +17,7 @@ const commonClasses =
 
 <template>
   <Menu v-if="type === 'group'" as="div" class="relative">
-    <MenuButton :class="cn(commonClasses, 'inline-flex items-center justify-between gap-0.5')">
+    <MenuButton :class="cn(commonClasses, 'flex w-full items-center justify-between')">
       {{ name }}
       <IconArrowDown />
     </MenuButton>
