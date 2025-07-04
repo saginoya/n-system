@@ -3,8 +3,8 @@
   "copyright": "n-system",
   "navigation": [
     {
-      "id": "top",
-      "name": "トップ",
+      "id": "global",
+      "name": "",
       "type": "link",
       "children": ["top"]
     },
@@ -25,9 +25,21 @@
       "name": "来場のご案内",
       "type": "group",
       "children": ["nippo", "sample"]
+    },
+    {
+      "id": "language",
+      "name": "Language",
+      "type": "link",
+      "children": ["en"]
     }
   ],
   "router": [
+    {
+      "id": "en",
+      "name": "English",
+      "path": "/en",
+      "type": "internal"
+    },
     {
       "id": "nexpo",
       "name": "NEW環境展",

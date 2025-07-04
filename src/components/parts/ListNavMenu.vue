@@ -6,17 +6,18 @@ import LinkBox from '@/components/parts/LinkBox.vue'
 import { useRouter } from '@/composables/useRouter'
 import { cn } from '@/lib/cn'
 import type { Navigation } from '@/types'
+import { isCurrentPage } from '@/utils'
 
 const props = defineProps<Navigation>()
 
 const routers = useRouter().getByIds(props.children)
 
 const commonClasses =
-  'px-2 py-0.5 font-bold rounded-lg text-white hover:bg-blue-200/30 focus:bg-blue-200/30'
+  'px-2 py-0.5 font-bold rounded-full text-white hover:bg-blue-200/30 focus:bg-blue-200/30'
 </script>
 
 <template>
-  <Menu v-if="type === 'group'" as="div" class="relative">
+  <Menu as="div" class="relative">
     <MenuButton :class="cn(commonClasses, 'flex w-full items-center justify-between')">
       {{ name }}
       <IconArrowDown />
@@ -37,7 +38,11 @@ const commonClasses =
           <LinkBox
             :href="link.path"
             :type="link.type"
-            class="px-2 py-1 text-gray-900 hover:bg-blue-200/30 focus:bg-blue-200/30"
+            :class="
+              cn('px-2 py-1 text-gray-900 hover:bg-blue-200/30 focus:bg-blue-200/30', {
+                'border border-current': isCurrentPage(link.path),
+              })
+            "
           >
             {{ link.name }}
           </LinkBox>
@@ -45,10 +50,4 @@ const commonClasses =
       </MenuItems>
     </transition>
   </Menu>
-
-  <div v-else>
-    <LinkBox :href="routers[0].path" :type="routers[0].type" :class="commonClasses">
-      {{ name }}
-    </LinkBox>
-  </div>
 </template>
