@@ -10,46 +10,28 @@ body {
 
 @layer base {
   body {
-    @apply font-sans;
-    @apply text-slate-600;
-  }
-  h1 {
-    @apply text-4xl;
-    @apply font-bold;
+    @apply font-sans text-slate-600 tracking-wide;
   }
   h2 {
-    @apply text-3xl;
-    @apply font-bold;
+    @apply text-3xl font-bold tracking-tight text-slate-500 font-mono;
   }
   h3 {
-    @apply text-2xl;
-    @apply font-bold;
+    @apply text-2xl font-bold text-slate-700 font-mono;
   }
   h4 {
-    @apply text-xl;
-    @apply font-bold;
+    @apply text-base font-bold tracking-wider text-slate-800 uppercase font-mono;
   }
   h5 {
-    @apply font-bold;
+    @apply text-sm font-bold tracking-wider text-slate-900 font-mono;
   }
   a {
     @apply text-blue-600;
   }
   input {
-    @apply rounded;
-    @apply border-2;
-    @apply border-gray-300;
-    @apply px-2;
-    @apply py-1;
-    @apply text-lg;
+    @apply rounded border-2 border-gray-300 px-2 py-1 text-lg;
   }
   textarea {
-    @apply rounded;
-    @apply border-2;
-    @apply border-gray-300;
-    @apply px-2;
-    @apply py-1;
-    @apply text-lg;
+    @apply rounded border-2 border-gray-300 px-2 py-1 text-lg;
   }
   th,
   td {

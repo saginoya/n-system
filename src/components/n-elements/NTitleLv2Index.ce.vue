@@ -1,18 +1,7 @@
-<script setup lang="ts">
-const props = defineProps<{
-  decoration?: 'border'
-}>()
-
-const decorationBorder = (): boolean => {
-  return props.decoration === 'border'
-}
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <h2
-    class="text-center text-2xl sm:text-left"
-    :class="{ 'sm:border-l-4 sm:border-l-current sm:pl-4': decorationBorder() }"
-  >
+  <h2 class="text-center text-2xl sm:text-left">
     <slot />
   </h2>
 </template>

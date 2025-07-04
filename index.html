@@ -11,7 +11,7 @@
     <noscript><iframe src="./noscript.html"></iframe></noscript>
     <n-app json-path="/json/config.json">
       <n-card>
-        <n-title-lv-2-index>サンプル</n-title-lv-2-index>
+        <n-title-lv-2-page>サンプル</n-title-lv-2-page>
       </n-card>
 
       <n-card>
@@ -258,7 +258,9 @@
       </n-card>
 
       <n-card>
-        <n-title-lv-3 note="※注釈をつけられます">インライン要素</n-title-lv-3>
+        <n-title-lv-2-index>レベル2(インデックス)タイトル</n-title-lv-2-index>
+        <n-title-lv-2-page>レベル2(ページ)タイトル</n-title-lv-2-page>
+        <n-title-lv-3 note="※注釈をつけられます">レベル3タイトル</n-title-lv-3>
         <n-title-lv-4>レベル4タイトル</n-title-lv-4>
         <n-title-lv-5>レベル5タイトル</n-title-lv-5>
         <p>
@@ -314,7 +316,7 @@
         <n-container-2col>
           <n-sheet color="gray" height="full">
             <n-image src="/images/photos/2024-01.png" alt="" width="250" height="250" overlay>
-              <h3>オーバーレイコンテンツ</h3>
+              <n-title-lv-3>オーバーレイコンテンツ</n-title-lv-3>
               <p>あいうえお</p>
             </n-image>
           </n-sheet>
@@ -335,13 +337,13 @@
           </div>
         </n-container-2col>
         <n-image src="/images/photos/2024-01.png" alt="" width="250" height="250" overlay>
-          <h3>オーバーレイコンテンツ</h3>
+          <n-title-lv-3>オーバーレイコンテンツ</n-title-lv-3>
           <p>あいうえお</p>
         </n-image>
       </n-card>
 
       <n-card>
-        <n-title-lv3>出展社一覧</n-title-lv3>
+        <n-title-lv-3>出展社一覧</n-title-lv-3>
         <n-exhibitors-nexpo
           list-src="/json/exhibitor-list2024.json"
           genre-src="/json/genres2024.json"
@@ -350,12 +352,12 @@
       </n-card>
 
       <n-card>
-        <n-title-lv3>モーダル</n-title-lv3>
+        <n-title-lv-3>モーダル</n-title-lv-3>
         <n-modal btn-title="ボタン"> <p>モーダルの内容</p> </n-modal>
         <n-modal btn-title="色変更"> <p>モーダルの内容</p> </n-modal>
       </n-card>
       <n-card>
-        <n-title-lv3>リンク・チップ</n-title-lv3>
+        <n-title-lv-3>リンク・チップ</n-title-lv-3>
         <p>あいうえおかきくけこ<n-chip color="info">チップ</n-chip>さしすせそ</p>
         <p>
           あいうえおかきくけこ<n-chip color="info" href="./sample.html" type="internal"
@@ -375,9 +377,9 @@
       </n-card>
 
       <n-card>
-        <n-title-lv3>アラート</n-title-lv3>
+        <n-title-lv-3>アラート</n-title-lv-3>
         <n-alert type="info">
-          <n-title-lv4>タイトル</n-title-lv4>
+          <n-title-lv-4>タイトル</n-title-lv-4>
           <p>
             あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
           </p>
@@ -388,7 +390,7 @@
         </n-alert>
       </n-card>
       <n-card>
-        <n-title-lv3>ユーチューブ</n-title-lv3>
+        <n-title-lv-3>ユーチューブ</n-title-lv-3>
         <n-youtube
           src="https://www.youtube.com/embed/CkmEMDdiZH4"
           caption="キャプション"
@@ -396,7 +398,7 @@
       </n-card>
 
       <n-card>
-        <n-title-lv2-index decoration="border">新着情報</n-title-lv2-index>
+        <n-title-lv-2-index>新着情報</n-title-lv-2-index>
         <n-list-news>
           <n-list-item-date
             datetime="2025-06-16T16:00:00+09:00"
