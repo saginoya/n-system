@@ -2,23 +2,17 @@
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
 
 import IconArrowDown from '@/components/icons/IconArrowDown.vue'
-import LinkBox from '@/components/parts/LinkBox.vue'
-import { useRouter } from '@/composables/useRouter'
-import { cn } from '@/lib/cn'
+import ListNavItem from '@/components/parts/ListNavItem.vue'
 import type { Navigation } from '@/types'
-import { isCurrentPage } from '@/utils'
 
-const props = defineProps<Navigation>()
-
-const routers = useRouter().getByIds(props.children)
-
-const commonClasses =
-  'px-2 py-0.5 font-bold rounded-full text-white hover:bg-blue-200/30 focus:bg-blue-200/30'
+defineProps<Navigation>()
 </script>
 
 <template>
   <Menu as="div" class="relative">
-    <MenuButton :class="cn(commonClasses, 'flex w-full items-center justify-between')">
+    <MenuButton
+      class="flex w-full items-center justify-between rounded-full px-2 py-1 font-bold text-white hover:bg-blue-200/30 focus:bg-blue-200/30"
+    >
       {{ name }}
       <IconArrowDown />
     </MenuButton>
@@ -34,18 +28,8 @@ const commonClasses =
       <MenuItems
         class="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white p-2 shadow-lg ring-1 ring-black/5 focus:outline-none"
       >
-        <MenuItem v-for="link in routers" :key="link.id">
-          <LinkBox
-            :href="link.path"
-            :type="link.type"
-            :class="
-              cn('px-2 py-1 text-gray-900 hover:bg-blue-200/30 focus:bg-blue-200/30', {
-                'border border-current': isCurrentPage(link.path),
-              })
-            "
-          >
-            {{ link.name }}
-          </LinkBox>
+        <MenuItem v-for="path in children" :key="path">
+          <ListNavItem :path class="text-slate-600" />
         </MenuItem>
       </MenuItems>
     </transition>

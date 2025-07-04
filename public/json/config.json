@@ -18,7 +18,7 @@
       "id": "exhibitors",
       "name": "出展のご案内",
       "type": "group",
-      "children": ["no", "pdf"]
+      "children": ["pdf"]
     },
     {
       "id": "visitors",
