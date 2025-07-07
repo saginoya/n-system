@@ -10,7 +10,7 @@ body {
 
 @layer base {
   body {
-    @apply font-sans text-slate-600 tracking-wide;
+    @apply font-sans text-slate-600;
   }
   h2 {
     @apply text-3xl font-bold tracking-tight text-slate-500 font-mono;

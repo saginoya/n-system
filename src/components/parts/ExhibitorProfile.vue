@@ -26,21 +26,25 @@ const texts = {
 </script>
 
 <template>
-  <article class="flex flex-col">
-    <header class="flex flex-col items-center gap-4 py-6 sm:flex-row">
+  <article class="flex flex-col gap-4">
+    <header class="flex flex-col items-center gap-4 pt-6 sm:flex-row">
       <div>
         <NChip :color="exhibitor.color || 'exhibition-a'" v-if="exhibitor.koma">{{
           exhibitor.koma
         }}</NChip>
       </div>
       <div>
-        <h1>
+        <h1 class="text-3xl">
           <MarkupText :content="exhibitor.name"></MarkupText>
         </h1>
         <MarkupText v-if="exhibitor.subName" :content="exhibitor.subName"></MarkupText>
       </div>
     </header>
-    <MarkupText v-if="exhibitor.contents" :content="exhibitor.contents" class="bg-gray-100 py-1">
+    <MarkupText
+      v-if="exhibitor.contents"
+      :content="exhibitor.contents"
+      class="bg-gray-100 px-2 py-1"
+    >
     </MarkupText>
     <dl class="divide-y">
       <div class="grid grid-cols-1 gap-2 py-2 sm:grid-cols-4 md:grid-cols-6">

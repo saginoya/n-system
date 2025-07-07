@@ -12,7 +12,7 @@ defineProps<{
 <template>
   <li class="border-b p-1 text-center">
     <div class="bg-slate-100 p-1 font-bold">{{ header }}</div>
-    <div class="flex items-center justify-center p-1">
+    <div class="flex items-center justify-center gap-2 p-1">
       <span v-if="withPit">
         <n-link :href="withPit" type="pdf">PIT図あり</n-link>
       </span>
