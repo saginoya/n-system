@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import LinkBox from '@/components/parts/LinkBox.vue'
+import { cn } from '@/lib/cn'
 import { bgColorMap } from '@/styles'
+import { chipBase } from '@/styles'
 import type { Color, LinkType } from '@/types'
 import { getLinkOptions } from '@/utils'
 
@@ -14,16 +17,23 @@ const linkOptions = props.href && props.type ? getLinkOptions(props.href, props.
 
 <template>
   <component
-    :is="linkOptions ? 'a' : 'span'"
+    :is="linkOptions ? LinkBox : 'span'"
     :href="linkOptions ? linkOptions.href : null"
     :target="linkOptions ? linkOptions.target : null"
-    class="inline-flex items-center justify-center gap-0.5 overflow-hidden rounded-full px-3 py-1 align-middle text-white"
-    :class="[bgColorMap[color], { 'hover:opacity-75': href }]"
+    :icon="linkOptions ? linkOptions.icon : null"
+    :class="
+      cn(
+        chipBase,
+        'inline-flex overflow-hidden  align-middle text-white',
+        bgColorMap[color],
+        { 'hover:ring focus:ring': linkOptions },
+        {
+          'px-2': !linkOptions,
+        },
+      )
+    "
   >
-    <span>
-      <slot />
-    </span>
-    <component v-if="linkOptions" :is="linkOptions.icon" class="inline" />
+    <slot />
   </component>
 </template>
 

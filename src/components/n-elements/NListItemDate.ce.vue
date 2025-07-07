@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import LinkBox from '@/components/parts/LinkBox.vue'
+import { cn } from '@/lib/cn'
 import type { LinkType } from '@/types'
 import { formatDate, getDocumentLanguage, getLinkOptions } from '@/utils'
 
@@ -32,7 +33,7 @@ const commonClasses = 'p-2 sm:col-span-3 md:col-span-5 md:p-4 text-inherit'
       :href="linkOptions.href"
       :target="linkOptions.target"
       :icon="linkOptions.icon"
-      :class="commonClasses"
+      :class="cn(commonClasses, 'hover:bg-blue-200/30 focus:bg-blue-200/30')"
     >
       <slot />
     </LinkBox>

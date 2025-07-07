@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 
 import { cn } from '@/lib/cn'
+import { chipChildBase } from '@/styles/concepts'
 import type { LinkTarget, LinkType } from '@/types'
 import { getLinkOptions } from '@/utils'
 
@@ -39,11 +40,9 @@ const linkOptions = computed(() => {
   <a
     :href="linkOptions.href"
     :target="linkOptions.target"
-    :class="
-      cn('flex items-center justify-between hover:bg-blue-200/30 focus:bg-blue-200/30', props.class)
-    "
+    :class="cn('flex items-center justify-between', props.class)"
   >
-    <span>
+    <span :class="chipChildBase">
       <slot />
     </span>
     <component v-if="linkOptions.icon" :is="linkOptions.icon" class="inline" />

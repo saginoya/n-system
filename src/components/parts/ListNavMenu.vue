@@ -3,6 +3,8 @@ import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
 
 import IconArrowDown from '@/components/icons/IconArrowDown.vue'
 import ListNavItem from '@/components/parts/ListNavItem.vue'
+import { cn } from '@/lib/cn'
+import { chipBase, chipChildBase } from '@/styles'
 import type { Navigation } from '@/types'
 
 defineProps<Navigation>()
@@ -11,9 +13,16 @@ defineProps<Navigation>()
 <template>
   <Menu as="div" class="relative">
     <MenuButton
-      class="flex w-full items-center justify-between rounded-full px-2 py-1 font-bold text-white hover:bg-blue-200/30 focus:bg-blue-200/30"
+      :class="
+        cn(
+          chipBase,
+          'flex w-full items-center justify-between font-bold text-white hover:bg-blue-200/30 focus:bg-blue-200/30',
+        )
+      "
     >
-      {{ name }}
+      <span :class="chipChildBase">
+        {{ name }}
+      </span>
       <IconArrowDown />
     </MenuButton>
 
