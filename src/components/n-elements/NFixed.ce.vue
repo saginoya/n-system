@@ -30,9 +30,9 @@ const displayClass = computed<string>(() => {
 </script>
 
 <template>
-  <div class="fixed" :class="`${displayClass} ${positionOptions[position]}`">
-    <slot />
-    <BtnClose size="sm" @click="dismiss()"></BtnClose>
+  <div class="pointer-events-none fixed" :class="`${displayClass} ${positionOptions[position]}`">
+    <slot class="pointer-events-auto" />
+    <BtnClose size="sm" class="pointer-events-auto" @click="dismiss()"></BtnClose>
   </div>
 </template>
 
