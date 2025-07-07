@@ -1,19 +1,26 @@
 <script setup lang="ts">
 import ListNavItem from '@/components/parts/ListNavItem.vue'
 import ListNavMenu from '@/components/parts/ListNavMenu.vue'
+import { useRouter } from '@/composables/useRouter'
 import type { Navigation } from '@/types'
+import { getLinkOptions } from '@/utils'
 
 defineProps<{
   title?: string
   navigation?: Navigation[]
 }>()
+
+const routerTop = useRouter().getById('top')
+const LinkTop = getLinkOptions(routerTop?.path ?? './', routerTop?.type ?? 'internal')
 </script>
 
 <template>
   <div class="bg-primary px-4 pb-2 pt-4">
     <div class="m-auto flex max-w-6xl">
       <div class="flex-none">
-        <span class="text-lg font-bold text-white">{{ title }}</span>
+        <a :href="LinkTop.href" :target="LinkTop.target" class="text-lg font-bold text-white">{{
+          title
+        }}</a>
       </div>
       <div class="hidden grow lg:block"></div>
       <nav class="hidden flex-none lg:block">
