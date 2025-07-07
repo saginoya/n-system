@@ -2,7 +2,7 @@
 import { ref, computed, watchEffect } from 'vue'
 
 import NListDisc from '@/components/n-elements/NListDisc.ce.vue'
-import NTitleLv3 from '@/components/n-elements/NTitleLv3.ce.vue'
+import NTitleLv3 from '@/components/n-elements/NTitle.ce.vue'
 import NTooltipInfo from '@/components/n-elements/NTooltipInfo.ce.vue'
 import Btn from '@/components/parts/BtnBase.vue'
 import ExhibitorListHeading from '@/components/parts/ExhibitorListHeading.vue'
