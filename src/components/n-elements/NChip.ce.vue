@@ -1,18 +1,25 @@
 <script setup lang="ts">
 import LinkBox from '@/components/parts/LinkBox.vue'
 import { cn } from '@/lib/cn'
-import { bgColorMap } from '@/styles'
-import { chipBase } from '@/styles'
+import { chipBase, variantConceptMap, type Variant } from '@/styles'
 import type { Color, LinkType } from '@/types'
 import { getLinkOptions } from '@/utils'
 
-const props = defineProps<{
-  color: Color
-  href?: string
-  type?: LinkType
-}>()
+const props = withDefaults(
+  defineProps<{
+    color: Color
+    href?: string
+    type?: LinkType
+    variant?: Variant
+  }>(),
+  {
+    variant: 'flat',
+  },
+)
 
 const linkOptions = props.href && props.type ? getLinkOptions(props.href, props.type) : undefined
+
+const colorCalsses = variantConceptMap[props.variant](props.color)
 </script>
 
 <template>
@@ -24,8 +31,8 @@ const linkOptions = props.href && props.type ? getLinkOptions(props.href, props.
     :class="
       cn(
         chipBase,
-        'inline-flex overflow-hidden  align-middle text-white',
-        bgColorMap[color],
+        'inline-flex overflow-hidden  align-middle border',
+        colorCalsses,
         { 'hover:ring focus:ring': linkOptions },
         {
           'px-2': !linkOptions,
