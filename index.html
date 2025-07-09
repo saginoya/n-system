@@ -15,6 +15,34 @@
       </n-card>
 
       <n-card>
+        <n-title>リンク・チップ</n-title>
+
+        <n-chip-stack items="NChips,2つめ,3つめ,一度に,aaa" />
+
+        <p>あいうえおかきくけこ<n-chip color="info">チップ</n-chip>さしすせそ</p>
+        <p>
+          あいうえおかきくけこ<n-chip color="info" variant="outlined">アウトライン</n-chip
+          >さしすせそ
+        </p>
+        <p>あいうえおかきくけこ<n-chip color="info" variant="text">テキスト</n-chip>さしすせそ</p>
+        <p>
+          あいうえおかきくけこ<n-chip color="info" href="./sample.html" type="internal"
+            >チップ</n-chip
+          >さしすせそ
+        </p>
+        <p>
+          あいうえおかきくけこ<n-link href="./sample.html" type="internal">リンク</n-link>さしすせそ
+        </p>
+        <p>あいうえおかきくけこ<n-link href="./sample.html" type="pdf">リンク</n-link>さしすせそ</p>
+        <n-link href="https://www.nippo.co.jp/" type="external"
+          >リンクテキストリンクテキストリンクテキストリンクテキスト</n-link
+        >
+        <n-link href="https://www.nippo.co.jp/" type="pdf" text-aligned
+          >リンクテキストリンクテキストリンクテキストリンクテキストリンクテキスト</n-link
+        >
+      </n-card>
+
+      <n-card>
         <n-title>ドロップダウン</n-title>
         <n-disclosure>
           <n-title slot="title" lv="h4">スロットのタイトル</n-title>
@@ -367,25 +395,6 @@
         <n-title>モーダル</n-title>
         <n-modal btn-title="ボタン"> <p>モーダルの内容</p> </n-modal>
         <n-modal btn-title="色変更"> <p>モーダルの内容</p> </n-modal>
-      </n-card>
-      <n-card>
-        <n-title>リンク・チップ</n-title>
-        <p>あいうえおかきくけこ<n-chip color="info">チップ</n-chip>さしすせそ</p>
-        <p>
-          あいうえおかきくけこ<n-chip color="info" href="./sample.html" type="internal"
-            >チップ</n-chip
-          >さしすせそ
-        </p>
-        <p>
-          あいうえおかきくけこ<n-link href="./sample.html" type="internal">リンク</n-link>さしすせそ
-        </p>
-        <p>あいうえおかきくけこ<n-link href="./sample.html" type="pdf">リンク</n-link>さしすせそ</p>
-        <n-link href="https://www.nippo.co.jp/" type="external"
-          >リンクテキストリンクテキストリンクテキストリンクテキスト</n-link
-        >
-        <n-link href="https://www.nippo.co.jp/" type="pdf" text-aligned
-          >リンクテキストリンクテキストリンクテキストリンクテキストリンクテキスト</n-link
-        >
       </n-card>
 
       <n-card>
