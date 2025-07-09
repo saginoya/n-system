@@ -25,7 +25,7 @@ const { drawer, operateDrawer, dismissDrawer } = useDrawer()
     :class="{ 'translate-x-0': drawer }"
   ></GlobalHeader>
   <div class="flex min-h-screen w-full flex-col overflow-hidden bg-slate-200">
-    <ToolBar :title="siteTitle ? siteTitle.join() : undefined" :navigation />
+    <ToolBar :title="siteTitle ? siteTitle.join(' ') : undefined" :navigation />
     <main class="flex flex-1 justify-center px-4 py-8">
       <div class="flex w-full max-w-screen-lg flex-col gap-12 py-6">
         <slot />
