@@ -6,7 +6,7 @@ import IconArrowUp from '@/components/icons/IconArrowUp.vue'
 
 withDefaults(
   defineProps<{
-    title: string
+    title?: string
     defaultOpen?: boolean
   }>(),
   {
@@ -23,7 +23,9 @@ withDefaults(
     v-slot="{ open }"
   >
     <DisclosureButton class="flex w-full items-center justify-between p-2">
-      <span>{{ title }}</span>
+      <slot name="title">
+        <span>{{ title }}</span>
+      </slot>
       <span class="flex size-8 items-center justify-center rounded-full bg-gray-100">
         <component :is="open ? IconArrowUp : IconArrowDown" class="text-xl text-gray-400" />
       </span>
