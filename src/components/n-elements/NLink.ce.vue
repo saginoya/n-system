@@ -3,7 +3,11 @@ import { linkManager, type LinkProps } from '@/composables/useLinkManager'
 
 const props = defineProps<LinkProps>()
 
-const linkOptions = linkManager({ href: props.href, type: props.type, routerId: props.routerId })
+const { linkOptions } = linkManager({
+  href: props.href,
+  type: props.type,
+  routerId: props.routerId,
+})
 </script>
 
 <template>

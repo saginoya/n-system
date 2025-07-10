@@ -10,7 +10,11 @@ const props = defineProps<
   } & LinkProps
 >()
 
-const linkOptions = linkManager({ href: props.href, type: props.type, routerId: props.routerId })
+const { linkOptions } = linkManager({
+  href: props.href,
+  type: props.type,
+  routerId: props.routerId,
+})
 
 const formattedDate = formatDate(props.datetime)
 const { year, month, date } = formattedDate || { year: '', month: '', date: '' }

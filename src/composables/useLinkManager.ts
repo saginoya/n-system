@@ -1,3 +1,5 @@
+import { computed } from 'vue'
+
 import { useRouter } from '@/composables/useRouter'
 import type { LinkType } from '@/types'
 import { getLinkOptions } from '@/utils'
@@ -16,12 +18,18 @@ const { getById } = useRouter()
  * @returns
  */
 export const linkManager = (link: LinkProps) => {
-  const router = link.routerId ? getById(link.routerId) : undefined
+  const linkOptions = computed(() => {
+    const router = link.routerId ? getById(link.routerId) : undefined
 
-  const href = router?.path ?? link.href
-  const type = router?.type ?? link.type
+    const href = router?.path ?? link.href
+    const type = router?.type ?? link.type
 
-  if (!href || !type) return undefined
+    if (!href || !type) return undefined
 
-  return getLinkOptions(href, type)
+    return getLinkOptions(href, type)
+  })
+
+  return {
+    linkOptions,
+  }
 }

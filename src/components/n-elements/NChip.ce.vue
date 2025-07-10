@@ -17,7 +17,11 @@ const props = withDefaults(
   },
 )
 
-const linkOptions = linkManager({ href: props.href, type: props.type, routerId: props.routerId })
+const { linkOptions } = linkManager({
+  href: props.href,
+  type: props.type,
+  routerId: props.routerId,
+})
 
 const colorCalsses = variantConceptMap[props.variant](props.color)
 </script>

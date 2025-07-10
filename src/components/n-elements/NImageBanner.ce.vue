@@ -22,7 +22,11 @@ const props = withDefaults(
   },
 )
 
-const linkOptions = linkManager({ href: props.href, type: props.type, routerId: props.routerId })
+const { linkOptions } = linkManager({
+  href: props.href,
+  type: props.type,
+  routerId: props.routerId,
+})
 
 // 状態管理の初期化を即時実行関数で分離
 const { isPreparation, setPublishedState, isClosing } = usePublishedState()
