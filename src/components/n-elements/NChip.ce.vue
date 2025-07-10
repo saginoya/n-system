@@ -1,23 +1,23 @@
 <script setup lang="ts">
 import LinkBox from '@/components/parts/LinkBox.vue'
+import { linkManager, type LinkProps } from '@/composables/useLinkManager'
 import { cn } from '@/lib/cn'
 import { chipBase, variantConceptMap, type Variant } from '@/styles'
-import type { Color, LinkType } from '@/types'
-import { getLinkOptions } from '@/utils'
+import type { Color } from '@/types'
 
 const props = withDefaults(
-  defineProps<{
-    color: Color
-    href?: string
-    type?: LinkType
-    variant?: Variant
-  }>(),
+  defineProps<
+    {
+      color: Color
+      variant?: Variant
+    } & LinkProps
+  >(),
   {
     variant: 'flat',
   },
 )
 
-const linkOptions = props.href && props.type ? getLinkOptions(props.href, props.type) : undefined
+const linkOptions = linkManager({ href: props.href, type: props.type, routerId: props.routerId })
 
 const colorCalsses = variantConceptMap[props.variant](props.color)
 </script>

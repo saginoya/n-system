@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import LinkBox from '@/components/parts/LinkBox.vue'
+import { linkManager, type LinkProps } from '@/composables/useLinkManager'
 import { cn } from '@/lib/cn'
-import type { LinkType } from '@/types'
-import { formatDate, getDocumentLanguage, getLinkOptions } from '@/utils'
+import { formatDate, getDocumentLanguage } from '@/utils'
 
-const props = defineProps<{
-  datetime: string
-  href?: string
-  type?: LinkType
-}>()
+const props = defineProps<
+  {
+    datetime: string
+  } & LinkProps
+>()
 
-const linkOptions = props.href && props.type ? getLinkOptions(props.href, props.type) : undefined
+const linkOptions = linkManager({ href: props.href, type: props.type, routerId: props.routerId })
 
 const formattedDate = formatDate(props.datetime)
 const { year, month, date } = formattedDate || { year: '', month: '', date: '' }

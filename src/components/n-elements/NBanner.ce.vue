@@ -2,31 +2,32 @@
 import { computed } from 'vue'
 
 import IconClock from '@/components/icons/IconClock.vue'
+import { linkManager, type LinkProps } from '@/composables/useLinkManager'
 import { usePublishedState } from '@/composables/usePublishedState'
 import { cn } from '@/lib/cn'
 import { variantConceptMap } from '@/styles'
 import type { Variant } from '@/styles'
-import type { Color, LinkType, PublishedState } from '@/types'
-import { getLinkOptions, formatDate } from '@/utils'
+import type { Color, PublishedState } from '@/types'
+import { formatDate } from '@/utils'
 
 const props = withDefaults(
-  defineProps<{
-    color: Color
-    size: Size
-    href?: string
-    type?: LinkType
-    state?: PublishedState
-    deadline?: string
-    revokeAutoDeadline?: boolean
-    variant?: Variant
-    note?: string
-  }>(),
+  defineProps<
+    {
+      color: Color
+      size: Size
+      state?: PublishedState
+      deadline?: string
+      revokeAutoDeadline?: boolean
+      variant?: Variant
+      note?: string
+    } & LinkProps
+  >(),
   {
     variant: 'flat',
   },
 )
 
-const linkOptions = props.href && props.type ? getLinkOptions(props.href, props.type) : undefined
+const linkOptions = linkManager({ href: props.href, type: props.type, routerId: props.routerId })
 
 const {
   isPreparation,

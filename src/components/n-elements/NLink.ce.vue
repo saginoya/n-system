@@ -1,17 +1,14 @@
 <script setup lang="ts">
-import type { LinkType } from '@/types'
-import { getLinkOptions } from '@/utils'
+import { linkManager, type LinkProps } from '@/composables/useLinkManager'
 
-const props = defineProps<{
-  href: string
-  type: LinkType
-}>()
+const props = defineProps<LinkProps>()
 
-const linkOptions = getLinkOptions(props.href, props.type)
+const linkOptions = linkManager({ href: props.href, type: props.type, routerId: props.routerId })
 </script>
 
 <template>
   <a
+    v-if="linkOptions"
     :href="linkOptions.href"
     :target="linkOptions.target"
     class="inline-flex items-center justify-center gap-0.5 border-b border-b-current hover:bg-blue-200/30 focus:bg-blue-200/30"

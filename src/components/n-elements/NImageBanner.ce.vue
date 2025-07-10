@@ -2,27 +2,27 @@
 import { computed } from 'vue'
 
 import NImage from '@/components/n-elements/NImage.ce.vue'
+import { linkManager, type LinkProps } from '@/composables/useLinkManager'
 import { usePublishedState } from '@/composables/usePublishedState'
-import type { LinkType, PublishedState } from '@/types'
-import { getLinkOptions } from '@/utils'
+import type { PublishedState } from '@/types'
 
 const props = withDefaults(
-  defineProps<{
-    src: string
-    alt: string
-    width: number
-    height: number
-    href?: string
-    type?: LinkType
-    noIcon?: boolean
-    state?: PublishedState
-  }>(),
+  defineProps<
+    {
+      src: string
+      alt: string
+      width: number
+      height: number
+      noIcon?: boolean
+      state?: PublishedState
+    } & LinkProps
+  >(),
   {
     noIcon: false,
   },
 )
 
-const linkOptions = props.href && props.type ? getLinkOptions(props.href, props.type) : undefined
+const linkOptions = linkManager({ href: props.href, type: props.type, routerId: props.routerId })
 
 // 状態管理の初期化を即時実行関数で分離
 const { isPreparation, setPublishedState, isClosing } = usePublishedState()
