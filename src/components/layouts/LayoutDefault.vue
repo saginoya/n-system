@@ -16,7 +16,7 @@ const { siteTitle, copyright, navigation } = useConfig(props.jsonPath)
 const { drawer, operateDrawer, dismissDrawer } = useDrawer()
 
 const toolBarNav = computed(() => {
-  return navigation.value?.filter((nav) => nav.id !== 'other')
+  return navigation.value?.filter((nav) => nav.id !== 'others')
 })
 </script>
 
