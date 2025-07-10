@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+
 import GlobalHeader from '@/components/parts/GlobalHeader.vue'
 import HeaderTool from '@/components/parts/HeaderTool.vue'
 import OverlayBase from '@/components/parts/OverlayBase.vue'
@@ -12,6 +14,10 @@ const props = defineProps<{
 }>()
 const { siteTitle, copyright, navigation } = useConfig(props.jsonPath)
 const { drawer, operateDrawer, dismissDrawer } = useDrawer()
+
+const toolBarNav = computed(() => {
+  return navigation.value?.filter((nav) => nav.id !== 'other')
+})
 </script>
 
 <template>
@@ -25,7 +31,7 @@ const { drawer, operateDrawer, dismissDrawer } = useDrawer()
     :class="{ 'translate-x-0': drawer }"
   ></GlobalHeader>
   <div class="flex min-h-screen w-full flex-col overflow-hidden bg-slate-200">
-    <ToolBar :title="siteTitle ? siteTitle.join(' ') : undefined" :navigation />
+    <ToolBar :title="siteTitle ? siteTitle.join(' ') : undefined" :navigation="toolBarNav" />
     <main class="flex flex-1 justify-center px-4 py-8">
       <div class="flex w-full max-w-screen-lg flex-col gap-12 py-6">
         <slot />

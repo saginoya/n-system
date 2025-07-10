@@ -15,12 +15,12 @@ const LinkTop = getLinkOptions(routerTop?.path ?? './', routerTop?.type ?? 'inte
 </script>
 
 <template>
-  <div class="bg-primary px-4 pb-2 pt-4">
+  <div class="bg-white/75 px-4 pb-2 pt-4">
     <div class="m-auto flex max-w-6xl">
       <div class="flex-none">
-        <a :href="LinkTop.href" :target="LinkTop.target" class="text-lg font-bold text-white">{{
-          title
-        }}</a>
+        <a :href="LinkTop.href" :target="LinkTop.target" class="text-lg font-bold text-primary">
+          <slot name="logo">{{ title }}</slot>
+        </a>
       </div>
       <div class="hidden grow lg:block"></div>
       <nav class="hidden flex-none lg:block">
@@ -32,12 +32,13 @@ const LinkTop = getLinkOptions(routerTop?.path ?? './', routerTop?.type ?? 'inte
               :name="item.name"
               :type="item.type"
               :children="item.children"
+              class="text-primary"
             >
             </ListNavMenu>
             <ListNavItem
               v-else
               :path="item.children[0]"
-              :class="item.id === 'language' ? 'bg-info' : ''"
+              :class="item.id === 'language' ? 'bg-info text-white hover:text-info' : ''"
             ></ListNavItem>
           </div>
         </div>

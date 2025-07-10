@@ -31,6 +31,12 @@
       "name": "Language",
       "type": "link",
       "children": ["en"]
+    },
+    {
+      "id": "other",
+      "name": "そのほか",
+      "type": "group",
+      "children": ["nexpo"]
     }
   ],
   "router": [

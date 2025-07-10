@@ -16,7 +16,7 @@ defineProps<Navigation>()
       :class="
         cn(
           chipBase,
-          'flex w-full items-center justify-between font-bold text-white hover:bg-blue-200/30 focus:bg-blue-200/30',
+          'flex w-full items-center justify-between font-bold  hover:bg-blue-200/30 focus:bg-blue-200/30',
         )
       "
     >

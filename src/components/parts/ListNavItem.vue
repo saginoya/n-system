@@ -21,7 +21,7 @@ const name = router?.name ?? ''
     :href
     :type
     :class="
-      cn(chipBase, 'text-white font-bold hover:bg-blue-200/30 focus:bg-blue-200/30', props.class, {
+      cn(chipBase, 'text-inherit font-bold hover:bg-blue-200/30 focus:ring', props.class, {
         'opacity-50': isCurrentPage(href),
       })
     "
