@@ -33,7 +33,7 @@
       "children": ["en"]
     },
     {
-      "id": "other",
+      "id": "others",
       "name": "そのほか",
       "type": "group",
       "children": ["nexpo"]
