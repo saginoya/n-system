@@ -10,14 +10,14 @@ defineProps<{
 </script>
 
 <template>
-  <NContainer1col :gap="1">
+  <NContainer1col gap="1">
     <NContainerFlex class="font-bold">
       <NChip :color="required ? 'warning' : 'gray-light'" size="sm">
         {{ required ? '任意' : '必須' }}
       </NChip>
       <span>{{ title }}</span>
     </NContainerFlex>
-    <NContainer1col :gap="0.5">
+    <NContainer1col gap="0.5">
       <slot />
     </NContainer1col>
   </NContainer1col>
