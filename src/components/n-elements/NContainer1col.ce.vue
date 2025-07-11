@@ -1,31 +1,19 @@
 <script setup lang="ts">
-import { alignItemsMap } from '@/styles'
-import type { AlignItems } from '@/styles'
+import { alignItemsMap, gapMap } from '@/styles'
+import type { AlignItems, Gap } from '@/styles'
 
 const props = withDefaults(
   defineProps<{
-    gap?: GapOptions
+    gap?: Gap
     aline?: AlignItems
   }>(),
   {
-    gap: 2,
+    gap: '2',
     aline: 'stretch',
   },
 )
 
-const gapOptions = {
-  0: 'gap-0',
-  0.5: 'gap-0.5',
-  1: 'gap-1',
-  2: 'gap-2',
-  4: 'gap-4',
-  8: 'gap-8',
-  12: 'gap-12',
-}
-
-type GapOptions = keyof typeof gapOptions
-
-const variant: string[] = [gapOptions[props.gap], alignItemsMap[props.aline]]
+const variant: string[] = [gapMap[props.gap], alignItemsMap[props.aline]]
 </script>
 
 <template>

@@ -1,11 +1,18 @@
 <script setup lang="ts">
-import { justifyMap, justifyMdMap } from '@/styles'
-import type { Justify } from '@/styles'
+import { cn } from '@/lib/cn'
+import { justifyMap, justifyMdMap, gapMap } from '@/styles'
+import type { Justify, Gap } from '@/styles'
 
-const props = defineProps<{
-  justify?: Justify
-  justifyMd?: Justify
-}>()
+const props = withDefaults(
+  defineProps<{
+    justify?: Justify
+    justifyMd?: Justify
+    gap?: Gap
+  }>(),
+  {
+    gap: '2',
+  },
+)
 
 const justifyStyles = (): (string | null)[] => {
   return [
@@ -16,7 +23,7 @@ const justifyStyles = (): (string | null)[] => {
 </script>
 
 <template>
-  <div class="flex flex-wrap items-center gap-2" :class="justifyStyles()">
+  <div :class="cn('flex flex-wrap items-center', justifyStyles(), gapMap[gap])">
     <slot />
   </div>
 </template>
