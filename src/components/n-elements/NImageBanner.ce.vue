@@ -37,7 +37,6 @@ const { isPreparation, setPublishedState, isClosing } = usePublishedState()
 })()
 
 // リンク関連のロジック
-const icon = computed(() => (linkOptions ? linkOptions.icon : undefined))
 const isLink = computed(() => {
   return Boolean(props.href) && !isPreparation.value && !isClosing.value
 })
@@ -62,8 +61,8 @@ const isLink = computed(() => {
       }"
     >
       <!-- アイコン表示 -->
-      <span v-if="icon" class="rounded-full bg-blue-500/80 p-2 text-white">
-        <component :is="icon" class="size-6" />
+      <span v-if="linkOptions && !noIcon" class="rounded-full bg-blue-500/80 p-2 text-white">
+        <component :is="linkOptions.icon" class="size-6" />
       </span>
     </div>
 
