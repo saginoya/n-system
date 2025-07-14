@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
+import NImage from '@/components/n-elements/NImage.ce.vue'
 import GlobalHeader from '@/components/parts/GlobalHeader.vue'
 import HeaderTool from '@/components/parts/HeaderTool.vue'
 import OverlayBase from '@/components/parts/OverlayBase.vue'
@@ -12,7 +13,7 @@ import { useDrawer } from '@/composables/useDrawer'
 const props = defineProps<{
   jsonPath: string
 }>()
-const { siteTitle, copyright, navigation } = useConfig(props.jsonPath)
+const { siteTitle, copyright, navigation, logoImage } = useConfig(props.jsonPath)
 const { drawer, operateDrawer, dismissDrawer } = useDrawer()
 
 const toolBarNav = computed(() => {
@@ -31,7 +32,15 @@ const toolBarNav = computed(() => {
     :class="{ 'translate-x-0': drawer }"
   ></GlobalHeader>
   <div class="flex min-h-screen w-full flex-col overflow-hidden bg-slate-200">
-    <ToolBar :title="siteTitle ? siteTitle.join(' ') : undefined" :navigation="toolBarNav" />
+    <ToolBar :title="siteTitle ? siteTitle.join(' ') : undefined" :navigation="toolBarNav">
+      <NImage
+        v-if="logoImage"
+        :src="logoImage.src"
+        :width="Number(logoImage.width)"
+        :height="Number(logoImage.height)"
+        :alt="logoImage.alt"
+      ></NImage>
+    </ToolBar>
     <main class="flex flex-1 justify-center px-4 py-8">
       <div class="flex w-full max-w-screen-lg flex-col gap-12 py-6">
         <slot />

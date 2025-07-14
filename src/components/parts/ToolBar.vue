@@ -16,10 +16,14 @@ const LinkTop = getLinkOptions(routerTop?.path ?? './', routerTop?.type ?? 'inte
 
 <template>
   <div class="bg-white/75 px-4 pb-2 pt-4">
-    <div class="m-auto flex max-w-6xl">
+    <div class="m-auto flex max-w-6xl justify-center align-bottom lg:justify-normal">
       <div class="flex-none">
-        <a :href="LinkTop.href" :target="LinkTop.target" class="text-lg font-bold text-primary">
-          <slot name="logo">{{ title }}</slot>
+        <a
+          :href="LinkTop.href"
+          :target="LinkTop.target"
+          class="text-lg font-bold text-primary hover:opacity-75"
+        >
+          <slot>{{ title }}</slot>
         </a>
       </div>
       <div class="hidden grow lg:block"></div>

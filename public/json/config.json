@@ -1,6 +1,12 @@
 {
   "siteTitle": ["N-System"],
   "copyright": "n-system",
+  "logoImage": {
+    "width": "268",
+    "height": "30",
+    "src": "/images/logo-nexpo2026-small.png",
+    "alt": "2026NEW環境展・地球温暖化防止展"
+  },
   "navigation": [
     {
       "id": "global",

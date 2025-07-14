@@ -1,4 +1,4 @@
-import type { Router } from '@/types'
+import type { Router, Image } from '@/types'
 
 export type Navigation = {
   id: string
@@ -12,4 +12,5 @@ export type Config = {
   copyright: string
   navigation: Navigation[]
   router: Router[]
+  logoImage?: Image
 }
