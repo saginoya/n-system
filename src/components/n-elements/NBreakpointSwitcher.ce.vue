@@ -3,24 +3,26 @@ import { ref } from 'vue'
 
 import { useEventListener } from '@/composables/useEventListener'
 
-type Breakpoint = 'md' | 'lg' | 'xl'
-
 /**
  * Propsでは有効にするブレークポイントを指定する
  * 空のスロットを無視する処理が必要なため
  */
 const props = defineProps<{
+  sm?: boolean
   md?: boolean
   lg?: boolean
   xl?: boolean
 }>()
 
 // TailwindCSSのブレークポイント
-const breakpoint: Record<Breakpoint, number> = {
+const breakpoint = {
+  sm: 640,
   md: 768,
   lg: 1024,
   xl: 1280,
-}
+} as const
+
+type Breakpoint = keyof typeof breakpoint
 
 // 現在のスクリーンの幅
 const screenWidth = ref<number>(window.innerWidth)
@@ -46,6 +48,9 @@ useEventListener(window, 'resize', updateWidth)
   </div>
   <div v-else-if="isVisible('md')">
     <slot name="md" />
+  </div>
+  <div v-else-if="isVisible('sm')">
+    <slot name="sm" />
   </div>
   <div v-else>
     <slot />
