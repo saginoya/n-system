@@ -22,7 +22,7 @@ withDefaults(
     :default-open="defaultOpen"
     v-slot="{ open }"
   >
-    <DisclosureButton class="flex w-full items-center justify-between p-2">
+    <DisclosureButton class="flex w-full items-center justify-between p-2 text-start">
       <slot name="title">
         <span>{{ title }}</span>
       </slot>
