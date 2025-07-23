@@ -10,8 +10,11 @@ export type Link = {
   type: LinkType
 }
 
-export type Router = Link & {
+export type Router = {
   id: string
+  name: string
+  path: string
+  type: LinkType & 'image'
 }
 
 export type RouterMap = Map<string, Router>

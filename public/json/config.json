@@ -82,6 +82,24 @@
       "name": "日報インターネット",
       "path": "https://www.nippo.co.jp/",
       "type": "external"
+    },
+    {
+      "id": "logo-nippo",
+      "name": "日報ビジネス Logo",
+      "path": "@/images/logos/logo-nippo.png",
+      "type": "image"
+    },
+    {
+      "id": "logo-facebook",
+      "name": "Facebook Logo",
+      "path": "@/images/logos/logo-facebook.png",
+      "type": "image"
+    },
+    {
+      "id": "logo-line",
+      "name": "LINE Logo",
+      "path": "@/images/logos/logo-line.png",
+      "type": "image"
     }
   ]
 }

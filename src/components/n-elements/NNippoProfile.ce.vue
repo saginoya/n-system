@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import logoFacebook from '@/assets/images/logo-facebook.png'
-import logoLine from '@/assets/images/logo-line.png'
-import logoNippo from '@/assets/images/nippo-logo.png'
+import { computed } from 'vue'
+
 import IconCall from '@/components/icons/IconCall.vue'
 import IconFax from '@/components/icons/IconFax.vue'
 import IconMail from '@/components/icons/IconMail.vue'
@@ -10,6 +9,7 @@ import NContainerFlex from '@/components/n-elements/NContainerFlex.ce.vue'
 import NContainerGrid from '@/components/n-elements/NContainerGrid.ce.vue'
 import NImage from '@/components/n-elements/NImage.ce.vue'
 import NImageBanner from '@/components/n-elements/NImageBanner.ce.vue'
+import { useRouter } from '@/composables/useRouter'
 
 withDefaults(
   defineProps<{
@@ -33,13 +33,20 @@ withDefaults(
 )
 
 const snsLogoSize = 45
+
+const { getById } = useRouter()
+
+const logoNippo = computed(() => getById('logo-nippo'))
+const logoFacebook = computed(() => getById('logo-facebook'))
+const logoLine = computed(() => getById('logo-line'))
 </script>
 
 <template>
   <address class="not-italic">
     <!-- <NTitle>主催会社・お問い合わせ先</NTitle> -->
     <NImage
-      :src="logoNippo"
+      v-if="logoNippo"
+      :src="logoNippo.path"
       :width="280"
       :height="34"
       alt="日報ビジネス株式会社"
@@ -50,8 +57,8 @@ const snsLogoSize = 45
         <NContainerFlex gap="0.5"><IconMail />Email {{ email }}</NContainerFlex>
         <NContainerFlex>
           <NImageBanner
-            v-if="facebook"
-            :src="logoFacebook"
+            v-if="facebook && logoFacebook"
+            :src="logoFacebook.path"
             :width="snsLogoSize"
             :height="snsLogoSize"
             :href="facebook"
@@ -59,8 +66,8 @@ const snsLogoSize = 45
             alt="Facebook"
           ></NImageBanner>
           <NImageBanner
-            v-if="line"
-            :src="logoLine"
+            v-if="line && logoLine"
+            :src="logoLine.path"
             :width="snsLogoSize"
             :height="snsLogoSize"
             alt="LINE"
