@@ -1,10 +1,11 @@
 {
   "siteTitle": ["N-System"],
   "copyright": "n-system",
+  "baseDirectory": "",
   "logoImage": {
     "width": "268",
     "height": "30",
-    "src": "/images/logo-nexpo2026-small.png",
+    "src": "@/images/logo-nexpo2026-small.png",
     "alt": "2026NEW環境展・地球温暖化防止展"
   },
   "navigation": [
@@ -49,7 +50,7 @@
     {
       "id": "en",
       "name": "English",
-      "path": "/en",
+      "path": "@/en",
       "type": "internal"
     },
     {
@@ -61,19 +62,19 @@
     {
       "id": "top",
       "name": "トップ",
-      "path": "/",
+      "path": "@/",
       "type": "internal"
     },
     {
       "id": "sample",
       "name": "サンプル",
-      "path": "/sample",
+      "path": "@/sample",
       "type": "internal"
     },
     {
       "id": "pdf",
       "name": "PDF",
-      "path": "/documents/pdf.pdf",
+      "path": "@/documents/pdf.pdf",
       "type": "pdf"
     },
     {
