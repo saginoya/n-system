@@ -13,7 +13,7 @@ defineProps<{
   <NContainer1col gap="1">
     <NContainerFlex class="font-bold">
       <NChip :color="required ? 'warning' : 'gray-light'" size="sm">
-        {{ required ? '任意' : '必須' }}
+        {{ required ? '必須' : '任意' }}
       </NChip>
       <span>{{ title }}</span>
     </NContainerFlex>
