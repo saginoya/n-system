@@ -1,15 +1,24 @@
 <script setup lang="ts">
 import { cn } from '@/lib/cn'
-import { justifyMap, justifyMdMap, gapMap } from '@/styles'
-import type { Justify, Gap } from '@/styles'
+import {
+  justifyMap,
+  justifyMdMap,
+  type Justify,
+  gapMap,
+  type Gap,
+  alignItemsMap,
+  type AlignItems,
+} from '@/styles'
 
 const props = withDefaults(
   defineProps<{
     justify?: Justify
     justifyMd?: Justify
+    alignItems?: AlignItems
     gap?: Gap
   }>(),
   {
+    alignItems: 'center',
     gap: '2',
   },
 )
@@ -23,7 +32,7 @@ const justifyStyles = (): (string | null)[] => {
 </script>
 
 <template>
-  <div :class="cn('flex flex-wrap items-center', justifyStyles(), gapMap[gap])">
+  <div :class="cn('flex flex-wrap', justifyStyles(), alignItemsMap[alignItems], gapMap[gap])">
     <slot />
   </div>
 </template>
