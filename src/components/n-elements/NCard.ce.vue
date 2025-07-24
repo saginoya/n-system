@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { cn } from '@/lib/cn'
-import { variantConceptMap } from '@/styles'
-import type { Variant } from '@/styles'
+import { variantConceptMap, type Variant, gapMap, type Gap } from '@/styles'
 import type { Color } from '@/types'
 
 withDefaults(
@@ -9,21 +8,26 @@ withDefaults(
     heightFull?: boolean
     variant?: Variant
     color?: Color
+    gap?: Gap
   }>(),
   {
     variant: 'text',
     color: 'white',
+    gap: '4',
   },
 )
 </script>
 
 <template>
   <div
-    class="flex flex-col gap-4 rounded border-2 px-6 py-4"
     :class="
-      cn({ 'h-full': heightFull === true }, variantConceptMap[variant](color), {
-        'text-inherit': variant === 'outlined',
-      })
+      cn(
+        'flex flex-col rounded border-2 px-6 py-4',
+        gapMap[gap],
+        variantConceptMap[variant](color),
+        { 'h-full': heightFull === true },
+        { 'text-inherit': variant === 'outlined' },
+      )
     "
   >
     <slot />
