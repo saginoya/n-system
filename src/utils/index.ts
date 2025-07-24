@@ -1,5 +1,6 @@
 export * from './dateFormatUtils'
 export * from './htmlUtils'
+export * from './iconUtils'
 export * from './jsonUtils'
 export * from './linkUtils'
 export * from './localStorageUtils'

@@ -1,27 +1,15 @@
 <script setup lang="ts">
-import IconBus from '@/components/icons/IconBus.vue'
-import IconCar from '@/components/icons/IconCar.vue'
-import IconChevronRight from '@/components/icons/IconChevronRight.vue'
-import IconTrain from '@/components/icons/IconTrain.vue'
+import { iconMap, type Icon } from '@/utils'
 
 withDefaults(
   defineProps<{
-    name: IconsOptions
+    name: Icon
     size?: SizeOptions
   }>(),
   {
     size: 'md',
   },
 )
-
-const iconOptions = {
-  bus: IconBus,
-  car: IconCar,
-  train: IconTrain,
-  'chevron-right': IconChevronRight,
-}
-
-type IconsOptions = keyof typeof iconOptions
 
 const sizeOptions = {
   sm: 'size-6',
@@ -34,7 +22,7 @@ type SizeOptions = keyof typeof sizeOptions
 
 <template>
   <component
-    :is="iconOptions[name]"
+    :is="iconMap[name]"
     class="inline-block align-middle"
     :class="sizeOptions[size]"
   ></component>
