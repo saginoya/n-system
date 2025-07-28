@@ -1,4 +1,4 @@
-import { ref, computed, watchEffect, readonly } from 'vue'
+import { ref, computed, watchEffect, readonly, onMounted, onUnmounted } from 'vue'
 
 import type { PublishedState } from '@/types'
 
@@ -12,6 +12,21 @@ export const usePublishedState = () => {
   const deadline = ref<Date | undefined>()
   const now = ref<Date>(new Date())
   const isAutoDeadline = ref<boolean>(true)
+
+  /**
+   * 現在の日時を更新
+   */
+  const updateNow = () => {
+    now.value = new Date()
+  }
+  onMounted(() => {
+    // 定期的に現在の日時を更新
+    const intervalId = setInterval(updateNow, 180000) // 3分ごと
+    // コンポーネントがアンマウントされたときにインターバルをクリア
+    onUnmounted(() => {
+      clearInterval(intervalId)
+    })
+  })
 
   /**
    * 準備中状態かどうかを判定
@@ -48,15 +63,17 @@ export const usePublishedState = () => {
    * @param date - 期限日時の文字列（ISO 8601形式推奨）
    * @throws {Error} 無効な日付形式の場合
    */
-  const setDeadline = (date: string): void => {
+  const setDeadline = (date: string | Date): boolean => {
     const newDeadline = new Date(date)
 
     // 無効な日付かどうかチェック
     if (isNaN(newDeadline.getTime())) {
-      throw new Error('無効な日付形式です。ISO 8601形式（YYYY-MM-DDThh:mm:ss）を使用してください。')
+      console.error('無効な日付形式です。ISO 8601形式（YYYY-MM-DDThh:mm:ss）を使用してください。')
+      return false
     }
 
     deadline.value = newDeadline
+    return true
   }
 
   /**
@@ -75,11 +92,12 @@ export const usePublishedState = () => {
 
   return {
     publishedState: readonly(publishedState),
-    isPreparation: readonly(isPreparation),
-    isExpiration: readonly(isExpiration),
-    isClosing: readonly(isClosing),
+    isPreparation,
+    isExpiration,
+    isClosing,
     setPublishedState,
     setDeadline,
     revokeAutoDeadline,
+    updateNow,
   }
 }
