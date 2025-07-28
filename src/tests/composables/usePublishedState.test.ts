@@ -55,7 +55,22 @@ describe('usePublishedState', () => {
     state.setDeadline(new Date(Date.now() + 1000))
     state.revokeAutoDeadline()
     vi.advanceTimersByTime(180000)
+    state.updateNow()
     await nextTick()
     expect(state.publishedState.value).not.toBe('closing')
+  })
+
+  it('deadline未設定時はintervalが動かない', () => {
+    const state = usePublishedState()
+    expect(state.intervalId.value).toBeNull()
+  })
+
+  it('期限切れ時はintervalがクリアされる', async () => {
+    const state = usePublishedState()
+    state.setDeadline(new Date(Date.now() + 1000))
+    vi.advanceTimersByTime(180000)
+    state.updateNow()
+    await nextTick()
+    expect(state.intervalId.value).toBeNull()
   })
 })

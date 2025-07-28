@@ -1,4 +1,4 @@
-import { ref, computed, watchEffect, readonly, onMounted, onUnmounted } from 'vue'
+import { ref, computed, watchEffect, readonly, watch, onUnmounted } from 'vue'
 
 import type { PublishedState } from '@/types'
 
@@ -12,28 +12,7 @@ export const usePublishedState = () => {
   const deadline = ref<Date | undefined>()
   const now = ref<Date>(new Date())
   const isAutoDeadline = ref<boolean>(true)
-
-  /**
-   * 現在の日時を更新
-   */
-  const updateNow = () => {
-    now.value = new Date()
-  }
-  onMounted(() => {
-    // 定期的に現在の日時を更新
-    const intervalId = setInterval(updateNow, 180000) // 3分ごと
-    // コンポーネントがアンマウントされたときにインターバルをクリア
-    onUnmounted(() => {
-      clearInterval(intervalId)
-    })
-  })
-
-  /**
-   * 準備中状態かどうかを判定
-   */
-  const isPreparation = computed<boolean>(() => {
-    return publishedState.value === 'preparation'
-  })
+  const intervalId = ref<ReturnType<typeof setInterval> | null>(null)
 
   /**
    * 期限切れ状態かどうかを判定
@@ -48,6 +27,13 @@ export const usePublishedState = () => {
    */
   const isClosing = computed<boolean>(() => {
     return publishedState.value === 'closing'
+  })
+
+  /**
+   * 準備中状態かどうかを判定
+   */
+  const isPreparation = computed<boolean>(() => {
+    return publishedState.value === 'preparation'
   })
 
   /**
@@ -77,6 +63,13 @@ export const usePublishedState = () => {
   }
 
   /**
+   * 現在の日時を更新
+   */
+  const updateNow = () => {
+    now.value = new Date()
+  }
+
+  /**
    * 自動期限切れ機能を無効化
    */
   const revokeAutoDeadline = (): void => {
@@ -90,8 +83,33 @@ export const usePublishedState = () => {
     }
   })
 
+  // deadlineがセットされたときだけinterval開始
+  watch(deadline, (newDeadline) => {
+    if (intervalId.value) {
+      clearInterval(intervalId.value)
+      intervalId.value = null
+    }
+    if (newDeadline && newDeadline > now.value) {
+      intervalId.value = setInterval(updateNow, 180000)
+    }
+  })
+  // 期限切れになったらinterval停止
+  watch(
+    () => isExpiration.value,
+    (expired) => {
+      if (expired && intervalId.value) {
+        clearInterval(intervalId.value)
+        intervalId.value = null
+      }
+    },
+  )
+  onUnmounted(() => {
+    if (intervalId.value) clearInterval(intervalId.value)
+  })
+
   return {
     publishedState: readonly(publishedState),
+    intervalId: readonly(intervalId),
     isPreparation,
     isExpiration,
     isClosing,
