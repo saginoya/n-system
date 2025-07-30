@@ -34,11 +34,11 @@ withDefaults(
 
 const snsLogoSize = 45
 
-const { getById } = useRouter()
+const { getImageById } = useRouter()
 
-const logoNippo = computed(() => getById('logo-nippo'))
-const logoFacebook = computed(() => getById('logo-facebook'))
-const logoLine = computed(() => getById('logo-line'))
+const logoNippo = computed(() => getImageById('logo-nippo'))
+const logoFacebook = computed(() => getImageById('logo-facebook'))
+const logoLine = computed(() => getImageById('logo-line'))
 </script>
 
 <template>
@@ -46,7 +46,7 @@ const logoLine = computed(() => getById('logo-line'))
     <!-- <NTitle>主催会社・お問い合わせ先</NTitle> -->
     <NImage
       v-if="logoNippo"
-      :src="logoNippo.path"
+      :src="logoNippo.src"
       :width="280"
       :height="34"
       alt="日報ビジネス株式会社"
@@ -58,7 +58,7 @@ const logoLine = computed(() => getById('logo-line'))
         <NContainerFlex>
           <NImageBanner
             v-if="facebook && logoFacebook"
-            :src="logoFacebook.path"
+            :src="logoFacebook.src"
             :width="snsLogoSize"
             :height="snsLogoSize"
             :href="facebook"
@@ -67,7 +67,7 @@ const logoLine = computed(() => getById('logo-line'))
           ></NImageBanner>
           <NImageBanner
             v-if="line && logoLine"
-            :src="logoLine.path"
+            :src="logoLine.src"
             :width="snsLogoSize"
             :height="snsLogoSize"
             alt="LINE"

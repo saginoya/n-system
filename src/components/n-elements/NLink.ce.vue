@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { linkManager, type LinkProps } from '@/composables/useLinkManager'
+import { linkManager } from '@/composables/useLinkManager'
+import type { RouterLinkProps } from '@/types'
 
-const props = defineProps<LinkProps>()
+const props = defineProps<RouterLinkProps>()
 
 const { linkOptions } = linkManager({
   href: props.href,

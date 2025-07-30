@@ -10,8 +10,8 @@ const props = defineProps<{
   class?: string
 }>()
 
-const router = useRouter().getById(props.path)
-const href = router?.path ?? ''
+const router = useRouter().getLinkById(props.path)
+const href = router?.href ?? ''
 const type = router?.type ?? 'internal'
 const name = router?.name ?? ''
 </script>

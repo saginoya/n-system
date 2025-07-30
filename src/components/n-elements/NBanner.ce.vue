@@ -2,12 +2,12 @@
 import { computed } from 'vue'
 
 import IconClock from '@/components/icons/IconClock.vue'
-import { linkManager, type LinkProps } from '@/composables/useLinkManager'
+import { linkManager } from '@/composables/useLinkManager'
 import { usePublishedState } from '@/composables/usePublishedState'
 import { cn } from '@/lib/cn'
 import { variantConceptMap } from '@/styles'
 import type { Variant } from '@/styles'
-import type { Color, PublishedState } from '@/types'
+import type { Color, PublishedState, RouterLinkProps } from '@/types'
 import { formatDate } from '@/utils'
 
 const props = withDefaults(
@@ -20,7 +20,7 @@ const props = withDefaults(
       revokeAutoDeadline?: boolean
       variant?: Variant
       note?: string
-    } & LinkProps
+    } & RouterLinkProps
   >(),
   {
     variant: 'flat',

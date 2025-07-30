@@ -10,8 +10,8 @@ defineProps<{
   navigation?: Navigation[]
 }>()
 
-const routerTop = useRouter().getById('top')
-const LinkTop = getLinkOptions(routerTop?.path ?? './', routerTop?.type ?? 'internal')
+const routerTop = useRouter().getLinkById('top')
+const LinkTop = getLinkOptions(routerTop?.href ?? './', routerTop?.type ?? 'internal')
 </script>
 
 <template>

@@ -2,9 +2,9 @@
 import { computed } from 'vue'
 
 import NImage from '@/components/n-elements/NImage.ce.vue'
-import { linkManager, type LinkProps } from '@/composables/useLinkManager'
+import { linkManager } from '@/composables/useLinkManager'
 import { usePublishedState } from '@/composables/usePublishedState'
-import type { PublishedState } from '@/types'
+import type { PublishedState, RouterLinkProps } from '@/types'
 
 const props = withDefaults(
   defineProps<
@@ -15,7 +15,7 @@ const props = withDefaults(
       height: number
       noIcon?: boolean
       state?: PublishedState
-    } & LinkProps
+    } & RouterLinkProps
   >(),
   {
     noIcon: false,

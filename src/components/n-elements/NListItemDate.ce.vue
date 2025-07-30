@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import LinkBox from '@/components/parts/LinkBox.vue'
-import { linkManager, type LinkProps } from '@/composables/useLinkManager'
+import { linkManager } from '@/composables/useLinkManager'
 import { cn } from '@/lib/cn'
+import type { RouterLinkProps } from '@/types'
 import { formatDate, getDocumentLanguage } from '@/utils'
 
 const props = defineProps<
   {
     datetime: string
-  } & LinkProps
+  } & RouterLinkProps
 >()
 
 const { linkOptions } = linkManager({

@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import LinkBox from '@/components/parts/LinkBox.vue'
-import { linkManager, type LinkProps } from '@/composables/useLinkManager'
+import { linkManager } from '@/composables/useLinkManager'
 import { cn } from '@/lib/cn'
 import { chipBase, variantConceptMap, type Variant } from '@/styles'
-import type { Color } from '@/types'
+import type { Color, RouterLinkProps } from '@/types'
 
 const props = withDefaults(
   defineProps<
     {
       color: Color
       variant?: Variant
-    } & LinkProps
+    } & RouterLinkProps
   >(),
   {
     variant: 'flat',
