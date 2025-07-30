@@ -1,8 +1,8 @@
 import { onMounted, ref } from 'vue'
 
 import { useRouter } from '@/composables/useRouter'
-import type { Config, Navigation, Image } from '@/types'
-import { getJson } from '@/utils'
+import type { Config, Navigation, Image, ConfigRouter } from '@/types'
+import { getJson, convertConfigToRouter } from '@/utils'
 
 const { updateData } = useRouter()
 
@@ -41,10 +41,11 @@ export const useConfig = (jsonPath: string) => {
       : undefined
 
     if (config.router) {
-      const replacedRouter = config.router.map((item) => ({
-        ...item,
-        path: replaceAtToBase(item.path),
-      }))
+      const replacedRouter = config.router.map((item) => {
+        const basePath = replaceAtToBase(item.path)
+
+        return convertConfigToRouter({ ...item, path: basePath } as ConfigRouter)
+      })
       updateData(replacedRouter)
     }
   })

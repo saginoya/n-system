@@ -1,6 +1,7 @@
 import { ref } from 'vue'
 
-import type { Router, RouterMap } from '@/types'
+import type { Router, RouterMap, LinkRouter, ImageRouter } from '@/types'
+import { isLinkRouter, isImageRouter } from '@/utils'
 
 // グローバル型宣言
 declare global {
@@ -59,6 +60,18 @@ export const useRouter = () => {
     return routerMap.value.get(id)
   }
 
+  // ルーティング情報からIDが一致する情報を取得する（リンクのみ）
+  const getLinkById = (id: string): LinkRouter | undefined => {
+    const router = routerMap.value.get(id)
+    return router && isLinkRouter(router) ? router : undefined
+  }
+
+  // ルーティング情報からIDが一致する情報を取得する（画像のみ）
+  const getImageById = (id: string): ImageRouter | undefined => {
+    const router = routerMap.value.get(id)
+    return router && isImageRouter(router) ? router : undefined
+  }
+
   // 複数IDに一致する情報を配列で返す
   const getByIds = (ids: string[]): Router[] => {
     return ids
@@ -70,6 +83,8 @@ export const useRouter = () => {
     routerMap,
     isReady,
     getById,
+    getLinkById,
+    getImageById,
     getByIds,
     updateData,
   }
