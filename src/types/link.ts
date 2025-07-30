@@ -14,7 +14,7 @@ export type Router = {
   id: string
   name: string
   path: string
-  type: LinkType & 'image'
+  type: LinkType | 'image'
 }
 
 export type RouterMap = Map<string, Router>
