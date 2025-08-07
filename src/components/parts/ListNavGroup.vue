@@ -8,7 +8,7 @@ defineProps<Navigation>()
 <template>
   <div>
     <p class="px-1">
-      <span v-if="name" class="bg-white px-1 text-sm font-bold text-slate-600">{{ name }}</span>
+      <span v-if="name" class="rounded-sm bg-white px-1 font-bold text-slate-600">{{ name }}</span>
     </p>
 
     <ul class="flex flex-col gap-1 py-1">
