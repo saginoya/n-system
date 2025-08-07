@@ -2,6 +2,8 @@
 import ListNavItem from '@/components/parts/ListNavItem.vue'
 import ListNavMenu from '@/components/parts/ListNavMenu.vue'
 import { useRouter } from '@/composables/useRouter'
+import { cn } from '@/lib/cn'
+import { variantConceptMap } from '@/styles'
 import type { Navigation } from '@/types'
 import { getLinkOptions } from '@/utils'
 
@@ -12,6 +14,9 @@ defineProps<{
 
 const routerTop = useRouter().getLinkById('top')
 const LinkTop = getLinkOptions(routerTop?.href ?? './', routerTop?.type ?? 'internal')
+
+const baseButtonClass = cn(variantConceptMap['outlined']('primary'), 'border')
+const languageButtonClass = cn(variantConceptMap['flat']('info'), 'border hover:text-info')
 </script>
 
 <template>
@@ -36,13 +41,13 @@ const LinkTop = getLinkOptions(routerTop?.href ?? './', routerTop?.type ?? 'inte
               :name="item.name"
               :type="item.type"
               :children="item.children"
-              class="text-primary"
+              :button-class="baseButtonClass"
             >
             </ListNavMenu>
             <ListNavItem
               v-else
               :path="item.children[0]"
-              :class="item.id === 'language' ? 'bg-info text-white hover:text-info' : ''"
+              :class="item.id === 'language' ? languageButtonClass : baseButtonClass"
             ></ListNavItem>
           </div>
         </div>

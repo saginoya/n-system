@@ -7,7 +7,11 @@ import { cn } from '@/lib/cn'
 import { chipBase, chipChildBase } from '@/styles'
 import type { Navigation } from '@/types'
 
-defineProps<Navigation>()
+defineProps<
+  Navigation & {
+    buttonClass?: string
+  }
+>()
 </script>
 
 <template>
@@ -16,6 +20,7 @@ defineProps<Navigation>()
       :class="
         cn(
           chipBase,
+          buttonClass,
           'flex w-full items-center justify-between font-bold  hover:bg-blue-200/30 focus:bg-blue-200/30',
         )
       "
