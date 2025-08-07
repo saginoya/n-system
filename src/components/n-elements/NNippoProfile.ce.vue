@@ -26,13 +26,11 @@ withDefaults(
     facebook: 'https://www.facebook.com/nippo.biz/',
     line: 'https://page.line.me/xsm9203w?openQrModal=true',
     tokyoTel: '03(3262)3562',
-    tokyoFax: '03(5214)6633',
     osakaTel: '06(6265)9106',
-    osakaFax: '06(6265)9105',
   },
 )
 
-const snsLogoSize = 45
+const snsLogoSize = 40
 
 const { getImageById } = useRouter()
 
