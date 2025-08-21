@@ -1,10 +1,16 @@
 <script setup lang="ts">
 import NContainerFlex from '@/components/n-elements/NContainerFlex.ce.vue'
-const props = defineProps<{
-  items: string
-}>()
+const props = withDefaults(
+  defineProps<{
+    items: string
+    separator?: string
+  }>(),
+  {
+    separator: ',',
+  },
+)
 
-const arr = props.items.split(',')
+const arr = props.items.split(props.separator)
 </script>
 
 <template>
