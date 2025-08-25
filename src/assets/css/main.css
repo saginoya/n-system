@@ -4,6 +4,12 @@ body {
 }
 /* hiddenの解除はv-appコンポーネントで行われます */
 
+/* JSが無効化されている場合はnoscriptを表示する */
+noscript {
+  display: block !important;
+  visibility: visible !important;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
