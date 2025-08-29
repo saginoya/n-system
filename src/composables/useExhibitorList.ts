@@ -1,71 +1,45 @@
-import { ref, computed, onMounted } from 'vue'
+import { computed } from 'vue'
 
-import { useGenres } from '@/composables/useGenres'
-import type { Lang, Exhibitor, JsonExhibitor, Exhibitions } from '@/types'
-import { getJson } from '@/utils'
+import type { Exhibitor, Favorites } from '@/types'
+import {
+  filterByFavorites,
+  filterByGenres,
+  searchByKeyword,
+  sortExhibitorList,
+} from '@/utils/exhibitorList'
+
+type ExhibitorItem = keyof Exhibitor
+
+const searchWithinKeys: ExhibitorItem[] = ['name', 'koma', 'subName', 'contents'] as const
 
 export const useExhibitorList = (
-  lang: Lang,
-  listSrc: string,
-  genresSrc: string,
-  exhibitions: Exhibitions,
+  rawExhibitorList: Exhibitor[],
+  favorites: Favorites,
+  keyword: string,
+  genres: string[],
+  sort: ExhibitorItem,
 ) => {
-  // 言語は日本語か
-  const isJapanese = lang === 'ja'
+  const exhibitorList = computed(() => {
+    let list = rawExhibitorList
 
-  // 状態管理
-  // 出展社リスト
-  const exhibitorList = ref<Exhibitor[]>([])
+    // フィルタリング
+    list = filterByFavorites(list, favorites)
+    list = filterByGenres(list, genres)
 
-  // JSONファイルを取得して出展社リストを初期化
-  onMounted(async () => {
-    await genres.value
-    const json = await getJson<JsonExhibitor[]>(listSrc)
+    // 検索
+    list = searchByKeyword(list, keyword, searchWithinKeys)
 
-    await json.map((items: JsonExhibitor) => {
-      if (!isJapanese && !items.nameEng) return
-      exhibitorList.value.push(applyExhibitor(items))
-    })
+    // ソート
+    list = sortExhibitorList(list, sort)
+
+    return list
   })
 
-  // ジャンルを取得
-  const { getGenreNameFromID, genres } = useGenres(genresSrc)
-
-  // JSONの出展社情報をリストの形式に変換する関数
-  const applyExhibitor = (value: JsonExhibitor): Exhibitor => {
-    return {
-      id: value.id,
-      name: isJapanese ? value.name : value.nameEng,
-      order: isJapanese ? value.order : value.orderEng || value.nameEng,
-      subName: isJapanese ? value.nameEng : '',
-      exhibition: exhibitions[value.exhibition][lang],
-      genre: getGenreNameFromID(value.genre, lang),
-      koma: toBoothNumber(value.koma),
-      color: exhibitions[value.exhibition].color,
-      webSite: value.webSite,
-      contents: isJapanese ? value.contents : value.contentsEng,
-      categories: isJapanese ? value.categories : value.categoriesEng,
-      sdgs: value.sdgs,
-    }
-  }
-
-  // 英語の場合は屋外出展社の小間番号を変換する
-  const toBoothNumber = (boothNumber: string) => {
-    if (isJapanese || !boothNumber.includes('外')) {
-      return boothNumber
-    } else {
-      return boothNumber.replace('外', 'Z')
-    }
-  }
-
-  // 出展社の全件数
-  const numberOfExhibitors = computed<number>(() => {
-    return exhibitorList.value ? exhibitorList.value.length : 0
-  })
+  // 件数
+  const numExhibitorList = computed(() => exhibitorList.value.length)
 
   return {
     exhibitorList,
-    numberOfExhibitors,
-    genres,
+    numExhibitorList,
   }
 }
