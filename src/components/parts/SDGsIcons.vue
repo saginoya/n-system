@@ -3,11 +3,11 @@ import { ref } from 'vue'
 
 import NContainerFlex from '@/components/n-elements/NContainerFlex.ce.vue'
 import { useLang } from '@/composables/useLang'
+import type { SDGsNum } from '@/types'
 import { SDGsJaMap, SDGsJaImgMap, SDGsEnMap, SDGsEnImgMap } from '@/utils'
-import type { SDGsNumType } from '@/utils'
 
 defineProps<{
-  numbers: SDGsNumType[]
+  numbers: SDGsNum[]
 }>()
 
 const { lang } = useLang()

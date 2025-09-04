@@ -1,28 +1,23 @@
-import type { Color } from '@/types'
+import type { SDGsNum } from './sdgs'
 
-export type SortType = 'name' | 'koma'
-export type Exhibitions = {
-  [key: string]: {
-    ja: string
-    en: string
-    color: Color
-  }
-}
+// 出展社UUID
 export type ExhibitorID = string
-export type Favorites = ExhibitorID[]
+
+// SDGsの形式
+export type SDGs = SDGsNum[]
+
+// 出展社情報の形式
 export type Exhibitor = {
   id: ExhibitorID
   name: string
   order: string
   koma: string
-  exhibition: string
   genre?: string
-  color?: Color
   subName?: string
   webSite?: string
   contents?: string
-  categories?: string[]
-  sdgs?: number[]
+  sdgs?: SDGs
+  isFavorite: boolean
 }
 // JSONの出展社情報の形式
 export type JsonExhibitor = {
@@ -41,5 +36,8 @@ export type JsonExhibitor = {
   contentsEng: string
   categories: string[]
   categoriesEng: string[]
-  sdgs: number[]
+  sdgs: SDGs
 }
+
+// ソートの条件（ソート用文字列・小間番号・検索の一致順）
+export type SortType = 'order' | 'koma' | 'search'

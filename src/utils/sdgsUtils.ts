@@ -32,50 +32,14 @@ import IconSDGsJa14 from '@/components/icons/SDGs/IconSDGsJa14.vue'
 import IconSDGsJa15 from '@/components/icons/SDGs/IconSDGsJa15.vue'
 import IconSDGsJa16 from '@/components/icons/SDGs/IconSDGsJa16.vue'
 import IconSDGsJa17 from '@/components/icons/SDGs/IconSDGsJa17.vue'
+import type { SDGsNum } from '@/types'
 
 import type { Component } from 'vue'
 
-export type SDGsNumType =
-  | '1'
-  | '2'
-  | '3'
-  | '4'
-  | '5'
-  | '6'
-  | '7'
-  | '8'
-  | '9'
-  | '10'
-  | '11'
-  | '12'
-  | '13'
-  | '14'
-  | '15'
-  | '16'
-  | '17'
-  | 1
-  | 2
-  | 3
-  | 4
-  | 5
-  | 6
-  | 7
-  | 8
-  | 9
-  | 10
-  | 11
-  | 12
-  | 13
-  | 14
-  | 15
-  | 16
-  | 17
-type SDGsObj = Record<SDGsNumType, string>
-type SDGsCompObj = Record<SDGsNumType, Component>
+type SDGsObj = Record<SDGsNum, string>
+type SDGsCompObj = Record<SDGsNum, Component>
 
-export const SDGsNumList: SDGsNumType[] = [
-  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,
-]
+export const SDGsNumList: SDGsNum[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
 
 export const SDGsJaMap: SDGsObj = {
   1: '貧困をなくそう',
