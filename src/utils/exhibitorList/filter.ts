@@ -8,7 +8,7 @@ import type { Exhibitors, ExhibitorID } from '@/types'
  * @returns
  */
 export const filterByFavorites = (list: Exhibitors, favorites: ExhibitorID[]) => {
-  if (favorites.length === 0) return list
+  if (favorites.length === 0) return []
   return list.filter((exhibitor) => favorites.includes(exhibitor.id))
 }
 
