@@ -1,4 +1,4 @@
-import type { Exhibitor, Favorites } from '@/types'
+import type { Exhibitors, ExhibitorID } from '@/types'
 
 /**
  * 出展社のリストをお気に入りで絞り込む
@@ -7,7 +7,7 @@ import type { Exhibitor, Favorites } from '@/types'
  * @param favorites
  * @returns
  */
-export const filterByFavorites = (list: Exhibitor[], favorites: Favorites) => {
+export const filterByFavorites = (list: Exhibitors, favorites: ExhibitorID[]) => {
   if (favorites.length === 0) return list
   return list.filter((exhibitor) => favorites.includes(exhibitor.id))
 }
@@ -19,7 +19,7 @@ export const filterByFavorites = (list: Exhibitor[], favorites: Favorites) => {
  * @param genres
  * @returns
  */
-export const filterByGenres = (list: Exhibitor[], genres: string[]) => {
+export const filterByGenres = (list: Exhibitors, genres: string[]) => {
   if (genres.length === 0) return list
   return list.filter(
     (exhibitor) => exhibitor.genre !== undefined && genres.includes(exhibitor.genre),

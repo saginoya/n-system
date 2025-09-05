@@ -3,6 +3,9 @@ import type { SDGsNum } from './sdgs'
 // 出展社UUID
 export type ExhibitorID = string
 
+// お気に入り登録配列の形式
+export type Favorites = ExhibitorID[]
+
 // SDGsの形式
 export type SDGs = SDGsNum[]
 
@@ -10,15 +13,18 @@ export type SDGs = SDGsNum[]
 export type Exhibitor = {
   id: ExhibitorID
   name: string
+  subName?: string
   order: string
   koma: string
   genre?: string
-  subName?: string
   webSite?: string
   contents?: string
   sdgs?: SDGs
-  isFavorite: boolean
+  isFavorite?: boolean
 }
+// 出展社情報一覧
+export type Exhibitors = Exhibitor[]
+
 // JSONの出展社情報の形式
 export type JsonExhibitor = {
   id: string

@@ -1,11 +1,12 @@
 import { fuseSearch } from '@/lib/fuseSearch'
-import type { Exhibitor } from '@/types'
+import type { Exhibitors, Exhibitor } from '@/types'
 
 export const searchByKeyword = (
-  list: Exhibitor[],
-  keyword: string,
+  list: Exhibitors,
+  keyword: string | undefined,
   keys: (keyof Exhibitor)[],
   threshold?: number,
 ) => {
+  if (!keyword) return list
   return fuseSearch(list, keyword, { keys, threshold })
 }

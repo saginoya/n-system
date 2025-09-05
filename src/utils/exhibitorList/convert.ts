@@ -1,40 +1,38 @@
-import type { Lang, Exhibitor, JsonExhibitor, Exhibitions } from '@/types'
+import type { Lang, Exhibitor, JsonExhibitor, Exhibitors } from '@/types'
 
+// 小間番号の変換（英語版では「外」を「Z」に変換）
+export const toBoothNumber = (boothNumber: string, isJapanese: boolean): string => {
+  if (isJapanese || !boothNumber.includes('外')) {
+    return boothNumber
+  }
+  return boothNumber.replace('外', 'Z')
+}
+
+// JSONの出展社情報をExhibitor形式に変換
+export const applyExhibitor = (
+  value: JsonExhibitor,
+  lang: Lang,
+  genreNameFunc?: (value: string, lang: Lang) => string,
+): Exhibitor => {
+  const isJapanese = lang === 'ja'
+  return {
+    id: value.id,
+    name: isJapanese ? value.name : value.nameEng,
+    subName: isJapanese ? value.nameEng : '',
+    order: isJapanese ? value.order : value.orderEng || value.nameEng,
+    koma: toBoothNumber(value.koma, isJapanese),
+    genre: genreNameFunc ? genreNameFunc(value.genre, lang) : value.genre,
+    webSite: value.webSite,
+    contents: isJapanese ? value.contents : value.contentsEng,
+    sdgs: value.sdgs,
+  }
+}
+
+// JSONの出展社情報配列をExhibitors形式に変換
 export const convertJSONToExhibitorList = (
   jsonData: JsonExhibitor[],
   lang: Lang,
-  exhibitions: Exhibitions,
   genreNameFunc?: (value: string, lang: Lang) => string,
-): Exhibitor[] => {
-  // 言語は日本語か
-  const isJapanese = lang === 'ja'
-
-  // 英語の場合は屋外出展社の小間番号を変換する
-  const toBoothNumber = (boothNumber: string) => {
-    if (isJapanese || !boothNumber.includes('外')) {
-      return boothNumber
-    } else {
-      return boothNumber.replace('外', 'Z')
-    }
-  }
-
-  // JSONの出展社情報をリストの形式に変換する関数
-  const applyExhibitor = (value: JsonExhibitor): Exhibitor => {
-    return {
-      id: value.id,
-      name: isJapanese ? value.name : value.nameEng,
-      order: isJapanese ? value.order : value.orderEng || value.nameEng,
-      subName: isJapanese ? value.nameEng : '',
-      exhibition: exhibitions[value.exhibition][lang],
-      genre: genreNameFunc ? genreNameFunc(value.genre, lang) : value.genre,
-      koma: toBoothNumber(value.koma),
-      color: exhibitions[value.exhibition].color,
-      webSite: value.webSite,
-      contents: isJapanese ? value.contents : value.contentsEng,
-      categories: isJapanese ? value.categories : value.categoriesEng,
-      sdgs: value.sdgs,
-    }
-  }
-
-  return jsonData.map(applyExhibitor)
+): Exhibitors => {
+  return jsonData.map((value) => applyExhibitor(value, lang, genreNameFunc))
 }

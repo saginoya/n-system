@@ -1,6 +1,8 @@
-import type { Exhibitor } from '@/types'
+import type { Exhibitors, SortType } from '@/types'
 
-export const sortExhibitorList = (list: Exhibitor[], sortKey: keyof Exhibitor) => {
+export const sortExhibitorList = (list: Exhibitors, sortKey: SortType) => {
+  if (sortKey === 'search') return list
+
   if (!list.every((item) => sortKey in item)) {
     throw new Error(`Invalid sort key: ${sortKey}`)
   }
