@@ -2,15 +2,17 @@
 import NChip from '@/components/n-elements/NChip.ce.vue'
 import MarkupText from '@/components/parts/MarkupText.vue'
 import TooltipBookmark from '@/components/parts/TooltipBookmark.vue'
-import type { Exhibitor } from '@/types'
+import type { Color } from '@/types'
 
-const props = defineProps<{
-  items: Exhibitor
-  favorite: boolean
+defineProps<{
+  id: string
+  koma: string
+  name: string
+  contents?: string
+  isFavorite: boolean
+  color?: Color
   favoriteMethod: (value: string) => void
 }>()
-
-const { id, koma, name, contents, color } = props.items
 </script>
 
 <template>
@@ -29,7 +31,7 @@ const { id, koma, name, contents, color } = props.items
       </div>
       <div class="text-center">
         <TooltipBookmark
-          :active="favorite"
+          :active="isFavorite"
           color="success"
           @click.stop="favoriteMethod(id)"
         ></TooltipBookmark>

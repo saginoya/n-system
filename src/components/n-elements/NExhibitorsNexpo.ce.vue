@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { ref, computed, watchEffect } from 'vue'
+import { ref, computed } from 'vue'
 
 import NListDisc from '@/components/n-elements/NListDisc.ce.vue'
 import NTitleLv3 from '@/components/n-elements/NTitle.ce.vue'
 import NTooltipInfo from '@/components/n-elements/NTooltipInfo.ce.vue'
 import Btn from '@/components/parts/BtnBase.vue'
-import ExhibitorListHeading from '@/components/parts/ExhibitorListHeading.vue'
 import ExhibitorListItem from '@/components/parts/ExhibitorListItem.vue'
 import ExhibitorProfile from '@/components/parts/ExhibitorProfile.vue'
 import InputSearch from '@/components/parts/InputSearch.vue'
@@ -14,13 +13,9 @@ import SwitcBookmark from '@/components/parts/SwitcBookmark.vue'
 import SwitchBase from '@/components/parts/SwitchBase.vue'
 import TabsBase from '@/components/parts/TabsBase.vue'
 import { useExhibitorList } from '@/composables/useExhibitorList'
-import { useExhibitorListFavorite } from '@/composables/useExhibitorListFavorite'
-import { useExhibitorListFilter } from '@/composables/useExhibitorListFilter'
-import { useExhibitorListHeading } from '@/composables/useExhibitorListHeading'
-import { useExhibitorListSort } from '@/composables/useExhibitorListSort'
 import { useLang } from '@/composables/useLang'
 import { useModal } from '@/composables/useModal'
-import type { Exhibitor, Exhibitions } from '@/types'
+import type { Exhibitor, Color } from '@/types'
 
 const props = defineProps<{
   listSrc: string
@@ -30,7 +25,7 @@ const props = defineProps<{
 const { lang } = useLang()
 
 // 展示会の種類
-const exhibitions: Exhibitions = {
+const exhibitions = {
   nexpo: {
     ja: 'NEW環境展',
     en: 'N-EXPO',
@@ -42,36 +37,20 @@ const exhibitions: Exhibitions = {
     color: 'exhibition-b',
   },
 }
-// 出展社リストの読み込み
-const { exhibitorList, numberOfExhibitors, genres } = useExhibitorList(
-  lang.value,
-  props.listSrc,
-  props.genreSrc,
-  exhibitions,
-)
 
-// リストのソート機能
-const { stateSort } = useExhibitorListSort(exhibitorList)
-
-// お気に入り機能
-const { myFavorites, switchFavorite } = useExhibitorListFavorite(props.favoriteKey)
-
-// リストのフィルター機能
+// 出展社リスト
 const {
-  stateKeyword,
-  stateFavorite,
-  numberOfVisibleExhibitors,
-  setStateExhibition,
-  validateExhibitor,
-} = useExhibitorListFilter(exhibitorList, myFavorites)
-
-// リストの見出し機能
-const { headings } = useExhibitorListHeading(
   exhibitorList,
+  numExhibitorList,
+  numRawExhibitorList,
+  genres,
+  myFavorites,
   stateSort,
-  lang.value,
-  validateExhibitor,
-)
+  stateFavorite,
+  stateKeyword,
+  updateStateSort,
+  switchFavorite,
+} = useExhibitorList(props.listSrc, props.genreSrc, props.favoriteKey, lang.value)
 
 // ジャンルの読み込み
 const genresList = computed(() => {
@@ -88,12 +67,6 @@ const sortLabel = {
 // 展示会フィルター条件
 const nexpo = ref<boolean>(true)
 const gwpe = ref<boolean>(true)
-
-// 条件をもとにメソッドを実行
-watchEffect(() => {
-  setStateExhibition(exhibitions.nexpo[lang.value], nexpo.value)
-  setStateExhibition(exhibitions.gwpe[lang.value], gwpe.value)
-})
 
 // モーダルウインドウ
 const { visible, show, dismiss } = useModal()
@@ -114,37 +87,18 @@ const showModal = (exhibitor: Exhibitor) => {
         <TabsBase
           v-model="stateSort"
           name="sort"
-          :values="['name', 'koma']"
+          :values="['order', 'koma']"
           :labels="sortLabel[lang]"
         ></TabsBase>
       </div>
 
       <div class="flex flex-col sm:flex-row sm:items-center">
         <!-- キーワードフィルターのインプット -->
-        <InputSearch v-model="stateKeyword" :datalist="genresList"></InputSearch>
-        <!-- キーワードフィルターのインフォメーション -->
-        <NTooltipInfo location="left">
-          <div v-if="lang === 'ja'">
-            <p><b>キーワード＆エリア検索機能：</b></p>
-            <NListDisc>
-              <li>各出展社をキーワードで絞込することができます。</li>
-              <li>検索タブをクリックすると、出展エリアでの絞込をする ことができます。</li>
-              <li>
-                複数キーワードでの検索はできません。またエリア
-                検索とキーワード検索は同時に行えません。
-              </li>
-            </NListDisc>
-          </div>
-          <div v-else>
-            <p><b>Keyword & Area Search</b></p>
-            <p>Exhibitors can be searched by keyword or Area.</p>
-            <div class="mt-4 italic">
-              <p>*Remarks:</p>
-              <p>Cannot search by multiple Keywords or Areas.</p>
-              <p>Cannot search by Area & Keywords at the same time.</p>
-            </div>
-          </div>
-        </NTooltipInfo>
+        <InputSearch
+          v-model="stateKeyword"
+          :datalist="genresList"
+          @update:model-value="updateStateSort('search')"
+        ></InputSearch>
       </div>
     </div>
 
@@ -156,13 +110,13 @@ const showModal = (exhibitor: Exhibitor) => {
           id="nexpo"
           v-model="nexpo"
           :label="exhibitions.nexpo[lang]"
-          :color="exhibitions.nexpo.color"
+          :color="exhibitions.nexpo.color as Color"
         ></SwitchBase>
         <SwitchBase
           id="gwpe"
           v-model="gwpe"
           :label="exhibitions.gwpe[lang]"
-          :color="exhibitions.gwpe.color"
+          :color="exhibitions.gwpe.color as Color"
         ></SwitchBase>
       </div>
 
@@ -194,13 +148,13 @@ const showModal = (exhibitor: Exhibitor) => {
 
     <!-- フィルター後のリストの件数表示 -->
     <p>
-      {{ lang === 'ja' ? '表示中の件数' : 'Search Result' }}: {{ numberOfVisibleExhibitors }} /
-      {{ numberOfExhibitors }}
+      {{ lang === 'ja' ? '表示中の件数' : 'Search Result' }}: {{ numExhibitorList }} /
+      {{ numRawExhibitorList }}
     </p>
   </div>
 
   <!-- フィルター後の件数が0件の場合の注意書き -->
-  <div v-if="numberOfVisibleExhibitors === 0" class="py-4">
+  <div v-if="numExhibitorList === 0" class="py-4">
     <div v-if="lang === 'ja'">
       <NTitleLv3>該当する出展社はありませんでした</NTitleLv3>
       <p>検索条件をご確認ください。</p>
@@ -225,14 +179,13 @@ const showModal = (exhibitor: Exhibitor) => {
 
   <!-- 出展社の一覧リスト -->
   <ul class="divide-y">
-    <template v-for="(exhibitor, index) in exhibitorList" :key="exhibitor.id">
-      <ExhibitorListHeading v-if="headings[index]">
-        {{ headings[index] }}
-      </ExhibitorListHeading>
+    <template v-for="exhibitor in exhibitorList" :key="exhibitor.id">
       <ExhibitorListItem
-        v-show="validateExhibitor(exhibitor)"
-        :items="exhibitor"
-        :favorite="myFavorites.includes(exhibitor.id)"
+        :id="exhibitor.id"
+        :koma="exhibitor.koma"
+        :name="exhibitor.name"
+        :contents="exhibitor.contents"
+        :is-favorite="myFavorites.includes(exhibitor.id)"
         :favorite-method="switchFavorite"
         @click="showModal(exhibitor)"
       ></ExhibitorListItem>
@@ -244,7 +197,18 @@ const showModal = (exhibitor: Exhibitor) => {
     <ExhibitorProfile
       v-if="currentExhibitor"
       :lang="lang"
-      :exhibitor="currentExhibitor"
+      :id="currentExhibitor.id"
+      :name="currentExhibitor.name"
+      :koma="currentExhibitor.koma"
+      exhibition="環境展"
+      :subName="currentExhibitor.subName"
+      :genre="currentExhibitor.genre"
+      :webSite="currentExhibitor.webSite"
+      :contents="currentExhibitor.contents"
+      :sdgs="currentExhibitor.sdgs"
+      :isFavorite="myFavorites.includes(currentExhibitor.id)"
+      :favorite-method="switchFavorite"
+      :color="exhibitions.nexpo.color as Color"
     ></ExhibitorProfile>
     <p v-else>情報がありません。</p>
     <template #footer>

@@ -3,12 +3,23 @@ import NChip from '@/components/n-elements/NChip.ce.vue'
 import NLink from '@/components/n-elements/NLink.ce.vue'
 import MarkupText from '@/components/parts/MarkupText.vue'
 import SDGsIcons from '@/components/parts/SDGsIcons.vue'
-import type { Exhibitor, Lang } from '@/types'
-import type { SDGsNumType } from '@/utils'
+import TooltipBookmark from '@/components/parts/TooltipBookmark.vue'
+import type { Lang, SDGs, Color } from '@/types'
 
 defineProps<{
   lang: Lang
-  exhibitor: Exhibitor
+  id: string
+  name: string
+  koma: string
+  exhibition: string
+  isFavorite: boolean
+  subName?: string
+  genre?: string
+  webSite?: string
+  contents?: string
+  sdgs?: SDGs
+  favoriteMethod: (value: string) => void
+  color?: Color
 }>()
 
 const texts = {
@@ -29,56 +40,36 @@ const texts = {
   <article class="flex flex-col gap-4">
     <header class="flex flex-col items-center gap-4 pt-6 sm:flex-row">
       <div>
-        <NChip :color="exhibitor.color || 'exhibition-a'" v-if="exhibitor.koma">{{
-          exhibitor.koma
-        }}</NChip>
+        <NChip :color="color || 'exhibition-a'" v-if="koma">{{ koma }}</NChip>
       </div>
       <div>
         <h1 class="text-3xl">
-          <MarkupText :content="exhibitor.name"></MarkupText>
+          <MarkupText :content="name"></MarkupText>
         </h1>
-        <MarkupText v-if="exhibitor.subName" :content="exhibitor.subName"></MarkupText>
+        <MarkupText v-if="subName" :content="subName"></MarkupText>
       </div>
+      <TooltipBookmark
+        :active="isFavorite"
+        color="success"
+        @click.stop="favoriteMethod(id)"
+      ></TooltipBookmark>
     </header>
-    <MarkupText
-      v-if="exhibitor.contents"
-      :content="exhibitor.contents"
-      class="bg-gray-100 px-2 py-1"
-    >
-    </MarkupText>
+    <MarkupText v-if="contents" :content="contents" class="bg-gray-100 px-2 py-1"> </MarkupText>
     <dl class="divide-y">
       <div class="grid grid-cols-1 gap-2 py-2 sm:grid-cols-4 md:grid-cols-6">
-        <dt class="font-bold">{{ exhibitor.exhibition }}</dt>
-        <dd class="sm:col-span-3 md:col-span-5">{{ exhibitor.genre }}</dd>
+        <dt class="font-bold">{{ exhibition }}</dt>
+        <dd class="sm:col-span-3 md:col-span-5">{{ genre }}</dd>
       </div>
-      <div
-        v-if="exhibitor.categories && exhibitor.categories.length > 0"
-        class="grid grid-cols-1 gap-2 py-2 sm:grid-cols-4 md:grid-cols-6"
-      >
-        <dt class="font-bold">{{ texts[lang].cat }}</dt>
-        <dd class="sm:col-span-3 md:col-span-5">
-          <ul>
-            <li v-for="(category, index) in exhibitor.categories" :key="index">
-              {{ category }}
-            </li>
-          </ul>
-        </dd>
-      </div>
-      <div
-        v-if="exhibitor.webSite"
-        class="grid grid-cols-1 gap-2 py-2 sm:grid-cols-4 md:grid-cols-6"
-      >
+      <div v-if="webSite" class="grid grid-cols-1 gap-2 py-2 sm:grid-cols-4 md:grid-cols-6">
         <dt class="font-bold">{{ texts[lang].website }}</dt>
         <dd class="sm:col-span-3 md:col-span-5">
-          <NLink :href="exhibitor.webSite" type="external" text-aligned>{{
-            exhibitor.webSite
-          }}</NLink>
+          <NLink :href="webSite" type="external" text-aligned>{{ webSite }}</NLink>
         </dd>
       </div>
-      <div v-if="exhibitor.sdgs" class="grid grid-cols-1 gap-2 py-2 sm:grid-cols-4 md:grid-cols-6">
+      <div v-if="sdgs" class="grid grid-cols-1 gap-2 py-2 sm:grid-cols-4 md:grid-cols-6">
         <dt class="font-bold">{{ texts[lang].sdgs }}</dt>
         <dd class="sm:col-span-3 md:col-span-5">
-          <SDGsIcons :numbers="exhibitor.sdgs as SDGsNumType[]"></SDGsIcons>
+          <SDGsIcons :numbers="sdgs as SDGs"></SDGsIcons>
         </dd>
       </div>
     </dl>
