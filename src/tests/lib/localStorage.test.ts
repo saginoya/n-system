@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
 
-import { localStorageManager } from '../../../src/utils/localStorageUtils'
+import { localStorageManager } from '@/lib/localStorage'
 
 describe('localStorageUtils', () => {
   const mockLocalStorage = {
