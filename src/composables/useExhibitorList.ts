@@ -36,7 +36,7 @@ export const useExhibitorList = (
   const { getGenreNameFromID, genres } = useGenres(genreSrc)
 
   // お気に入り機能
-  const { myFavorites, switchFavorite } = useExhibitorListFavorite(favoriteKey)
+  const { myFavorites, switchFavorite, includedFavorites } = useExhibitorListFavorite(favoriteKey)
 
   // **
   // 出展社リスト
@@ -52,6 +52,9 @@ export const useExhibitorList = (
 
   // フィルターやソートを適用した出展社リスト
   const exhibitorList = computed<Exhibitors>(() => {
+    // 取得状況の更新
+    isLoading.value = true
+
     let list = rawExhibitorList.value
 
     // フィルタリング
@@ -68,6 +71,9 @@ export const useExhibitorList = (
     if (stateSort.value !== 'search') {
       list = sortExhibitorList(list, stateSort.value)
     }
+
+    // 取得状況の更新
+    isLoading.value = false
 
     return list
   })
@@ -93,6 +99,13 @@ export const useExhibitorList = (
   }
 
   // **
+  // 一覧の取得状況
+  // **
+
+  // 一覧リストの生成中
+  const isLoading = ref<boolean>(true)
+
+  // **
   // Mounted時の処理
   // **
 
@@ -110,11 +123,13 @@ export const useExhibitorList = (
     numExhibitorList: readonly(numExhibitorList),
     genres: readonly(genres),
     myFavorites: readonly(myFavorites),
+    isLoading,
     stateFavorite,
     stateKeyword,
     stateGenres,
     stateSort,
     switchFavorite,
+    includedFavorites,
     updateStateSort,
   }
 }
