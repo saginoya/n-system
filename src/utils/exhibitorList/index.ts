@@ -1,5 +1,6 @@
 export * from './convert'
 export * from './count'
 export * from './filter'
+export * from './heading'
 export * from './search'
 export * from './sort'

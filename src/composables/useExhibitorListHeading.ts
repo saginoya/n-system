@@ -1,61 +1,36 @@
-import { computed } from 'vue'
+import { computed, type Ref } from 'vue'
 
-import type { Lang, SortType, Exhibitor } from '@/types'
-import { isSingleByte } from '@/utils'
+import type { SortType, Lang, Exhibitors } from '@/types'
+import { generateHeading } from '@/utils/exhibitorList'
 
-import type { Ref } from 'vue'
+type Heading = string | undefined
 
+/**
+ * 出展社一覧から小見出しを生成するロジック（リアクティブ）
+ * @param exhibitorList
+ * @param sort
+ * @param lang
+ * @returns { headings, getHeading, showHeading }
+ */
 export const useExhibitorListHeading = (
-  exhibitorList: Ref<Exhibitor[]>,
+  exhibitorList: Ref<Exhibitors>,
   sort: Ref<SortType>,
   lang: Lang,
-  filterFunc: (value: Exhibitor) => boolean,
 ) => {
-  // 見出しの一覧
-  const headings = computed<string[]>(() => {
-    // 見出しを比較する変数のリセット
-    currentHeading = ''
-
-    // 出展社リストから見出しのリストを生成する
-    return exhibitorList.value.map((exhibitor) => {
-      if (filterFunc(exhibitor)) {
-        return showHeading(exhibitor.genre || '', exhibitor.order)
-      } else {
-        return ''
-      }
-    })
+  // 出展社一覧から小見出しの一覧リスト生成
+  const headings = computed<Heading[]>(() => {
+    return exhibitorList.value.map((item) =>
+      generateHeading(sort.value, lang, item.order, item.genre ?? ''),
+    )
   })
 
-  // 前の見出しと比較して一致するば値を返す
-  let currentHeading: string = ''
-  const showHeading = (genre: string, order: string): string => {
-    const value: string = generateHeading(genre, order)
-    if (currentHeading === value) {
-      return ''
-    } else {
-      currentHeading = value
-      return value
-    }
+  // 小見出しリストから番号で値を取得
+  const getHeading = (num: number): Heading => headings.value[num]
+
+  // 小見出しの表示・非表示を判定する（前の値と異なっていることが条件）
+  const showHeading = (num: number): boolean => {
+    return headings.value[num] !== headings.value[num - 1]
   }
 
-  // 値から見出しの文字を生成
-  const generateHeading = (genre: string, order: string) => {
-    if (sort.value === 'koma') {
-      return genre
-    } else if (isOverseas(order.slice(0, 1))) {
-      return '海外'
-    } else {
-      return order.slice(0, 1)
-    }
-  }
-
-  // 海外の出展社かの判定（日本語限定）
-  const isOverseas = (order: string): boolean | undefined => {
-    if (lang !== 'ja') return undefined
-    return isSingleByte(order)
-  }
-
-  return {
-    headings,
-  }
+  return { headings, getHeading, showHeading }
 }
