@@ -2,7 +2,7 @@ import { ref, onMounted } from 'vue'
 
 import { useLang } from '@/composables/useLang'
 import { localStorageManager } from '@/lib/localStorage'
-import type { Favorites } from '@/types'
+import type { Favorites, ExhibitorID } from '@/types'
 
 export const useExhibitorListFavorite = (key: string) => {
   type Value = string
@@ -58,11 +58,17 @@ export const useExhibitorListFavorite = (key: string) => {
     }
   }
 
+  // お気に入りリストに含まれているか検査
+  const includedFavorites = (id: ExhibitorID): boolean => {
+    return myFavorites.value.includes(id)
+  }
+
   return {
     myFavorites,
     getFavoriteItems,
     setFavorite,
     removeFavorite,
     switchFavorite,
+    includedFavorites,
   }
 }
