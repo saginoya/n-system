@@ -12,6 +12,7 @@ import IconClose from '@/components/icons/IconClose.vue'
 import IconDisabledByDefault from '@/components/icons/IconDisabledByDefault.vue'
 import IconDownload from '@/components/icons/IconDownload.vue'
 import IconFax from '@/components/icons/IconFax.vue'
+import IconFilter from '@/components/icons/IconFilter.vue'
 import IconInfo from '@/components/icons/IconInfo.vue'
 import IconMail from '@/components/icons/IconMail.vue'
 import IconMenu from '@/components/icons/IconMenu.vue'
@@ -19,6 +20,7 @@ import IconOpenInNew from '@/components/icons/IconOpenInNew.vue'
 import IconPdf from '@/components/icons/IconPdf.vue'
 import IconProgressActivity from '@/components/icons/IconProgressActivity.vue'
 import IconSearch from '@/components/icons/IconSearch.vue'
+import IconSort from '@/components/icons/IconSort.vue'
 import IconTrain from '@/components/icons/IconTrain.vue'
 import IconWarning from '@/components/icons/IconWarning.vue'
 
@@ -37,6 +39,7 @@ export const iconMap = {
   'disabled-by-default': IconDisabledByDefault,
   download: IconDownload,
   fax: IconFax,
+  filter: IconFilter,
   info: IconInfo,
   mail: IconMail,
   menu: IconMenu,
@@ -44,6 +47,7 @@ export const iconMap = {
   pdf: IconPdf,
   'progress-activity': IconProgressActivity,
   search: IconSearch,
+  sort: IconSort,
   train: IconTrain,
   warning: IconWarning,
 } as const
