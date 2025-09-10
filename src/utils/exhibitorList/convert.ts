@@ -16,7 +16,7 @@ export const applyExhibitor = (
 ): Exhibitor => {
   const isJapanese = lang === 'ja'
   return {
-    id: value.id,
+    id: typeof value.id !== 'string' ? String(value.id) : value.id,
     name: isJapanese ? value.name : value.nameEng,
     subName: isJapanese ? value.nameEng : '',
     order: isJapanese ? value.order : value.orderEng || value.nameEng,

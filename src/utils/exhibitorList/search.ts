@@ -1,5 +1,6 @@
 import { fuseSearch } from '@/lib/fuseSearch'
 import type { Exhibitors, Exhibitor } from '@/types'
+import { convertFullWidthToHalfWidth, convertSymbolToHalfWidth } from '@/utils'
 
 export const searchByKeyword = (
   list: Exhibitors,
@@ -8,5 +9,6 @@ export const searchByKeyword = (
   threshold?: number,
 ) => {
   if (!keyword) return list
-  return fuseSearch(list, keyword, { keys, threshold })
+  const convertedKeyword = convertSymbolToHalfWidth(convertFullWidthToHalfWidth(keyword))
+  return fuseSearch(list, convertedKeyword as string, { keys, threshold })
 }
