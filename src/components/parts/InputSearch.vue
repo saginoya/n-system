@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import IconSearch from '@/components/icons/IconSearch.vue'
+import { cn } from '@/lib/cn'
 
 withDefaults(
   defineProps<{
     datalist?: string[]
     placeholder?: string
+    className?: string
   }>(),
   {
     placeholder: 'キーワードで検索',
@@ -17,7 +19,12 @@ const model = defineModel<string>()
 <template>
   <form
     action="#"
-    class="w-96 max-w-full overflow-hidden rounded-full border-2 has-[input:focus-within]:border-info"
+    :class="
+      cn(
+        'max-w-full overflow-hidden rounded-full border-2 bg-white has-[input:focus-within]:border-info',
+        className,
+      )
+    "
   >
     <label class="flex items-center gap-2 pl-4 pr-2">
       <IconSearch class="flex-none text-xl" />

@@ -1,10 +1,13 @@
 <script setup lang="ts">
+import { Switch, SwitchGroup, SwitchLabel } from '@headlessui/vue'
+
+import NContainerFlex from '@/components/n-elements/NContainerFlex.ce.vue'
 import { bgColorMap, textColorMap } from '@/styles'
 import type { Color } from '@/types'
 
-withDefaults(
+const props = withDefaults(
   defineProps<{
-    id: string
+    id?: string
     color?: Color
     label?: string
   }>(),
@@ -13,29 +16,30 @@ withDefaults(
   },
 )
 
-const active = defineModel<boolean>()
+const enabled = defineModel<boolean>()
 </script>
 
 <template>
-  <button class="inline-flex cursor-pointer items-center">
-    <input type="checkbox" v-model="active" :id="id" class="group hidden" />
-    <label
-      :for="id"
-      class="inline-flex rounded-full border-2 p-0.5"
-      :class="active ? bgColorMap[color] : 'bg-slate-400'"
-    >
-      <div
-        class="size-5 rounded-full bg-white transition-all duration-150 ease-in-out"
-        :class="{ 'translate-x-8': active }"
-      ></div>
-      <span
-        class="w-8 text-center text-sm leading-5 text-white"
-        :class="{ '-translate-x-5': active }"
-        >{{ active ? 'ON' : 'OFF' }}
-      </span>
-    </label>
-    <label if="label" :for="id" :class="active ? textColorMap[color] : 'text-slate-400'">{{
-      label
-    }}</label>
-  </button>
+  <SwitchGroup class="rounded p-2 hover:bg-blue-100">
+    <NContainerFlex items="center" justify="between">
+      <SwitchLabel
+        if="label"
+        :class="enabled ? textColorMap[props.color] : 'text-gray-300'"
+        class="grow"
+      >
+        {{ label }}</SwitchLabel
+      >
+      <Switch
+        v-model="enabled"
+        :id
+        :class="enabled ? bgColorMap[props.color] : 'bg-gray-300'"
+        class="relative inline-flex h-6 w-12 flex-none shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75"
+      >
+        <span
+          :class="enabled ? 'translate-x-6' : 'translate-x-0'"
+          class="pointer-events-none inline-block size-5 rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out"
+        />
+      </Switch>
+    </NContainerFlex>
+  </SwitchGroup>
 </template>

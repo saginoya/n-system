@@ -5,7 +5,7 @@ import type { Color } from '@/types'
 const props = withDefaults(
   defineProps<{
     name: string
-    values: string[]
+    values: TabsValue[]
     labels?: string[]
     color?: Color
   }>(),
@@ -21,11 +21,12 @@ const selectedClass = [
   'bg-slate-50',
 ]
 
-const model = defineModel<string>()
-const setModel = (value: string): void => {
+type TabsValue = string | boolean
+const model = defineModel<TabsValue>()
+const setModel = (value: TabsValue): void => {
   model.value = value
 }
-const isSelected = (value: string) => {
+const isSelected = (value: TabsValue) => {
   return model.value === value
 }
 </script>
@@ -34,9 +35,9 @@ const isSelected = (value: string) => {
   <div role="tablist" class="inline-flex overflow-hidden rounded-t">
     <button
       v-for="(value, index) in values"
-      :key="value"
+      :key="String(value)"
       role="tab"
-      :id="value"
+      :id="String(value)"
       aria-controls="value"
       :ariaSelected="isSelected(value)"
       :tabindex="isSelected(value) ? 0 : -1"

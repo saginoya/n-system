@@ -57,15 +57,20 @@ export const useExhibitorList = (
 
     let list = rawExhibitorList.value
 
-    // フィルタリング
+    // フィルタリング（お気に入り）
     if (stateFavorite.value) {
       list = filterByFavorites(list, myFavorites.value)
     }
 
-    list = filterByGenres(list, stateGenres.value)
+    // フィルタリング（ジャンル）
+    if (stateGenres.value.length !== 0) {
+      list = filterByGenres(list, stateGenres.value)
+    }
 
-    // 検索
-    list = searchByKeyword(list, stateKeyword.value, searchWithinKeys)
+    // キーワード検索
+    if (stateKeyword.value) {
+      list = searchByKeyword(list, stateKeyword.value, searchWithinKeys)
+    }
 
     // ソート
     if (stateSort.value !== 'search') {
@@ -94,8 +99,22 @@ export const useExhibitorList = (
   // ソートの条件
   const stateSort = ref<SortType>('order')
 
-  const updateStateSort = (type: SortType) => {
-    stateSort.value = type
+  // キーワードの更新関数
+  const updateStateKeyword = (value: string): void => {
+    stateKeyword.value = value
+  }
+
+  // ソートの更新関数
+  const updateStateSort = (value: SortType): void => {
+    stateSort.value = value
+  }
+
+  // ジャンルの更新関数
+  const addStateGenres = (value: string): void => {
+    stateGenres.value.push(value)
+  }
+  const removeStateGenres = (value: string): void => {
+    stateGenres.value.filter((genre) => genre !== value)
   }
 
   // **
@@ -130,6 +149,9 @@ export const useExhibitorList = (
     stateSort,
     switchFavorite,
     includedFavorites,
+    updateStateKeyword,
     updateStateSort,
+    addStateGenres,
+    removeStateGenres,
   }
 }

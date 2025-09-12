@@ -5,15 +5,19 @@ import { cn } from '@/lib/cn'
 import { chipBase, variantConceptMap, type Variant } from '@/styles'
 import type { Color, RouterLinkProps } from '@/types'
 
+type Size = 'sm' | 'md' | 'lg'
+
 const props = withDefaults(
   defineProps<
     {
       color: Color
       variant?: Variant
+      size?: Size
     } & RouterLinkProps
   >(),
   {
     variant: 'flat',
+    size: 'md',
   },
 )
 
@@ -23,7 +27,13 @@ const { linkOptions } = linkManager({
   routerId: props.routerId,
 })
 
-const colorCalsses = variantConceptMap[props.variant](props.color)
+const colorClsses = variantConceptMap[props.variant](props.color)
+
+const sizeClasses = {
+  sm: 'text-sm',
+  md: '',
+  lg: 'text-lg',
+}
 </script>
 
 <template>
@@ -36,11 +46,12 @@ const colorCalsses = variantConceptMap[props.variant](props.color)
       cn(
         chipBase,
         'inline-flex overflow-hidden  align-middle border',
-        colorCalsses,
+        colorClsses,
         { 'hover:ring focus:ring': linkOptions },
         {
           'px-2': !linkOptions,
         },
+        sizeClasses[size],
       )
     "
   >

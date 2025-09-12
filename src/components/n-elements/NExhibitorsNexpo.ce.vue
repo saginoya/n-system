@@ -1,21 +1,28 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 
-import NListDisc from '@/components/n-elements/NListDisc.ce.vue'
-import NTitleLv3 from '@/components/n-elements/NTitle.ce.vue'
+import NCard from '@/components/n-elements/NCard.ce.vue'
+import NContainer1col from '@/components/n-elements/NContainer1col.ce.vue'
+import NContainerFlex from '@/components/n-elements/NContainerFlex.ce.vue'
+import NContainerGrid from '@/components/n-elements/NContainerGrid.ce.vue'
 import NTooltipInfo from '@/components/n-elements/NTooltipInfo.ce.vue'
 import Btn from '@/components/parts/BtnBase.vue'
+import BtnBase from '@/components/parts/BtnBase.vue'
+import BtnMenu from '@/components/parts/BtnMenu.vue'
+import ExhibitorListHeading from '@/components/parts/ExhibitorListHeading.vue'
 import ExhibitorListItem from '@/components/parts/ExhibitorListItem.vue'
+import ExhibitorListNotApplicable from '@/components/parts/ExhibitorListNotApplicable.vue'
 import ExhibitorProfile from '@/components/parts/ExhibitorProfile.vue'
 import InputSearch from '@/components/parts/InputSearch.vue'
+import LoadingSpinner from '@/components/parts/LoadingSpinner.vue'
 import ModalBase from '@/components/parts/ModalBase.vue'
-import SwitcBookmark from '@/components/parts/SwitcBookmark.vue'
 import SwitchBase from '@/components/parts/SwitchBase.vue'
 import TabsBase from '@/components/parts/TabsBase.vue'
 import { useExhibitorList } from '@/composables/useExhibitorList'
+import { useExhibitorListHeading } from '@/composables/useExhibitorListHeading'
 import { useLang } from '@/composables/useLang'
 import { useModal } from '@/composables/useModal'
-import type { Exhibitor, Color } from '@/types'
+import type { Exhibitor, Color, SortType } from '@/types'
 
 const props = defineProps<{
   listSrc: string
@@ -44,29 +51,58 @@ const {
   numExhibitorList,
   numRawExhibitorList,
   genres,
-  myFavorites,
+  isLoading,
   stateSort,
   stateFavorite,
+  stateGenres,
   stateKeyword,
   updateStateSort,
   switchFavorite,
+  includedFavorites,
 } = useExhibitorList(props.listSrc, props.genreSrc, props.favoriteKey, lang.value)
 
-// ジャンルの読み込み
-const genresList = computed(() => {
+// 出展社リストの小見出し
+const { getHeading, showHeading } = useExhibitorListHeading(exhibitorList, stateSort, lang.value)
+
+// ジャンルの切り替えフラグ配列
+const genreFlagList = ref<boolean[]>([])
+
+// ジャンルの読み込み・ジャンルの切り替えフラグは配列の初期値セット
+const genreList = computed<string[] | undefined>(() => {
   if (!genres.value) return undefined
-  return genres.value?.map((item) => item[lang.value === 'ja' ? 'name' : 'nameEng'])
+  return genres.value?.map((item, index) => {
+    genreFlagList.value[index] = true
+    return item[lang.value === 'ja' ? 'name' : 'nameEng']
+  })
 })
 
-// ソート
+// ジャンルの切り替えを監視してフィルター条件を更新
+watch(genreFlagList.value, () => {
+  if (!genreList.value) return
+  stateGenres.value = []
+  const list = genreList.value
+  genreFlagList.value.forEach((flag, index) => {
+    if (flag) {
+      stateGenres.value.push(list[index])
+    }
+  })
+})
+
+// ソートのラベル
 const sortLabel = {
-  ja: ['50音順', '小間番号順'],
-  en: ['Name', 'Booth number'],
+  ja: { order: '50音順', koma: '小間番号順', search: '関連順' },
+  en: { order: 'Name', koma: 'Booth number', search: 'Related' },
 }
 
-// 展示会フィルター条件
-const nexpo = ref<boolean>(true)
-const gwpe = ref<boolean>(true)
+const updateSortToOrder = () => {
+  const order: SortType = 'order'
+  updateStateSort(order)
+}
+
+const updateSortToKoma = () => {
+  const order: SortType = 'koma'
+  updateStateSort(order)
+}
 
 // モーダルウインドウ
 const { visible, show, dismiss } = useModal()
@@ -75,146 +111,167 @@ const showModal = (exhibitor: Exhibitor) => {
   currentExhibitor.value = exhibitor
   show()
 }
+
+// フィルターのモーダル
+const {
+  visible: visibleFilterModal,
+  show: showFilterModal,
+  dismiss: dismissFilterModal,
+} = useModal()
 </script>
 
 <template>
-  <!-- ツールバー -->
-  <div class="flex flex-col gap-2">
-    <!-- ツールバーの1段目 -->
-    <div class="flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
-      <!-- ソートの条件タブ -->
-      <div class="text-center">
-        <TabsBase
-          v-model="stateSort"
-          name="sort"
-          :values="['order', 'koma']"
-          :labels="sortLabel[lang]"
-        ></TabsBase>
-      </div>
+  <NContainer1col>
+    <!-- 検索ツールバー -->
+    <!-- ツールバー -->
+    <NContainerFlex align-items="center" gap="2">
+      <!-- キーワードフィルターのインプット -->
+      <InputSearch
+        v-model="stateKeyword"
+        :datalist="genreList"
+        class-name="grow"
+        @update:model-value="updateStateSort('search')"
+      ></InputSearch>
 
-      <div class="flex flex-col sm:flex-row sm:items-center">
-        <!-- キーワードフィルターのインプット -->
-        <InputSearch
-          v-model="stateKeyword"
-          :datalist="genresList"
-          @update:model-value="updateStateSort('search')"
-        ></InputSearch>
-      </div>
-    </div>
+      <!-- フィルターボタン -->
+      <BtnBase
+        color="primary"
+        variant="text"
+        class="flex-none"
+        prepend-icon="filter"
+        class-name="w-40"
+        :onClick="showFilterModal"
+      >
+        絞り込み
+      </BtnBase>
 
-    <!-- ツールバーの2段目 -->
-    <div class="flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
-      <!-- 展示会フィルターのスイッチ -->
-      <div class="flex gap-2">
-        <SwitchBase
-          id="nexpo"
-          v-model="nexpo"
-          :label="exhibitions.nexpo[lang]"
-          :color="exhibitions.nexpo.color as Color"
-        ></SwitchBase>
-        <SwitchBase
-          id="gwpe"
-          v-model="gwpe"
-          :label="exhibitions.gwpe[lang]"
-          :color="exhibitions.gwpe.color as Color"
-        ></SwitchBase>
-      </div>
+      <!-- ソートボタン -->
+      <BtnMenu
+        :label="sortLabel[lang][stateSort]"
+        color="primary"
+        variant="text"
+        class="flex-none"
+        prepend-icon="sort"
+        class-name="w-40"
+      >
+        <BtnBase color="primary" variant="text" class-name="w-full" :onClick="updateSortToOrder">{{
+          sortLabel[lang].order
+        }}</BtnBase>
+        <BtnBase color="primary" variant="text" class-name="w-full" :onClick="updateSortToKoma">{{
+          sortLabel[lang].koma
+        }}</BtnBase>
+      </BtnMenu>
 
-      <div class="flex flex-col sm:flex-row sm:items-center">
-        <!-- お気に入りフィルターのタブ -->
-        <SwitcBookmark name="bookmark" v-model="stateFavorite" color="success"></SwitcBookmark>
+      <!-- フィルターのモーダル -->
+      <ModalBase :visible="visibleFilterModal" :close-action="dismissFilterModal">
+        <NContainerGrid cols="2" gap="2">
+          <SwitchBase
+            v-for="(genre, index) in genreList"
+            :key="index"
+            v-model="genreFlagList[index]"
+            :label="genre"
+          ></SwitchBase>
+        </NContainerGrid>
+        <template #footer>
+          <Btn color="gray" variant="text" :onClick="dismissFilterModal">Close</Btn>
+        </template>
+      </ModalBase>
+    </NContainerFlex>
 
-        <!-- お気に入りフィルターのインフォメーション -->
-        <NTooltipInfo location="left">
-          <div v-if="lang === 'ja'">
-            <p><b>お気に入り登録を表示機能：</b></p>
-            <p>各出展社の★アイコンをクリックするとお気に入り登録することができます。</p>
-            <p>※お気に入り登録はブラウザに保存されるため、別の端末やブラウザには同期されません。</p>
-            <p>※また、キャッシュが削除されると消えてしまいます。</p>
-          </div>
-          <div v-else>
-            <p><b>Favorite★</b></p>
-            <p>Click on the ★ icon for each exhibitor to bookmark it.</p>
-            <div class="mt-4 italic">
-              <p>*Remarks:</p>
-              <p>Bookmarks is (are) stored in your browser</p>
-              <p>It is not synced to another device or browser.</p>
-              <p>It is disappeared when the cache is cleared.</p>
+    <NCard>
+      <!-- お気に入り登録切り替えタブ -->
+      <NContainerFlex justify="between" class="border-b border-b-slate-200">
+        <NContainerFlex align-items="center" gap="2">
+          <TabsBase
+            v-model="stateFavorite"
+            name="stateFavorite"
+            :values="[false, true]"
+            :labels="
+              lang === 'ja' ? ['すべて', 'お気に入り登録のみ'] : ['Show All', 'Show only favorites']
+            "
+            color="success"
+          ></TabsBase>
+
+          <!-- お気に入りフィルターのインフォメーション -->
+          <NTooltipInfo location="top">
+            <div v-if="lang === 'ja'">
+              <p><b>お気に入り登録を表示機能：</b></p>
+              <p>各出展社の★アイコンをクリックするとお気に入り登録することができます。</p>
+              <p>
+                ※お気に入り登録はブラウザに保存されるため、別の端末やブラウザには同期されません。
+              </p>
+              <p>※また、キャッシュが削除されると消えてしまいます。</p>
             </div>
-          </div>
-        </NTooltipInfo>
-      </div>
-    </div>
+            <div v-else>
+              <p><b>Favorite★</b></p>
+              <p>Click on the ★ icon for each exhibitor to bookmark it.</p>
+              <div class="mt-4 italic">
+                <p>*Remarks:</p>
+                <p>Bookmarks is (are) stored in your browser</p>
+                <p>It is not synced to another device or browser.</p>
+                <p>It is disappeared when the cache is cleared.</p>
+              </div>
+            </div>
+          </NTooltipInfo>
+        </NContainerFlex>
+        <!-- フィルター後のリストの件数表示 -->
+        <p>
+          {{ lang === 'ja' ? '表示中の件数' : 'Search Result' }}: {{ numExhibitorList }} /
+          {{ numRawExhibitorList }}
+        </p>
+      </NContainerFlex>
 
-    <!-- フィルター後のリストの件数表示 -->
-    <p>
-      {{ lang === 'ja' ? '表示中の件数' : 'Search Result' }}: {{ numExhibitorList }} /
-      {{ numRawExhibitorList }}
-    </p>
-  </div>
+      <!-- 読み込み中 -->
+      <LoadingSpinner v-if="isLoading" :show="true" message="loading..."></LoadingSpinner>
 
-  <!-- フィルター後の件数が0件の場合の注意書き -->
-  <div v-if="numExhibitorList === 0" class="py-4">
-    <div v-if="lang === 'ja'">
-      <NTitleLv3>該当する出展社はありませんでした</NTitleLv3>
-      <p>検索条件をご確認ください。</p>
-      <NListDisc>
-        <li>キーワード検索に意図しない文字が入力されていませんか？</li>
-        <li>環境展・地球温暖化防止展のチェックボックスが外れていませんか？</li>
-        <li>お気に入り登録は★アイコンで登録した出展社が表示されます。</li>
-        <li>それぞれの検索条件は重複します。</li>
-      </NListDisc>
-    </div>
-    <div v-else>
-      <NTitleLv3>If shown as "Not Find"</NTitleLv3>
-      <p>Please check these, mentioned below.</p>
-      <NListDisc>
-        <li>Are there any unintended characters entered in the keyword search?</li>
-        <li>Is the N-Expo and GWPE checkbox unchecked?</li>
-        <li>Favorite will be displayed for exhibitors registered with the ★ icon.</li>
-        <li>Each search condition is duplicated.</li>
-      </NListDisc>
-    </div>
-  </div>
+      <!-- フィルター後の件数が0件の場合の注意書き -->
+      <ExhibitorListNotApplicable
+        v-else-if="numExhibitorList === 0"
+        :lang
+      ></ExhibitorListNotApplicable>
 
-  <!-- 出展社の一覧リスト -->
-  <ul class="divide-y">
-    <template v-for="exhibitor in exhibitorList" :key="exhibitor.id">
-      <ExhibitorListItem
-        :id="exhibitor.id"
-        :koma="exhibitor.koma"
-        :name="exhibitor.name"
-        :contents="exhibitor.contents"
-        :is-favorite="myFavorites.includes(exhibitor.id)"
+      <!-- 出展社の一覧リスト -->
+      <ul v-else class="divide-y">
+        <template v-for="(exhibitor, index) in exhibitorList" :key="exhibitor.id">
+          <ExhibitorListHeading v-if="showHeading(index)">
+            {{ getHeading(index) }}
+          </ExhibitorListHeading>
+          <ExhibitorListItem
+            :id="exhibitor.id"
+            :koma="exhibitor.koma"
+            :name="exhibitor.name"
+            :contents="exhibitor.contents"
+            :is-favorite="includedFavorites(exhibitor.id)"
+            :favorite-method="switchFavorite"
+            @click="showModal(exhibitor)"
+          ></ExhibitorListItem>
+        </template>
+      </ul>
+    </NCard>
+    <!-- モーダルウインドウ（出展社の詳細情報） -->
+    <ModalBase :visible :close-action="dismiss">
+      <ExhibitorProfile
+        v-if="currentExhibitor"
+        :lang="lang"
+        :id="currentExhibitor.id"
+        :name="currentExhibitor.name"
+        :koma="currentExhibitor.koma"
+        exhibition="環境展"
+        :subName="currentExhibitor.subName"
+        :genre="currentExhibitor.genre"
+        :webSite="currentExhibitor.webSite"
+        :contents="currentExhibitor.contents"
+        :sdgs="currentExhibitor.sdgs"
+        :isFavorite="includedFavorites(currentExhibitor.id)"
         :favorite-method="switchFavorite"
-        @click="showModal(exhibitor)"
-      ></ExhibitorListItem>
-    </template>
-  </ul>
-
-  <!-- モーダルウインドウ（出展社の詳細情報） -->
-  <ModalBase :visible :close-action="dismiss">
-    <ExhibitorProfile
-      v-if="currentExhibitor"
-      :lang="lang"
-      :id="currentExhibitor.id"
-      :name="currentExhibitor.name"
-      :koma="currentExhibitor.koma"
-      exhibition="環境展"
-      :subName="currentExhibitor.subName"
-      :genre="currentExhibitor.genre"
-      :webSite="currentExhibitor.webSite"
-      :contents="currentExhibitor.contents"
-      :sdgs="currentExhibitor.sdgs"
-      :isFavorite="myFavorites.includes(currentExhibitor.id)"
-      :favorite-method="switchFavorite"
-      :color="exhibitions.nexpo.color as Color"
-    ></ExhibitorProfile>
-    <p v-else>情報がありません。</p>
-    <template #footer>
-      <Btn color="gray" variant="text" @click="dismiss()">Close</Btn>
-    </template>
-  </ModalBase>
+        :color="exhibitions.nexpo.color as Color"
+      ></ExhibitorProfile>
+      <p v-else>情報がありません。</p>
+      <template #footer>
+        <Btn color="gray" variant="text" :onClick="dismiss">Close</Btn>
+      </template>
+    </ModalBase>
+  </NContainer1col>
 </template>
 
 <style>

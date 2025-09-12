@@ -2,6 +2,7 @@
 import type { Variant } from '@/styles'
 import { variantConceptMap } from '@/styles'
 import type { Color } from '@/types'
+import { iconMap, type Icon } from '@/utils'
 
 withDefaults(
   defineProps<{
@@ -11,7 +12,10 @@ withDefaults(
     name?: string
     value?: string
     variant?: Variant
-    action?: () => void
+    prependIcon?: Icon
+    appendIcon?: Icon
+    className?: string
+    onClick?: () => void
   }>(),
   {
     type: 'button',
@@ -29,11 +33,15 @@ withDefaults(
     :name
     :value
     class="overflow-hidden rounded border-2 font-bold disabled:opacity-25"
-    :class="variantConceptMap[variant](color)"
-    @click="action"
+    :class="[variantConceptMap[variant](color), className]"
+    @click="onClick"
   >
-    <span class="inline-block size-full px-4 py-2 hover:bg-blue-200/20 focus:bg-blue-200/20">
-      <slot />
+    <span
+      class="inline-grid size-full grid-cols-[1em_auto_1em] items-center justify-stretch gap-1 p-2 hover:bg-blue-200/20 focus:bg-blue-200/20"
+    >
+      <component :is="prependIcon ? iconMap[prependIcon] : 'span'" />
+      <span class="px-2"><slot /></span>
+      <component :is="appendIcon ? iconMap[appendIcon] : 'span'" />
     </span>
   </button>
 </template>
