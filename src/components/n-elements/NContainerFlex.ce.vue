@@ -17,6 +17,7 @@ const props = withDefaults(
     alignItems?: AlignItems
     gap?: Gap
     spDirectionCol?: boolean
+    wrap?: boolean
   }>(),
   {
     alignItems: 'center',
@@ -37,7 +38,9 @@ const direction = props.spDirectionCol ? 'flex-col sm:flex-row' : undefined
 <template>
   <div
     :class="
-      cn('flex flex-wrap', justifyStyles(), alignItemsMap[alignItems], gapMap[gap], direction)
+      cn('flex flex-wrap', justifyStyles(), alignItemsMap[alignItems], gapMap[gap], direction, {
+        'flex-wrap': wrap,
+      })
     "
   >
     <slot />
