@@ -2,6 +2,7 @@
 import { Switch, SwitchGroup, SwitchLabel } from '@headlessui/vue'
 
 import NContainerFlex from '@/components/n-elements/NContainerFlex.ce.vue'
+import { cn } from '@/lib/cn'
 import { bgColorMap, textColorMap } from '@/styles'
 import type { Color } from '@/types'
 
@@ -10,13 +11,14 @@ const props = withDefaults(
     id?: string
     color?: Color
     label?: string
+    labelClass?: string
   }>(),
   {
     color: 'primary',
   },
 )
 
-const enabled = defineModel<boolean>()
+const enabled = defineModel<boolean>({ default: false })
 </script>
 
 <template>
@@ -24,11 +26,10 @@ const enabled = defineModel<boolean>()
     <NContainerFlex items="center" justify="between">
       <SwitchLabel
         if="label"
-        :class="enabled ? textColorMap[props.color] : 'text-gray-300'"
-        class="grow"
+        :class="cn('grow', enabled ? textColorMap[props.color] : 'text-gray-300', labelClass)"
       >
-        {{ label }}</SwitchLabel
-      >
+        {{ label }}
+      </SwitchLabel>
       <Switch
         v-model="enabled"
         :id

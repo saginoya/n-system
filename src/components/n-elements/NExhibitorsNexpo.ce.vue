@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue'
+import { ref, computed, watch, type ComputedRef } from 'vue'
 
 import NCard from '@/components/n-elements/NCard.ce.vue'
 import NContainer1col from '@/components/n-elements/NContainer1col.ce.vue'
 import NContainerFlex from '@/components/n-elements/NContainerFlex.ce.vue'
 import NContainerGrid from '@/components/n-elements/NContainerGrid.ce.vue'
+import NTitle from '@/components/n-elements/NTitle.ce.vue'
 import NTooltipInfo from '@/components/n-elements/NTooltipInfo.ce.vue'
 import Btn from '@/components/parts/BtnBase.vue'
 import BtnBase from '@/components/parts/BtnBase.vue'
@@ -24,6 +25,10 @@ import { useLang } from '@/composables/useLang'
 import { useModal } from '@/composables/useModal'
 import type { Exhibitor, Color, SortType } from '@/types'
 
+// ------------------
+// Props
+// ------------------
+
 const props = defineProps<{
   listSrc: string
   genreSrc: string
@@ -31,19 +36,9 @@ const props = defineProps<{
 }>()
 const { lang } = useLang()
 
-// 展示会の種類
-const exhibitions = {
-  nexpo: {
-    ja: 'NEW環境展',
-    en: 'N-EXPO',
-    color: 'exhibition-a',
-  },
-  gwpe: {
-    ja: '地球温暖化防止展',
-    en: 'GWPE',
-    color: 'exhibition-b',
-  },
-}
+// ------------------
+// 出展社リスト関連
+// ------------------
 
 // 出展社リスト
 const {
@@ -54,9 +49,9 @@ const {
   isLoading,
   stateSort,
   stateFavorite,
-  stateGenres,
   stateKeyword,
   updateStateSort,
+  updateStateGenres,
   switchFavorite,
   includedFavorites,
 } = useExhibitorList(props.listSrc, props.genreSrc, props.favoriteKey, lang.value)
@@ -64,29 +59,90 @@ const {
 // 出展社リストの小見出し
 const { getHeading, showHeading } = useExhibitorListHeading(exhibitorList, stateSort, lang.value)
 
-// ジャンルの切り替えフラグ配列
-const genreFlagList = ref<boolean[]>([])
+// ------------------
+// 展示会の種類とジャンル関連
+// ------------------
 
-// ジャンルの読み込み・ジャンルの切り替えフラグは配列の初期値セット
-const genreList = computed<string[] | undefined>(() => {
+type Exhibition = {
+  ja: string
+  en: string
+  color: Color
+  genres: string[]
+  isOn: ComputedRef<boolean>
+}
+
+// 展示会の種類
+const exhibitions: Record<string, Exhibition> = {
+  nexpo: {
+    ja: 'NEW環境展',
+    en: 'N-EXPO',
+    color: 'exhibition-a',
+    genres: ['A', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'U', 'Z'],
+    isOn: computed(() => isTrueGenreFlags(exhibitions.nexpo.genres)),
+  },
+  gwpe: {
+    ja: '地球温暖化防止展',
+    en: 'GWPE',
+    color: 'exhibition-b',
+    genres: ['B', 'C', 'D', 'E', 'F'],
+    isOn: computed(() => isTrueGenreFlags(exhibitions.gwpe.genres)),
+  },
+} as const
+
+// 読み込んだジャンルをMap化
+const genreMap = computed<Record<string, string> | undefined>(() => {
   if (!genres.value) return undefined
-  return genres.value?.map((item, index) => {
-    genreFlagList.value[index] = true
-    return item[lang.value === 'ja' ? 'name' : 'nameEng']
-  })
+  return Object.fromEntries(
+    genres.value.map((item) => {
+      // ジャンルの絞り込み条件フラグ配列を初期化
+      genreFlags.value[item.id] = true
+
+      return [item.id, item[lang.value === 'ja' ? 'name' : 'nameEng']]
+    }),
+  )
 })
 
-// ジャンルの切り替えを監視してフィルター条件を更新
-watch(genreFlagList.value, () => {
-  if (!genreList.value) return
-  stateGenres.value = []
-  const list = genreList.value
-  genreFlagList.value.forEach((flag, index) => {
-    if (flag) {
-      stateGenres.value.push(list[index])
-    }
-  })
+// ジャンルのリスト
+const genreList = computed<string[] | undefined>(() => {
+  if (!genreMap.value) return undefined
+  return Object.values(genreMap.value)
 })
+
+// ジャンルの絞り込み条件フラグ配列
+const genreFlags = ref<Record<string, boolean>>({})
+
+// ジャンルの絞り込み条件フラグ配列の指定したキー配列のすべてがtrueか検査する
+const isTrueGenreFlags = (keys: string[]): boolean => {
+  const array: boolean[] = []
+  keys.forEach((key) => {
+    array.push(genreFlags.value[key])
+  })
+  return array.every((value) => value === true)
+}
+
+// ジャンルの絞り込み条件フラグをキー配列から一括更新する関数
+const updateGenreFlags = (keys: string[], value: boolean): void => {
+  keys.forEach((key) => {
+    genreFlags.value[key] = value
+  })
+}
+
+// ジャンルの絞り込み条件を監視して更新
+watch(genreFlags.value, () => {
+  if (!genreMap.value) return
+
+  const newValues = []
+  for (const key in genreFlags.value) {
+    if (genreFlags.value[key]) {
+      newValues.push(genreMap.value[key])
+    }
+  }
+  updateStateGenres(newValues)
+})
+
+// ------------------
+// ソート関連
+// ------------------
 
 // ソートのラベル
 const sortLabel = {
@@ -104,7 +160,11 @@ const updateSortToKoma = () => {
   updateStateSort(order)
 }
 
-// モーダルウインドウ
+// ------------------
+// モーダル制御
+// ------------------
+
+// 出展社カードのモーダル
 const { visible, show, dismiss } = useModal()
 const currentExhibitor = ref<Exhibitor | undefined>()
 const showModal = (exhibitor: Exhibitor) => {
@@ -130,7 +190,7 @@ const {
         v-model="stateKeyword"
         :datalist="genreList"
         class-name="grow"
-        @update:model-value="updateStateSort('search')"
+        @update:model-value="stateKeyword && updateStateSort('search')"
       ></InputSearch>
 
       <!-- フィルターボタン -->
@@ -164,13 +224,25 @@ const {
 
       <!-- フィルターのモーダル -->
       <ModalBase :visible="visibleFilterModal" :close-action="dismissFilterModal">
-        <NContainerGrid cols="2" gap="2">
-          <SwitchBase
-            v-for="(genre, index) in genreList"
-            :key="index"
-            v-model="genreFlagList[index]"
-            :label="genre"
-          ></SwitchBase>
+        <NTitle>展示会・エリアによる絞り込み</NTitle>
+        <NContainerGrid cols="2" gap="2" v-if="genreMap">
+          <NContainer1col v-for="exhibition in exhibitions" :key="exhibition.en" gap="0">
+            <SwitchBase
+              v-model="exhibition.isOn.value"
+              :label="exhibition[lang === 'ja' ? 'ja' : 'en']"
+              :color="exhibition.color"
+              label-class="font-bold text-lg"
+              @update:model-value="(val) => updateGenreFlags(exhibition.genres, val)"
+            ></SwitchBase>
+            <SwitchBase
+              v-for="genreID in exhibition.genres"
+              :key="genreID"
+              v-model="genreFlags[genreID]"
+              :label="genreMap[genreID]"
+              :color="exhibition.color"
+              label-class="font-bold"
+            ></SwitchBase>
+          </NContainer1col>
         </NContainerGrid>
         <template #footer>
           <Btn color="gray" variant="text" :onClick="dismissFilterModal">Close</Btn>

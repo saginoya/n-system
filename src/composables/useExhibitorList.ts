@@ -110,11 +110,18 @@ export const useExhibitorList = (
   }
 
   // ジャンルの更新関数
-  const addStateGenres = (value: string): void => {
-    stateGenres.value.push(value)
+  const updateStateGenres = (values: string[]): void => {
+    stateGenres.value = values
   }
+  // ジャンルの更新関数（追加）
+  const addStateGenres = (value: string): void => {
+    if (!stateGenres.value.includes(value)) {
+      stateGenres.value.push(value)
+    }
+  }
+  // ジャンルの更新関数（削除）
   const removeStateGenres = (value: string): void => {
-    stateGenres.value.filter((genre) => genre !== value)
+    stateGenres.value = stateGenres.value.filter((genre) => genre !== value)
   }
 
   // **
@@ -145,12 +152,13 @@ export const useExhibitorList = (
     isLoading,
     stateFavorite,
     stateKeyword,
-    stateGenres,
-    stateSort,
+    stateGenres: readonly(stateGenres),
+    stateSort: readonly(stateSort),
     switchFavorite,
     includedFavorites,
     updateStateKeyword,
     updateStateSort,
+    updateStateGenres,
     addStateGenres,
     removeStateGenres,
   }
