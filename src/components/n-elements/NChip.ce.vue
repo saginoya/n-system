@@ -4,6 +4,7 @@ import { linkManager } from '@/composables/useLinkManager'
 import { cn } from '@/lib/cn'
 import { chipBase, variantConceptMap, type Variant } from '@/styles'
 import type { Color, RouterLinkProps } from '@/types'
+import { iconMap } from '@/utils'
 
 type Size = 'sm' | 'md' | 'lg'
 
@@ -13,6 +14,7 @@ const props = withDefaults(
       color: Color
       variant?: Variant
       size?: Size
+      closable?: () => void
     } & RouterLinkProps
   >(),
   {
@@ -45,7 +47,7 @@ const sizeClasses = {
     :class="
       cn(
         chipBase,
-        'inline-flex overflow-hidden  align-middle border text-nowrap',
+        'inline-flex items-center justify-between gap-1 overflow-hidden  align-middle border text-nowrap',
         colorClsses,
         { 'hover:ring focus:ring': linkOptions },
         {
@@ -56,6 +58,9 @@ const sizeClasses = {
     "
   >
     <slot />
+    <button v-if="closable" type="button" class="rounded-full bg-black/20" @click="closable()">
+      <component :is="iconMap['close']" />
+    </button>
   </component>
 </template>
 
