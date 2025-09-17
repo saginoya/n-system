@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import NChip from '@/components/n-elements/NChip.ce.vue'
+import NContainerFlex from '@/components/n-elements/NContainerFlex.ce.vue'
 import NLink from '@/components/n-elements/NLink.ce.vue'
 import MarkupText from '@/components/parts/MarkupText.vue'
 import SDGsIcons from '@/components/parts/SDGsIcons.vue'
@@ -37,13 +38,19 @@ const texts = {
 </script>
 
 <template>
-  <article class="flex flex-col gap-4">
-    <header class="flex flex-col items-center gap-4 pt-6 sm:flex-row">
-      <div>
+  <article class="flex max-w-5xl flex-col gap-4">
+    <header class="flex flex-col gap-4 pt-6 sm:flex-row sm:items-center">
+      <NContainerFlex wrap="nowrap" items="center" justify="between">
         <NChip :color="color || 'exhibition-a'" v-if="koma">{{ koma }}</NChip>
-      </div>
+        <TooltipBookmark
+          :active="isFavorite"
+          color="success"
+          class="sm:hidden"
+          @click.stop="favoriteMethod(id)"
+        ></TooltipBookmark>
+      </NContainerFlex>
       <div>
-        <h1 class="text-3xl">
+        <h1 class="break-all text-xl md:text-3xl">
           <MarkupText :content="name"></MarkupText>
         </h1>
         <MarkupText v-if="subName" :content="subName"></MarkupText>
@@ -51,10 +58,12 @@ const texts = {
       <TooltipBookmark
         :active="isFavorite"
         color="success"
+        class="hidden sm:inline-block"
         @click.stop="favoriteMethod(id)"
       ></TooltipBookmark>
     </header>
-    <MarkupText v-if="contents" :content="contents" class="bg-gray-100 px-2 py-1"> </MarkupText>
+    <MarkupText v-if="contents" :content="contents" class="break-all bg-gray-100 px-2 py-1">
+    </MarkupText>
     <dl class="divide-y">
       <div class="grid grid-cols-1 gap-2 py-2 sm:grid-cols-4 md:grid-cols-6">
         <dt class="font-bold">{{ exhibition }}</dt>
