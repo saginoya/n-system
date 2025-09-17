@@ -5,6 +5,7 @@ import NContainerFlex from '@/components/n-elements/NContainerFlex.ce.vue'
 import { cn } from '@/lib/cn'
 import { bgColorMap, textColorMap } from '@/styles'
 import type { Color } from '@/types'
+import { iconMap } from '@/utils'
 
 const props = withDefaults(
   defineProps<{
@@ -34,12 +35,14 @@ const enabled = defineModel<boolean>({ default: false })
         v-model="enabled"
         :id
         :class="enabled ? bgColorMap[props.color] : 'bg-gray-300'"
-        class="relative inline-flex h-6 w-12 flex-none shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75"
+        class="relative inline-flex h-5 w-8 flex-none shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75"
       >
         <span
-          :class="enabled ? 'translate-x-6' : 'translate-x-0'"
-          class="pointer-events-none inline-block size-5 rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out"
-        />
+          :class="enabled ? 'translate-x-3' : 'translate-x-0'"
+          class="pointer-events-none inline-flex size-4 items-center justify-center rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out"
+        >
+          <component :is="iconMap[enabled ? 'check' : 'close']" :class="textColorMap[color]" />
+        </span>
       </Switch>
     </NContainerFlex>
   </SwitchGroup>

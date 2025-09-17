@@ -5,7 +5,7 @@ import IconBookmark from '@/components/icons/IconBookmark.vue'
 import IconBus from '@/components/icons/IconBus.vue'
 import IconCall from '@/components/icons/IconCall.vue'
 import IconCar from '@/components/icons/IconCar.vue'
-import IconCheckCircle from '@/components/icons/IconCheckCircle.vue'
+import IconCheck from '@/components/icons/IconCheck.vue'
 import IconChevronRight from '@/components/icons/IconChevronRight.vue'
 import IconClock from '@/components/icons/IconClock.vue'
 import IconClose from '@/components/icons/IconClose.vue'
@@ -32,7 +32,7 @@ export const iconMap = {
   bus: IconBus,
   call: IconCall,
   car: IconCar,
-  'check-circle': IconCheckCircle,
+  check: IconCheck,
   'chevron-right': IconChevronRight,
   clock: IconClock,
   close: IconClose,
