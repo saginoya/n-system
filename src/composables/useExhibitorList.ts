@@ -103,6 +103,10 @@ export const useExhibitorList = (
   const updateStateKeyword = (value: string): void => {
     stateKeyword.value = value
   }
+  // キーワードの更新関数（削除）
+  const removeStateKeyword = (): void => {
+    stateKeyword.value = ''
+  }
 
   // ソートの更新関数
   const updateStateSort = (value: SortType): void => {
@@ -157,6 +161,7 @@ export const useExhibitorList = (
     switchFavorite,
     includedFavorites,
     updateStateKeyword,
+    removeStateKeyword,
     updateStateSort,
     updateStateGenres,
     addStateGenres,

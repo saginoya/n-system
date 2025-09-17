@@ -2,6 +2,7 @@
 import { ref, computed, watch, type ComputedRef } from 'vue'
 
 import NCard from '@/components/n-elements/NCard.ce.vue'
+import NChip from '@/components/n-elements/NChip.ce.vue'
 import NContainer1col from '@/components/n-elements/NContainer1col.ce.vue'
 import NContainerFlex from '@/components/n-elements/NContainerFlex.ce.vue'
 import NContainerGrid from '@/components/n-elements/NContainerGrid.ce.vue'
@@ -50,6 +51,8 @@ const {
   stateSort,
   stateFavorite,
   stateKeyword,
+  stateGenres,
+  removeStateKeyword,
   updateStateSort,
   updateStateGenres,
   switchFavorite,
@@ -108,6 +111,14 @@ const genreList = computed<string[] | undefined>(() => {
   return Object.values(genreMap.value)
 })
 
+// 絞り込みが行われているかの判定
+const isFilteringByGenre = computed<boolean>(() => {
+  if (!genreList.value) return false
+  const allGenresNum: number = genreList.value.length
+  const validGenresNum: number = stateGenres.value.length
+  return allGenresNum !== validGenresNum
+})
+
 // ------------------
 // ジャンルによる絞り込み機能関連
 // ------------------
@@ -128,6 +139,12 @@ const isTrueGenreFlags = (keys: string[]): boolean => {
 const updateGenreFlags = (keys: string[], value: boolean): void => {
   keys.forEach((key) => {
     genreFlags.value[key] = value
+  })
+}
+
+const removeGenreFlags = () => {
+  Object.keys(genreFlags.value).forEach((key) => {
+    genreFlags.value[key] = true
   })
 }
 
@@ -187,20 +204,19 @@ const {
 <template>
   <NContainer1col>
     <!-- 検索ツールバー -->
-    <!-- ツールバー -->
     <NContainerFlex align-items="center" gap="2">
       <!-- キーワードフィルターのインプット -->
       <InputSearch
         v-model="stateKeyword"
         :datalist="genreList"
         class-name="grow"
-        @update:model-value="stateKeyword && updateStateSort('search')"
+        @update:model-value="stateKeyword ? updateStateSort('search') : updateStateSort('order')"
       ></InputSearch>
 
       <NContainerFlex justify="center" class="w-full flex-none sm:w-auto">
         <!-- フィルターボタン -->
         <BtnBase color="primary" variant="text" prepend-icon="filter" :onClick="showFilterModal">
-          絞り込み
+          絞り込み条件
         </BtnBase>
 
         <!-- ソートボタン -->
@@ -251,6 +267,17 @@ const {
       </ModalBase>
     </NContainerFlex>
 
+    <!-- 状態の表示スペース -->
+    <NContainerFlex>
+      <NChip v-if="stateKeyword" color="primary" size="sm" :closable="removeStateKeyword">{{
+        stateKeyword
+      }}</NChip>
+      <NChip v-if="isFilteringByGenre" color="primary" size="sm" :closable="removeGenreFlags"
+        >絞り込み条件設定中</NChip
+      >
+    </NContainerFlex>
+
+    <!-- メインの一覧カード -->
     <NCard>
       <!-- お気に入り登録切り替えタブ -->
       <NContainerFlex justify="between" class="border-b border-b-slate-200">
