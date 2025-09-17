@@ -37,11 +37,11 @@ withDefaults(
     @click="onClick"
   >
     <span
-      class="inline-grid size-full grid-cols-[1em_auto_1em] items-center justify-stretch gap-1 p-2 hover:bg-blue-200/20 focus:bg-blue-200/20"
+      class="inline-flex size-full items-center justify-stretch gap-1 p-2 hover:bg-blue-200/20 focus:bg-blue-200/20"
     >
-      <component :is="prependIcon ? iconMap[prependIcon] : 'span'" />
-      <span class="px-2"><slot /></span>
-      <component :is="appendIcon ? iconMap[appendIcon] : 'span'" />
+      <component v-if="prependIcon" :is="iconMap[prependIcon]" class="flex-none" />
+      <span class="grow px-2"><slot /></span>
+      <component v-if="appendIcon" :is="iconMap[appendIcon]" class="flex-none" />
     </span>
   </button>
 </template>
