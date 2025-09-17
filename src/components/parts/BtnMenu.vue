@@ -40,7 +40,7 @@ defineProps<{
       leave-from-class="transform scale-100 opacity-100"
       leave-to-class="transform scale-95 opacity-0"
     >
-      <MenuItems class="absolute inset-x-0 mx-auto mt-2 w-fit bg-white shadow-lg">
+      <MenuItems class="absolute inset-x-0 z-50 mx-auto mt-2 w-fit bg-white shadow-lg">
         <slot />
       </MenuItems>
     </transition>
