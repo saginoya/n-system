@@ -49,3 +49,11 @@ export const gapMap = {
 } as const
 
 export type Gap = keyof typeof gapMap
+
+export const wrapMap = {
+  nowrap: 'flex-nowrap',
+  wrap: 'flex-wrap',
+  reverse: 'flex-wrap-reverse',
+}
+
+export type Wrap = keyof typeof wrapMap
