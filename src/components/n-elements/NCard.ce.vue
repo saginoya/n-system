@@ -22,7 +22,7 @@ withDefaults(
   <div
     :class="
       cn(
-        'flex flex-col rounded border-2 px-6 py-4',
+        'flex flex-col rounded border-2 px-3 py-2 md:px-6 md:py-4',
         gapMap[gap],
         variantConceptMap[variant](color),
         { 'h-full': heightFull === true },
