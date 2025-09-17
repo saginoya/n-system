@@ -108,6 +108,10 @@ const genreList = computed<string[] | undefined>(() => {
   return Object.values(genreMap.value)
 })
 
+// ------------------
+// ジャンルによる絞り込み機能関連
+// ------------------
+
 // ジャンルの絞り込み条件フラグ配列
 const genreFlags = ref<Record<string, boolean>>({})
 
@@ -193,34 +197,31 @@ const {
         @update:model-value="stateKeyword && updateStateSort('search')"
       ></InputSearch>
 
-      <!-- フィルターボタン -->
-      <BtnBase
-        color="primary"
-        variant="text"
-        class="flex-none"
-        prepend-icon="filter"
-        class-name="w-40"
-        :onClick="showFilterModal"
-      >
-        絞り込み
-      </BtnBase>
+      <NContainerFlex justify="center" class="w-full flex-none sm:w-auto">
+        <!-- フィルターボタン -->
+        <BtnBase color="primary" variant="text" prepend-icon="filter" :onClick="showFilterModal">
+          絞り込み
+        </BtnBase>
 
-      <!-- ソートボタン -->
-      <BtnMenu
-        :label="sortLabel[lang][stateSort]"
-        color="primary"
-        variant="text"
-        class="flex-none"
-        prepend-icon="sort"
-        class-name="w-40"
-      >
-        <BtnBase color="primary" variant="text" class-name="w-full" :onClick="updateSortToOrder">{{
-          sortLabel[lang].order
-        }}</BtnBase>
-        <BtnBase color="primary" variant="text" class-name="w-full" :onClick="updateSortToKoma">{{
-          sortLabel[lang].koma
-        }}</BtnBase>
-      </BtnMenu>
+        <!-- ソートボタン -->
+        <BtnMenu
+          :label="sortLabel[lang][stateSort]"
+          color="primary"
+          variant="text"
+          prepend-icon="sort"
+        >
+          <BtnBase
+            color="primary"
+            variant="text"
+            class-name="w-full"
+            :onClick="updateSortToOrder"
+            >{{ sortLabel[lang].order }}</BtnBase
+          >
+          <BtnBase color="primary" variant="text" class-name="w-full" :onClick="updateSortToKoma">{{
+            sortLabel[lang].koma
+          }}</BtnBase>
+        </BtnMenu>
+      </NContainerFlex>
 
       <!-- フィルターのモーダル -->
       <ModalBase :visible="visibleFilterModal" :close-action="dismissFilterModal">
@@ -229,7 +230,7 @@ const {
           <NContainer1col v-for="exhibition in exhibitions" :key="exhibition.en" gap="0">
             <SwitchBase
               v-model="exhibition.isOn.value"
-              :label="exhibition[lang === 'ja' ? 'ja' : 'en']"
+              :label="`${exhibition[lang === 'ja' ? 'ja' : 'en']}のすべてのエリア`"
               :color="exhibition.color"
               label-class="font-bold text-lg"
               @update:model-value="(val) => updateGenreFlags(exhibition.genres, val)"
@@ -313,6 +314,7 @@ const {
             :koma="exhibitor.koma"
             :name="exhibitor.name"
             :contents="exhibitor.contents"
+            :color="exhibitions[exhibitor.exhibition].color as Color"
             :is-favorite="includedFavorites(exhibitor.id)"
             :favorite-method="switchFavorite"
             @click="showModal(exhibitor)"
@@ -328,7 +330,7 @@ const {
         :id="currentExhibitor.id"
         :name="currentExhibitor.name"
         :koma="currentExhibitor.koma"
-        exhibition="環境展"
+        :exhibition="exhibitions[currentExhibitor.exhibition][lang]"
         :subName="currentExhibitor.subName"
         :genre="currentExhibitor.genre"
         :webSite="currentExhibitor.webSite"
@@ -336,7 +338,7 @@ const {
         :sdgs="currentExhibitor.sdgs"
         :isFavorite="includedFavorites(currentExhibitor.id)"
         :favorite-method="switchFavorite"
-        :color="exhibitions.nexpo.color as Color"
+        :color="exhibitions[currentExhibitor.exhibition].color"
       ></ExhibitorProfile>
       <p v-else>情報がありません。</p>
       <template #footer>

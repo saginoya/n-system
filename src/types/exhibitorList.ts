@@ -16,11 +16,11 @@ export type Exhibitor = {
   subName?: string
   order: string
   koma: string
+  exhibition: string
   genre?: string
   webSite?: string
   contents?: string
   sdgs?: SDGs
-  isFavorite?: boolean
 }
 // 出展社情報一覧
 export type Exhibitors = Exhibitor[]

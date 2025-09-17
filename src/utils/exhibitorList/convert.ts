@@ -21,6 +21,7 @@ export const applyExhibitor = (
     subName: isJapanese ? value.nameEng : '',
     order: isJapanese ? value.order : value.orderEng || value.nameEng,
     koma: toBoothNumber(value.koma, isJapanese),
+    exhibition: value.exhibition,
     genre: genreNameFunc ? genreNameFunc(value.genre, lang) : value.genre,
     webSite: value.webSite,
     contents: isJapanese ? value.contents : value.contentsEng,
