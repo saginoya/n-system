@@ -45,7 +45,7 @@ const sizeClasses = {
     :class="
       cn(
         chipBase,
-        'inline-flex overflow-hidden  align-middle border',
+        'inline-flex overflow-hidden  align-middle border text-nowrap',
         colorClsses,
         { 'hover:ring focus:ring': linkOptions },
         {
