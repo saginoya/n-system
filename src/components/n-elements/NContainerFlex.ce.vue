@@ -8,29 +8,25 @@ import {
   type Gap,
   alignItemsMap,
   type AlignItems,
+  wrapMap,
+  type Wrap,
 } from '@/styles'
 
 const props = withDefaults(
   defineProps<{
-    justify?: Justify
-    justifyMd?: Justify
     alignItems?: AlignItems
     gap?: Gap
+    wrap?: Wrap
+    justify?: Justify
+    justifyMd?: Justify
     spDirectionCol?: boolean
-    wrap?: boolean
   }>(),
   {
     alignItems: 'center',
     gap: '2',
+    wrap: 'wrap',
   },
 )
-
-const justifyStyles = (): (string | null)[] => {
-  return [
-    props.justify ? justifyMap[props.justify] : null,
-    props.justifyMd ? justifyMdMap[props.justifyMd] : null,
-  ]
-}
 
 const direction = props.spDirectionCol ? 'flex-col sm:flex-row' : undefined
 </script>
@@ -38,9 +34,15 @@ const direction = props.spDirectionCol ? 'flex-col sm:flex-row' : undefined
 <template>
   <div
     :class="
-      cn('flex flex-wrap', justifyStyles(), alignItemsMap[alignItems], gapMap[gap], direction, {
-        'flex-wrap': wrap,
-      })
+      cn(
+        'flex',
+        alignItemsMap[alignItems],
+        gapMap[gap],
+        wrapMap[wrap],
+        direction,
+        [justify ? justifyMap[justify] : undefined],
+        [justifyMd ? justifyMdMap[justifyMd] : undefined],
+      )
     "
   >
     <slot />
