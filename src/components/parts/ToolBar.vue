@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+
 import ListNavItem from '@/components/parts/ListNavItem.vue'
 import ListNavMenu from '@/components/parts/ListNavMenu.vue'
 import { useRouter } from '@/composables/useRouter'
@@ -13,7 +15,10 @@ defineProps<{
 }>()
 
 const routerTop = useRouter().getLinkById('top')
-const LinkTop = getLinkOptions(routerTop?.href ?? './', routerTop?.type ?? 'internal')
+const LinkTop = computed(() => {
+  if (!routerTop) return undefined
+  return getLinkOptions(routerTop.href, routerTop.type)
+})
 
 const baseButtonClass = cn(variantConceptMap['outlined']('primary'), 'border')
 const languageButtonClass = cn(variantConceptMap['flat']('info'), 'border hover:text-info')
@@ -23,13 +28,14 @@ const languageButtonClass = cn(variantConceptMap['flat']('info'), 'border hover:
   <div class="bg-white/75 px-4 pb-2 pt-4">
     <div class="m-auto flex max-w-6xl justify-center align-bottom lg:justify-normal">
       <div class="flex-none">
-        <a
-          :href="LinkTop.href"
-          :target="LinkTop.target"
+        <component
+          :is="LinkTop ? 'a' : 'span'"
+          :href="LinkTop ? LinkTop.href : undefined"
+          :target="LinkTop ? LinkTop.target : undefined"
           class="text-lg font-bold text-primary hover:opacity-75"
         >
           <slot>{{ title }}</slot>
-        </a>
+        </component>
       </div>
       <div class="hidden grow lg:block"></div>
       <nav class="hidden flex-none lg:block">
