@@ -28,10 +28,11 @@ const toolBarNav = computed(() => {
     v-if="siteTitle && navigation"
     :titleList="siteTitle"
     :navigation
+    :inert="!drawer"
     class="fixed left-0 top-0 z-40 h-screen w-96 max-w-[90%] -translate-x-96 transition duration-200"
     :class="{ 'translate-x-0': drawer }"
   ></GlobalHeader>
-  <div class="flex min-h-screen w-full flex-col overflow-hidden bg-slate-200">
+  <div :inert="drawer" class="flex min-h-screen w-full flex-col overflow-hidden bg-slate-200">
     <ToolBar :title="siteTitle ? siteTitle.join(' ') : undefined" :navigation="toolBarNav">
       <NImage
         v-if="logoImage"

@@ -35,7 +35,7 @@ const enabled = defineModel<boolean>({ default: false })
         v-model="enabled"
         :id
         :class="enabled ? bgColorMap[props.color] : 'bg-gray-300'"
-        class="relative inline-flex h-5 w-8 flex-none shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75"
+        class="relative inline-flex h-5 w-8 flex-none shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:ring-4 focus:ring-info"
       >
         <span
           :class="enabled ? 'translate-x-3' : 'translate-x-0'"

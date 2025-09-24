@@ -42,8 +42,8 @@ defineProps<
       <MenuItems
         class="absolute right-0 mt-2 flex w-56 origin-top-right flex-col gap-1 bg-white px-2 py-3 shadow-lg ring-1 ring-black/5 focus:outline-none"
       >
-        <MenuItem v-for="path in children" :key="path">
-          <ListNavItem :path class="text-slate-600" />
+        <MenuItem v-for="path in children" :key="path" v-slot="{ active }">
+          <ListNavItem :path :class="cn('text-slate-600', { ring: active })" />
         </MenuItem>
       </MenuItems>
     </transition>

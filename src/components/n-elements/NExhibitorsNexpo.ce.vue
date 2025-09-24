@@ -10,6 +10,7 @@ import NTitle from '@/components/n-elements/NTitle.ce.vue'
 import NTooltipInfo from '@/components/n-elements/NTooltipInfo.ce.vue'
 import Btn from '@/components/parts/BtnBase.vue'
 import BtnBase from '@/components/parts/BtnBase.vue'
+import type { BtnBaseProps } from '@/components/parts/BtnBase.vue'
 import BtnMenu from '@/components/parts/BtnMenu.vue'
 import ExhibitorListHeading from '@/components/parts/ExhibitorListHeading.vue'
 import ExhibitorListItem from '@/components/parts/ExhibitorListItem.vue'
@@ -171,15 +172,29 @@ const sortLabel = {
   en: { order: 'Name', koma: 'Booth number', search: 'Related' },
 }
 
+// ソートの更新関数
 const updateSortToOrder = () => {
   const order: SortType = 'order'
   updateStateSort(order)
 }
-
 const updateSortToKoma = () => {
   const order: SortType = 'koma'
   updateStateSort(order)
 }
+
+// ソートメニューの子要素
+const sortChildren: BtnBaseProps[] = [
+  {
+    color: 'primary',
+    label: sortLabel[lang.value].order,
+    onClick: updateSortToOrder,
+  },
+  {
+    color: 'primary',
+    label: sortLabel[lang.value].koma,
+    onClick: updateSortToKoma,
+  },
+]
 
 // ------------------
 // モーダル制御
@@ -225,18 +240,8 @@ const {
           color="primary"
           variant="text"
           prepend-icon="sort"
-        >
-          <BtnBase
-            color="primary"
-            variant="text"
-            class-name="w-full"
-            :onClick="updateSortToOrder"
-            >{{ sortLabel[lang].order }}</BtnBase
-          >
-          <BtnBase color="primary" variant="text" class-name="w-full" :onClick="updateSortToKoma">{{
-            sortLabel[lang].koma
-          }}</BtnBase>
-        </BtnMenu>
+          :children="sortChildren"
+        />
       </NContainerFlex>
 
       <!-- フィルターのモーダル -->

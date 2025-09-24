@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import { Menu, MenuButton, MenuItems } from '@headlessui/vue'
+import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
 
 import BtnBase from '@/components/parts/BtnBase.vue'
+import type { BtnBaseProps } from '@/components/parts/BtnBase.vue'
+import { cn } from '@/lib/cn'
 import type { Variant } from '@/styles'
 import type { Color } from '@/types'
 import { type Icon } from '@/utils'
@@ -14,6 +16,7 @@ defineProps<{
   variant?: Variant
   prependIcon?: Icon
   className?: string
+  children?: BtnBaseProps[]
 }>()
 </script>
 
@@ -40,8 +43,25 @@ defineProps<{
       leave-from-class="transform scale-100 opacity-100"
       leave-to-class="transform scale-95 opacity-0"
     >
-      <MenuItems class="absolute inset-x-0 z-50 mx-auto mt-2 w-fit bg-white shadow-lg">
-        <slot />
+      <MenuItems
+        class="absolute inset-x-0 z-50 mx-auto mt-2 flex w-fit flex-col gap-2 bg-white shadow-lg ring-1 ring-black/5 focus:outline-none"
+      >
+        <MenuItem v-for="(child, index) in children" :key="index" v-slot="{ active }">
+          <BtnBase
+            :type="child.type"
+            :color="child.color"
+            :disabled="child.disabled"
+            :name="child.name"
+            :value="child.value"
+            :variant="child.variant ?? 'text'"
+            :prependIcon="child.prependIcon"
+            :appendIcon="child.appendIcon"
+            :className="cn(child.className, 'w-full', { ring: active })"
+            :onClick="child.onClick"
+          >
+            {{ child.label }}
+          </BtnBase>
+        </MenuItem>
       </MenuItems>
     </transition>
   </Menu>

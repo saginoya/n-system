@@ -16,7 +16,7 @@ const { visible, show, dismiss } = useModal()
       {{ btnTitle }}
     </slot>
   </button>
-  <ModalBase :visible :close-action="dismiss">
+  <ModalBase :inert="!visible" :visible :close-action="dismiss">
     <slot />
     <template #footer>
       <Btn color="gray" variant="text" :onClick="dismiss">Close</Btn>

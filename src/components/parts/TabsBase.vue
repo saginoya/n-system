@@ -40,7 +40,6 @@ const isSelected = (value: TabsValue) => {
       :id="String(value)"
       aria-controls="value"
       :ariaSelected="isSelected(value)"
-      :tabindex="isSelected(value) ? 0 : -1"
       class="block border-b-4 px-4 py-1 text-center transition-all duration-150 hover:bg-slate-200"
       :class="isSelected(value) ? selectedClass : 'text-gray-400'"
       @click="setModel(value)"
