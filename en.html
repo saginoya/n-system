@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>N-System</title>
+    <link rel="stylesheet" href="/css/n-system-variables.css" />
+  </head>
+  <body>
+    <noscript><iframe src="./noscript.html"></iframe></noscript>
+    <n-app json-path="/json/config.json">
+      <n-card>
+        <n-title lv="h2">英語ページサンプル</n-title>
+        <p>このページはLang属性を"en"に設定してあります。</p>
+      </n-card>
+
+      <n-title>出展社一覧</n-title>
+      <n-exhibitors-nexpo
+        list-src="/json/exhibitor-list2024.json"
+        genre-src="/json/genres2024.json"
+        favorite-key="nexpo_favorites_2025"
+      ></n-exhibitors-nexpo>
+
+      <n-card>
+        <n-title>ツールチップ</n-title>
+        <n-tooltip-info>
+          <b>内容の文章 location:top</b>
+        </n-tooltip-info>
+
+        <n-tooltip-info location="bottom">
+          <b>内容の文章 location:bottom</b>
+          <p>
+            あああああああああああああああああああああああああああああああああああああああああああああああああああああああああ
+          </p>
+          <p>いいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいい</p>
+          <p>うううううううううううううううううう</p>
+          <p>
+            ええええええええええええええええええええええええええええええええええええええええええええええええええええええ
+          </p>
+          <p>おおおおおおおおおおおおおおおおおおおおおおおおお</p>
+        </n-tooltip-info>
+
+        <n-tooltip-info location="left">
+          <b>内容の文章 location:left</b>
+        </n-tooltip-info>
+
+        <n-tooltip-info location="right">
+          <b>内容の文章 location:right</b>
+          <p>
+            あああああああああああああああああああああああああああああああああああああああああああああああああああああああああ
+          </p>
+          <p>いいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいい</p>
+          <p>うううううううううううううううううう</p>
+          <p>
+            ええええええええええええええええええええええええええええええええええええええええええええええええええええええ
+          </p>
+          <p>おおおおおおおおおおおおおおおおおおおおおおおおお</p>
+        </n-tooltip-info>
+      </n-card>
+
+      <n-card>
+        <n-title-index>新着情報</n-title-index>
+        <n-list-news>
+          <n-list-item-date
+            datetime="2025-06-16T16:00:00+09:00"
+            href="./sample.html"
+            type="internal"
+          >
+            <p>リンクのあるニュース</p>
+            <p>こんな感じ</p>
+          </n-list-item-date>
+          <n-list-item-date datetime="2024-07-11T16:00:00+09:00">
+            <p>公開版1.0.0リリース</p>
+            <p>沖縄パック2025サイト公開にあわせて</p>
+          </n-list-item-date>
+          <n-list-item-date datetime="2024-06-26T16:00:00+09:00">
+            <p>ベータ版0.2.2リリース</p>
+            <p>バナーページ開設</p>
+          </n-list-item-date>
+          <n-list-item-date datetime="2024-06-25T13:00:00+09:00">
+            <p>ベータ版0.2.1リリース</p>
+            <p>Configファイルのパスの設定仕様変更</p>
+            <p>クイックスタートページの開設</p>
+          </n-list-item-date>
+          <n-list-item-date datetime="2024-06-21T13:00:00+09:00">
+            <p>N-Systemのベータ版0.2.0リリース</p>
+            <p>2025沖縄パックサイトに導入</p>
+          </n-list-item-date>
+        </n-list-news>
+      </n-card>
+    </n-app>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
