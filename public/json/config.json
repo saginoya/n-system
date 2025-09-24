@@ -16,22 +16,10 @@
       "children": ["top"]
     },
     {
-      "id": "summary",
-      "name": "概要",
+      "id": "sample",
+      "name": "サンプル",
       "type": "group",
-      "children": ["sample", "nexpo"]
-    },
-    {
-      "id": "exhibitors",
-      "name": "出展のご案内",
-      "type": "group",
-      "children": ["pdf"]
-    },
-    {
-      "id": "visitors",
-      "name": "来場のご案内",
-      "type": "group",
-      "children": ["nippo", "sample"]
+      "children": ["lower", "nexpo", "pdf"]
     },
     {
       "id": "language",
@@ -66,9 +54,9 @@
       "type": "internal"
     },
     {
-      "id": "sample",
-      "name": "サンプル",
-      "path": "@/sample",
+      "id": "lower",
+      "name": "下層ページ",
+      "path": "@/lower/",
       "type": "internal"
     },
     {

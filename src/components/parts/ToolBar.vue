@@ -14,8 +14,12 @@ defineProps<{
   navigation?: Navigation[]
 }>()
 
-const routerTop = useRouter().getLinkById('top')
+// ルーターの呼び出し
+const router = useRouter()
+
+// ルーターからトップページのリンクを取得
 const LinkTop = computed(() => {
+  const routerTop = router.getLinkById('top')
   if (!routerTop) return undefined
   return getLinkOptions(routerTop.href, routerTop.type)
 })
