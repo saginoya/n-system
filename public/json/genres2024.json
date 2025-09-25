@@ -1,102 +1,120 @@
-[
-  {
-    "id": "A",
-    "name": "再資源化・廃棄物処理・解体エリア",
-    "nameEng": "Waste Recycling / Waste Disposal / Demolition"
-  },
-  {
-    "id": "B",
-    "name": "地球温暖化防止展ベンチャーコーナー",
-    "nameEng": "GWPE Venture"
-  },
-  {
-    "id": "C",
-    "name": "猛暑対策コーナー",
-    "nameEng": "Intense Heat Countermeasures"
-  },
-  {
-    "id": "D",
-    "name": "新エネ・再エネ推進エリア",
-    "nameEng": "Alternative Energy / Reproducing Energy"
-  },
-  {
-    "id": "E",
-    "name": "節電・省エネ対策エリア",
-    "nameEng": "Power / Energy Saving Technology"
-  },
-  {
-    "id": "F",
-    "name": "脱炭素・カーボンニュートラルエリア",
-    "nameEng": "Decarbonization / Carbon Neutral"
-  },
-  {
-    "id": "G",
-    "name": "バイオマス・有機性廃棄物処理エリア",
-    "nameEng": "Biomass / Organic Waste Disposal"
-  },
-  {
-    "id": "H",
-    "name": "サーマル・ごみ発電・熱利用エリア",
-    "nameEng": "Thermal / Waste Power Generation / Heat Utilization"
-  },
-  {
-    "id": "J",
-    "name": "土木・建設・災害対策エリア",
-    "nameEng": "Civil Engineering / Construction / Disaster Countermeasure"
-  },
-  {
-    "id": "K",
-    "name": "自治体エリア",
-    "nameEng": "Autonomy"
-  },
-  {
-    "id": "L",
-    "name": "環境ソフト・スケール・測定・分析エリア",
-    "nameEng": "Environmental Software / Scales / Measurement / Analysis"
-  },
-  {
-    "id": "M",
-    "name": "バイオプラスチック・包装・エコ製品エリア",
-    "nameEng": "Bioplastic / Packaging / Eco-Products"
-  },
-  {
-    "id": "N",
-    "name": "海洋プラ・廃プラ対策コーナー",
-    "nameEng": "Marine Plastic / Waste Plastic Measures"
-  },
-  {
-    "id": "P",
-    "name": "収集・運搬・搬送・保管・物流エリア",
-    "nameEng": "Collection / Distribution / Transportation / Safekeeping / Physical Distribution"
-  },
-  {
-    "id": "Q",
-    "name": "アスベスト対策コーナー",
-    "nameEng": "Measures for Asbestos"
-  },
-  {
-    "id": "R",
-    "name": "土壌・大気・作業環境改善・感染症対策エリア",
-    "nameEng": "Soil / Atmosphere / Environmental Improvement / Countermeasures for Infection"
-  },
-  {
-    "id": "S",
-    "name": "水処理・水質浄化エリア",
-    "nameEng": "Water Treatment / Water Purification"
-  },
-  {
-    "id": "T",
-    "name": "NEW環境展ベンチャーコーナー",
-    "nameEng": "N-EXPO Venture"
-  },
-  {
-    "id": "U",
-    "name": "関係団体・学術機関エリア",
-    "nameEng": "Affiliate Organizations / Academic Organizations"
-  },
-  {
-    "id": "Z",
-    "name": "屋外実演会場",
-    "nameEng": "The Outdoor Demonstration"
-  }
-]
+{
+  "exhibitions": [
+    {
+      "id": "nexpo",
+      "name": "NEW環境展",
+      "nameEng": "N-EXPO",
+      "color": "exhibition-a",
+      "genres": ["A", "G", "H", "J", "K", "L", "M", "N", "P", "Q", "R", "S", "T", "U", "Z"]
+    },
+    {
+      "id": "gwpe",
+      "name": "地球温暖化防止展",
+      "nameEng": "GWPE",
+      "color": "exhibition-b",
+      "genres": ["B", "C", "D", "E", "F"]
+    }
+  ],
+  "genres": [
+    {
+      "id": "A",
+      "name": "再資源化・廃棄物処理・解体エリア",
+      "nameEng": "Waste Recycling / Waste Disposal / Demolition"
+    },
+    {
+      "id": "B",
+      "name": "地球温暖化防止展ベンチャーコーナー",
+      "nameEng": "GWPE Venture"
+    },
+    {
+      "id": "C",
+      "name": "猛暑対策コーナー",
+      "nameEng": "Intense Heat Countermeasures"
+    },
+    {
+      "id": "D",
+      "name": "新エネ・再エネ推進エリア",
+      "nameEng": "Alternative Energy / Reproducing Energy"
+    },
+    {
+      "id": "E",
+      "name": "節電・省エネ対策エリア",
+      "nameEng": "Power / Energy Saving Technology"
+    },
+    {
+      "id": "F",
+      "name": "脱炭素・カーボンニュートラルエリア",
+      "nameEng": "Decarbonization / Carbon Neutral"
+    },
+    {
+      "id": "G",
+      "name": "バイオマス・有機性廃棄物処理エリア",
+      "nameEng": "Biomass / Organic Waste Disposal"
+    },
+    {
+      "id": "H",
+      "name": "サーマル・ごみ発電・熱利用エリア",
+      "nameEng": "Thermal / Waste Power Generation / Heat Utilization"
+    },
+    {
+      "id": "J",
+      "name": "土木・建設・災害対策エリア",
+      "nameEng": "Civil Engineering / Construction / Disaster Countermeasure"
+    },
+    {
+      "id": "K",
+      "name": "自治体エリア",
+      "nameEng": "Autonomy"
+    },
+    {
+      "id": "L",
+      "name": "環境ソフト・スケール・測定・分析エリア",
+      "nameEng": "Environmental Software / Scales / Measurement / Analysis"
+    },
+    {
+      "id": "M",
+      "name": "バイオプラスチック・包装・エコ製品エリア",
+      "nameEng": "Bioplastic / Packaging / Eco-Products"
+    },
+    {
+      "id": "N",
+      "name": "海洋プラ・廃プラ対策コーナー",
+      "nameEng": "Marine Plastic / Waste Plastic Measures"
+    },
+    {
+      "id": "P",
+      "name": "収集・運搬・搬送・保管・物流エリア",
+      "nameEng": "Collection / Distribution / Transportation / Safekeeping / Physical Distribution"
+    },
+    {
+      "id": "Q",
+      "name": "アスベスト対策コーナー",
+      "nameEng": "Measures for Asbestos"
+    },
+    {
+      "id": "R",
+      "name": "土壌・大気・作業環境改善・感染症対策エリア",
+      "nameEng": "Soil / Atmosphere / Environmental Improvement / Countermeasures for Infection"
+    },
+    {
+      "id": "S",
+      "name": "水処理・水質浄化エリア",
+      "nameEng": "Water Treatment / Water Purification"
+    },
+    {
+      "id": "T",
+      "name": "NEW環境展ベンチャーコーナー",
+      "nameEng": "N-EXPO Venture"
+    },
+    {
+      "id": "U",
+      "name": "関係団体・学術機関エリア",
+      "nameEng": "Affiliate Organizations / Academic Organizations"
+    },
+    {
+      "id": "Z",
+      "name": "屋外実演会場",
+      "nameEng": "The Outdoor Demonstration"
+    }
+  ]
+}

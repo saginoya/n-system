@@ -7,21 +7,23 @@ import SDGsIcons from '@/components/parts/SDGsIcons.vue'
 import TooltipBookmark from '@/components/parts/TooltipBookmark.vue'
 import type { Lang, SDGs, Color } from '@/types'
 
-defineProps<{
+export type ExhibitorProfileProps = {
   lang: Lang
   id: string
   name: string
   koma: string
-  exhibition: string
   isFavorite: boolean
+  favoriteMethod: (value: string) => void
+  exhibition?: string
   subName?: string
   genre?: string
   webSite?: string
   contents?: string
   sdgs?: SDGs
-  favoriteMethod: (value: string) => void
   color?: Color
-}>()
+}
+
+defineProps<ExhibitorProfileProps>()
 
 const texts = {
   ja: {

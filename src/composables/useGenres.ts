@@ -1,39 +1,61 @@
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted, readonly } from 'vue'
 
-import type { Lang, Genre } from '@/types'
+import type { GenreJson, Genre, Exhibition, ExhibitionID, GenreID } from '@/types'
 import { getJson } from '@/utils'
 
 export const useGenres = (src: string) => {
   // ジャンルのリスト
+  const exhibitions = ref<Exhibition[]>()
   const genres = ref<Genre[]>()
 
-  onMounted(async () => {
-    genres.value = await getJson(src)
+  const exhibitionsMap = computed(() => {
+    if (!exhibitions.value) return {}
+    return convertListToMap<Exhibition>(exhibitions.value)
   })
 
-  // ジャンル記号からジャンル名を取得する関数
-  const getGenreNameFromID = (value: string, lang: Lang): string => {
-    if (!genres.value) {
-      console.error('Could not retrieve genre list')
-      return value
+  const genresMap = computed(() => {
+    if (!genres.value) return {}
+    return convertListToMap<Genre>(genres.value)
+  })
+
+  onMounted(async () => {
+    const data: GenreJson = await getJson(src)
+    exhibitions.value = data.exhibitions
+    genres.value = data.genres
+  })
+
+  // ジャンルIDから展示会IDを返す関数
+  const getExhibitionIDFromGenreID = (value: GenreID): ExhibitionID | undefined => {
+    if (!exhibitions.value) {
+      console.error('Could not retrieve exhibition list')
+      return undefined
     }
 
-    for (const genre of genres.value) {
-      if (value === genre.id) {
-        switch (lang) {
-          case 'ja':
-            return genre.name
-          default:
-            return genre.nameEng
-        }
+    for (const exhibition of exhibitions.value) {
+      if (exhibition.genres.includes(value)) {
+        return exhibition.id
       }
     }
 
-    return value
+    return undefined
+  }
+
+  // リストをMapに変換する関数
+  const convertListToMap = <T extends { id: string }>(list: T[]): Record<string, T> => {
+    return list.reduce(
+      (map, item) => {
+        map[item.id] = item
+        return map
+      },
+      {} as Record<string, T>,
+    )
   }
 
   return {
-    genres,
-    getGenreNameFromID,
+    exhibitions: readonly(exhibitions),
+    genres: readonly(genres),
+    exhibitionsMap: readonly(exhibitionsMap),
+    genresMap: readonly(genresMap),
+    getExhibitionIDFromGenreID,
   }
 }

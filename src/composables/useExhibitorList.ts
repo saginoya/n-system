@@ -1,8 +1,7 @@
 import { ref, computed, onMounted, readonly } from 'vue'
 
 import { useExhibitorListFavorite } from '@/composables/useExhibitorListFavorite'
-import { useGenres } from '@/composables/useGenres'
-import type { Exhibitor, Exhibitors, SortType, JsonExhibitor, Lang } from '@/types'
+import type { Exhibitor, Exhibitors, SortType, JsonExhibitor, Lang, GenreID } from '@/types'
 import { getJson } from '@/utils'
 import { convertJSONToExhibitorList, countExhibitors } from '@/utils/exhibitorList'
 import {
@@ -22,18 +21,10 @@ const searchWithinKeys: ExhibitorItem[] = ['name', 'koma', 'subName', 'contents'
  * @param options - オプション（フィルター・ソート）{favorites, keyword, genres, sort}
  * @returns
  */
-export const useExhibitorList = (
-  listSrc: string,
-  genreSrc: string,
-  favoriteKey: string,
-  lang: Lang,
-) => {
+export const useExhibitorList = (listSrc: string, favoriteKey: string, lang: Lang) => {
   // **
   // 取得したいデータの定義
   //  **
-
-  // ジャンルを取得
-  const { getGenreNameFromID, genres } = useGenres(genreSrc)
 
   // お気に入り機能
   const { myFavorites, switchFavorite, includedFavorites } = useExhibitorListFavorite(favoriteKey)
@@ -93,7 +84,7 @@ export const useExhibitorList = (
   // フィルターの条件（キーワード）
   const stateKeyword = ref<string>('')
   // フィルターの条件（ジャンルやエリア）
-  const stateGenres = ref<string[]>([])
+  const stateGenres = ref<GenreID[]>([])
   // フィルターの条件（お気に入り）
   const stateFavorite = ref<boolean>(false)
   // ソートの条件
@@ -114,17 +105,17 @@ export const useExhibitorList = (
   }
 
   // ジャンルの更新関数
-  const updateStateGenres = (values: string[]): void => {
+  const updateStateGenres = (values: GenreID[]): void => {
     stateGenres.value = values
   }
   // ジャンルの更新関数（追加）
-  const addStateGenres = (value: string): void => {
+  const addStateGenres = (value: GenreID): void => {
     if (!stateGenres.value.includes(value)) {
       stateGenres.value.push(value)
     }
   }
   // ジャンルの更新関数（削除）
-  const removeStateGenres = (value: string): void => {
+  const removeStateGenres = (value: GenreID): void => {
     stateGenres.value = stateGenres.value.filter((genre) => genre !== value)
   }
 
@@ -141,17 +132,15 @@ export const useExhibitorList = (
 
   // JSONファイルを取得して出展社リストを初期化
   onMounted(async () => {
-    await genres.value
     const json = await getJson<JsonExhibitor[]>(listSrc)
 
-    rawExhibitorList.value = await convertJSONToExhibitorList(json, lang, getGenreNameFromID)
+    rawExhibitorList.value = await convertJSONToExhibitorList(json, lang)
   })
 
   return {
     exhibitorList,
     numRawExhibitorList: readonly(numRawExhibitorList),
     numExhibitorList: readonly(numExhibitorList),
-    genres: readonly(genres),
     myFavorites: readonly(myFavorites),
     isLoading,
     stateFavorite,

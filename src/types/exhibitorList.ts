@@ -1,3 +1,4 @@
+import type { ExhibitionID, GenreID } from './genre'
 import type { SDGsNum } from './sdgs'
 
 // 出展社UUID
@@ -13,11 +14,11 @@ export type SDGs = SDGsNum[]
 export type Exhibitor = {
   id: ExhibitorID
   name: string
-  subName?: string
   order: string
   koma: string
-  exhibition: string
-  genre?: string
+  subName?: string
+  exhibition?: ExhibitionID
+  genre?: GenreID
   webSite?: string
   contents?: string
   sdgs?: SDGs
