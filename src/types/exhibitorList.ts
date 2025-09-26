@@ -18,7 +18,7 @@ export type Exhibitor = {
   koma: string
   subName?: string
   exhibition?: ExhibitionID
-  genre?: GenreID
+  genre: GenreID
   webSite?: string
   contents?: string
   sdgs?: SDGs

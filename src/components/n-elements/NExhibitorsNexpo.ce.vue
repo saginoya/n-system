@@ -52,7 +52,7 @@ const langKey = computed(() => (isJapanese.value ? 'name' : 'nameEng'))
 // ------------------
 
 // ジャンルを取得
-const { exhibitions, exhibitionsMap, genresMap } = useGenres(props.genreSrc)
+const { exhibitions, exhibitionsMap, genresMap, getGenreNameFromID } = useGenres(props.genreSrc)
 
 // ジャンルのリスト
 const genreList = computed<string[] | undefined>(() => {
@@ -91,7 +91,12 @@ const {
 } = useExhibitorList(props.listSrc, props.favoriteKey, lang.value)
 
 // 出展社リストの小見出し
-const { getHeading, showHeading } = useExhibitorListHeading(exhibitorList, stateSort, lang.value)
+const { getHeading, showHeading } = useExhibitorListHeading(
+  exhibitorList,
+  stateSort,
+  lang.value,
+  getGenreNameFromID,
+)
 
 // ------------------
 // ジャンルによる絞り込み機能関連

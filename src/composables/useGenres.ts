@@ -1,6 +1,6 @@
 import { ref, computed, onMounted, readonly } from 'vue'
 
-import type { GenreJson, Genre, Exhibition, ExhibitionID, GenreID } from '@/types'
+import type { GenreJson, Genre, Exhibition, ExhibitionID, GenreID, Lang } from '@/types'
 import { getJson } from '@/utils'
 
 export const useGenres = (src: string) => {
@@ -40,6 +40,12 @@ export const useGenres = (src: string) => {
     return undefined
   }
 
+  // ジャンルIDからジャンル名を返す関数
+  const getGenreNameFromID = (value: GenreID, lang: Lang): string => {
+    if (!genresMap.value) return ''
+    return genresMap.value[value][lang === 'ja' ? 'name' : 'nameEng']
+  }
+
   // リストをMapに変換する関数
   const convertListToMap = <T extends { id: string }>(list: T[]): Record<string, T> => {
     return list.reduce(
@@ -57,5 +63,6 @@ export const useGenres = (src: string) => {
     exhibitionsMap: readonly(exhibitionsMap),
     genresMap: readonly(genresMap),
     getExhibitionIDFromGenreID,
+    getGenreNameFromID,
   }
 }

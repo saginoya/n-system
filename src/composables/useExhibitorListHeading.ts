@@ -16,11 +16,12 @@ export const useExhibitorListHeading = (
   exhibitorList: Ref<Exhibitors>,
   sort: Ref<SortType>,
   lang: Lang,
+  converterGenreID: (value: string, lang: Lang) => string,
 ) => {
   // 出展社一覧から小見出しの一覧リスト生成
   const headings = computed<Heading[]>(() => {
     return exhibitorList.value.map((item) =>
-      generateHeading(sort.value, lang, item.order, item.genre ?? ''),
+      generateHeading(sort.value, lang, item.order, converterGenreID(item.genre, lang)),
     )
   })
 
