@@ -16,7 +16,6 @@ import ExhibitorListHeading from '@/components/parts/ExhibitorListHeading.vue'
 import ExhibitorListItem from '@/components/parts/ExhibitorListItem.vue'
 import ExhibitorListNotApplicable from '@/components/parts/ExhibitorListNotApplicable.vue'
 import ExhibitorProfile from '@/components/parts/ExhibitorProfile.vue'
-import type { ExhibitorProfileProps } from '@/components/parts/ExhibitorProfile.vue'
 import InputSearch from '@/components/parts/InputSearch.vue'
 import LoadingSpinner from '@/components/parts/LoadingSpinner.vue'
 import ModalBase from '@/components/parts/ModalBase.vue'
@@ -210,7 +209,7 @@ const sortChildren: BtnBaseProps[] = [
 
 // 出展社カードのモーダル
 const { visible, show, dismiss } = useModal()
-const currentExhibitor = ref<ExhibitorProfileProps>()
+const currentExhibitor = ref()
 const showModal = (exhibitor: Exhibitor) => {
   const exhibition = exhibitor.exhibition
     ? exhibitionsMap.value[exhibitor.exhibition][langKey.value]
@@ -223,7 +222,6 @@ const showModal = (exhibitor: Exhibitor) => {
     id: exhibitor.id,
     name: exhibitor.name,
     koma: exhibitor.koma,
-    isFavorite: includedFavorites(exhibitor.id),
     favoriteMethod: switchFavorite,
     exhibition: exhibition,
     subName: exhibitor.subName,
@@ -394,7 +392,11 @@ const {
     </NCard>
     <!-- モーダルウインドウ（出展社の詳細情報） -->
     <ModalBase :visible :close-action="dismissModal">
-      <ExhibitorProfile v-if="currentExhibitor" v-bind="currentExhibitor"></ExhibitorProfile>
+      <ExhibitorProfile
+        v-if="currentExhibitor"
+        v-bind="currentExhibitor"
+        :is-favorite="includedFavorites(currentExhibitor.id)"
+      ></ExhibitorProfile>
       <p v-else>情報がありません。</p>
       <template #footer>
         <Btn color="gray" variant="text" :onClick="dismissModal">Close</Btn>
