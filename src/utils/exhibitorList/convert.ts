@@ -19,6 +19,7 @@ export const applyExhibitor = (value: JsonExhibitor, lang: Lang): Exhibitor => {
     koma: toBoothNumber(value.koma, isJapanese),
     exhibition: value.exhibition as ExhibitionID,
     genre: value.genre as GenreID,
+    genreName: undefined,
     webSite: value.webSite,
     contents: isJapanese ? value.contents : value.contentsEng,
     sdgs: value.sdgs,

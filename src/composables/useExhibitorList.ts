@@ -14,7 +14,13 @@ import {
 
 type ExhibitorItem = keyof Exhibitor
 
-const searchWithinKeys: ExhibitorItem[] = ['name', 'koma', 'subName', 'contents', 'genre'] as const
+const searchWithinKeys: ExhibitorItem[] = [
+  'name',
+  'koma',
+  'subName',
+  'contents',
+  'genreName',
+] as const
 
 /**
  * 未加工の出展社リストからフィルターやソートを適用した出展社リストを生成する
@@ -22,7 +28,12 @@ const searchWithinKeys: ExhibitorItem[] = ['name', 'koma', 'subName', 'contents'
  * @param options - オプション（フィルター・ソート）{favorites, keyword, genres, sort}
  * @returns
  */
-export const useExhibitorList = (listSrc: string, favoriteKey: string, lang: Lang) => {
+export const useExhibitorList = (
+  listSrc: string,
+  favoriteKey: string,
+  lang: Lang,
+  converterGenreID: (value: string, lang: Lang) => string,
+) => {
   // **
   // 取得したいデータの定義
   //  **
@@ -60,6 +71,11 @@ export const useExhibitorList = (listSrc: string, favoriteKey: string, lang: Lan
 
   // Rawリストをフィルターやソートして結果リストを返す関数
   const getFilteredExhibitorList = (list: Exhibitors): Exhibitors => {
+    list.map((item) => {
+      item.genreName = converterGenreID(item.genre, lang)
+      return item
+    })
+
     // フィルタリング（お気に入り）
     if (stateFavorite.value) {
       list = filterByFavorites(list, myFavorites.value)

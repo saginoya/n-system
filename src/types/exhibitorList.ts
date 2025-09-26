@@ -16,9 +16,10 @@ export type Exhibitor = {
   name: string
   order: string
   koma: string
+  genre: GenreID
+  genreName: string | undefined
   subName?: string
   exhibition?: ExhibitionID
-  genre: GenreID
   webSite?: string
   contents?: string
   sdgs?: SDGs

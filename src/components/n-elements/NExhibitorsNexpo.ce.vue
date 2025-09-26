@@ -88,15 +88,10 @@ const {
   updateStateGenres,
   switchFavorite,
   includedFavorites,
-} = useExhibitorList(props.listSrc, props.favoriteKey, lang.value)
+} = useExhibitorList(props.listSrc, props.favoriteKey, lang.value, getGenreNameFromID)
 
 // 出展社リストの小見出し
-const { getHeading, showHeading } = useExhibitorListHeading(
-  exhibitorList,
-  stateSort,
-  lang.value,
-  getGenreNameFromID,
-)
+const { getHeading, showHeading } = useExhibitorListHeading(exhibitorList, stateSort, lang.value)
 
 // ------------------
 // ジャンルによる絞り込み機能関連
@@ -222,7 +217,6 @@ const showModal = (exhibitor: Exhibitor) => {
     : undefined
 
   const color = exhibitor.exhibition ? exhibitionsMap.value[exhibitor.exhibition].color : undefined
-  const genre = exhibitor.genre ? genresMap.value[exhibitor.genre][langKey.value] : exhibitor.genre
 
   currentExhibitor.value = {
     lang: lang.value,
@@ -233,7 +227,7 @@ const showModal = (exhibitor: Exhibitor) => {
     favoriteMethod: switchFavorite,
     exhibition: exhibition,
     subName: exhibitor.subName,
-    genre: genre,
+    genre: exhibitor.genreName,
     webSite: exhibitor.webSite,
     contents: exhibitor.contents,
     sdgs: exhibitor.sdgs,
