@@ -46,8 +46,19 @@ export const useExhibitorList = (listSrc: string, favoriteKey: string, lang: Lan
     // 取得状況の更新
     isLoading.value = true
 
-    let list = rawExhibitorList.value
+    const list = getFilteredExhibitorList(rawExhibitorList.value)
 
+    // 取得状況の更新
+    isLoading.value = false
+
+    return list
+  })
+
+  // フィルターやソートを適用した出展社リスト件数
+  const numExhibitorList = computed(() => countExhibitors(exhibitorList.value))
+
+  // Rawリストをフィルターやソートして結果リストを返す関数
+  const getFilteredExhibitorList = (list: Exhibitors): Exhibitors => {
     // フィルタリング（お気に入り）
     if (stateFavorite.value) {
       list = filterByFavorites(list, myFavorites.value)
@@ -68,14 +79,8 @@ export const useExhibitorList = (listSrc: string, favoriteKey: string, lang: Lan
       list = sortExhibitorList(list, stateSort.value)
     }
 
-    // 取得状況の更新
-    isLoading.value = false
-
     return list
-  })
-
-  // フィルターやソートを適用した出展社リスト件数
-  const numExhibitorList = computed(() => countExhibitors(exhibitorList.value))
+  }
 
   // **
   // 検索・フィルター・ソートの状態管理
