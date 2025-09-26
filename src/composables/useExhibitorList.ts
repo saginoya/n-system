@@ -3,8 +3,9 @@ import { ref, computed, onMounted, readonly } from 'vue'
 import { useExhibitorListFavorite } from '@/composables/useExhibitorListFavorite'
 import type { Exhibitor, Exhibitors, SortType, JsonExhibitor, Lang, GenreID } from '@/types'
 import { getJson } from '@/utils'
-import { convertJSONToExhibitorList, countExhibitors } from '@/utils/exhibitorList'
 import {
+  convertJSONToExhibitorList,
+  countExhibitors,
   filterByFavorites,
   filterByGenres,
   searchByKeyword,
