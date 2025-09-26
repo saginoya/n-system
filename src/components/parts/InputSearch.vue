@@ -34,7 +34,7 @@ const model = defineModel<string>()
         v-model="model"
         list="search"
         :placeholder
-        aria-label="キーワードを入力"
+        :aria-label="placeholder"
       />
     </label>
 

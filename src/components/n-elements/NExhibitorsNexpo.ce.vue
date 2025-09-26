@@ -259,13 +259,14 @@ const {
         v-model="stateKeyword"
         :datalist="genreList"
         class-name="grow"
+        :placeholder="isJapanese ? 'キーワードで検索' : 'Search by keyword'"
         @update:model-value="stateKeyword ? updateStateSort('search') : updateStateSort('order')"
       ></InputSearch>
 
       <NContainerFlex justify="center" class="w-full flex-none sm:w-auto">
         <!-- フィルターボタン -->
         <BtnBase color="primary" variant="text" prepend-icon="filter" :onClick="showFilterModal">
-          絞り込み条件
+          {{ isJapanese ? '絞り込み条件' : 'Filter' }}
         </BtnBase>
 
         <!-- ソートボタン -->
@@ -280,7 +281,9 @@ const {
 
       <!-- フィルターのモーダル -->
       <ModalBase :visible="visibleFilterModal" :close-action="dismissFilterModal">
-        <NTitle>展示会・エリアによる絞り込み</NTitle>
+        <NTitle>{{
+          isJapanese ? '展示会・エリアによる絞り込み' : 'Filter by Exhibition/Area'
+        }}</NTitle>
         <NContainerGrid cols="2" gap="2" v-if="genresMap">
           <NContainer1col v-for="exhibition in exhibitionOptions" :key="exhibition.id" gap="0">
             <SwitchBase
@@ -311,8 +314,8 @@ const {
       <NChip v-if="stateKeyword" color="primary" size="sm" :closable="removeStateKeyword">{{
         stateKeyword
       }}</NChip>
-      <NChip v-if="isFilteringByGenre" color="primary" size="sm" :closable="removeGenreFlags"
-        >絞り込み条件設定中</NChip
+      <NChip v-if="isFilteringByGenre" color="primary" size="sm" :closable="removeGenreFlags">
+        {{ isJapanese ? '絞り込み条件設定中' : 'Setting filter conditions' }}</NChip
       >
     </NContainerFlex>
     <!-- メインの一覧カード -->
