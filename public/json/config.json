@@ -19,7 +19,7 @@
       "id": "sample",
       "name": "サンプル",
       "type": "group",
-      "children": ["lower", "nexpo", "pdf"]
+      "children": ["lower", "pdf-viewer", "nexpo", "pdf"]
     },
     {
       "id": "language",
@@ -62,8 +62,14 @@
     {
       "id": "pdf",
       "name": "PDF",
-      "path": "@/documents/pdf.pdf",
+      "path": "@/documents/brochure-n-expo2026-eng.pdf",
       "type": "pdf"
+    },
+    {
+      "id": "pdf-viewer",
+      "name": "PDF Viewer",
+      "path": "@/pdf-viewer.html",
+      "type": "internal"
     },
     {
       "id": "nippo",

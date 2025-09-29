@@ -2,25 +2,31 @@
 import { ref, computed, onMounted } from 'vue'
 
 import LayoutDefault from '@/components/layouts/LayoutDefault.vue'
+import LayoutPdf from '@/components/layouts/LayoutPdf.vue'
 import ModalPageLoading from '@/components/parts/ModalPageLoading.vue'
 import TransitionFade from '@/components/parts/TransitionFade.vue'
 import { setBodyVisibility } from '@/utils'
 
-type Layout = 'default'
+const props = withDefaults(
+  defineProps<{
+    jsonPath: string
+    layout?: Layout
+  }>(),
+  {
+    layout: 'default',
+  },
+)
 
-const props = defineProps<{
-  jsonPath: string
-  layout?: Layout
-}>()
+const layoutMap = {
+  default: LayoutDefault,
+  pdf: LayoutPdf,
+} as const
+
+type Layout = keyof typeof layoutMap
 
 // レイアウトのコンポーネントの選択
 const layoutComp = computed(() => {
-  switch (props.layout) {
-    case 'default':
-      return LayoutDefault
-    default:
-      return LayoutDefault
-  }
+  return layoutMap[props.layout]
 })
 
 // HTMLのbodyを表示する
