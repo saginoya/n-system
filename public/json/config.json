@@ -19,7 +19,7 @@
       "id": "sample",
       "name": "サンプル",
       "type": "group",
-      "children": ["lower", "pdf-viewer", "nexpo", "pdf"]
+      "children": ["pdf-viewer", "exhibitors", "nexpo", "pdf"]
     },
     {
       "id": "language",
@@ -36,10 +36,34 @@
   ],
   "router": [
     {
+      "id": "top",
+      "name": "トップ",
+      "path": "@/",
+      "type": "internal"
+    },
+    {
       "id": "en",
       "name": "English",
-      "path": "@/en.html",
+      "path": "@/pages/en.html",
       "type": "internal"
+    },
+    {
+      "id": "pdf-viewer",
+      "name": "PDF Viewer",
+      "path": "@/pages/pdf-viewer.html",
+      "type": "internal"
+    },
+    {
+      "id": "exhibitors",
+      "name": "出展社一覧",
+      "path": "@/pages/exhibitors.html",
+      "type": "internal"
+    },
+    {
+      "id": "nippo",
+      "name": "日報インターネット",
+      "path": "https://www.nippo.co.jp/",
+      "type": "external"
     },
     {
       "id": "nexpo",
@@ -48,34 +72,10 @@
       "type": "external"
     },
     {
-      "id": "top",
-      "name": "トップ",
-      "path": "@/",
-      "type": "internal"
-    },
-    {
-      "id": "lower",
-      "name": "下層ページ",
-      "path": "@/lower/",
-      "type": "internal"
-    },
-    {
       "id": "pdf",
       "name": "PDF",
       "path": "@/documents/brochure-n-expo2026-eng.pdf",
       "type": "pdf"
-    },
-    {
-      "id": "pdf-viewer",
-      "name": "PDF Viewer",
-      "path": "@/pdf-viewer.html",
-      "type": "internal"
-    },
-    {
-      "id": "nippo",
-      "name": "日報インターネット",
-      "path": "https://www.nippo.co.jp/",
-      "type": "external"
     },
     {
       "id": "logo-nippo",

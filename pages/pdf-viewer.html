@@ -4,19 +4,13 @@
     <meta charset="UTF-8" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lower | N-System</title>
+    <title>N-System</title>
     <link rel="stylesheet" href="/css/n-system-variables.css" />
   </head>
   <body>
     <noscript><iframe src="./noscript.html"></iframe></noscript>
-    <n-app json-path="/json/config.json">
-      <n-card>
-        <n-title lv="h2">下層ページのサンプル</n-title>
-      </n-card>
-
-      <n-card>
-        <n-text>これは下層ページのサンプルです。</n-text>
-        <n-text>親ディレクトリにある index.html とは別の HTML ファイルです。</n-text>
+    <n-app json-path="/json/config.json" layout="full-screen">
+      <n-pdf src="/documents/brochure-n-expo2026-eng.pdf" />
     </n-app>
     <script type="module" src="/src/main.ts"></script>
   </body>

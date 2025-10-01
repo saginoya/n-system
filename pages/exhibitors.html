@@ -9,8 +9,16 @@
   </head>
   <body>
     <noscript><iframe src="./noscript.html"></iframe></noscript>
-    <n-app json-path="/json/config.json" layout="pdf">
-      <n-pdf src="/documents/brochure-n-expo2026-eng.pdf" />
+    <n-app json-path="/json/config.json">
+      <n-card>
+        <n-title lv="h2">出展社一覧</n-title>
+      </n-card>
+
+      <n-exhibitors-nexpo
+        list-src="/json/exhibitor-list2024.json"
+        genre-src="/json/genres2024.json"
+        favorite-key="nexpo_favorites_2025"
+      ></n-exhibitors-nexpo>
     </n-app>
     <script type="module" src="/src/main.ts"></script>
   </body>
