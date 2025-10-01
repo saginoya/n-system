@@ -2,7 +2,7 @@
 import { ref, computed, onMounted } from 'vue'
 
 import LayoutDefault from '@/components/layouts/LayoutDefault.vue'
-import LayoutPdf from '@/components/layouts/LayoutPdf.vue'
+import LayoutFullScreen from '@/components/layouts/LayoutFullScreen.vue'
 import ModalPageLoading from '@/components/parts/ModalPageLoading.vue'
 import TransitionFade from '@/components/parts/TransitionFade.vue'
 import { setBodyVisibility } from '@/utils'
@@ -19,7 +19,7 @@ const props = withDefaults(
 
 const layoutMap = {
   default: LayoutDefault,
-  pdf: LayoutPdf,
+  'full-screen': LayoutFullScreen,
 } as const
 
 type Layout = keyof typeof layoutMap

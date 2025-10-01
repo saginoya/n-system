@@ -45,7 +45,7 @@ const toolBarNav = computed(() => {
         :alt="logoImage.alt"
       ></NImage>
     </ToolBar>
-    <main class="size-full grow">
+    <main class="grow">
       <slot />
     </main>
   </div>
