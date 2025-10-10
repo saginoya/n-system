@@ -39,8 +39,13 @@ noscript {
   textarea {
     @apply rounded border-2 border-gray-300 px-2 py-1 text-lg;
   }
-  th,
+  table {
+    @apply table-auto;
+  }
+  th {
+    @apply bg-slate-100 p-2 border;
+  }
   td {
-    @apply p-1;
+    @apply p-2 border;
   }
 }
