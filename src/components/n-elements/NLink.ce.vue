@@ -19,7 +19,9 @@ const { linkOptions } = linkManager({
     class="inline-flex items-center justify-center gap-0.5 border-b border-b-current hover:bg-blue-200/30 focus:bg-blue-200/30"
   >
     <span>
-      <slot />
+      <slot>
+        {{ linkOptions.name }}
+      </slot>
     </span>
     <component :is="linkOptions.icon" class="inline" />
   </a>
