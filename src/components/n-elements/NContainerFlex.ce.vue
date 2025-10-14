@@ -14,6 +14,7 @@ import {
 
 const props = withDefaults(
   defineProps<{
+    as?: string
     alignItems?: AlignItems
     gap?: Gap
     wrap?: Wrap
@@ -22,6 +23,7 @@ const props = withDefaults(
     spDirectionCol?: boolean
   }>(),
   {
+    as: 'div',
     alignItems: 'center',
     gap: '2',
     wrap: 'wrap',
@@ -32,7 +34,8 @@ const direction = props.spDirectionCol ? 'flex-col sm:flex-row' : undefined
 </script>
 
 <template>
-  <div
+  <component
+    :is="as"
     :class="
       cn(
         'flex',
@@ -46,7 +49,7 @@ const direction = props.spDirectionCol ? 'flex-col sm:flex-row' : undefined
     "
   >
     <slot />
-  </div>
+  </component>
 </template>
 
 <style>

@@ -14,10 +14,10 @@ const arr = props.items.split(props.separator)
 </script>
 
 <template>
-  <NContainerFlex>
-    <span v-for="(item, index) in arr" :key="index" class="rounded bg-gray-200/50 px-2 py-0.5">
+  <NContainerFlex as="ul">
+    <li v-for="(item, index) in arr" :key="index" class="rounded bg-gray-200/50 px-2 py-0.5">
       {{ item }}
-    </span>
+    </li>
   </NContainerFlex>
 </template>
 
