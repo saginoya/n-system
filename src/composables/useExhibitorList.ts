@@ -39,7 +39,8 @@ export const useExhibitorList = (
   //  **
 
   // お気に入り機能
-  const { myFavorites, switchFavorite, includedFavorites } = useExhibitorListFavorite(favoriteKey)
+  const { myFavorites, numMyFavorites, switchFavorite, includedFavorites } =
+    useExhibitorListFavorite(favoriteKey)
 
   // **
   // 出展社リスト
@@ -164,6 +165,7 @@ export const useExhibitorList = (
     numRawExhibitorList: readonly(numRawExhibitorList),
     numExhibitorList: readonly(numExhibitorList),
     myFavorites: readonly(myFavorites),
+    numMyFavorites: readonly(numMyFavorites),
     isLoading,
     stateFavorite,
     stateKeyword,

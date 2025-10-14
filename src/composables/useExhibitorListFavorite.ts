@@ -1,4 +1,4 @@
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 
 import { useLang } from '@/composables/useLang'
 import { localStorageManager } from '@/lib/localStorage'
@@ -14,6 +14,11 @@ export const useExhibitorListFavorite = (key: string) => {
 
   // お気に入りリスト
   const myFavorites = ref<Favorites>([])
+
+  // お気に入りリストの件数
+  const numMyFavorites = computed<number>(() => {
+    return myFavorites.value.length
+  })
 
   // ロード時にローカルストレージから初期値をセット
   onMounted(() => {
@@ -65,6 +70,7 @@ export const useExhibitorListFavorite = (key: string) => {
 
   return {
     myFavorites,
+    numMyFavorites,
     getFavoriteItems,
     setFavorite,
     removeFavorite,

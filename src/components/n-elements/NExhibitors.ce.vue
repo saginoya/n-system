@@ -77,6 +77,7 @@ const {
   exhibitorList,
   numExhibitorList,
   numRawExhibitorList,
+  numMyFavorites,
   isLoading,
   stateSort,
   stateFavorite,
@@ -326,7 +327,9 @@ const {
             name="stateFavorite"
             :values="[false, true]"
             :labels="
-              lang === 'ja' ? ['すべて', 'お気に入り登録のみ'] : ['Show All', 'Show only favorites']
+              lang === 'ja'
+                ? ['すべて', `お気に入り登録のみ(${numMyFavorites})`]
+                : ['Show All', `Show only favorites (${numMyFavorites})`]
             "
             color="success"
           ></TabsBase>
