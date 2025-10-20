@@ -11,7 +11,7 @@ defineProps<{
 <template>
   <footer class="bg-primary px-4 text-white">
     <div v-if="navigation" class="hidden py-6 md:block">
-      <div class="m-auto flex w-full max-w-5xl justify-between gap-4">
+      <div class="m-auto grid w-full max-w-5xl grid-cols-6 gap-4">
         <ListNavGroup
           v-for="item in navigation"
           :key="item.id"
