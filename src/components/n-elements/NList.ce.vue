@@ -1,34 +1,16 @@
 <script setup lang="ts">
-const props = withDefaults(
-  defineProps<{
-    type?: ListStyleType
-    items?: string
-  }>(),
-  {
-    type: 'disc',
-  },
-)
-
-const listStyleTypeMap = {
-  decimal: 'list-decimal',
-  disc: 'list-disc',
-  none: 'list-none',
-} as const
-
-type ListStyleType = keyof typeof listStyleTypeMap
-
-const is = props.type === 'decimal' ? 'ol' : 'ul'
-
-const itemList: string[] = props.items ? props.items.split(',') : []
+defineProps<{
+  heightLimit?: boolean
+}>()
 </script>
 
 <template>
-  <component :is :class="listStyleTypeMap[type]" class="pl-6 [&>li]:py-0.5">
-    <li v-for="(item, index) in itemList" :key="index">
-      {{ item }}
-    </li>
+  <ul
+    class="flex flex-col border-b border-t-2"
+    :class="{ 'max-h-80  overflow-y-auto': heightLimit }"
+  >
     <slot />
-  </component>
+  </ul>
 </template>
 
 <style>

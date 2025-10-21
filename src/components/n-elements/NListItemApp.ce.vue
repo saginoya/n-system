@@ -36,7 +36,7 @@ const headers = ['様式', '書類内容', 'ダウンロード']
     </div>
     <div class="col-span-1 text-center">
       <p>
-        <NChip color="success" :href="data" type="download">ダウンロード</NChip>
+        <NChip color="success" :href="data" type="download"> ダウンロード </NChip>
       </p>
       <p class="flex justify-center gap-1 text-sm">
         <span>{{ dataType }}</span>
