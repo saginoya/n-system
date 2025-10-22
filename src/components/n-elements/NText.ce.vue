@@ -1,14 +1,24 @@
 <script setup lang="ts">
+import { cn } from '@/lib/cn'
+import { textColorMap } from '@/styles'
+import type { Color } from '@/types'
+
 withDefaults(
   defineProps<{
-    size?: SizeOptions
+    as?: As
+    size?: Size
+    weight?: Weight
+    align?: Align
+    color?: Color
   }>(),
   {
-    size: 'base',
+    as: 'span',
   },
 )
 
-const sizeOptions = {
+type As = 'span' | 'p' | 'strong' | 'del'
+
+const sizeMap = {
   xs: 'text-xs',
   sm: 'text-sm',
   base: 'text-base',
@@ -19,14 +29,40 @@ const sizeOptions = {
   '4xl': 'text-4xl',
   '5xl': 'text-5xl',
   '6xl': 'text-6xl',
-}
-type SizeOptions = keyof typeof sizeOptions
+} as const
+type Size = keyof typeof sizeMap
+
+const weightMap = {
+  light: 'font-light',
+  normal: 'font-normal',
+  bold: 'font-bold',
+} as const
+
+type Weight = keyof typeof weightMap
+
+const alignMap = {
+  center: 'text-center',
+  justify: 'text-justify',
+  start: 'text-start',
+  end: 'text-end',
+} as const
+type Align = keyof typeof alignMap
 </script>
 
 <template>
-  <span :class="sizeOptions[size]">
+  <component
+    :is="as"
+    :class="
+      cn(
+        size && sizeMap[size],
+        weight && weightMap[weight],
+        align && alignMap[align],
+        color && textColorMap[color],
+      )
+    "
+  >
     <slot />
-  </span>
+  </component>
 </template>
 
 <style>
