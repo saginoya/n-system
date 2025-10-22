@@ -15,6 +15,29 @@
       </n-card>
 
       <n-card>
+        <n-title lv="h2">テキスト</n-title>
+        <p><n-text as="strong">重要</n-text><n-text as="del">削除した</n-text></p>
+        <p>
+          <n-text size="sm">小さい</n-text><n-text size="base">ベースサイズ</n-text
+          ><n-text size="lg">大きい</n-text>
+        </p>
+        <p><n-text weight="bold">太い</n-text><n-text weight="light">細い</n-text></p>
+        <p>
+          <n-text as="p" align="center">中央よせ</n-text
+          ><n-text as="p" align="end">右（End）寄せ</n-text
+          ><n-text as="p" align="justify"
+            >今回は、”text-align :
+            justiry”を使用して綺麗に両端揃えにしてみようと思います。testとして123などの1byte文字もふんだんに混ぜたtextにしています。長い英単語の例として”Antidisestablishmentarianism”という単語があるそうです。意味は知りません。
+            さて、次のような長い数字も綺麗に両端揃えになってくれるでしょうか。999999999999999999999999999999999999999999</n-text
+          >
+        </p>
+        <p>
+          <n-text color="primary">Primary</n-text><n-text color="info">Info</n-text
+          ><n-text color="error">Error</n-text>
+        </p>
+      </n-card>
+
+      <n-card>
         <n-title lv="h2">テーブル</n-title>
         <table>
           <thead>
@@ -228,16 +251,6 @@
           type="pdf"
           state="closing"
         ></n-image-banner>
-        <n-modal>
-          <n-image-banner
-            slot="btn"
-            src="./public/images/banners/bnr-pre-registration.png"
-            alt="サンプルバナー"
-            width="600"
-            height="80"
-          ></n-image-banner>
-          <p>モーダル</p>
-        </n-modal>
       </n-card>
 
       <n-card>
@@ -454,12 +467,6 @@
           <n-title>オーバーレイコンテンツ</n-title>
           <p>あいうえお</p>
         </n-image>
-      </n-card>
-
-      <n-card>
-        <n-title>モーダル</n-title>
-        <n-modal btn-title="ボタン"> <p>モーダルの内容</p> </n-modal>
-        <n-modal btn-title="色変更"> <p>モーダルの内容</p> </n-modal>
       </n-card>
 
       <n-card>
