@@ -1,45 +1,62 @@
 # n-system
 
-This template should help get you started developing with Vue 3 in Vite.
+社内向けデザインシステム・コンポーネントライブラリ
 
-## Recommended IDE Setup
+## 概要
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+HTMLライクな記述で利用できるWEBコンポーネントライブラリです。Vue.jsベースで開発されており、HTMLファイルに JavaScript を読み込むだけで利用できます。
 
-## Type Support for `.vue` Imports in TS
+## 使い方・リファレンスページ
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+<https://www.nippo.co.jp/n-system-reference-v3/>
 
-## Customize configuration
+## 開発者向け情報
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+### 必要な環境
 
-## Project Setup
+- Volta
+- Node.js
+- npm
 
-```sh
-npm install
-```
+バージョンは`package.json`を参照してくだい。
 
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
+### 開発環境のセットアップ
 
 ```sh
-npm run build
+# 開発サーバー起動
+npm install dev
 ```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
 
 ```sh
-npm run test:unit
+# ビルド
+npm install build
 ```
-
-### Lint with [ESLint](https://eslint.org/)
 
 ```sh
-npm run lint
+# テストの実行
+npm install test
 ```
+
+```sh
+# 型検査の実行
+npm install type-check
+```
+
+```sh
+# リントツールの実行
+npm install lint
+```
+
+```sh
+# フォーマットの実行
+npm install format
+```
+
+## サポート・問い合わせ
+
+- 社内担当: 開発事業部　鷺野谷
+
+## おもな更新履歴
+
+- 2025.06.12 - v3.0.0 破壊的変更を含む新バージョンのリリース
+- 2024.07.16 - v1.0.0 リリース
