@@ -19,6 +19,7 @@ import IconMenu from '@/components/icons/IconMenu.vue'
 import IconOpenInNew from '@/components/icons/IconOpenInNew.vue'
 import IconPdf from '@/components/icons/IconPdf.vue'
 import IconProgressActivity from '@/components/icons/IconProgressActivity.vue'
+import IconQuestion from '@/components/icons/IconQuestion.vue'
 import IconSearch from '@/components/icons/IconSearch.vue'
 import IconSort from '@/components/icons/IconSort.vue'
 import IconTrain from '@/components/icons/IconTrain.vue'
@@ -46,6 +47,7 @@ export const iconMap = {
   'open-in-new': IconOpenInNew,
   pdf: IconPdf,
   'progress-activity': IconProgressActivity,
+  question: IconQuestion,
   search: IconSearch,
   sort: IconSort,
   train: IconTrain,
