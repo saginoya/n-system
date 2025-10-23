@@ -57,12 +57,12 @@ export const useExhibitorList = (
   // フィルターやソートを適用した出展社リスト
   const exhibitorList = computed<Exhibitors>(() => {
     // 取得状況の更新
-    isLoading.value = true
+    isDataReady.value = false
 
     const list = getFilteredExhibitorList(rawExhibitorList.value)
 
     // 取得状況の更新
-    isLoading.value = false
+    isDataReady.value = true
 
     return list
   })
@@ -147,7 +147,7 @@ export const useExhibitorList = (
   // **
 
   // 一覧リストの生成中
-  const isLoading = ref<boolean>(true)
+  const isDataReady = ref<boolean>(false)
 
   // **
   // Mounted時の処理
@@ -155,9 +155,10 @@ export const useExhibitorList = (
 
   // JSONファイルを取得して出展社リストを初期化
   onMounted(async () => {
+    isDataReady.value = false
     const json = await getJson<JsonExhibitor[]>(listSrc)
-
     rawExhibitorList.value = await convertJSONToExhibitorList(json, lang)
+    isDataReady.value = true
   })
 
   return {
@@ -166,7 +167,7 @@ export const useExhibitorList = (
     numExhibitorList: readonly(numExhibitorList),
     myFavorites: readonly(myFavorites),
     numMyFavorites: readonly(numMyFavorites),
-    isLoading,
+    isDataReady: readonly(isDataReady),
     stateFavorite,
     stateKeyword,
     stateGenres: readonly(stateGenres),

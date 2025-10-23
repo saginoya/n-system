@@ -78,7 +78,7 @@ const {
   numExhibitorList,
   numRawExhibitorList,
   numMyFavorites,
-  isLoading,
+  isDataReady,
   stateSort,
   stateFavorite,
   stateKeyword,
@@ -364,16 +364,10 @@ const {
       </NContainerFlex>
 
       <!-- 読み込み中 -->
-      <LoadingSpinner v-if="isLoading" :show="true" message="loading..."></LoadingSpinner>
-
-      <!-- フィルター後の件数が0件の場合の注意書き -->
-      <ExhibitorListNotApplicable
-        v-else-if="numExhibitorList === 0"
-        :lang
-      ></ExhibitorListNotApplicable>
+      <LoadingSpinner v-if="!isDataReady" :show="true" message="loading..."></LoadingSpinner>
 
       <!-- 出展社の一覧リスト -->
-      <ul v-else class="divide-y">
+      <ul v-else-if="numExhibitorList" class="divide-y">
         <template v-for="(exhibitor, index) in exhibitorList" :key="exhibitor.id">
           <ExhibitorListHeading v-if="showHeading(index)">
             {{ getHeading(index) }}
@@ -392,7 +386,11 @@ const {
           ></ExhibitorListItem>
         </template>
       </ul>
+
+      <!-- フィルター後の件数が0件の場合の注意書き -->
+      <ExhibitorListNotApplicable v-else :lang></ExhibitorListNotApplicable>
     </NCard>
+
     <!-- モーダルウインドウ（出展社の詳細情報） -->
     <ModalBase :visible :close-action="dismissModal">
       <ExhibitorProfile
