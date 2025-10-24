@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { ref, computed } from 'vue'
 
-import TooltipBase from '@/components//parts/TooltipBase.vue'
-import { useLang } from '@/composables/useLang'
 import { textColorMap } from '@/styles'
 import type { Color } from '@/types'
 import { iconMap } from '@/utils'
@@ -25,32 +23,28 @@ const classState = computed(() => {
   return props.active ? avtiveClass : defaultClass
 })
 
-const IconBookmark = iconMap['bookmark']
-
-const { lang } = useLang()
-const textMap = {
-  ja: {
-    active: 'お気に入り解除',
-    inactive: 'お気に入り登録',
-  },
-  en: {
-    active: 'Remove from favorites',
-    inactive: 'Add to Favorites',
-  },
+// アニメーション
+const isAnimating = ref<boolean>(false)
+const handleClick = () => {
+  if (isAnimating.value) return
+  isAnimating.value = true
+  setTimeout(() => {
+    isAnimating.value = false
+  }, 300) // アニメーションの継続時間に合わせる
 }
 </script>
 
 <template>
-  <TooltipBase>
-    <button
-      type="button"
-      class="inline-flex size-8 items-center justify-center rounded-full bg-slate-50"
-      :class="classState"
-    >
-      <IconBookmark
-        class="text-xl transition-transform duration-100 ease-in-out active:scale-125"
-      />
-    </button>
-    <template v-slot:text> {{ textMap[lang][active ? 'active' : 'inactive'] }} </template>
-  </TooltipBase>
+  <button
+    type="button"
+    class="flex size-8 items-center justify-center rounded-full bg-slate-50 hover:bg-slate-200"
+    :class="classState"
+    @click="handleClick"
+  >
+    <component
+      :is="iconMap['bookmark']"
+      class="inline size-6"
+      :class="{ 'animate-ping': isAnimating }"
+    />
+  </button>
 </template>
