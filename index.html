@@ -15,6 +15,35 @@
       </n-card>
 
       <n-card>
+        <n-title>ツールチップ</n-title>
+        <n-tooltip-info>
+          <b>内容の文章 location:top</b>
+        </n-tooltip-info>
+
+        <n-tooltip-info location="bottom">
+          <b>内容の文章 location:bottom</b>
+          <p>ああああああああああああああああああああああああああああああああああああああ</p>
+          <p>いいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいい</p>
+          <p>うううううううううううううううううう</p>
+          <p>ええええええええええええええええええええええええええええええええええ</p>
+          <p>おおおおおおおおおおおおおおおおおおおおおおおおお</p>
+        </n-tooltip-info>
+
+        <n-tooltip-info location="right">
+          <b>内容の文章 location:right</b>
+          <p>あああああああああああああああああああああああああ</p>
+          <p>いいいいいいいいいいいいいいいいいいいいいいいいいいい</p>
+          <p>うううううううううううううううううう</p>
+          <p>えええええええええええええええええええええええええええええええええええええ</p>
+          <p>おおおおおおおおおおおおおおおおおおおおおおおおお</p>
+        </n-tooltip-info>
+
+        <n-tooltip-info location="left">
+          <b>内容の文章 location:left</b>
+        </n-tooltip-info>
+      </n-card>
+
+      <n-card>
         <n-title lv="h2">テキスト</n-title>
         <p><n-text as="strong">重要</n-text><n-text as="del">削除した</n-text></p>
         <p>
@@ -177,43 +206,6 @@
       </n-card>
 
       <n-card>
-        <n-title>ツールチップ</n-title>
-        <n-tooltip-info>
-          <b>内容の文章 location:top</b>
-        </n-tooltip-info>
-
-        <n-tooltip-info location="bottom">
-          <b>内容の文章 location:bottom</b>
-          <p>
-            あああああああああああああああああああああああああああああああああああああああああああああああああああああああああ
-          </p>
-          <p>いいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいい</p>
-          <p>うううううううううううううううううう</p>
-          <p>
-            ええええええええええええええええええええええええええええええええええええええええええええええええええええええ
-          </p>
-          <p>おおおおおおおおおおおおおおおおおおおおおおおおお</p>
-        </n-tooltip-info>
-
-        <n-tooltip-info location="left">
-          <b>内容の文章 location:left</b>
-        </n-tooltip-info>
-
-        <n-tooltip-info location="right">
-          <b>内容の文章 location:right</b>
-          <p>
-            あああああああああああああああああああああああああああああああああああああああああああああああああああああああああ
-          </p>
-          <p>いいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいい</p>
-          <p>うううううううううううううううううう</p>
-          <p>
-            ええええええええええええええええええええええええええええええええええええええええええええええええええええええ
-          </p>
-          <p>おおおおおおおおおおおおおおおおおおおおおおおおお</p>
-        </n-tooltip-info>
-      </n-card>
-
-      <n-card>
         <n-title>コンテナー</n-title>
         <n-container-flex justify="center" justify-md="end">
           <span>要素</span>
@@ -256,7 +248,7 @@
       <n-card>
         <n-title>リスト</n-title>
 
-        <n-list-simple>
+        <n-list>
           <n-list-item-app
             id="様式①-1"
             data="application-01-1.xlsx"
@@ -274,9 +266,9 @@
           >
             <p>電気使用工事申込書（電灯・動力）</p>
           </n-list-item-app>
-        </n-list-simple>
+        </n-list>
 
-        <n-list-simple>
+        <n-list>
           <n-list-item-3col
             header="2024NEW環境展"
             item1="605社"
@@ -288,9 +280,9 @@
             item2="189小間"
           ></n-list-item-3col>
           <n-list-item-3col header="合計" item1="714社" item2="2,065小間"></n-list-item-3col>
-        </n-list-simple>
+        </n-list>
         <n-container-2col>
-          <n-list-simple>
+          <n-list>
             <n-list-item-komazu
               header="東1～3ホール・屋外実演会場"
               update="3月12日"
@@ -309,8 +301,8 @@
               with-pit="https://www.n-expo.jp/past/n-expo2024/documents/for-exhibitors/komazumen-hall123-pit.pdf"
               without-pit="https://www.n-expo.jp/past/n-expo2024/documents/for-exhibitors/komazumen-hall123.pdf"
             ></n-list-item-komazu>
-          </n-list-simple>
-          <n-list-simple>
+          </n-list>
+          <n-list>
             <n-list-item-komazu
               header="東1～3ホール・屋外実演会場"
               update="3月12日"
@@ -329,13 +321,13 @@
               with-pit="https://www.n-expo.jp/past/n-expo2024/documents/for-exhibitors/komazumen-hall123-pit.pdf"
               without-pit="https://www.n-expo.jp/past/n-expo2024/documents/for-exhibitors/komazumen-hall123.pdf"
             ></n-list-item-komazu>
-          </n-list-simple>
+          </n-list>
         </n-container-2col>
       </n-card>
 
       <n-card variant="outlined" color="blue">
         <n-title>ステッパー</n-title>
-        <ul>
+        <ol>
           <n-list-item-stepper mark="1">
             <n-title lv="h4">タイトル</n-title>
             <p>
@@ -362,7 +354,7 @@
               テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
             </p>
           </n-list-item-stepper>
-        </ul>
+        </ol>
       </n-card>
 
       <n-card>
