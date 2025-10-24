@@ -335,7 +335,7 @@ const {
           ></TabsBase>
 
           <!-- お気に入りフィルターのインフォメーション -->
-          <NTooltipInfo location="top">
+          <NTooltipInfo icon="question">
             <div v-if="lang === 'ja'">
               <p><b>お気に入り登録を表示機能：</b></p>
               <p>各出展社の★アイコンをクリックするとお気に入り登録することができます。</p>
