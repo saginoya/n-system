@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import TooltipBase from '@/components//parts/TooltipBase.vue'
-import { iconMap, type Icon } from '@/utils'
 import { useLang } from '@/composables/useLang'
+import { iconMap, type Icon } from '@/utils'
 
 withDefaults(
   defineProps<{
@@ -24,8 +24,8 @@ const label = lang.value === 'en' ? 'Information' : 'インフォメーション
     color="dark"
     class-name="cursor-pointer rounded p-1 align-middle hover:bg-slate-100 focus:bg-slate-100"
   >
-    <component :is="iconMap[icon]" class="inline bg-slate-800 rounded-full text-white" />
-    <span class="hidden text-xs font-bold tracking-tight md:inline-block ml-1">
+    <component :is="iconMap[icon]" class="inline rounded-full bg-slate-800 text-white" />
+    <span class="ml-1 hidden text-xs font-bold tracking-tight md:inline-block">
       {{ label }}
     </span>
     <template v-slot:text>

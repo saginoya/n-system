@@ -5,7 +5,7 @@ import { isLinkRouter, isImageRouter } from '@/utils'
 
 // グローバル型宣言
 declare global {
-  // eslint-disable-next-line no-var
+   
   var _nSystemRouter: RouterMap | undefined
 }
 
