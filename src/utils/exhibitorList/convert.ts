@@ -20,6 +20,8 @@ export const applyExhibitor = (value: JsonExhibitor, lang: Lang): Exhibitor => {
     exhibition: value.exhibition as ExhibitionID,
     genre: value.genre as GenreID,
     genreName: undefined,
+    overseas: value.overseas,
+    country: isJapanese ? value.country : value.countryEng,
     webSite: value.webSite,
     contents: isJapanese ? value.contents : value.contentsEng,
     sdgs: value.sdgs,

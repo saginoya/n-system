@@ -14,6 +14,8 @@ export type ExhibitorProfileProps = {
   koma: string
   isFavorite: boolean
   favoriteMethod: (value: string) => void
+  overseas: boolean
+  country: string
   exhibition?: string
   subName?: string
   genre?: string
@@ -28,11 +30,13 @@ defineProps<ExhibitorProfileProps>()
 const texts = {
   ja: {
     cat: 'カテゴリー',
+    location: '所在地',
     website: 'ウェブサイト',
     sdgs: 'SDGsの取り組み',
   },
   en: {
     cat: 'Categories',
+    location: 'Location',
     website: 'Website',
     sdgs: 'SDGs',
   },
@@ -70,6 +74,12 @@ const texts = {
       <div class="grid grid-cols-1 gap-2 py-2 sm:grid-cols-4 md:grid-cols-6">
         <dt class="font-bold">{{ exhibition }}</dt>
         <dd class="sm:col-span-3 md:col-span-5">{{ genre }}</dd>
+      </div>
+      <div v-if="overseas" class="grid grid-cols-1 gap-2 py-2 sm:grid-cols-4 md:grid-cols-6">
+        <dt class="font-bold">{{ texts[lang].location }}</dt>
+        <dd class="sm:col-span-3 md:col-span-5">
+          {{ country }}
+        </dd>
       </div>
       <div v-if="webSite" class="grid grid-cols-1 gap-2 py-2 sm:grid-cols-4 md:grid-cols-6">
         <dt class="font-bold">{{ texts[lang].website }}</dt>

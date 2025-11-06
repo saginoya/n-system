@@ -224,6 +224,8 @@ const showModal = (exhibitor: Exhibitor) => {
     name: exhibitor.name,
     koma: exhibitor.koma,
     favoriteMethod: switchFavorite,
+    overseas: exhibitor.overseas,
+    country: exhibitor.country,
     exhibition: exhibition,
     subName: exhibitor.subName,
     genre: exhibitor.genreName,

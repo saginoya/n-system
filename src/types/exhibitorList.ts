@@ -18,6 +18,8 @@ export type Exhibitor = {
   koma: string
   genre: GenreID
   genreName: string | undefined
+  overseas: boolean
+  country: string
   subName?: string
   exhibition?: ExhibitionID
   webSite?: string
@@ -32,9 +34,10 @@ export type JsonExhibitor = {
   id: string
   koma: string
   genre: string
-  genreEng: string
   exhibition: string
   overseas: boolean
+  countryEng: string
+  country: string
   name: string
   nameEng: string
   order: string
@@ -42,8 +45,6 @@ export type JsonExhibitor = {
   webSite: string
   contents: string
   contentsEng: string
-  categories: string[]
-  categoriesEng: string[]
   sdgs: SDGs
 }
 
