@@ -5,7 +5,6 @@ import { isLinkRouter, isImageRouter } from '@/utils'
 
 // グローバル型宣言
 declare global {
-   
   var _nSystemRouter: RouterMap | undefined
 }
 
