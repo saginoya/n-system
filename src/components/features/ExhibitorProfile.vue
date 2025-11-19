@@ -1,0 +1,98 @@
+<script setup lang="ts">
+import NContainerFlex from '@/components/entries/layouts/NContainerFlex.ce.vue'
+import NChip from '@/components/entries/parts/NChip.ce.vue'
+import NLink from '@/components/entries/parts/NLink.ce.vue'
+import SDGsIcons from '@/components/features/SDGsIcons.vue'
+import MarkupText from '@/components/ui/MarkupText.vue'
+import TooltipBookmark from '@/components/ui/TooltipBookmark.vue'
+import type { Lang, SDGs, Color } from '@/types'
+
+export type ExhibitorProfileProps = {
+  lang: Lang
+  id: string
+  name: string
+  koma: string
+  isFavorite: boolean
+  favoriteMethod: (value: string) => void
+  overseas: boolean
+  country: string
+  exhibition?: string
+  subName?: string
+  genre?: string
+  webSite?: string
+  contents?: string
+  sdgs?: SDGs
+  color?: Color
+}
+
+defineProps<ExhibitorProfileProps>()
+
+const texts = {
+  ja: {
+    cat: 'カテゴリー',
+    location: '所在地',
+    website: 'ウェブサイト',
+    sdgs: 'SDGsの取り組み',
+  },
+  en: {
+    cat: 'Categories',
+    location: 'Location',
+    website: 'Website',
+    sdgs: 'SDGs',
+  },
+}
+</script>
+
+<template>
+  <article class="flex max-w-5xl flex-col gap-4">
+    <header class="flex flex-col gap-4 pt-6 sm:flex-row sm:items-center">
+      <NContainerFlex wrap="nowrap" items="center" justify="between">
+        <NChip :color="color || 'exhibition-a'" v-if="koma">{{ koma }}</NChip>
+        <TooltipBookmark
+          :active="isFavorite"
+          color="success"
+          class="sm:hidden"
+          @click.stop="favoriteMethod(id)"
+        ></TooltipBookmark>
+      </NContainerFlex>
+      <div>
+        <h1 class="break-all text-xl md:text-3xl">
+          <MarkupText :content="name"></MarkupText>
+        </h1>
+        <MarkupText v-if="subName" :content="subName"></MarkupText>
+      </div>
+      <TooltipBookmark
+        :active="isFavorite"
+        color="success"
+        class="hidden sm:inline-block"
+        @click.stop="favoriteMethod(id)"
+      ></TooltipBookmark>
+    </header>
+    <MarkupText v-if="contents" :content="contents" class="break-all bg-gray-100 px-2 py-1">
+    </MarkupText>
+    <dl class="divide-y">
+      <div class="grid grid-cols-1 gap-2 py-2 sm:grid-cols-4 md:grid-cols-6">
+        <dt class="font-bold">{{ exhibition }}</dt>
+        <dd class="sm:col-span-3 md:col-span-5">{{ genre }}</dd>
+      </div>
+      <div v-if="overseas" class="grid grid-cols-1 gap-2 py-2 sm:grid-cols-4 md:grid-cols-6">
+        <dt class="font-bold">{{ texts[lang].location }}</dt>
+        <dd class="sm:col-span-3 md:col-span-5">
+          {{ country }}
+        </dd>
+      </div>
+      <div v-if="webSite" class="grid grid-cols-1 gap-2 py-2 sm:grid-cols-4 md:grid-cols-6">
+        <dt class="font-bold">{{ texts[lang].website }}</dt>
+        <dd class="sm:col-span-3 md:col-span-5">
+          <NLink :href="webSite" type="external" text-aligned>{{ webSite }}</NLink>
+        </dd>
+      </div>
+      <div v-if="sdgs" class="grid grid-cols-1 gap-2 py-2 sm:grid-cols-4 md:grid-cols-6">
+        <dt class="font-bold">{{ texts[lang].sdgs }}</dt>
+        <dd class="sm:col-span-3 md:col-span-5">
+          <SDGsIcons :numbers="sdgs as SDGs"></SDGsIcons>
+        </dd>
+      </div>
+    </dl>
+  </article>
+</template>

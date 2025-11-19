@@ -1,0 +1,41 @@
+<script setup lang="ts">
+import NChip from '@/components/entries/parts/NChip.ce.vue'
+import MarkupText from '@/components/ui/MarkupText.vue'
+import TooltipBookmark from '@/components/ui/TooltipBookmark.vue'
+import type { Color } from '@/types'
+
+defineProps<{
+  id: string
+  koma: string
+  name: string
+  contents?: string
+  isFavorite: boolean
+  color?: Color
+  favoriteMethod: (value: string) => void
+}>()
+</script>
+
+<template>
+  <li>
+    <div
+      class="grid cursor-pointer grid-cols-5 items-center gap-4 py-2 hover:bg-slate-100 focus:bg-slate-100 sm:grid-cols-7 md:grid-cols-9 lg:grid-cols-12"
+    >
+      <div class="text-center">
+        <NChip :color="color || 'exhibition-a'">
+          {{ koma }}
+        </NChip>
+      </div>
+      <div class="col-span-3 sm:col-span-5 md:col-span-7 lg:col-span-10">
+        <MarkupText :content="name" class="font-bold"></MarkupText>
+        <MarkupText v-if="contents" :content="contents" class="truncate text-gray-400"></MarkupText>
+      </div>
+      <div class="text-center">
+        <TooltipBookmark
+          :active="isFavorite"
+          color="success"
+          @click.stop="favoriteMethod(id)"
+        ></TooltipBookmark>
+      </div>
+    </div>
+  </li>
+</template>

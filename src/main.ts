@@ -7,7 +7,7 @@ import './assets/css/main.css'
 
 // コンポーネントの自動登録
 const components = import.meta.glob<{ default: DefineComponent }>(
-  './components/n-elements/*.ce.vue',
+  './components/entries/*/*.ce.vue',
   {
     eager: true,
   },

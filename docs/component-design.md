@@ -3,14 +3,14 @@
 ## 📁 ディレクトリ構成
 
 ```
-assets/             #
+assets/             # 静的ファイル
 
 components/
-  ├── container/    # レイアウトなど他の要素を整理するためのコンポーネント
-  ├── parts/        # 最小単位のUIコンポーネント（Button, Input など）
+  ├── entries/      # 実際にビルドされるコンポーネント# レイアウトなど他の要素を整理するためのコンポーネント
+  ├── features/     # UIに対して独自性や専門性のある変更をしたコンポーネント
   ├── icons/        # アイコン
-  ├── layouts/      # ページ単位でのレイアウト
-  ├── n-elements/   # 実際にビルドされるコンポーネント
+  ├── templates/    # ページ単位でのレイアウト
+  ├── ui/           # 最小単位のUIコンポーネント（Button, Input など）
 
 composables/        # 再利用可能なロジック（useFetchData, useFormValidation など）
 
