@@ -72,32 +72,33 @@ export const useExhibitorList = (
 
   // Rawリストをフィルターやソートして結果リストを返す関数
   const getFilteredExhibitorList = (list: Exhibitors): Exhibitors => {
-    list.map((item) => {
-      item.genreName = converterGenreID(item.genre, lang)
-      return item
-    })
+    // 元データを変更しないように新しい配列を作る
+    let result: Exhibitors = list.map((item) => ({
+      ...item,
+      genreName: converterGenreID(item.genre, lang),
+    }))
 
     // フィルタリング（お気に入り）
     if (stateFavorite.value) {
-      list = filterByFavorites(list, myFavorites.value)
+      result = filterByFavorites(result, myFavorites.value)
     }
 
     // フィルタリング（ジャンル）
     if (stateGenres.value.length !== 0) {
-      list = filterByGenres(list, stateGenres.value)
+      result = filterByGenres(result, stateGenres.value)
     }
 
     // キーワード検索
     if (stateKeyword.value) {
-      list = searchByKeyword(list, stateKeyword.value, searchWithinKeys)
+      result = searchByKeyword(result, stateKeyword.value, searchWithinKeys)
     }
 
     // ソート
     if (stateSort.value !== 'search') {
-      list = sortExhibitorList(list, stateSort.value)
+      result = sortExhibitorList(result, stateSort.value)
     }
 
-    return list
+    return result
   }
 
   // **
