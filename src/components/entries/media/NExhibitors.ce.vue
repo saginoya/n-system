@@ -81,9 +81,12 @@ const {
   stateFavorite,
   stateKeyword,
   stateGenres,
+  stateOverseas,
   removeStateKeyword,
   updateStateSort,
   updateStateGenres,
+  updateStateOverseas,
+  removeStateOverseas,
   switchFavorite,
   includedFavorites,
 } = useExhibitorList(props.listSrc, props.favoriteKey, lang.value, getGenreNameFromID)
@@ -280,28 +283,45 @@ const {
 
       <!-- フィルターのモーダル -->
       <ModalBase :visible="visibleFilterModal" :close-action="dismissFilterModal">
-        <NTitle>{{
-          isJapanese ? '展示会・エリアによる絞り込み' : 'Filter by Exhibition/Area'
-        }}</NTitle>
-        <NContainerGrid cols="2" gap="2" v-if="genresMap">
-          <NContainer1col v-for="exhibition in exhibitionOptions" :key="exhibition.id" gap="0">
-            <SwitchBase
-              v-model="exhibition.isOn.value"
-              :label="exhibition.label"
-              :color="exhibition.color"
-              label-class="font-bold text-lg"
-              @update:model-value="(val) => updateGenreFlags(exhibition.genres, val)"
-            ></SwitchBase>
-            <SwitchBase
-              v-for="genreID in exhibition.genres"
-              :key="genreID"
-              v-model="genreFlags[genreID]"
-              :label="genresMap[genreID][langKey]"
-              :color="exhibition.color"
-              label-class="font-bold"
-            ></SwitchBase>
-          </NContainer1col>
-        </NContainerGrid>
+        <NContainer1col gap="8">
+          <section>
+            <NTitle>{{ isJapanese ? '所在地よる絞り込み' : 'Filter by Location' }}</NTitle>
+            <NContainerGrid cols="2" gap="2">
+              <SwitchBase
+                v-model="stateOverseas"
+                :label="isJapanese ? '海外の出展社のみ' : 'Overseas only'"
+                label-class="font-bold text-lg"
+                @update:model-value="
+                  (val) => (val ? updateStateOverseas(val) : removeStateOverseas())
+                "
+              ></SwitchBase>
+            </NContainerGrid>
+          </section>
+          <section>
+            <NTitle>{{
+              isJapanese ? '展示会・エリアによる絞り込み' : 'Filter by Exhibition/Area'
+            }}</NTitle>
+            <NContainerGrid cols="2" gap="2" v-if="genresMap">
+              <NContainer1col v-for="exhibition in exhibitionOptions" :key="exhibition.id" gap="0">
+                <SwitchBase
+                  v-model="exhibition.isOn.value"
+                  :label="exhibition.label"
+                  :color="exhibition.color"
+                  label-class="font-bold text-lg"
+                  @update:model-value="(val) => updateGenreFlags(exhibition.genres, val)"
+                ></SwitchBase>
+                <SwitchBase
+                  v-for="genreID in exhibition.genres"
+                  :key="genreID"
+                  v-model="genreFlags[genreID]"
+                  :label="genresMap[genreID][langKey]"
+                  :color="exhibition.color"
+                  label-class="font-bold"
+                ></SwitchBase>
+              </NContainer1col>
+            </NContainerGrid>
+          </section>
+        </NContainer1col>
         <template #footer>
           <BtnBase color="gray" variant="text" :onClick="dismissFilterModal">Close</BtnBase>
         </template>
@@ -314,7 +334,17 @@ const {
         stateKeyword
       }}</NChip>
       <NChip v-if="isFilteringByGenre" color="primary" size="sm" :closable="removeGenreFlags">
-        {{ isJapanese ? '絞り込み条件設定中' : 'Setting filter conditions' }}</NChip
+        {{ isJapanese ? 'エリア条件設定中' : 'Setting area conditions' }}</NChip
+      >
+      <NChip
+        v-if="stateOverseas !== undefined"
+        color="primary"
+        size="sm"
+        :closable="removeStateOverseas"
+      >
+        {{
+          stateOverseas ? (isJapanese ? '海外' : 'Overseas') : isJapanese ? '国内' : 'Japanese'
+        }}</NChip
       >
     </NContainerFlex>
     <!-- メインの一覧カード -->

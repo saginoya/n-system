@@ -8,6 +8,7 @@ import {
   countExhibitors,
   filterByFavorites,
   filterByGenres,
+  filterByOverseas,
   searchByKeyword,
   sortExhibitorList,
 } from '@/utils/exhibitorList'
@@ -88,6 +89,11 @@ export const useExhibitorList = (
       result = filterByGenres(result, stateGenres.value)
     }
 
+    // フィルタリング（海外・国内）
+    if (stateOverseas.value !== undefined) {
+      result = filterByOverseas(result, stateOverseas.value)
+    }
+
     // キーワード検索
     if (stateKeyword.value) {
       result = searchByKeyword(result, stateKeyword.value, searchWithinKeys)
@@ -109,6 +115,8 @@ export const useExhibitorList = (
   const stateKeyword = ref<string>('')
   // フィルターの条件（ジャンルやエリア）
   const stateGenres = ref<GenreID[]>([])
+  // フィルターの条件（国内・海外）
+  const stateOverseas = ref<boolean | undefined>(undefined)
   // フィルターの条件（お気に入り）
   const stateFavorite = ref<boolean>(false)
   // ソートの条件
@@ -143,6 +151,15 @@ export const useExhibitorList = (
     stateGenres.value = stateGenres.value.filter((genre) => genre !== value)
   }
 
+  // 海外・国内の更新関数
+  const updateStateOverseas = (value: boolean | undefined): void => {
+    stateOverseas.value = value
+  }
+  // 海外・国内の更新関数（削除）
+  const removeStateOverseas = (): void => {
+    stateOverseas.value = undefined
+  }
+
   // **
   // 一覧の取得状況
   // **
@@ -172,6 +189,7 @@ export const useExhibitorList = (
     stateFavorite,
     stateKeyword,
     stateGenres: readonly(stateGenres),
+    stateOverseas: readonly(stateOverseas),
     stateSort: readonly(stateSort),
     switchFavorite,
     includedFavorites,
@@ -181,5 +199,7 @@ export const useExhibitorList = (
     updateStateGenres,
     addStateGenres,
     removeStateGenres,
+    updateStateOverseas,
+    removeStateOverseas,
   }
 }
