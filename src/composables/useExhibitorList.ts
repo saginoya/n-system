@@ -1,7 +1,14 @@
 import { ref, computed, onMounted, watch, readonly } from 'vue'
 
 import { useExhibitorListFavorite } from '@/composables/useExhibitorListFavorite'
-import type { Exhibitors, SortType, JsonExhibitor, Lang, GenreID, ExhibitorSearchKey } from '@/types'
+import type {
+  Exhibitors,
+  SortType,
+  JsonExhibitor,
+  Lang,
+  GenreID,
+  ExhibitorSearchKey,
+} from '@/types'
 import { EXHIBITOR_SEARCH_KEYS } from '@/types'
 import { getJson } from '@/utils'
 import {
