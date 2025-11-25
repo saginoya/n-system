@@ -92,7 +92,7 @@ const {
 } = useExhibitorList(props.listSrc, props.favoriteKey, lang.value, getGenreNameFromID)
 
 // 出展社リストの小見出し
-const { getHeading, showHeading } = useExhibitorListHeading(exhibitorList, stateSort, lang.value)
+const { getHeading, showHeading } = useExhibitorListHeading(exhibitorList, stateSort)
 
 // ------------------
 // ジャンルによる絞り込み機能関連

@@ -1,6 +1,6 @@
 import { computed, type Ref } from 'vue'
 
-import type { SortType, Lang, Exhibitors } from '@/types'
+import type { SortType, Exhibitors } from '@/types'
 import { generateHeading } from '@/utils/exhibitorList'
 
 type Heading = string | undefined
@@ -12,15 +12,11 @@ type Heading = string | undefined
  * @param lang
  * @returns { headings, getHeading, showHeading }
  */
-export const useExhibitorListHeading = (
-  exhibitorList: Ref<Exhibitors>,
-  sort: Ref<SortType>,
-  lang: Lang,
-) => {
+export const useExhibitorListHeading = (exhibitorList: Ref<Exhibitors>, sort: Ref<SortType>) => {
   // 出展社一覧から小見出しの一覧リスト生成
   const headings = computed<Heading[]>(() => {
     return exhibitorList.value.map((item) =>
-      generateHeading(sort.value, lang, item.order, item.genreName ?? ''),
+      generateHeading(sort.value, item.order, item.genreName ?? ''),
     )
   })
 

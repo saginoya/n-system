@@ -1,18 +1,16 @@
-import type { Lang, SortType } from '@/types'
-import { isSingleByte } from '@/utils'
+import type { SortType } from '@/types'
 
 /**
  * 総合的な情報から小見出しを決定
  */
 export const generateHeading = (
   sort: SortType,
-  lang: Lang,
   name: string,
   genre: string,
 ): string | undefined => {
   if (sort === 'search') return undefined
 
-  return sort === 'koma' ? generateHeadingByKoma(genre) : generateHeadingByName(name, lang)
+  return sort === 'koma' ? generateHeadingByKoma(genre) : generateHeadingByName(name)
 }
 
 /**
@@ -22,22 +20,9 @@ const generateHeadingByKoma = (genre: string): string => genre
 
 /**
  * 名前順ソート時の小見出し生成
- * 日本語 - フリガナがアルファベット表記の場合は海外と判定し、カタカナ表記の場合は頭文字を返す
- * 日本語以外 - 頭文字を返す
+ * 頭文字を返す
  * @param name - 名称（ただし表記ではなくフリガナ）
  */
-const generateHeadingByName = (name: string, lang: Lang): string => {
-  const initial = name.slice(0, 1)
-  if (lang === 'ja') {
-    return isOverseas(initial) ? '海外' : initial
-  } else {
-    return initial
-  }
-}
-
-/**
- * 海外の出展社かの判定（フリガナをもとに）
- */
-const isOverseas = (order: string): boolean => {
-  return isSingleByte(order)
+const generateHeadingByName = (name: string): string => {
+  return name.slice(0, 1)
 }
