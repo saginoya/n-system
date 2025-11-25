@@ -50,3 +50,14 @@ export type JsonExhibitor = {
 
 // ソートの条件（ソート用文字列・小間番号・検索の一致順）
 export type SortType = 'order' | 'koma' | 'search'
+
+// 出展社検索対象キー
+export const EXHIBITOR_SEARCH_KEYS = [
+  'name',
+  'koma',
+  'subName',
+  'contents',
+  'genreName',
+] as const satisfies (keyof Exhibitor)[]
+
+export type ExhibitorSearchKey = (typeof EXHIBITOR_SEARCH_KEYS)[number]

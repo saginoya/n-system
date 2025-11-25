@@ -1,7 +1,8 @@
-import { ref, computed, onMounted, readonly } from 'vue'
+import { ref, computed, onMounted, watch, readonly } from 'vue'
 
 import { useExhibitorListFavorite } from '@/composables/useExhibitorListFavorite'
-import type { Exhibitor, Exhibitors, SortType, JsonExhibitor, Lang, GenreID } from '@/types'
+import type { Exhibitors, SortType, JsonExhibitor, Lang, GenreID, ExhibitorSearchKey } from '@/types'
+import { EXHIBITOR_SEARCH_KEYS } from '@/types'
 import { getJson } from '@/utils'
 import {
   convertJSONToExhibitorList,
@@ -13,21 +14,15 @@ import {
   sortExhibitorList,
 } from '@/utils/exhibitorList'
 
-type ExhibitorItem = keyof Exhibitor
-
-const searchWithinKeys: ExhibitorItem[] = [
-  'name',
-  'koma',
-  'subName',
-  'contents',
-  'genreName',
-] as const
+const searchWithinKeys: ExhibitorSearchKey[] = EXHIBITOR_SEARCH_KEYS
 
 /**
  * 未加工の出展社リストからフィルターやソートを適用した出展社リストを生成する
- * @param rawExhibitorList - 未加工の出展社リスト
- * @param options - オプション（フィルター・ソート）{favorites, keyword, genres, sort}
- * @returns
+ * @param listSrc - 出展社JSONファイルのパス
+ * @param favoriteKey - お気に入り情報を保存するlocalStorage キー
+ * @param lang - 現在の言語（'ja' | 'en'）
+ * @param converterGenreID - ジャンルIDを表示用名称に変換する関数
+ * @returns {Object} 出展社リスト、フィルター状態、更新関数
  */
 export const useExhibitorList = (
   listSrc: string,
@@ -43,10 +38,6 @@ export const useExhibitorList = (
   const { myFavorites, numMyFavorites, switchFavorite, includedFavorites } =
     useExhibitorListFavorite(favoriteKey)
 
-  // **
-  // 出展社リスト
-  //  **
-
   // 出展社リストの未加工データ
   const rawExhibitorList = ref<Exhibitors>([])
 
@@ -55,23 +46,31 @@ export const useExhibitorList = (
     return countExhibitors(rawExhibitorList.value)
   })
 
+  // **
+  // フィルターやソートを適用した出展社リスト
+  //  **
+
   // フィルターやソートを適用した出展社リスト
   const exhibitorList = computed<Exhibitors>(() => {
-    // 取得状況の更新
-    isDataReady.value = false
-
-    const list = getFilteredExhibitorList(rawExhibitorList.value)
-
-    // 取得状況の更新
-    isDataReady.value = true
-
-    return list
+    return getFilteredExhibitorList(rawExhibitorList.value)
   })
 
   // フィルターやソートを適用した出展社リスト件数
   const numExhibitorList = computed(() => countExhibitors(exhibitorList.value))
 
-  // Rawリストをフィルターやソートして結果リストを返す関数
+  /**
+   * Rawリストをフィルターやソートして結果リストを返す
+   *
+   * フィルター適用の順序（重要）:
+   * 1. お気に入り (最も選別率が高い)
+   * 2. ジャンル（細分化）
+   * 3. 海外/国内（細分化）
+   * 4. キーワード検索（最後に適用。検索結果の一致度を保つため）
+   * 5. ソート（並べ替え）
+   *
+   * @param list - 対象となる出展社リスト
+   * @returns フィルター・ソート済みの出展社リスト
+   */
   const getFilteredExhibitorList = (list: Exhibitors): Exhibitors => {
     // 元データを変更しないように新しい配列を作る
     let result: Exhibitors = list.map((item) => ({
@@ -167,6 +166,18 @@ export const useExhibitorList = (
   // 一覧リストの生成中
   const isDataReady = ref<boolean>(false)
 
+  /**
+   * 検索・フィルター条件の変更を監視
+   * exhibitorListが再計算される際に取得状況フラグを更新
+   */
+  watch(
+    [rawExhibitorList, stateKeyword, stateGenres, stateOverseas, stateSort, stateFavorite],
+    () => {
+      isDataReady.value = true
+    },
+    { flush: 'post' },
+  )
+
   // **
   // Mounted時の処理
   // **
@@ -181,16 +192,16 @@ export const useExhibitorList = (
 
   return {
     exhibitorList,
-    numRawExhibitorList: readonly(numRawExhibitorList),
-    numExhibitorList: readonly(numExhibitorList),
+    numRawExhibitorList,
+    numExhibitorList,
     myFavorites: readonly(myFavorites),
     numMyFavorites: readonly(numMyFavorites),
     isDataReady: readonly(isDataReady),
     stateFavorite,
     stateKeyword,
-    stateGenres: readonly(stateGenres),
-    stateOverseas: readonly(stateOverseas),
-    stateSort: readonly(stateSort),
+    stateGenres,
+    stateOverseas,
+    stateSort,
     switchFavorite,
     includedFavorites,
     updateStateKeyword,
