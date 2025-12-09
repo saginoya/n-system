@@ -13,7 +13,7 @@ export const useGenres = (src: string) => {
     return convertListToMap<Exhibition>(exhibitions.value)
   })
 
-  const genresMap = computed(() => {
+  const genresMap = computed<Record<GenreID, Genre>>(() => {
     if (!genres.value) return {}
     return convertListToMap<Genre>(genres.value)
   })
@@ -60,8 +60,8 @@ export const useGenres = (src: string) => {
   return {
     exhibitions: readonly(exhibitions),
     genres: readonly(genres),
-    exhibitionsMap: readonly(exhibitionsMap),
-    genresMap: readonly(genresMap),
+    exhibitionsMap,
+    genresMap,
     getExhibitionIDFromGenreID,
     getGenreNameFromID,
   }

@@ -1,19 +1,15 @@
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 import type { Lang } from '@/types'
 
 export const useLang = () => {
-  const lang = ref<Lang>('en')
+  const docLang = document.documentElement.lang
 
-  const setDocLang = () => {
-    const docLang = document.documentElement.lang
-    lang.value = docLang === 'ja' ? 'ja' : 'en'
-  }
-
-  // Init
-  setDocLang()
+  const lang = ref<Lang>(docLang === 'ja' ? 'ja' : 'en')
+  const isJapanese = computed(() => lang.value === 'ja')
 
   return {
     lang,
+    isJapanese,
   }
 }
