@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, watch, type ComputedRef } from 'vue'
 
+import NTooltipInfo from '@/components/entries/interaction/NTooltipInfo.ce.vue'
 import NCard from '@/components/entries/layouts/NCard.ce.vue'
 import NContainer1col from '@/components/entries/layouts/NContainer1col.ce.vue'
 import NContainerFlex from '@/components/entries/layouts/NContainerFlex.ce.vue'
@@ -9,34 +10,21 @@ import NChip from '@/components/entries/parts/NChip.ce.vue'
 import NTitle from '@/components/entries/parts/NTitle.ce.vue'
 import BtnMenu from '@/components/features/BtnMenu.vue'
 import ExhibitorProfile from '@/components/features/exhibitors/ExhibitorProfile.vue'
-import InfoFavorite from '@/components/features/exhibitors/InfoFavorite.vue'
-import ListHeading from '@/components/features/exhibitors/ListHeading.vue'
-import ListItem from '@/components/features/exhibitors/ListItem.vue'
-import NotApplicable from '@/components/features/exhibitors/NotApplicable.vue'
+import ExhibitorListHeading from '@/components/features/exhibitors/ListHeading.vue'
+import ExhibitorListItem from '@/components/features/exhibitors/ListItem.vue'
+import ExhibitorListNotApplicable from '@/components/features/exhibitors/NotApplicable.vue'
 import BtnBase, { type BtnBaseProps } from '@/components/ui/BtnBase.vue'
 import InputSearch from '@/components/ui/InputSearch.vue'
 import LoadingSpinner from '@/components/ui/LoadingSpinner.vue'
 import ModalBase from '@/components/ui/ModalBase.vue'
 import SwitchBase from '@/components/ui/SwitchBase.vue'
 import TabsBase from '@/components/ui/TabsBase.vue'
-import {
-  useExhibitorData,
-  useExhibitorListTransformer,
-  useFavorites,
-  useGenreFilter,
-  useHeading,
-  useStateFavorite,
-  useStateGenres,
-  useStateKeyword,
-  useStateOverseas,
-  useStateSort,
-} from '@/composables/exhibitors'
+import { useExhibitorList } from '@/composables/useExhibitorList'
+import { useExhibitorListHeading } from '@/composables/useExhibitorListHeading'
 import { useGenres } from '@/composables/useGenres'
 import { useLang } from '@/composables/useLang'
 import { useModal } from '@/composables/useModal'
-import type { Color, ExhibitionID, GenreID, Exhibitor } from '@/types'
-
-import type { ComputedRef } from 'vue'
+import type { Exhibitor, Color, SortType, ExhibitionID, GenreID } from '@/types'
 
 // ------------------
 // Props
@@ -49,94 +37,158 @@ const props = defineProps<{
 }>()
 
 // ------------------
-// 言語
+// 言語関連
 // ------------------
 
-const { lang, isJapanese } = useLang()
+const { lang } = useLang()
+const isJapanese = computed<boolean>(() => lang.value === 'ja')
+const langKey = computed(() => (isJapanese.value ? 'name' : 'nameEng'))
 
 // ------------------
-// ジャンル
+// 展示会の種類とジャンル関連
 // ------------------
 
-const { exhibitions, exhibitionsMap, genresMap } = useGenres(props.genreSrc)
+// ジャンルを取得
+const { exhibitions, exhibitionsMap, genresMap, getGenreNameFromID } = useGenres(props.genreSrc)
 
-// ------------------
-// コアデータ
-// ------------------
+// ジャンルのリスト
+const genreList = computed<string[] | undefined>(() => {
+  if (!genresMap.value) return undefined
+  const map = genresMap.value
+  return Object.values(map).map((item) => item[langKey.value])
+})
 
-const { rawExhibitorList, numRawExhibitorList, isLoading } = useExhibitorData(
-  props.listSrc,
-  lang.value,
-)
-
-// ------------------
-// ユーザー状態
-// ------------------
-
-// ソートの条件
-const { stateSort, updateStateSort, updateSortToOrder, updateSortToKoma } = useStateSort()
-
-// キーワードの条件
-const { stateKeyword, removeStateKeyword } = useStateKeyword()
-
-// お気に入りの表示状態
-const { stateFavorite } = useStateFavorite()
-
-// ジャンルの絞り込み状態
-const { stateGenres, updateStateGenres } = useStateGenres()
-
-// 海外・国内の絞り込み状態
-const { stateOverseas, updateStateOverseas, removeStateOverseas } = useStateOverseas()
-
-// ------------------
-// お気に入りの管理
-// ------------------
-
-const { myFavorites, numMyFavorites, switchFavorite, includedFavorites } = useFavorites(
-  props.favoriteKey,
-  lang.value,
-)
-
-// ------------------
-// フィルタロジック
-// ------------------
-
-const { exhibitorList, numExhibitorList } = useExhibitorListTransformer(rawExhibitorList, {
-  favorite: stateFavorite,
-  myFavorites: myFavorites,
-  genres: stateGenres,
-  overseas: stateOverseas,
-  keyword: stateKeyword,
-  sort: stateSort,
+// 絞り込みが行われているかの判定
+const isFilteringByGenre = computed<boolean>(() => {
+  if (!genreList.value) return false
+  const allGenresNum: number = genreList.value.length
+  const validGenresNum: number = stateGenres.value.length
+  return allGenresNum !== validGenresNum
 })
 
 // ------------------
-// リストの小見出し
-// ------------------
-const { getHeading, showHeading } = useHeading(exhibitorList, stateSort)
-
-// ------------------
-// モーダル
+// 出展社リスト関連
 // ------------------
 
-// 出展社の詳細情報モーダル
-const { visible, show, dismiss } = useModal()
-
-// フィルターのモーダル
+// 出展社リスト
 const {
-  visible: visibleFilterModal,
-  show: showFilterModal,
-  dismiss: dismissFilterModal,
-} = useModal()
+  exhibitorList,
+  numExhibitorList,
+  numRawExhibitorList,
+  numMyFavorites,
+  isDataReady,
+  stateSort,
+  stateFavorite,
+  stateKeyword,
+  stateGenres,
+  stateOverseas,
+  removeStateKeyword,
+  updateStateSort,
+  updateStateGenres,
+  updateStateOverseas,
+  removeStateOverseas,
+  switchFavorite,
+  includedFavorites,
+} = useExhibitorList(props.listSrc, props.favoriteKey, lang.value, getGenreNameFromID)
+
+// 出展社リストの小見出し
+const { getHeading, showHeading } = useExhibitorListHeading(exhibitorList, stateSort)
 
 // ------------------
-// 整理しきれなかった関数群（あとでリファクタリングしたい）
+// ジャンルによる絞り込み機能関連
+// ------------------
+
+// ジャンルの絞り込み条件フラグ配列
+const genreFlags = ref<Record<GenreID, boolean>>({})
+
+// ジャンルの絞り込み条件フラグ配列を指定したキー配列で初期化する関数
+const initGenreFlags = (keys: GenreID[]): void => {
+  keys.forEach((key) => {
+    genreFlags.value[key] = true
+  })
+}
+
+// 展示会・エリアごとのジャンルの絞り込み条件のためのオブジェクト配列
+type ExhibitionOptions = {
+  id: ExhibitionID
+  label: string
+  color: Color
+  genres: GenreID[]
+  isOn: ComputedRef<boolean>
+}
+const exhibitionOptions = computed<ExhibitionOptions[]>(() => {
+  if (!exhibitions.value) return []
+  const result: ExhibitionOptions[] = []
+  exhibitions.value.forEach((item) => {
+    result.push({
+      id: item.id,
+      label: `${item[langKey.value]}${isJapanese.value ? 'のすべてのエリア' : ''}`,
+      color: item.color,
+      genres: [...item.genres],
+      isOn: computed(() => isTrueGenreFlags([...item.genres])),
+    })
+  })
+
+  // ジャンルの絞り込み条件フラグ配列を初期化※本当は分けたいので後で修正したい
+  const genreKeys = Object.keys(genresMap.value)
+  initGenreFlags(genreKeys)
+
+  return result
+})
+
+// ジャンルの絞り込み条件フラグ配列の指定したキー配列のすべてがtrueか検査する
+const isTrueGenreFlags = (keys: string[]): boolean => {
+  const array: boolean[] = []
+  keys.forEach((key) => {
+    array.push(genreFlags.value[key])
+  })
+  return array.every((value) => value === true)
+}
+
+// ジャンルの絞り込み条件フラグをキー配列から一括更新する関数
+const updateGenreFlags = (keys: string[], value: boolean): void => {
+  keys.forEach((key) => {
+    genreFlags.value[key] = value
+  })
+}
+
+const removeGenreFlags = () => {
+  Object.keys(genreFlags.value).forEach((key) => {
+    genreFlags.value[key] = true
+  })
+}
+
+// ジャンルの絞り込み条件を監視して更新
+watch(genreFlags.value, () => {
+  if (!genresMap.value) return
+
+  const newValues: string[] = []
+  for (const key in genreFlags.value) {
+    if (genreFlags.value[key]) {
+      newValues.push(genresMap.value[key]['id'])
+    }
+  }
+  updateStateGenres(newValues)
+})
+
+// ------------------
+// ソート関連
 // ------------------
 
 // ソートのラベル
 const sortLabel = {
   ja: { order: '50音順', koma: '小間番号順', search: '関連順' },
   en: { order: 'Name', koma: 'Booth number', search: 'Related' },
+}
+
+// ソートの更新関数
+const updateSortToOrder = () => {
+  const order: SortType = 'order'
+  updateStateSort(order)
+}
+const updateSortToKoma = () => {
+  const order: SortType = 'koma'
+  updateStateSort(order)
 }
 
 // ソートメニューの子要素
@@ -153,53 +205,16 @@ const sortChildren: BtnBaseProps[] = [
   },
 ]
 
-// 展示会・エリアごとのジャンルの絞り込み条件のためのオブジェクト配列
-type ExhibitionOptions = {
-  id: ExhibitionID
-  label: string
-  color: Color
-  genres: GenreID[]
-  isOn: ComputedRef<boolean>
-}
-const exhibitionOptions = computed<ExhibitionOptions[]>(() => {
-  if (!exhibitions.value) return []
-  const result: ExhibitionOptions[] = []
-  exhibitions.value.forEach((item) => {
-    result.push({
-      id: item.id,
-      label: `${item[isJapanese ? 'name' : 'nameEng']}${isJapanese.value ? 'のすべてのエリア' : ''}`,
-      color: item.color,
-      genres: [...item.genres],
-      isOn: computed(() => isTrueGenreFlags([...item.genres])),
-    })
-  })
-  return result
-})
-// Extracted genre filter state and syncing logic into composable
-const { genreFlags, updateGenreFlags, removeGenreFlags, isTrueGenreFlags } = useGenreFilter(
-  genresMap,
-  updateStateGenres,
-)
+// ------------------
+// モーダル制御
+// ------------------
 
-// ジャンルのリスト
-const genreList = computed<string[] | undefined>(() => {
-  if (!genresMap.value) return undefined
-  const map = genresMap.value
-  return Object.values(map).map((item) => item[isJapanese.value ? 'name' : 'nameEng'])
-})
-
-// 絞り込みが行われているかの判定
-const isFilteringByGenre = computed<boolean>(() => {
-  if (!genreList.value) return false
-  const allGenresNum: number = genreList.value.length
-  const validGenresNum: number = stateGenres.value.length
-  return allGenresNum !== validGenresNum
-})
-
+// 出展社カードのモーダル
+const { visible, show, dismiss } = useModal()
 const currentExhibitor = ref()
 const showModal = (exhibitor: Exhibitor) => {
   const exhibition = exhibitor.exhibition
-    ? exhibitionsMap.value[exhibitor.exhibition][isJapanese.value ? 'name' : 'nameEng']
+    ? exhibitionsMap.value[exhibitor.exhibition][langKey.value]
     : undefined
 
   const color = exhibitor.exhibition ? exhibitionsMap.value[exhibitor.exhibition].color : undefined
@@ -228,6 +243,13 @@ const dismissModal = () => {
 
   dismiss()
 }
+
+// フィルターのモーダル
+const {
+  visible: visibleFilterModal,
+  show: showFilterModal,
+  dismiss: dismissFilterModal,
+} = useModal()
 </script>
 
 <template>
@@ -237,6 +259,7 @@ const dismissModal = () => {
       <!-- キーワードフィルターのインプット -->
       <InputSearch
         v-model="stateKeyword"
+        :datalist="genreList"
         class-name="grow"
         :placeholder="isJapanese ? 'キーワードで検索' : 'Search by keyword'"
         @update:model-value="stateKeyword ? updateStateSort('search') : updateStateSort('order')"
@@ -291,7 +314,7 @@ const dismissModal = () => {
                   v-for="genreID in exhibition.genres"
                   :key="genreID"
                   v-model="genreFlags[genreID]"
-                  :label="genresMap[genreID][isJapanese ? 'name' : 'nameEng']"
+                  :label="genresMap[genreID][langKey]"
                   :color="exhibition.color"
                   label-class="font-bold"
                 ></SwitchBase>
@@ -324,7 +347,6 @@ const dismissModal = () => {
         }}</NChip
       >
     </NContainerFlex>
-
     <!-- メインの一覧カード -->
     <NCard>
       <!-- お気に入り登録切り替えタブ -->
@@ -343,9 +365,27 @@ const dismissModal = () => {
           ></TabsBase>
 
           <!-- お気に入りフィルターのインフォメーション -->
-          <InfoFavorite :lang="lang"></InfoFavorite>
+          <NTooltipInfo icon="question" location="bottom">
+            <div v-if="lang === 'ja'">
+              <p><b>お気に入り登録を表示機能：</b></p>
+              <p>各出展社の★アイコンをクリックするとお気に入り登録することができます。</p>
+              <p>
+                ※お気に入り登録はブラウザに保存されるため、別の端末やブラウザには同期されません。
+              </p>
+              <p>※また、キャッシュが削除されると消えてしまいます。</p>
+            </div>
+            <div v-else>
+              <p><b>Favorite★</b></p>
+              <p>Click on the ★ icon for each exhibitor to bookmark it.</p>
+              <div class="mt-4 italic">
+                <p>*Remarks:</p>
+                <p>Bookmarks is (are) stored in your browser</p>
+                <p>It is not synced to another device or browser.</p>
+                <p>It is disappeared when the cache is cleared.</p>
+              </div>
+            </div>
+          </NTooltipInfo>
         </NContainerFlex>
-
         <!-- フィルター後のリストの件数表示 -->
         <p>
           {{ lang === 'ja' ? '表示中の件数' : 'Search Result' }}: {{ numExhibitorList }} /
@@ -354,15 +394,15 @@ const dismissModal = () => {
       </NContainerFlex>
 
       <!-- 読み込み中 -->
-      <LoadingSpinner v-if="isLoading" :show="true" message="loading..."></LoadingSpinner>
+      <LoadingSpinner v-if="!isDataReady" :show="true" message="loading..."></LoadingSpinner>
 
       <!-- 出展社の一覧リスト -->
       <ul v-else-if="numExhibitorList" class="divide-y">
         <template v-for="(exhibitor, index) in exhibitorList" :key="exhibitor.id">
-          <ListHeading v-if="showHeading(index)">
+          <ExhibitorListHeading v-if="showHeading(index)">
             {{ getHeading(index) }}
-          </ListHeading>
-          <ListItem
+          </ExhibitorListHeading>
+          <ExhibitorListItem
             :id="exhibitor.id"
             :koma="exhibitor.koma"
             :name="exhibitor.name"
@@ -373,12 +413,12 @@ const dismissModal = () => {
             :is-favorite="includedFavorites(exhibitor.id)"
             :favorite-method="switchFavorite"
             @click="showModal(exhibitor)"
-          ></ListItem>
+          ></ExhibitorListItem>
         </template>
       </ul>
 
       <!-- フィルター後の件数が0件の場合の注意書き -->
-      <NotApplicable v-else :lang></NotApplicable>
+      <ExhibitorListNotApplicable v-else :lang></ExhibitorListNotApplicable>
     </NCard>
 
     <!-- モーダルウインドウ（出展社の詳細情報） -->
