@@ -1,6 +1,8 @@
 import { computed } from 'vue'
-import type { Ref } from 'vue'
+
 import type { Exhibitors, Genre, Lang } from '@/types'
+
+import type { Ref } from 'vue'
 
 export const useEnrichExhibitors = (
   rawExhibitors: Ref<Exhibitors | undefined>,
