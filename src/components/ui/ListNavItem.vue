@@ -2,7 +2,6 @@
 import LinkBox from '@/components/ui/LinkBox.vue'
 import { useRouter } from '@/composables/useRouter'
 import { cn } from '@/lib/cn'
-import { chipBase } from '@/styles'
 import { isCurrentPage } from '@/utils'
 
 const props = defineProps<{
@@ -21,9 +20,13 @@ const name = router?.name ?? ''
     :href
     :type
     :class="
-      cn(chipBase, 'text-inherit font-bold hover:bg-blue-200/30 focus:ring', props.class, {
-        'opacity-50': isCurrentPage(href),
-      })
+      cn(
+        'text-inherit font-bold hover:bg-blue-200/30 focus:ring rounded-full py-0.5 px-2',
+        props.class,
+        {
+          'opacity-50': isCurrentPage(href),
+        },
+      )
     "
   >
     {{ name }}

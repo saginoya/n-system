@@ -43,7 +43,7 @@ const languageButtonClass = cn(variantConceptMap['flat']('info'), 'border hover:
       </div>
       <div class="hidden grow lg:block"></div>
       <nav class="hidden flex-none lg:block">
-        <div class="m-auto flex w-full max-w-5xl justify-between gap-4">
+        <div class="m-auto flex w-full max-w-5xl justify-between gap-2">
           <div v-for="item in navigation" :key="item.id">
             <ListNavMenu
               v-if="item.type === 'group'"
