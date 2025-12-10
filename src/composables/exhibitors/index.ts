@@ -1,3 +1,4 @@
+export * from './useEnrichExhibitors'
 export * from './useExhibitorData'
 export * from './useExhibitorListTransformer'
 export * from './useFavorites'

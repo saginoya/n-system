@@ -20,6 +20,7 @@ import ModalBase from '@/components/ui/ModalBase.vue'
 import SwitchBase from '@/components/ui/SwitchBase.vue'
 import TabsBase from '@/components/ui/TabsBase.vue'
 import {
+  useEnrichExhibitors,
   useExhibitorData,
   useExhibitorListTransformer,
   useFavorites,
@@ -101,7 +102,12 @@ const { myFavorites, numMyFavorites, switchFavorite, includedFavorites } = useFa
 // フィルタロジック
 // ------------------
 
-const { exhibitorList, numExhibitorList } = useExhibitorListTransformer(rawExhibitorList, {
+const { enrichedExhibitors, isReady } = useEnrichExhibitors(rawExhibitorList, genresMap, lang)
+
+// ジャンル名が完全に設定されるまで、空配列を transformer に渡す（キーワード検索でジャンル名を使用するため）
+const exhibitorsForTransformer = computed(() => (isReady.value ? enrichedExhibitors.value : []))
+
+const { exhibitorList, numExhibitorList } = useExhibitorListTransformer(exhibitorsForTransformer, {
   favorite: stateFavorite,
   myFavorites: myFavorites,
   genres: stateGenres,
@@ -237,6 +243,7 @@ const dismissModal = () => {
       <!-- キーワードフィルターのインプット -->
       <InputSearch
         v-model="stateKeyword"
+        :datalist="genreList"
         class-name="grow"
         :placeholder="isJapanese ? 'キーワードで検索' : 'Search by keyword'"
         @update:model-value="stateKeyword ? updateStateSort('search') : updateStateSort('order')"
