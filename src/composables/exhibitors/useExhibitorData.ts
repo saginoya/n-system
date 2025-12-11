@@ -1,10 +1,15 @@
-import { ref, computed, onMounted, readonly } from 'vue'
+import { ref, computed, onMounted, watchEffect, readonly } from 'vue'
 
-import type { Exhibitors, JsonExhibitor, Lang } from '@/types'
+import type { Exhibitors, JsonExhibitor, Lang, GenreID } from '@/types'
 import { getJson } from '@/utils'
 import { convertJSONToExhibitorList, countExhibitors } from '@/utils/exhibitorList'
 
-export const useExhibitorData = (src: string, lang: Lang, options = { autoLoad: true }) => {
+export const useExhibitorData = (
+  src: string,
+  lang: Lang,
+  getGenreNameFromID: (value: GenreID, lang: Lang) => string,
+  options = { autoLoad: true },
+) => {
   // 出展社リストの未加工データ
   const rawExhibitorList = ref<Exhibitors>([])
   const isLoading = ref(false)
@@ -15,7 +20,7 @@ export const useExhibitorData = (src: string, lang: Lang, options = { autoLoad: 
     return countExhibitors(rawExhibitorList.value)
   })
 
-  // 非同期通信で出展社データを取得
+  // 非同期通信で出展社データを取得し、変換して格納する関数
   const load = async () => {
     isLoading.value = true
     error.value = null
@@ -29,11 +34,20 @@ export const useExhibitorData = (src: string, lang: Lang, options = { autoLoad: 
     }
   }
 
+  // オプションでオートロードが有効な場合、コンポーネントのマウント時にデータをロード
   if (options.autoLoad) {
     onMounted(() => {
       void load()
     })
   }
+
+  // Genreがセットされていれば、ジャンル名を出展社データに付与する
+  watchEffect(() => {
+    rawExhibitorList.value.map((exhibitor) => {
+      exhibitor.genreName = getGenreNameFromID(exhibitor.genre, lang)
+      return exhibitor
+    })
+  })
 
   return {
     rawExhibitorList: computed(() => rawExhibitorList.value),

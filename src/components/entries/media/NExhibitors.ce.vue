@@ -20,7 +20,6 @@ import ModalBase from '@/components/ui/ModalBase.vue'
 import SwitchBase from '@/components/ui/SwitchBase.vue'
 import TabsBase from '@/components/ui/TabsBase.vue'
 import {
-  useEnrichExhibitors,
   useExhibitorData,
   useExhibitorListTransformer,
   useFavorites,
@@ -59,7 +58,7 @@ const { lang, isJapanese } = useLang()
 // ジャンル
 // ------------------
 
-const { exhibitions, exhibitionsMap, genresMap } = useGenres(props.genreSrc)
+const { exhibitions, exhibitionsMap, genresMap, getGenreNameFromID } = useGenres(props.genreSrc)
 
 // ------------------
 // コアデータ
@@ -68,6 +67,7 @@ const { exhibitions, exhibitionsMap, genresMap } = useGenres(props.genreSrc)
 const { rawExhibitorList, numRawExhibitorList, isLoading } = useExhibitorData(
   props.listSrc,
   lang.value,
+  getGenreNameFromID,
 )
 
 // ------------------
@@ -102,12 +102,7 @@ const { myFavorites, numMyFavorites, switchFavorite, includedFavorites } = useFa
 // フィルタロジック
 // ------------------
 
-const { enrichedExhibitors, isReady } = useEnrichExhibitors(rawExhibitorList, genresMap, lang)
-
-// ジャンル名が完全に設定されるまで、空配列を transformer に渡す（キーワード検索でジャンル名を使用するため）
-const exhibitorsForTransformer = computed(() => (isReady.value ? enrichedExhibitors.value : []))
-
-const { exhibitorList, numExhibitorList } = useExhibitorListTransformer(exhibitorsForTransformer, {
+const { exhibitorList, numExhibitorList } = useExhibitorListTransformer(rawExhibitorList, {
   favorite: stateFavorite,
   myFavorites: myFavorites,
   genres: stateGenres,
