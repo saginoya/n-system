@@ -4,15 +4,19 @@ import type { GenreJson, Genre, Exhibition, ExhibitionID, GenreID, Lang } from '
 import { getJson } from '@/utils'
 
 export const useGenres = (src: string) => {
-  // ジャンルのリスト
+  // 展示会データ
   const exhibitions = ref<Exhibition[]>()
+
+  // ジャンルデータ
   const genres = ref<Genre[]>()
 
+  // 展示会データのMap
   const exhibitionsMap = computed(() => {
     if (!exhibitions.value) return {}
     return convertListToMap<Exhibition>(exhibitions.value)
   })
 
+  // ジャンルデータのMap
   const genresMap = computed<Record<GenreID, Genre>>(() => {
     if (!genres.value) return {}
     return convertListToMap<Genre>(genres.value)
