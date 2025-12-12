@@ -1,6 +1,6 @@
-export * from './useEnrichExhibitors'
 export * from './useExhibitorData'
 export * from './useExhibitorListTransformer'
+export * from './useExhibitorProfile'
 export * from './useFavorites'
 export * from './useGenreFilter'
 export * from './useHeading'

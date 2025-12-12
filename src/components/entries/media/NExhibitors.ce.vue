@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { computed } from 'vue'
 
 import NCard from '@/components/entries/layouts/NCard.ce.vue'
 import NContainer1col from '@/components/entries/layouts/NContainer1col.ce.vue'
@@ -22,6 +22,7 @@ import TabsBase from '@/components/ui/TabsBase.vue'
 import {
   useExhibitorData,
   useExhibitorListTransformer,
+  useExhibitorProfile,
   useFavorites,
   useGenreFilter,
   useHeading,
@@ -117,13 +118,26 @@ const { exhibitorList, numExhibitorList } = useExhibitorListTransformer(rawExhib
 const { getHeading, showHeading } = useHeading(exhibitorList, stateSort)
 
 // ------------------
-// モーダル
+// 出展社の詳細情報モーダル管理
+// ------------------
+const { visible, show, dismiss } = useModal()
+const { currentExhibitor, setCurrentExhibitor, resetCurrentExhibitor } =
+  useExhibitorProfile(exhibitionsMap)
+
+const showModal = (exhibitor: Exhibitor) => {
+  setCurrentExhibitor(exhibitor, lang.value)
+  show()
+}
+const dismissModal = () => {
+  resetCurrentExhibitor()
+
+  dismiss()
+}
+
+// ------------------
+// フィルターのモーダル
 // ------------------
 
-// 出展社の詳細情報モーダル
-const { visible, show, dismiss } = useModal()
-
-// フィルターのモーダル
 const {
   visible: visibleFilterModal,
   show: showFilterModal,
@@ -196,39 +210,6 @@ const isFilteringByGenre = computed<boolean>(() => {
   const validGenresNum: number = stateGenres.value.length
   return allGenresNum !== validGenresNum
 })
-
-const currentExhibitor = ref()
-const showModal = (exhibitor: Exhibitor) => {
-  const exhibition = exhibitor.exhibition
-    ? exhibitionsMap.value[exhibitor.exhibition][isJapanese.value ? 'name' : 'nameEng']
-    : undefined
-
-  const color = exhibitor.exhibition ? exhibitionsMap.value[exhibitor.exhibition].color : undefined
-
-  currentExhibitor.value = {
-    lang: lang.value,
-    id: exhibitor.id,
-    name: exhibitor.name,
-    koma: exhibitor.koma,
-    favoriteMethod: switchFavorite,
-    overseas: exhibitor.overseas,
-    country: exhibitor.country,
-    exhibition: exhibition,
-    subName: exhibitor.subName,
-    genre: exhibitor.genreName,
-    webSite: exhibitor.webSite,
-    contents: exhibitor.contents,
-    sdgs: exhibitor.sdgs,
-    color: color,
-  }
-
-  show()
-}
-const dismissModal = () => {
-  currentExhibitor.value = undefined
-
-  dismiss()
-}
 </script>
 
 <template>
@@ -388,6 +369,7 @@ const dismissModal = () => {
       <ExhibitorProfile
         v-if="currentExhibitor"
         v-bind="currentExhibitor"
+        :favoriteMethod="switchFavorite"
         :is-favorite="includedFavorites(currentExhibitor.id)"
       ></ExhibitorProfile>
       <p v-else>情報がありません。</p>

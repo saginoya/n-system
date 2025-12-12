@@ -87,7 +87,10 @@ const texts = {
           <NLink :href="webSite" type="external" text-aligned>{{ webSite }}</NLink>
         </dd>
       </div>
-      <div v-if="sdgs" class="grid grid-cols-1 gap-2 py-2 sm:grid-cols-4 md:grid-cols-6">
+      <div
+        v-if="sdgs && sdgs.length > 0"
+        class="grid grid-cols-1 gap-2 py-2 sm:grid-cols-4 md:grid-cols-6"
+      >
         <dt class="font-bold">{{ texts[lang].sdgs }}</dt>
         <dd class="sm:col-span-3 md:col-span-5">
           <SDGsIcons :numbers="sdgs as SDGs"></SDGsIcons>
