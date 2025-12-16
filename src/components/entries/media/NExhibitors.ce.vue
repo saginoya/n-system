@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-
 import NCard from '@/components/entries/layouts/NCard.ce.vue'
 import NContainer1col from '@/components/entries/layouts/NContainer1col.ce.vue'
 import NContainerFlex from '@/components/entries/layouts/NContainerFlex.ce.vue'
@@ -13,7 +11,7 @@ import InfoFavorite from '@/components/features/exhibitors/InfoFavorite.vue'
 import ListHeading from '@/components/features/exhibitors/ListHeading.vue'
 import ListItem from '@/components/features/exhibitors/ListItem.vue'
 import NotApplicable from '@/components/features/exhibitors/NotApplicable.vue'
-import BtnBase, { type BtnBaseProps } from '@/components/ui/BtnBase.vue'
+import BtnBase from '@/components/ui/BtnBase.vue'
 import InputSearch from '@/components/ui/InputSearch.vue'
 import LoadingSpinner from '@/components/ui/LoadingSpinner.vue'
 import ModalBase from '@/components/ui/ModalBase.vue'
@@ -35,9 +33,7 @@ import {
 import { useGenres } from '@/composables/useGenres'
 import { useLang } from '@/composables/useLang'
 import { useModal } from '@/composables/useModal'
-import type { Color, ExhibitionID, GenreID, Exhibitor } from '@/types'
-
-import type { ComputedRef } from 'vue'
+import type { Exhibitor } from '@/types'
 
 // ------------------
 // Props
@@ -59,7 +55,9 @@ const { lang, isJapanese } = useLang()
 // ジャンル
 // ------------------
 
-const { exhibitions, exhibitionsMap, genresMap, getGenreNameFromID } = useGenres(props.genreSrc)
+const { exhibitions, exhibitionsMap, genresMap, genreLists, getGenreNameFromID } = useGenres(
+  props.genreSrc,
+)
 
 // ------------------
 // コアデータ
@@ -76,7 +74,8 @@ const { rawExhibitorList, numRawExhibitorList, isLoading } = useExhibitorData(
 // ------------------
 
 // ソートの条件
-const { stateSort, updateStateSort, updateSortToOrder, updateSortToKoma } = useStateSort()
+const { stateSort, updateStateSort, sortLabel, updateSortToOrder, updateSortToKoma } =
+  useStateSort()
 
 // キーワードの条件
 const { stateKeyword, removeStateKeyword } = useStateKeyword()
@@ -145,71 +144,11 @@ const {
 } = useModal()
 
 // ------------------
-// 整理しきれなかった関数群（あとでリファクタリングしたい）
+// ジャンルによる絞り込み機能の制御
 // ------------------
 
-// ソートのラベル
-const sortLabel = {
-  ja: { order: '50音順', koma: '小間番号順', search: '関連順' },
-  en: { order: 'Name', koma: 'Booth number', search: 'Related' },
-}
-
-// ソートメニューの子要素
-const sortChildren: BtnBaseProps[] = [
-  {
-    color: 'primary',
-    label: sortLabel[lang.value].order,
-    onClick: updateSortToOrder,
-  },
-  {
-    color: 'primary',
-    label: sortLabel[lang.value].koma,
-    onClick: updateSortToKoma,
-  },
-]
-
-// 展示会・エリアごとのジャンルの絞り込み条件のためのオブジェクト配列
-type ExhibitionOptions = {
-  id: ExhibitionID
-  label: string
-  color: Color
-  genres: GenreID[]
-  isOn: ComputedRef<boolean>
-}
-const exhibitionOptions = computed<ExhibitionOptions[]>(() => {
-  if (!exhibitions.value) return []
-  const result: ExhibitionOptions[] = []
-  exhibitions.value.forEach((item) => {
-    result.push({
-      id: item.id,
-      label: `${item[isJapanese ? 'name' : 'nameEng']}${isJapanese.value ? 'のすべてのエリア' : ''}`,
-      color: item.color,
-      genres: [...item.genres],
-      isOn: computed(() => isTrueGenreFlags([...item.genres])),
-    })
-  })
-  return result
-})
-// Extracted genre filter state and syncing logic into composable
-const { genreFlags, updateGenreFlags, removeGenreFlags, isTrueGenreFlags } = useGenreFilter(
-  genresMap,
-  updateStateGenres,
-)
-
-// ジャンルのリスト
-const genreList = computed<string[] | undefined>(() => {
-  if (!genresMap.value) return undefined
-  const map = genresMap.value
-  return Object.values(map).map((item) => item[isJapanese.value ? 'name' : 'nameEng'])
-})
-
-// 絞り込みが行われているかの判定
-const isFilteringByGenre = computed<boolean>(() => {
-  if (!genreList.value) return false
-  const allGenresNum: number = genreList.value.length
-  const validGenresNum: number = stateGenres.value.length
-  return allGenresNum !== validGenresNum
-})
+const { genreFlags, updateGenreFlags, removeGenreFlags, exhibitionOptions, isFilteringByGenre } =
+  useGenreFilter(exhibitions, genresMap, updateStateGenres, lang.value)
 </script>
 
 <template>
@@ -219,7 +158,7 @@ const isFilteringByGenre = computed<boolean>(() => {
       <!-- キーワードフィルターのインプット -->
       <InputSearch
         v-model="stateKeyword"
-        :datalist="genreList"
+        :datalist="genreLists[lang]"
         class-name="grow"
         :placeholder="isJapanese ? 'キーワードで検索' : 'Search by keyword'"
         @update:model-value="stateKeyword ? updateStateSort('search') : updateStateSort('order')"
@@ -237,7 +176,18 @@ const isFilteringByGenre = computed<boolean>(() => {
           color="primary"
           variant="text"
           prepend-icon="sort"
-          :children="sortChildren"
+          :children="[
+            {
+              color: 'primary',
+              label: sortLabel[lang].order,
+              onClick: updateSortToOrder,
+            },
+            {
+              color: 'primary',
+              label: sortLabel[lang].koma,
+              onClick: updateSortToKoma,
+            },
+          ]"
         />
       </NContainerFlex>
 

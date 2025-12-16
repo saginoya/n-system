@@ -1,4 +1,4 @@
-import { ref, computed, onMounted, readonly } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 
 import type { GenreJson, Genre, Exhibition, ExhibitionID, GenreID, Lang } from '@/types'
 import { getJson } from '@/utils'
@@ -20,6 +20,17 @@ export const useGenres = (src: string) => {
   const genresMap = computed<Record<GenreID, Genre>>(() => {
     if (!genres.value) return {}
     return convertListToMap<Genre>(genres.value)
+  })
+
+  // ジャンルデータのリスト
+  const genreLists = computed<Record<Lang, string[]>>(() => {
+    const map = genresMap.value
+    const listJa = Object.values(map).map((item) => item['name'])
+    const listEn = Object.values(map).map((item) => item['nameEng'])
+    return {
+      ja: listJa,
+      en: listEn,
+    }
   })
 
   onMounted(async () => {
@@ -62,10 +73,11 @@ export const useGenres = (src: string) => {
   }
 
   return {
-    exhibitions: readonly(exhibitions),
-    genres: readonly(genres),
+    exhibitions,
+    genres,
     exhibitionsMap,
     genresMap,
+    genreLists,
     getExhibitionIDFromGenreID,
     getGenreNameFromID,
   }

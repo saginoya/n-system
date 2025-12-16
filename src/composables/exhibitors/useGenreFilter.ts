@@ -1,6 +1,8 @@
-import { ref, watch } from 'vue'
+import { ref, computed, watch } from 'vue'
 
-import type { GenreID, Genre } from '@/types'
+import type { Lang, Color, Genre, GenreID, Exhibition, ExhibitionID } from '@/types'
+
+import type { Ref, ComputedRef } from 'vue'
 
 // ReadonlyなRef型を定義
 type ReadonlyRef<T> = {
@@ -13,8 +15,10 @@ type ReadonlyRef<T> = {
  * - `updateStateGenres` 親コンポーネントのジャンル状態更新関数
  */
 export const useGenreFilter = (
+  exhibitions: Ref<Exhibition[] | undefined>,
   genresMap: ReadonlyRef<Record<GenreID, Genre>>,
   updateStateGenres: (genres: string[]) => void,
+  lang: Lang,
 ) => {
   const genreFlags = ref<Record<GenreID, boolean>>({})
 
@@ -39,6 +43,44 @@ export const useGenreFilter = (
       genreFlags.value[key as GenreID] = true
     })
   }
+
+  // 絞り込みが行われているかの判定
+  const isFilteringByGenre = computed<boolean>(() => {
+    return !Object.values(genreFlags.value).every(Boolean)
+  })
+
+  // 展示会・エリアごとのジャンルの絞り込み条件のためのオブジェクト配列
+  type ExhibitionOptions = {
+    id: ExhibitionID
+    label: string
+    color: Color
+    genres: GenreID[]
+    isOn: ComputedRef<boolean>
+  }
+
+  // 展示会情報を元にオプションオブジェクトを生成
+  const convertToExhibitionOptions = (exhibition: Exhibition, lang: Lang): ExhibitionOptions => {
+    const { id, color, genres } = exhibition
+    const label =
+      lang === 'ja'
+        ? `${exhibition['name']}のすべてのエリア`
+        : `All Areas of ${exhibition['nameEng']}`
+    const isOn = computed(() => isTrueGenreFlags(exhibition.genres))
+
+    return {
+      id,
+      label,
+      color,
+      genres,
+      isOn,
+    }
+  }
+
+  const exhibitionOptions = computed<ExhibitionOptions[]>(() => {
+    const list = exhibitions.value
+    if (!list) return []
+    return list.map((exhibition) => convertToExhibitionOptions(exhibition, lang))
+  })
 
   // ジャンルのMapが更新されたら初期化
   watch(
@@ -72,5 +114,7 @@ export const useGenreFilter = (
     isTrueGenreFlags,
     updateGenreFlags,
     removeGenreFlags,
+    isFilteringByGenre,
+    exhibitionOptions,
   }
 }
