@@ -43,7 +43,7 @@ export const formatDate = (datetime: string): DateFormatResult | null => {
     month: String(date.getMonth() + 1),
     date: String(date.getDate()),
     day: String(date.getDay()),
-    dayJa: dayJaList[date.getDay()],
+    dayJa: dayJaList[date.getDay()] ?? '',
     hour: String(date.getHours()),
     minutes: String(date.getMinutes()),
     twoDigitMonth: formatTwoDigit(date.getMonth() + 1),

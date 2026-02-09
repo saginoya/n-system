@@ -25,15 +25,26 @@ export const useExhibitorProfile = (exhibitionsMap: Ref<Record<string, Exhibitio
     exhibitor: Exhibitor,
     lang: Lang,
   ): ExhibitorProfileOmitFavorite => {
+    // 展示会ID
+    const exhibitionID = exhibitor.exhibition
+
     // 展示会を割り出す関数
-    const exhibition = exhibitor.exhibition
-      ? exhibitionsMap.value[exhibitor.exhibition][lang === 'ja' ? 'name' : 'nameEng']
-      : undefined
+    const getExhibition = (id: string | undefined) => {
+      if (!exhibitionsMap.value || !id) return
+      return exhibitionsMap.value[id]
+    }
+
+    // 展示会名を返す関数
+    const getExhibitionName = (id: string | undefined) => {
+      const exhibition = getExhibition(id)
+      return exhibition ? exhibition[lang === 'ja' ? 'name' : 'nameEng'] : undefined
+    }
 
     // 色を割り出す関数
-    const color = exhibitor.exhibition
-      ? exhibitionsMap.value[exhibitor.exhibition].color
-      : undefined
+    const getExhibitionColor = (id: string | undefined) => {
+      const exhibition = getExhibition(id)
+      return exhibition ? exhibition.color : undefined
+    }
 
     return {
       lang,
@@ -42,13 +53,13 @@ export const useExhibitorProfile = (exhibitionsMap: Ref<Record<string, Exhibitio
       koma: exhibitor.koma,
       overseas: exhibitor.overseas,
       country: exhibitor.country,
-      exhibition: exhibition,
+      exhibition: getExhibitionName(exhibitionID),
       subName: exhibitor.subName,
       genre: exhibitor.genreName,
       webSite: exhibitor.webSite,
       contents: exhibitor.contents,
       sdgs: exhibitor.sdgs,
-      color: color,
+      color: getExhibitionColor(exhibitionID),
     }
   }
 

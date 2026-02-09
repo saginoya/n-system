@@ -2,6 +2,8 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 
 import { normalizePath, isCurrentPage } from '../../utils/urlUtils'
 
+const global = globalThis as typeof globalThis & { document?: Document }
+
 describe('normalizePath', () => {
   it('末尾のindex.htmlを除去できる', () => {
     expect(normalizePath('/path/to/index.html')).toBe('/path/to')

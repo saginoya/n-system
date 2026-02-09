@@ -58,7 +58,7 @@ export const useGenres = (src: string) => {
   // ジャンルIDからジャンル名を返す関数
   const getGenreNameFromID = (value: GenreID, lang: Lang): string => {
     if (!genresMap.value) return ''
-    return genresMap.value[value][lang === 'ja' ? 'name' : 'nameEng']
+    return genresMap.value[value]![lang === 'ja' ? 'name' : 'nameEng']
   }
 
   // リストをMapに変換する関数

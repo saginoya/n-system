@@ -100,7 +100,7 @@ export const useGenreFilter = (
       const newValues: string[] = []
       for (const key in genreFlags.value) {
         if (genreFlags.value[key]) {
-          newValues.push(genresMap.value[key]['id'])
+          newValues.push(genresMap.value[key]!['id'])
         }
       }
       updateStateGenres(newValues)

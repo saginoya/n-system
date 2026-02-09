@@ -10,6 +10,8 @@ import {
 
 import type { Mock } from 'vitest'
 
+const global = globalThis as typeof globalThis & { fetch: Mock }
+
 describe('getJson', () => {
   beforeEach(() => {
     global.fetch = vi.fn()

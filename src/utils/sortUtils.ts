@@ -42,8 +42,8 @@ export const mergeSortObjects = <T extends Record<string, unknown>>(
     const results: T[] = []
 
     while (left.length && right.length) {
-      const leftValue = left[0][key] as number | string | undefined
-      const rightValue = right[0][key] as number | string | undefined
+      const leftValue = left[0]![key] as number | string | undefined
+      const rightValue = right[0]![key] as number | string | undefined
 
       if (leftValue === undefined) {
         results.push(right.shift()!)

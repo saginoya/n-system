@@ -224,7 +224,7 @@ const { genreFlags, updateGenreFlags, removeGenreFlags, exhibitionOptions, isFil
                   v-for="genreID in exhibition.genres"
                   :key="genreID"
                   v-model="genreFlags[genreID]"
-                  :label="genresMap[genreID][isJapanese ? 'name' : 'nameEng']"
+                  :label="genresMap[genreID]?.[isJapanese ? 'name' : 'nameEng'] ?? ''"
                   :color="exhibition.color"
                   label-class="font-bold"
                 ></SwitchBase>
@@ -301,7 +301,7 @@ const { genreFlags, updateGenreFlags, removeGenreFlags, exhibitionOptions, isFil
             :name="exhibitor.name"
             :contents="exhibitor.contents"
             :color="
-              exhibitor.exhibition ? exhibitionsMap[exhibitor.exhibition].color : 'exhibition-a'
+              exhibitor.exhibition ? exhibitionsMap[exhibitor.exhibition]?.color : 'exhibition-a'
             "
             :is-favorite="includedFavorites(exhibitor.id)"
             :favorite-method="switchFavorite"

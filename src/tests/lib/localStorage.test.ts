@@ -51,7 +51,7 @@ describe('localStorageUtils', () => {
 
       storage.set(value)
       expect(consoleErrorSpy).toHaveBeenCalled()
-      expect(consoleErrorSpy.mock.calls[0][0]).toContain('localStorageの保存に失敗しました')
+      expect(consoleErrorSpy.mock.calls[0]![0]).toContain('localStorageの保存に失敗しました')
     })
 
     it('エラー系: 値の取得に失敗した場合', () => {
@@ -62,7 +62,9 @@ describe('localStorageUtils', () => {
 
       const result = storage.get()
       expect(consoleErrorSpy).toHaveBeenCalled()
-      expect(consoleErrorSpy.mock.calls[0][0]).toContain('localStorageの取得に失敗しました')
+      const lastCall =
+        consoleErrorSpy.mock.calls[consoleErrorSpy.mock.calls.length - 1]
+      expect(lastCall![0]).toContain('localStorageの取得に失敗しました')
       expect(result).toBeNull()
     })
 
@@ -74,7 +76,9 @@ describe('localStorageUtils', () => {
 
       storage.remove()
       expect(consoleErrorSpy).toHaveBeenCalled()
-      expect(consoleErrorSpy.mock.calls[0][0]).toContain('localStorageの削除に失敗しました')
+      const lastCall =
+        consoleErrorSpy.mock.calls[consoleErrorSpy.mock.calls.length - 1]
+      expect(lastCall![0]).toContain('localStorageの削除に失敗しました')
     })
 
     it('localStorageが利用できない場合', () => {

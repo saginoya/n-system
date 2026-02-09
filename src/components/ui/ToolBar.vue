@@ -55,7 +55,7 @@ const languageButtonClass = cn(variantConceptMap['flat']('info'), 'border hover:
             >
             </ListNavMenu>
             <ListNavItem
-              v-else
+              v-else-if="item.children[0]"
               :path="item.children[0]"
               :class="item.id === 'language' ? languageButtonClass : baseButtonClass"
             ></ListNavItem>
