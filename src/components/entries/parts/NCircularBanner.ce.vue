@@ -2,17 +2,22 @@
 import { computed } from 'vue'
 
 import { bgColorMap } from '@/styles'
-import type { Color, LinkType } from '@/types'
-import { getLinkOptions } from '@/utils'
+import type { Color, RouterLinkProps } from '@/types'
+import { linkManager } from '@/composables/useLinkManager'
 
-const props = defineProps<{
-  color: Color
-  size: SizeOptions
-  href: string
-  type: LinkType
-}>()
+const props = defineProps<
+  {
+    color: Color
+    size: SizeOptions
+    href: string
+  } & RouterLinkProps
+>()
 
-const linkOptions = getLinkOptions(props.href, props.type)
+const { linkOptions } = linkManager({
+  href: props.href,
+  type: props.type,
+  routerId: props.routerId,
+})
 
 const sizeOptions = {
   xs: 'size-16',
@@ -34,14 +39,15 @@ const variant = computed<string[]>(() => {
 </script>
 
 <template>
-  <a
-    :href="linkOptions.href"
-    :target="linkOptions.target"
+  <component
+    :is="linkOptions ? 'a' : 'span'"
+    :href="linkOptions ? linkOptions.href : undefined"
+    :target="linkOptions ? linkOptions.target : undefined"
     class="inline-flex items-center justify-center rounded-full text-white transition-opacity hover:opacity-80 focus:opacity-80"
     :class="variant"
   >
     <slot />
-  </a>
+  </component>
 </template>
 
 <style>
