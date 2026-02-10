@@ -38,7 +38,7 @@ const { isPreparation, setPublishedState, isClosing } = usePublishedState()
 
 // リンク関連のロジック
 const isLink = computed(() => {
-  return Boolean(props.href) && !isPreparation.value && !isClosing.value
+  return linkOptions && !isPreparation.value && !isClosing.value
 })
 </script>
 
