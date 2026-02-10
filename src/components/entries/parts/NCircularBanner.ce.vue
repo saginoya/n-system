@@ -46,6 +46,11 @@ const variant = computed<string[]>(() => {
     :class="variant"
   >
     <slot />
+    <component
+      v-if="linkOptions"
+      :is="linkOptions.icon"
+      class="absolute inset-y-auto right-2 size-6"
+    />
   </component>
 </template>
 
