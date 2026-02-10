@@ -47,7 +47,7 @@ const isLink = computed(() => {
     :is="isLink ? 'a' : 'span'"
     :href="linkOptions ? linkOptions.href : null"
     :target="linkOptions ? linkOptions.target : null"
-    class="group relative inline-block w-fit max-w-full"
+    class="group relative block size-fit max-w-full overflow-hidden"
   >
     <!-- 画像コンポーネント -->
     <NImage :src="src" :alt="alt" :width="width" :height="height" />
