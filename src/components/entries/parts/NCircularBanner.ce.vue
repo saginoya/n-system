@@ -9,7 +9,6 @@ const props = defineProps<
   {
     color: Color
     size: SizeOptions
-    href: string
   } & RouterLinkProps
 >()
 
