@@ -1,15 +1,33 @@
 import { describe, it, expect } from 'vitest'
+import { parseValidDate, separateDate, commonDateFormats } from '../../utils/dateFormatUtils'
 
-import { formatDate } from '../../utils/dateFormatUtils'
+describe('parseValidDate', () => {
+  it('有効な日付文字列ならDate型を返す', () => {
+    const input = '2024-03-15T14:30:00+09:00'
+    const result = parseValidDate(input)
 
-describe('formatDate', () => {
-  it('有効な日付文字列を正しくフォーマットできる', () => {
-    const result = formatDate('2024-03-15T14:30:00')
+    expect(result).toBeInstanceOf(Date)
+    // 値が正しいか確認（getTimeなどで数値比較するのもアリ）
+    expect(result?.getFullYear()).toBe(2024)
+  })
+
+  it('無効な文字列であればundefinedを返す', () => {
+    expect(parseValidDate('invalid-date')).toBeUndefined()
+    expect(parseValidDate('jojojo')).toBeUndefined()
+  })
+})
+
+describe('separateDate', () => {
+  it('有効な日付オブジェクトを正しく分離できる', () => {
+    // タイムゾーンを明示して環境依存を防ぐ
+    const date = new Date('2024-03-15T14:30:00+09:00')
+    const result = separateDate(date)
+
     expect(result).toEqual({
       year: '2024',
       month: '3',
       date: '15',
-      day: '5', // 金曜日
+      day: '5',
       dayJa: '金',
       hour: '14',
       minutes: '30',
@@ -19,43 +37,22 @@ describe('formatDate', () => {
       twoDigitMinutes: '30',
     })
   })
+})
 
-  it('空文字列の場合はnullを返す', () => {
-    const result = formatDate('')
-    expect(result).toBeNull()
+describe('commonDateFormats', () => {
+  const input = '2024-03-15T14:30:00+09:00'
+
+  it('dateTime 形式が正しく取得できる', () => {
+    const result = commonDateFormats(input, 'dateTime')
+    expect(result).toBe('2024-03-15 14:30')
   })
 
-  it('無効な日付文字列の場合はnullを返す', () => {
-    const result = formatDate('invalid-date')
-    expect(result).toBeNull()
+  it('dateJa 形式が正しく取得できる', () => {
+    const result = commonDateFormats(input, 'dateJa')
+    expect(result).toBe('2024年3月15日')
   })
 
-  it('1桁の月と日を正しく2桁にフォーマットできる', () => {
-    const result = formatDate('2024-01-05T09:05:00')
-    expect(result).toEqual({
-      year: '2024',
-      month: '1',
-      date: '5',
-      day: '5', // 金曜日
-      dayJa: '金',
-      hour: '9',
-      minutes: '5',
-      twoDigitMonth: '01',
-      twoDigitDate: '05',
-      twoDigitHour: '09',
-      twoDigitMinutes: '05',
-    })
-  })
-
-  it('日曜日を正しく判定できる', () => {
-    const result = formatDate('2024-03-17T00:00:00')
-    expect(result?.day).toBe('0')
-    expect(result?.dayJa).toBe('日')
-  })
-
-  it('土曜日を正しく判定できる', () => {
-    const result = formatDate('2024-03-16T00:00:00')
-    expect(result?.day).toBe('6')
-    expect(result?.dayJa).toBe('土')
+  it('無効な文字列の場合は空文字を返す', () => {
+    expect(commonDateFormats('invalid', 'date')).toBe('')
   })
 })

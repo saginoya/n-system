@@ -4,11 +4,12 @@ import { computed } from 'vue'
 import IconClock from '@/components/icons/IconClock.vue'
 import { linkManager } from '@/composables/useLinkManager'
 import { usePublishedState } from '@/composables/usePublishedState'
+import { useLang } from '@/composables/useLang'
 import { cn } from '@/lib/cn'
 import { variantConceptMap } from '@/styles'
 import type { Variant } from '@/styles'
 import type { Color, PublishedState, RouterLinkProps } from '@/types'
-import { formatDate } from '@/utils'
+import { commonDateFormats } from '@/utils'
 
 const props = withDefaults(
   defineProps<
@@ -56,6 +57,8 @@ const isLink = computed(() => {
   return linkOptions && !isPreparation.value && !isClosing.value
 })
 
+const { isJapanese } = useLang()
+
 type OverlayContent = {
   text: string
   class: string
@@ -63,41 +66,32 @@ type OverlayContent = {
 const overlayContent = computed<OverlayContent | false>(() => {
   if (isPreparation.value) {
     return {
-      text: '準備中',
+      text: isJapanese ? '準備中' : 'Under preparation',
       class: 'bg-white/70 text-slate-700',
     }
   } else if (isClosing.value) {
     return {
-      text: '締切ました',
+      text: isJapanese ? '締切ました' : 'Closed',
       class: 'bg-black/50',
     }
-  } else if (isExpiration.value) {
+  } else if (isExpiration.value && props.deadline) {
     return {
-      text: `${deadlineFormat()} 締切（延長中）`,
+      text: isJapanese
+        ? `${commonDateFormats(props.deadline, 'dateTimeJa')} 締切（延長中）`
+        : `The deadline: ${commonDateFormats(props.deadline, 'dateTime')}`,
       class: '',
     }
   } else if (props.deadline) {
     return {
-      text: `${deadlineFormat()} 締切`,
+      text: isJapanese
+        ? `${commonDateFormats(props.deadline, 'dateTimeJa')} 締切`
+        : `The deadline: ${commonDateFormats(props.deadline, 'dateTime')}`,
       class: '',
     }
   } else {
     return false
   }
 })
-
-const deadlineFormat = (): string | undefined => {
-  if (!props.deadline) return undefined
-  const formattedDate = formatDate(props.deadline)
-  const { year, month, date, twoDigitHour, twoDigitMinutes } = formattedDate || {
-    year: '',
-    month: '',
-    date: '',
-    twoDigitHour: '',
-    twoDigitMinutes: '',
-  }
-  return `${year}年${month}月${date}日 ${twoDigitHour}:${twoDigitMinutes}`
-}
 
 const sizeMap = {
   xs: 'w-52 h-14',

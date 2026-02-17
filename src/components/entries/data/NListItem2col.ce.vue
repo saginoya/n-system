@@ -3,7 +3,7 @@ import LinkBox from '@/components/ui/LinkBox.vue'
 import { linkManager } from '@/composables/useLinkManager'
 import { cn } from '@/lib/cn'
 import type { RouterLinkProps } from '@/types'
-import { formatDate, getDocumentLanguage } from '@/utils'
+import { commonDateFormats, getDocumentLanguage } from '@/utils'
 
 const props = defineProps<
   {
@@ -18,11 +18,8 @@ const { linkOptions } = linkManager({
   routerId: props.routerId,
 })
 
-const formattedDate = props.datetime ? formatDate(props.datetime) : undefined
-const { year, month, date } = formattedDate || { year: '', month: '', date: '' }
-
-const labelTimeJa = `${year}年${month}月${date}日`
-const labelTimeEn = `${year}-${month}-${date}`
+const labelTimeJa = props.datetime ? commonDateFormats(props.datetime, 'dateJa') : undefined
+const labelTimeEn = props.datetime ? commonDateFormats(props.datetime, 'date') : undefined
 const labelTime = getDocumentLanguage() === 'ja' ? labelTimeJa : labelTimeEn
 
 const commonClasses = 'p-2 sm:col-span-3 md:col-span-5 md:p-4 text-inherit'
