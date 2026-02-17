@@ -15,6 +15,27 @@
         <p>このページはLang属性を"en"に設定してあります。</p>
       </n-card>
 
+      <n-card>
+        <n-title>バナー</n-title>
+        <n-banner color="orange" size="w-full" href="./">w-full</n-banner>
+        <n-banner color="yellow" size="xs" href="./" type="pdf" note="補足説明">xs </n-banner>
+        <n-banner color="green" size="sm" href="./">sm</n-banner>
+        <n-banner color="blue" size="md" href="./" deadline="2025-03-28T23:59:59+09:00"
+          >md</n-banner
+        >
+        <n-banner color="indigo" size="lg" href="./" deadline="2200-03-28T23:59:59+09:00"
+          >lg</n-banner
+        >
+        <n-banner color="amber" size="xl" href="./">xl</n-banner>
+        <n-banner color="sky" size="md" href="./"
+          >あああああああああああああああああああああああああああああああああああああ</n-banner
+        >
+        <n-banner color="lime" size="md" variant="outlined" href="./"
+          >aaaaaaaa aaaaaaaaaaaaaaa aaaaaaaa aaaaaaaaaaaa aaaaaaaaaa aaaaaaaaaaa</n-banner
+        >
+        <n-banner color="info" size="md" variant="text" href="./">aaa</n-banner>
+      </n-card>
+
       <n-title>出展社一覧</n-title>
       <n-exhibitors
         list-src="/json/exhibitor-list2026.json"
@@ -60,34 +81,34 @@
       </n-card>
 
       <n-card>
-        <n-title-index>新着情報</n-title-index>
-        <n-list-news>
-          <n-list-item-date
+        <n-title>新着情報</n-title>
+        <n-list>
+          <n-list-item-2col
             datetime="2025-06-16T16:00:00+09:00"
             href="./sample.html"
             type="internal"
           >
             <p>リンクのあるニュース</p>
             <p>こんな感じ</p>
-          </n-list-item-date>
-          <n-list-item-date datetime="2024-07-11T16:00:00+09:00">
+          </n-list-item-2col>
+          <n-list-item-2col datetime="2024-07-11T16:00:00+09:00">
             <p>公開版1.0.0リリース</p>
             <p>沖縄パック2025サイト公開にあわせて</p>
-          </n-list-item-date>
-          <n-list-item-date datetime="2024-06-26T16:00:00+09:00">
+          </n-list-item-2col>
+          <n-list-item-2col datetime="2024-06-26T16:00:00+09:00">
             <p>ベータ版0.2.2リリース</p>
             <p>バナーページ開設</p>
-          </n-list-item-date>
-          <n-list-item-date datetime="2024-06-25T13:00:00+09:00">
+          </n-list-item-2col>
+          <n-list-item-2col datetime="2024-06-25T13:00:00+09:00">
             <p>ベータ版0.2.1リリース</p>
             <p>Configファイルのパスの設定仕様変更</p>
             <p>クイックスタートページの開設</p>
-          </n-list-item-date>
-          <n-list-item-date datetime="2024-06-21T13:00:00+09:00">
+          </n-list-item-2col>
+          <n-list-item-2col datetime="2024-06-21T13:00:00+09:00">
             <p>N-Systemのベータ版0.2.0リリース</p>
             <p>2025沖縄パックサイトに導入</p>
-          </n-list-item-date>
-        </n-list-news>
+          </n-list-item-2col>
+        </n-list>
       </n-card>
     </n-app>
     <script type="module" src="/src/main.ts"></script>

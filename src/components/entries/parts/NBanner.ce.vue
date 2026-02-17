@@ -66,24 +66,24 @@ type OverlayContent = {
 const overlayContent = computed<OverlayContent | false>(() => {
   if (isPreparation.value) {
     return {
-      text: isJapanese ? '準備中' : 'Under preparation',
+      text: isJapanese.value ? '準備中' : 'Under preparation',
       class: 'bg-white/70 text-slate-700',
     }
   } else if (isClosing.value) {
     return {
-      text: isJapanese ? '締切ました' : 'Closed',
+      text: isJapanese.value ? '締切ました' : 'Closed',
       class: 'bg-black/50',
     }
   } else if (isExpiration.value && props.deadline) {
     return {
-      text: isJapanese
+      text: isJapanese.value
         ? `${commonDateFormats(props.deadline, 'dateTimeJa')} 締切（延長中）`
         : `The deadline: ${commonDateFormats(props.deadline, 'dateTime')}`,
       class: '',
     }
   } else if (props.deadline) {
     return {
-      text: isJapanese
+      text: isJapanese.value
         ? `${commonDateFormats(props.deadline, 'dateTimeJa')} 締切`
         : `The deadline: ${commonDateFormats(props.deadline, 'dateTime')}`,
       class: '',
