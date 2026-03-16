@@ -25,10 +25,7 @@ const enabled = defineModel<boolean>({ default: false })
 <template>
   <SwitchGroup class="rounded p-2 hover:bg-blue-100">
     <NContainerFlex items="center" justify="between" wrap="nowrap">
-      <SwitchLabel
-        if="label"
-        :class="cn('grow', enabled ? textColorMap[props.color] : 'text-gray-300', labelClass)"
-      >
+      <SwitchLabel if="label" :class="cn('grow', labelClass)">
         {{ label }}
       </SwitchLabel>
       <Switch
