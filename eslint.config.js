@@ -1,7 +1,7 @@
 import pluginVitest from '@vitest/eslint-plugin'
 import skipFormatting from '@vue/eslint-config-prettier/skip-formatting'
 import vueTsEslintConfig from '@vue/eslint-config-typescript'
-import pluginImport from 'eslint-plugin-import'
+import pluginImportX from 'eslint-plugin-import-x'
 import pluginTailwindcss from 'eslint-plugin-tailwindcss'
 import pluginVue from 'eslint-plugin-vue'
 
@@ -21,16 +21,26 @@ export default [
   ...vueTsEslintConfig(),
 
   {
+    name: 'app/vitest-configs',
     ...pluginVitest.configs.recommended,
     files: ['src/**/__tests__/*'],
   },
-  skipFormatting,
+
   {
-    // eslint-plugin-import の設定
-    plugins: { import: pluginImport },
+    // import/order の設定
+    name: 'app/import-rules',
+    plugins: {
+      import: pluginImportX,
+    },
+    settings: {
+      'import-x/resolver': {
+        typescript: true,
+        node: true,
+      },
+    },
     rules: {
       'import/order': [
-        'error', // または 'warn', 'off'
+        'error',
         {
           groups: [
             'builtin',
@@ -58,4 +68,7 @@ export default [
       ],
     },
   },
+
+  // Prettierとの競合回避設定（必ず最後に置く）
+  skipFormatting,
 ]
