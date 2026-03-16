@@ -2,9 +2,9 @@
 import { computed } from 'vue'
 
 import IconClock from '@/components/icons/IconClock.vue'
+import { useLang } from '@/composables/useLang'
 import { linkManager } from '@/composables/useLinkManager'
 import { usePublishedState } from '@/composables/usePublishedState'
-import { useLang } from '@/composables/useLang'
 import { cn } from '@/lib/cn'
 import { variantConceptMap } from '@/styles'
 import type { Variant } from '@/styles'

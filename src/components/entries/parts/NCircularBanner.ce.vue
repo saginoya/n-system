@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
+import { linkManager } from '@/composables/useLinkManager'
 import { bgColorMap } from '@/styles'
 import type { Color, RouterLinkProps } from '@/types'
-import { linkManager } from '@/composables/useLinkManager'
 
 const props = defineProps<
   {
