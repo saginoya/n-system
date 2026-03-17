@@ -23,5 +23,5 @@ const variant: string[] = [gapMap[props.gap], alignItemsMap[props.aline]]
 </template>
 
 <style>
-@import url('@/assets/css/main.css');
+@import '@/assets/css/web-component.css';
 </style>

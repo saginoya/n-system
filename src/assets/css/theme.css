@@ -1,0 +1,11 @@
+@theme {
+  --color-primary: var(--site-primary);
+  --color-secondary: var(--site-secondary);
+  --color-accent: var(--site-accent);
+  --color-exhibition-a: var(--site-exhibition-a);
+  --color-exhibition-b: var(--site-exhibition-b);
+  --color-info: var(--site-info);
+  --color-success: var(--site-success);
+  --color-error: var(--site-error);
+  --color-warning: var(--site-warning);
+}

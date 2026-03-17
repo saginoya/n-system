@@ -26,5 +26,20 @@ withDefaults(
 </template>
 
 <style>
-@import url(@/assets/css/main.css);
+@import '@/assets/css/web-component.css';
+
+@layer base {
+  h2 {
+    @apply text-3xl font-bold tracking-tight text-slate-500 font-mono;
+  }
+  h3 {
+    @apply text-2xl font-bold text-slate-700 font-mono;
+  }
+  h4 {
+    @apply text-xl font-bold tracking-wider text-slate-800;
+  }
+  h5 {
+    @apply text-lg font-bold tracking-wider text-slate-900;
+  }
+}
 </style>

@@ -1,0 +1,17 @@
+@import 'tailwindcss';
+@import './theme.css';
+
+/* 
+子コンポーネントも含めてスキャン対象にする
+ただし、entries/ (*.ce.vue)は含めいないように注意
+*/
+@source "../../components/features/**/*.vue";
+@source "../../components/icons/**/*.vue";
+@source "../../components/templates/**/*.vue";
+@source "../../components/ui/**/*.vue";
+
+@layer base {
+  a {
+    @apply text-blue-600;
+  }
+}

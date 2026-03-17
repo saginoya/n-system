@@ -66,5 +66,5 @@ type Align = keyof typeof alignMap
 </template>
 
 <style>
-@import url('@/assets/css/main.css');
+@import '@/assets/css/web-component.css';
 </style>

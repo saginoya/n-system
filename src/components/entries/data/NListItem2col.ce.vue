@@ -53,5 +53,5 @@ const commonClasses = 'p-2 sm:col-span-3 md:col-span-5 md:p-4 text-inherit'
 </template>
 
 <style>
-@import url(@/assets/css/main.css);
+@import '@/assets/css/web-component.css';
 </style>

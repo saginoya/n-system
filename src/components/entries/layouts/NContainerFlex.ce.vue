@@ -53,5 +53,5 @@ const direction = props.spDirectionCol ? 'flex-col sm:flex-row' : undefined
 </template>
 
 <style>
-@import url('@/assets/css/main.css');
+@import '@/assets/css/web-component.css';
 </style>

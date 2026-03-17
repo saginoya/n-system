@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-nocheck
 import pluginVitest from '@vitest/eslint-plugin'
 import skipFormatting from '@vue/eslint-config-prettier/skip-formatting'
 import vueTsEslintConfig from '@vue/eslint-config-typescript'
 import pluginImportX from 'eslint-plugin-import-x'
-import pluginTailwindcss from 'eslint-plugin-tailwindcss'
 import pluginVue from 'eslint-plugin-vue'
 
 export default [
@@ -17,7 +18,6 @@ export default [
   },
 
   ...pluginVue.configs['flat/essential'],
-  ...pluginTailwindcss.configs['flat/recommended'],
   ...vueTsEslintConfig(),
 
   {

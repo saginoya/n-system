@@ -7,5 +7,11 @@
 </template>
 
 <style>
-@import url(@/assets/css/main.css);
+@import '@/assets/css/web-component.css';
+
+@layer base {
+  h2 {
+    @apply text-3xl font-bold tracking-tight text-slate-500 font-mono;
+  }
+}
 </style>
