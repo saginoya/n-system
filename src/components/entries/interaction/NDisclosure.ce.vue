@@ -16,12 +16,7 @@ withDefaults(
 </script>
 
 <template>
-  <Disclosure
-    as="div"
-    class="border-b-2 border-gray-100"
-    :default-open="defaultOpen"
-    v-slot="{ open }"
-  >
+  <Disclosure as="div" class="border-b" :default-open="defaultOpen" v-slot="{ open }">
     <DisclosureButton class="flex w-full items-center justify-between p-2 text-start">
       <slot name="title">
         <span>{{ title }}</span>
