@@ -1,0 +1,130 @@
+{
+  "exhibitions": [
+    {
+      "id": "nexpo",
+      "name": "NEW環境展",
+      "nameEng": "N-EXPO",
+      "color": "exhibition-a",
+      "genres": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "J",
+        "K",
+        "L",
+        "M",
+        "N",
+        "Z"
+      ]
+    },
+    {
+      "id": "gwpe",
+      "name": "地球温暖化防止展",
+      "nameEng": "GWPE",
+      "color": "exhibition-b",
+      "genres": ["P", "Q", "R", "S", "T"]
+    }
+  ],
+  "genres": [
+    {
+      "id": "A",
+      "name": "再資源化・廃棄物処理",
+      "nameEng": "Waste Recycling / Waste Disposal"
+    },
+    {
+      "id": "B",
+      "name": "バイオマス・有機性廃棄物処理",
+      "nameEng": "Biomass / Organic Waste Disposal"
+    },
+    {
+      "id": "C",
+      "name": "サーマル・ごみ発電・熱利用",
+      "nameEng": "Thermal / Waste Power Generation / Heat Utilization"
+    },
+    {
+      "id": "D",
+      "name": "環境ソフト・DX・測定・分析",
+      "nameEng": "Environmental Software / DX / Measurement / Analysis"
+    },
+    {
+      "id": "E",
+      "name": "NEW環境展 ベンチャー",
+      "nameEng": "N-EXPO Venture"
+    },
+    {
+      "id": "F",
+      "name": "解体・アスベスト対策",
+      "nameEng": "Demolition / Measures for Asbestos"
+    },
+    {
+      "id": "G",
+      "name": "関係団体・学術機関",
+      "nameEng": "Affiliate Organizations / Academic Organizations"
+    },
+    {
+      "id": "H",
+      "name": "自治体",
+      "nameEng": "Autonomy"
+    },
+    {
+      "id": "J",
+      "name": "海洋プラ・廃プラ対策・バイオプラ・エコ製品",
+      "nameEng": "Marine Plastic / Waste Plastic Measures / Bioplastic / Eco-Products"
+    },
+    {
+      "id": "K",
+      "name": "水処理・水質浄化",
+      "nameEng": "Water Treatment / Water Purificationn"
+    },
+    {
+      "id": "L",
+      "name": "土木・建設・災害対策",
+      "nameEng": "Civil Engineering / Construction/ Disaster Countermeasure"
+    },
+    {
+      "id": "M",
+      "name": "土壌・大気・作業環境改善",
+      "nameEng": "Soil / Atmosphere / Environmental Improvement"
+    },
+    {
+      "id": "N",
+      "name": "収集・運搬",
+      "nameEng": "Collection / Transportation"
+    },
+    {
+      "id": "P",
+      "name": "猛暑対策",
+      "nameEng": "Intense Heat Countermeasures"
+    },
+    {
+      "id": "Q",
+      "name": "脱炭素・カーボンニュートラル",
+      "nameEng": "Decarbonization / Carbon Neutral"
+    },
+    {
+      "id": "R",
+      "name": "新エネ・再エネ推進",
+      "nameEng": "Alternative Energy / Reproducing Energy"
+    },
+    {
+      "id": "S",
+      "name": "節電・省エネ対策",
+      "nameEng": "Power / Energy Saving Technology"
+    },
+    {
+      "id": "T",
+      "name": "地球温暖化防止展 ベンチャー",
+      "nameEng": "GWPE Venture"
+    },
+    {
+      "id": "Z",
+      "name": "屋外実演会場",
+      "nameEng": "The Outdoor Demonstration"
+    }
+  ]
+}
