@@ -11,6 +11,9 @@
 @source "../../components/ui/**/*.vue";
 
 @layer base {
+  body {
+    @apply font-sans text-slate-600;
+  }
   a {
     @apply text-blue-600;
   }
