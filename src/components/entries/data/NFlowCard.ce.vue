@@ -12,7 +12,9 @@ defineProps<{
 <template>
   <NContainerFlex align-items="stretch" class="h-auto sm:h-full">
     <!-- フローの本体 -->
-    <section class="w-full rounded border shadow-md transition-all hover:shadow-lg sm:w-48">
+    <section
+      class="w-full rounded border shadow-md transition-all hover:shadow-lg sm:w-48 overflow-hidden"
+    >
       <header class="bg-slate-100 px-2 pt-1 text-center font-bold">
         <slot name="header">
           {{ header }}
