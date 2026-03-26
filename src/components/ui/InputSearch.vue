@@ -21,7 +21,7 @@ const model = defineModel<string>()
     action="#"
     :class="
       cn(
-        'max-w-full overflow-hidden rounded-full border-2 bg-white has-[input:focus-within]:border-info',
+        'max-w-full overflow-hidden rounded-full border-2 border-white bg-white has-[input:focus-within]:border-info',
         className,
       )
     "

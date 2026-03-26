@@ -18,7 +18,7 @@ defineProps<{
 <template>
   <li>
     <div
-      class="grid cursor-pointer grid-cols-5 items-center gap-4 py-2 hover:bg-slate-100 focus:bg-slate-100 sm:grid-cols-7 md:grid-cols-9 lg:grid-cols-12"
+      class="grid cursor-pointer grid-cols-5 items-center gap-4 py-3 hover:bg-slate-100 focus:bg-slate-100 sm:grid-cols-7 md:grid-cols-9 lg:grid-cols-12"
     >
       <div class="text-center">
         <NChip :color="color || 'exhibition-a'">

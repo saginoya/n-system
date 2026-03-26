@@ -68,9 +68,8 @@ const texts = {
         @click.stop="favoriteMethod(id)"
       ></TooltipBookmark>
     </header>
-    <MarkupText v-if="contents" :content="contents" class="break-all bg-gray-100 px-2 py-1">
-    </MarkupText>
-    <dl class="divide-y">
+    <MarkupText v-if="contents" :content="contents" class="break-all bg-gray-100 p-3"> </MarkupText>
+    <dl class="divide-y divide-gray-200">
       <div class="grid grid-cols-1 gap-2 py-2 sm:grid-cols-4 md:grid-cols-6">
         <dt class="font-bold">{{ exhibition }}</dt>
         <dd class="sm:col-span-3 md:col-span-5">{{ genre }}</dd>

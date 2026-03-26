@@ -261,7 +261,7 @@ const { genreFlags, updateGenreFlags, removeGenreFlags, exhibitionOptions, isFil
     <!-- メインの一覧カード -->
     <NCard>
       <!-- お気に入り登録切り替えタブ -->
-      <NContainerFlex justify="between" class="border-b border-b-slate-200">
+      <NContainerFlex justify="between">
         <NContainerFlex align-items="center" gap="2">
           <TabsBase
             v-model="stateFavorite"
@@ -290,7 +290,7 @@ const { genreFlags, updateGenreFlags, removeGenreFlags, exhibitionOptions, isFil
       <LoadingSpinner v-if="isLoading" :show="true" message="loading..."></LoadingSpinner>
 
       <!-- 出展社の一覧リスト -->
-      <ul v-else-if="numExhibitorList" class="divide-y">
+      <ul v-else-if="numExhibitorList" class="divide-y divide-gray-200">
         <template v-for="(exhibitor, index) in exhibitorList" :key="exhibitor.id">
           <ListHeading v-if="showHeading(index)">
             {{ getHeading(index) }}
