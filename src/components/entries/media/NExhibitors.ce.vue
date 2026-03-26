@@ -194,8 +194,9 @@ const { genreFlags, updateGenreFlags, removeGenreFlags, exhibitionOptions, isFil
       <!-- フィルターのモーダル -->
       <ModalBase :visible="visibleFilterModal" :close-action="dismissFilterModal">
         <NContainer1col gap="8">
+          <NTitle>{{ isJapanese ? '絞り込み条件' : 'Filter' }}</NTitle>
           <NContainer1col gap="2">
-            <NTitle>{{ isJapanese ? '所在地よる絞り込み' : 'Filter by Location' }}</NTitle>
+            <NTitle lv="h4">{{ isJapanese ? '所在地' : 'Location' }}</NTitle>
             <NContainerGrid cols="2" gap="2">
               <SwitchBase
                 v-model="stateOverseas"
@@ -207,9 +208,7 @@ const { genreFlags, updateGenreFlags, removeGenreFlags, exhibitionOptions, isFil
             </NContainerGrid>
           </NContainer1col>
           <NContainer1col gap="2">
-            <NTitle>{{
-              isJapanese ? '展示会・エリアによる絞り込み' : 'Filter by Exhibition/Area'
-            }}</NTitle>
+            <NTitle lv="h4">{{ isJapanese ? '展示会・エリア' : 'Exhibition/Area' }}</NTitle>
             <NContainerGrid cols="2" gap="2" v-if="genresMap">
               <NContainer1col v-for="exhibition in exhibitionOptions" :key="exhibition.id" gap="0">
                 <SwitchBase
