@@ -15,7 +15,7 @@ export type ExhibitorProfileProps = {
   isFavorite: boolean
   favoriteMethod: (value: string) => void
   overseas: boolean
-  country: string
+  country?: string
   exhibition?: string
   subName?: string
   genre?: string

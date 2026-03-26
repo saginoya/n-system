@@ -111,8 +111,8 @@ type Size = keyof typeof sizeMap
     :is="isLink ? 'a' : 'div'"
     class="group relative block max-w-full overflow-hidden rounded border-2"
     :class="cn(sizeMap[size], variantConceptMap[variant](color))"
-    :href="linkOptions ? linkOptions.href : null"
-    :target="linkOptions ? linkOptions.target : null"
+    :href="linkOptions ? linkOptions.href : undefined"
+    :target="linkOptions ? linkOptions.target : undefined"
   >
     <div
       class="relative flex size-full flex-col items-center justify-center px-8 text-center leading-tight"

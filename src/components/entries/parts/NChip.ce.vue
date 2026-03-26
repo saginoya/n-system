@@ -41,9 +41,9 @@ const sizeClasses = {
 <template>
   <component
     :is="linkOptions ? LinkBox : 'span'"
-    :href="linkOptions ? linkOptions.href : null"
-    :target="linkOptions ? linkOptions.target : null"
-    :icon="linkOptions ? linkOptions.icon : null"
+    :href="linkOptions ? linkOptions.href : undefined"
+    :target="linkOptions ? linkOptions.target : undefined"
+    :icon="linkOptions ? linkOptions.icon : undefined"
     :class="
       cn(
         chipBase,

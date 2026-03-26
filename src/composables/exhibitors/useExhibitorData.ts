@@ -13,7 +13,7 @@ export const useExhibitorData = (
   // 出展社リストの未加工データ
   const rawExhibitorList = ref<Exhibitors>([])
   const isLoading = ref(false)
-  const error = ref<Error | null>(null)
+  const error = ref<Error | undefined>(undefined)
 
   // 未加工の出展社リストの件数
   const numRawExhibitorList = computed<number>(() => {
@@ -23,7 +23,7 @@ export const useExhibitorData = (
   // 非同期通信で出展社データを取得し、変換して格納する関数
   const load = async () => {
     isLoading.value = true
-    error.value = null
+    error.value = undefined
     try {
       const json = await getJson<JsonExhibitor[]>(src)
       rawExhibitorList.value = await convertJSONToExhibitorList(json, lang)

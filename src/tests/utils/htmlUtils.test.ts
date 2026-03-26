@@ -30,9 +30,9 @@ describe('setBodyVisibility', () => {
     const originalBody = document.body
     const consoleErrorSpy = vi.spyOn(console, 'error')
 
-    // document.body を null に上書き
+    // document.body を undefined に上書き
     Object.defineProperty(document, 'body', {
-      value: null,
+      value: undefined,
       configurable: true,
     })
 

@@ -12,7 +12,7 @@ export const usePublishedState = () => {
   const deadline = ref<Date | undefined>()
   const now = ref<Date>(new Date())
   const isAutoDeadline = ref<boolean>(true)
-  const intervalId = ref<ReturnType<typeof setInterval> | null>(null)
+  const intervalId = ref<ReturnType<typeof setInterval> | undefined>(undefined)
 
   /**
    * 期限切れ状態かどうかを判定
@@ -87,7 +87,7 @@ export const usePublishedState = () => {
   watch(deadline, (newDeadline) => {
     if (intervalId.value) {
       clearInterval(intervalId.value)
-      intervalId.value = null
+      intervalId.value = undefined
     }
     if (newDeadline && newDeadline > now.value) {
       intervalId.value = setInterval(updateNow, 180000)
@@ -99,7 +99,7 @@ export const usePublishedState = () => {
     (expired) => {
       if (expired && intervalId.value) {
         clearInterval(intervalId.value)
-        intervalId.value = null
+        intervalId.value = undefined
       }
     },
   )

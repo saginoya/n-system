@@ -64,7 +64,7 @@ describe('localStorageUtils', () => {
       expect(consoleErrorSpy).toHaveBeenCalled()
       const lastCall = consoleErrorSpy.mock.calls[consoleErrorSpy.mock.calls.length - 1]
       expect(lastCall![0]).toContain('localStorageの取得に失敗しました')
-      expect(result).toBeNull()
+      expect(result).toBeUndefined()
     })
 
     it('エラー系: 値の削除に失敗した場合', () => {
@@ -82,7 +82,7 @@ describe('localStorageUtils', () => {
     it('localStorageが利用できない場合', () => {
       // localStorageを利用不可に設定
       Object.defineProperty(window, 'localStorage', {
-        value: null,
+        value: undefined,
         writable: true,
       })
 

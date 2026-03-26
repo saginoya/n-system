@@ -1,4 +1,4 @@
-type StorageValue = string | null
+type StorageValue = string | undefined
 
 /**
  * localStorageが利用できるかどうかを判定する
@@ -26,7 +26,7 @@ export const localStorageManager = (name: string) => {
     console.warn('localStorageが利用できません')
     return {
       set: () => {},
-      get: () => null,
+      get: () => undefined,
       remove: () => {},
     }
   }
@@ -41,10 +41,10 @@ export const localStorageManager = (name: string) => {
 
   const get = (): StorageValue => {
     try {
-      return localStorage.getItem(name)
+      return localStorage.getItem(name) ?? undefined
     } catch (error) {
       console.error('localStorageの取得に失敗しました:', error)
-      return null
+      return undefined
     }
   }
 

@@ -45,8 +45,8 @@ const isLink = computed(() => {
 <template>
   <component
     :is="isLink ? 'a' : 'span'"
-    :href="linkOptions ? linkOptions.href : null"
-    :target="linkOptions ? linkOptions.target : null"
+    :href="linkOptions ? linkOptions.href : undefined"
+    :target="linkOptions ? linkOptions.target : undefined"
     class="group relative block size-fit max-w-full overflow-hidden"
   >
     <!-- 画像コンポーネント -->

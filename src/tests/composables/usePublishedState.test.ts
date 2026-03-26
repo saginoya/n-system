@@ -62,7 +62,7 @@ describe('usePublishedState', () => {
 
   it('deadline未設定時はintervalが動かない', () => {
     const state = usePublishedState()
-    expect(state.intervalId.value).toBeNull()
+    expect(state.intervalId.value).toBeUndefined()
   })
 
   it('期限切れ時はintervalがクリアされる', async () => {
@@ -71,6 +71,6 @@ describe('usePublishedState', () => {
     vi.advanceTimersByTime(180000)
     state.updateNow()
     await nextTick()
-    expect(state.intervalId.value).toBeNull()
+    expect(state.intervalId.value).toBeUndefined()
   })
 })

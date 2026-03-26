@@ -28,7 +28,6 @@ type LinkOptions = {
 
 /**
  * リンクのオプションを取得
- * 引数のいずれかが不正な場合は、リンクのオプションはnullになる
  * @param href リンクのURL
  * @param type リンクのタイプ
  * @returns リンクのオプション
