@@ -194,20 +194,19 @@ const { genreFlags, updateGenreFlags, removeGenreFlags, exhibitionOptions, isFil
       <!-- フィルターのモーダル -->
       <ModalBase :visible="visibleFilterModal" :close-action="dismissFilterModal">
         <NContainer1col gap="8">
-          <section>
+          <NContainer1col gap="2">
             <NTitle>{{ isJapanese ? '所在地よる絞り込み' : 'Filter by Location' }}</NTitle>
             <NContainerGrid cols="2" gap="2">
               <SwitchBase
                 v-model="stateOverseas"
                 :label="isJapanese ? '海外の出展社のみ' : 'Overseas only'"
-                label-class="font-bold text-lg"
                 @update:model-value="
                   (val) => (val ? updateStateOverseas(val) : removeStateOverseas())
                 "
               ></SwitchBase>
             </NContainerGrid>
-          </section>
-          <section>
+          </NContainer1col>
+          <NContainer1col gap="2">
             <NTitle>{{
               isJapanese ? '展示会・エリアによる絞り込み' : 'Filter by Exhibition/Area'
             }}</NTitle>
@@ -217,7 +216,7 @@ const { genreFlags, updateGenreFlags, removeGenreFlags, exhibitionOptions, isFil
                   v-model="exhibition.isOn.value"
                   :label="exhibition.label"
                   :color="exhibition.color"
-                  label-class="font-bold text-lg"
+                  label-class="font-bold"
                   @update:model-value="(val) => updateGenreFlags(exhibition.genres, val)"
                 ></SwitchBase>
                 <SwitchBase
@@ -226,11 +225,10 @@ const { genreFlags, updateGenreFlags, removeGenreFlags, exhibitionOptions, isFil
                   v-model="genreFlags[genreID]"
                   :label="genresMap[genreID]?.[isJapanese ? 'name' : 'nameEng'] ?? ''"
                   :color="exhibition.color"
-                  label-class="font-bold"
                 ></SwitchBase>
               </NContainer1col>
             </NContainerGrid>
-          </section>
+          </NContainer1col>
         </NContainer1col>
         <template #footer>
           <BtnBase color="gray" variant="text" :onClick="dismissFilterModal">Close</BtnBase>
