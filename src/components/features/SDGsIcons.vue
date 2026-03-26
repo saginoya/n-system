@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 
 import NContainerFlex from '@/components/entries/layouts/NContainerFlex.ce.vue'
+import TooltipBase from '@/components/ui/TooltipBase.vue'
 import { useLang } from '@/composables/useLang'
 import type { SDGsNum } from '@/types'
 import { SDGsJaMap, SDGsJaImgMap, SDGsEnMap, SDGsEnImgMap } from '@/utils'
@@ -16,16 +17,18 @@ const isJapanese = ref(lang.value === 'ja')
 
 <template>
   <NContainerFlex>
-    <component
-      v-for="n in numbers"
-      :key="n"
-      :is="isJapanese ? SDGsJaImgMap[n] : SDGsEnImgMap[n]"
-      :width="80"
-      :height="80"
-      :src="isJapanese ? SDGsJaImgMap[n] : SDGsEnImgMap[n]"
-      :alt="isJapanese ? SDGsJaMap[n] : SDGsEnMap[n]"
-      :title="isJapanese ? SDGsJaMap[n] : SDGsEnMap[n]"
-      class="size-20"
-    ></component>
+    <TooltipBase v-for="n in numbers" :key="n">
+      <component
+        :is="isJapanese ? SDGsJaImgMap[n] : SDGsEnImgMap[n]"
+        :width="60"
+        :height="60"
+        :src="isJapanese ? SDGsJaImgMap[n] : SDGsEnImgMap[n]"
+        :alt="isJapanese ? SDGsJaMap[n] : SDGsEnMap[n]"
+        class="size-15"
+      ></component>
+      <template v-slot:text>
+        {{ isJapanese ? SDGsJaMap[n] : SDGsEnMap[n] }}
+      </template>
+    </TooltipBase>
   </NContainerFlex>
 </template>
