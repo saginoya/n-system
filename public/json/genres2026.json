@@ -5,22 +5,7 @@
       "name": "NEW環境展",
       "nameEng": "N-EXPO",
       "color": "exhibition-a",
-      "genres": [
-        "A",
-        "B",
-        "C",
-        "D",
-        "E",
-        "F",
-        "G",
-        "H",
-        "J",
-        "K",
-        "L",
-        "M",
-        "N",
-        "Z"
-      ]
+      "genres": ["A", "B", "C", "D", "E", "F", "G", "H", "J", "K", "L", "M", "N", "Z"]
     },
     {
       "id": "gwpe",
