@@ -1,4 +1,4 @@
-import type { Exhibitors, ExhibitorID } from '@/types'
+import type { Exhibitors, ExhibitorID, OverseasType } from '@/types'
 
 /**
  * 出展社のリストをお気に入りで絞り込む
@@ -29,6 +29,12 @@ export const filterByGenres = (list: Exhibitors, genres: string[]): Exhibitors =
  * @param overseas
  * @returns
  */
-export const filterByOverseas = (list: Exhibitors, overseas: boolean): Exhibitors => {
-  return list.filter((exhibitor) => exhibitor.overseas === overseas)
+export const filterByOverseas = (list: Exhibitors, overseas: Set<OverseasType>): Exhibitors => {
+  return list.filter((exhibitor) => {
+    if (exhibitor.overseas) {
+      return overseas.has('overseas')
+    } else {
+      return overseas.has('domestic')
+    }
+  })
 }

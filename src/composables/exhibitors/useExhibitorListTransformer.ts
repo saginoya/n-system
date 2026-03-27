@@ -1,6 +1,13 @@
 import { computed, unref, type MaybeRef } from 'vue'
 
-import type { Exhibitors, SortType, GenreID, Favorites, ExhibitorSearchKey } from '@/types'
+import type {
+  Exhibitors,
+  SortType,
+  GenreID,
+  Favorites,
+  ExhibitorSearchKey,
+  OverseasType,
+} from '@/types'
 import { EXHIBITOR_SEARCH_KEYS } from '@/types'
 import {
   countExhibitors,
@@ -21,7 +28,7 @@ type Options = {
   favorite: MaybeRef<boolean>
   myFavorites: MaybeRef<Favorites>
   genres: MaybeRef<GenreID[]>
-  overseas: MaybeRef<boolean | undefined>
+  overseas: MaybeRef<Set<OverseasType>>
   keyword: MaybeRef<string | undefined>
   sort: MaybeRef<SortType>
 }
@@ -73,7 +80,7 @@ export const useExhibitorListTransformer = (rawData: ReadonlyRef<Exhibitors>, op
     }
 
     // フィルタリング（海外・国内）
-    if (overseas.value !== undefined) {
+    if (overseas.value.size < 2) {
       result = filterByOverseas(result, overseas.value)
     }
 

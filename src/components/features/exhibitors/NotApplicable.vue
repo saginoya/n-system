@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import NBulletedList from '@/components/entries/data/NBulletedList.ce.vue'
+import NContainer1col from '@/components/entries/layouts/NContainer1col.ce.vue'
 import NTitle from '@/components/entries/parts/NTitle.ce.vue'
 import type { Lang } from '@/types'
 
@@ -9,8 +10,8 @@ defineProps<{
 </script>
 
 <template>
-  <div class="py-4">
-    <div v-if="lang === 'ja'">
+  <NContainer1col class="py-4">
+    <template v-if="lang === 'ja'">
       <NTitle>該当する出展社はありませんでした</NTitle>
       <p>検索条件をご確認ください。</p>
       <NBulletedList>
@@ -19,8 +20,8 @@ defineProps<{
         <li>お気に入り登録は★アイコンで登録した出展社が表示されます。</li>
         <li>それぞれの検索条件は重複します。</li>
       </NBulletedList>
-    </div>
-    <div v-else>
+    </template>
+    <template v-else>
       <NTitle>If shown as "Not Find"</NTitle>
       <p>Please check these, mentioned below.</p>
       <NBulletedList>
@@ -29,6 +30,6 @@ defineProps<{
         <li>Favorite will be displayed for exhibitors registered with the ★ icon.</li>
         <li>Each search condition is duplicated.</li>
       </NBulletedList>
-    </div>
-  </div>
+    </template>
+  </NContainer1col>
 </template>

@@ -87,7 +87,15 @@ const { stateFavorite } = useStateFavorite()
 const { stateGenres, updateStateGenres } = useStateGenres()
 
 // 海外・国内の絞り込み状態
-const { stateOverseas, updateStateOverseas, removeStateOverseas } = useStateOverseas()
+const {
+  stateOverseas,
+  isAllStateOverseas,
+  isDomesticActive,
+  isOverseasActive,
+  addStateOverseas,
+  removeStateOverseas,
+  clearStateOverseas,
+} = useStateOverseas()
 
 // ------------------
 // お気に入りの管理
@@ -199,10 +207,17 @@ const { genreFlags, updateGenreFlags, removeGenreFlags, exhibitionOptions, isFil
             <NTitle lv="h4">{{ isJapanese ? '所在地' : 'Location' }}</NTitle>
             <NContainerGrid cols="2" gap="2">
               <SwitchBase
-                v-model="stateOverseas"
-                :label="isJapanese ? '海外の出展社のみ' : 'Overseas only'"
+                v-model="isOverseasActive"
+                :label="isJapanese ? '海外' : 'Overseas'"
                 @update:model-value="
-                  (val) => (val ? updateStateOverseas(val) : removeStateOverseas())
+                  (val) => (val ? addStateOverseas('overseas') : removeStateOverseas('overseas'))
+                "
+              ></SwitchBase>
+              <SwitchBase
+                v-model="isDomesticActive"
+                :label="isJapanese ? '国内' : 'Domestic'"
+                @update:model-value="
+                  (val) => (val ? addStateOverseas('domestic') : removeStateOverseas('domestic'))
                 "
               ></SwitchBase>
             </NContainerGrid>
@@ -244,15 +259,21 @@ const { genreFlags, updateGenreFlags, removeGenreFlags, exhibitionOptions, isFil
         {{ isJapanese ? 'エリア条件設定中' : 'Setting area conditions' }}</NChip
       >
       <NChip
-        v-if="stateOverseas !== undefined"
+        v-if="!isAllStateOverseas && isOverseasActive"
         color="primary"
         size="sm"
-        :closable="removeStateOverseas"
+        :closable="clearStateOverseas"
       >
-        {{
-          stateOverseas ? (isJapanese ? '海外' : 'Overseas') : isJapanese ? '国内' : 'Japanese'
-        }}</NChip
+        {{ isJapanese ? '海外' : 'Overseas' }}
+      </NChip>
+      <NChip
+        v-if="!isAllStateOverseas && isDomesticActive"
+        color="primary"
+        size="sm"
+        :closable="clearStateOverseas"
       >
+        {{ isJapanese ? '国内' : 'Japanese' }}
+      </NChip>
     </NContainerFlex>
 
     <!-- メインの一覧カード -->

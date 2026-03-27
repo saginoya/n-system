@@ -51,6 +51,9 @@ export type JsonExhibitor = {
 // ソートの条件（ソート用文字列・小間番号・検索の一致順）
 export type SortType = 'order' | 'koma' | 'search'
 
+// 海外・国内の条件
+export type OverseasType = 'overseas' | 'domestic'
+
 // 出展社検索対象キー
 export const EXHIBITOR_SEARCH_KEYS = [
   'name',
