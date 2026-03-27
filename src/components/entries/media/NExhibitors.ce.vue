@@ -207,14 +207,14 @@ const { genreFlags, updateGenreFlags, removeGenreFlags, exhibitionOptions, isFil
             <NTitle lv="h4">{{ isJapanese ? '所在地' : 'Location' }}</NTitle>
             <NContainerGrid cols="2" gap="2">
               <SwitchBase
-                v-model="isOverseasActive"
+                :model-value="isOverseasActive"
                 :label="isJapanese ? '海外' : 'Exhibitors from outside Japan'"
                 @update:model-value="
                   (val) => (val ? addStateOverseas('overseas') : removeStateOverseas('overseas'))
                 "
               ></SwitchBase>
               <SwitchBase
-                v-model="isDomesticActive"
+                :model-value="isDomesticActive"
                 :label="isJapanese ? '国内' : 'Japanese exhibitors'"
                 @update:model-value="
                   (val) => (val ? addStateOverseas('domestic') : removeStateOverseas('domestic'))
@@ -227,7 +227,7 @@ const { genreFlags, updateGenreFlags, removeGenreFlags, exhibitionOptions, isFil
             <NContainerGrid cols="2" gap="2" v-if="genresMap">
               <NContainer1col v-for="exhibition in exhibitionOptions" :key="exhibition.id" gap="0">
                 <SwitchBase
-                  v-model="exhibition.isOn.value"
+                  :model-value="exhibition.isOn.value"
                   :label="exhibition.label"
                   :color="exhibition.color"
                   label-class="font-bold"
