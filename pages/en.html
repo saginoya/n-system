@@ -15,6 +15,13 @@
         <p>このページはLang属性を"en"に設定してあります。</p>
       </n-card>
 
+      <n-title>出展社一覧</n-title>
+      <n-exhibitors
+        list-src="/json/exhibitor-list2026.json"
+        genre-src="/json/genres2026.json"
+        favorite-key="nexpo_favorites_sample"
+      ></n-exhibitors>
+
       <n-card>
         <n-title>バナー</n-title>
         <n-banner color="orange" size="w-full" href="./">w-full</n-banner>
@@ -35,13 +42,6 @@
         >
         <n-banner color="info" size="md" variant="text" href="./">aaa</n-banner>
       </n-card>
-
-      <n-title>出展社一覧</n-title>
-      <n-exhibitors
-        list-src="/json/exhibitor-list2026.json"
-        genre-src="/json/genres2024.json"
-        favorite-key="nexpo_favorites_sample"
-      ></n-exhibitors>
 
       <n-card>
         <n-title>ツールチップ</n-title>

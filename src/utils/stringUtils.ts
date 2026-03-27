@@ -113,3 +113,12 @@ export const pascalToKebab = (input: string): string => {
     .replace(/^-|-$/g, '') // 先頭・末尾のハイフン除去
     .replace(/-+/g, '-') // 重複ハイフンを1つに
 }
+
+/**
+ * 変数が文字列かつ空文字（""）でないことを判定する
+ * @param value
+ * @return boolean
+ */
+export const isNonEmptyString = (value: unknown): value is string => {
+  return typeof value === 'string' && value.trim().length > 0
+}

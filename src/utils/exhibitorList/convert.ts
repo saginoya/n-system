@@ -1,4 +1,5 @@
 import type { Lang, Exhibitor, JsonExhibitor, Exhibitors, ExhibitionID, GenreID } from '@/types'
+import { isNonEmptyString } from '@/utils'
 
 // 小間番号の変換（英語版では「外」を「Z」に変換）
 export const toBoothNumber = (boothNumber: string, isJapanese: boolean): string => {
@@ -28,7 +29,17 @@ export const applyExhibitor = (value: JsonExhibitor, lang: Lang): Exhibitor => {
   }
 }
 
+// Exhibitor形式のデータに最低限の情報が入っているかチェック
+const validExhibitorBasicInfo = (exhibitor: Exhibitor): boolean => {
+  return (
+    isNonEmptyString(exhibitor.id) &&
+    isNonEmptyString(exhibitor.name) &&
+    isNonEmptyString(exhibitor.koma)
+  )
+}
+
 // JSONの出展社情報配列をExhibitors形式に変換
 export const convertJSONToExhibitorList = (jsonData: JsonExhibitor[], lang: Lang): Exhibitors => {
-  return jsonData.map((value) => applyExhibitor(value, lang))
+  const converted = jsonData.map((value) => applyExhibitor(value, lang))
+  return converted.filter((value) => validExhibitorBasicInfo(value))
 }
