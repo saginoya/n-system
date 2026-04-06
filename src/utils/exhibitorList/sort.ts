@@ -17,7 +17,7 @@ export const sortExhibitorList = (list: Exhibitors, sortKey: SortType) => {
     throw new Error(`Invalid sort key: ${sortKey}. Expected 'order' or 'koma'`)
   }
 
-  if (!list.every((item) => sortKey in item)) {
+  if (!list.every((item) => item[sortKey as keyof typeof item] !== undefined)) {
     throw new Error(`Sort key '${sortKey}' not found in all items`)
   }
 

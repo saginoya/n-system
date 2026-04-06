@@ -16,6 +16,9 @@ export const searchByKeyword = (
   keys: (keyof Exhibitor)[],
   threshold?: number,
 ) => {
+  if (!keyword.trim()) {
+    return list
+  }
   const convertedKeyword = convertSymbolToHalfWidth(convertFullWidthToHalfWidth(keyword))
   return fuseSearch(list, convertedKeyword as string, { keys, threshold })
 }
