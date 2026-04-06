@@ -175,7 +175,7 @@ const { genreFlags, updateGenreFlags, removeGenreFlags, exhibitionOptions, isFil
       <NContainerFlex justify="center" class="w-full flex-none sm:w-auto">
         <!-- フィルターボタン -->
         <BtnBase color="primary" variant="text" prepend-icon="filter" :onClick="showFilterModal">
-          {{ isJapanese ? '絞り込み条件' : 'Filter' }}
+          {{ isJapanese ? '絞り込み検索' : 'Filter' }}
         </BtnBase>
 
         <!-- ソートボタン -->
@@ -202,7 +202,7 @@ const { genreFlags, updateGenreFlags, removeGenreFlags, exhibitionOptions, isFil
       <!-- フィルターのモーダル -->
       <ModalBase :visible="visibleFilterModal" :close-action="dismissFilterModal">
         <NContainer1col gap="8">
-          <NTitle>{{ isJapanese ? '絞り込み条件' : 'Filter' }}</NTitle>
+          <NTitle>{{ isJapanese ? '絞り込み検索' : 'Filter' }}</NTitle>
           <NContainer1col gap="2">
             <NTitle lv="h4">{{ isJapanese ? '所在地' : 'Location' }}</NTitle>
             <NContainerGrid cols="2" gap="2">
