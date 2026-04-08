@@ -10,9 +10,14 @@ type ReadonlyRef<T> = {
 }
 
 /**
- * ジャンルフィルターの状態管理を行うComposable
- * - `genresMap` ジャンルのMapデータ
- * - `updateStateGenres` 親コンポーネントのジャンル状態更新関数
+ * ジャンルフィルターの高レベルロジック管理を行うComposable
+ *
+ * 役割: UI向けの複雑なフィルターロジックと表示制御
+ * - Record<GenreID, boolean> で各ジャンルのオンオフ状態を管理
+ * - genresMapとの連携で初期化と同期
+ * - exhibitionOptionsなどのUI向けcomputed生成
+ * - 親コンポーネントとの状態同期（updateStateGenres）
+ * - 展示会オプションやフィルター判定などのビジネスロジックを含む
  */
 export const useGenreFilter = (
   exhibitions: Ref<Exhibition[] | undefined>,
@@ -22,22 +27,26 @@ export const useGenreFilter = (
 ) => {
   const genreFlags = ref<Record<GenreID, boolean>>({})
 
+  // ジャンルフラグの初期化関数
   const initGenreFlags = (keys: GenreID[]) => {
     keys.forEach((key) => {
       genreFlags.value[key] = true
     })
   }
 
+  // 指定されたジャンルIDのフラグがすべてtrueかの判定
   const isTrueGenreFlags = (keys: string[]): boolean => {
     return keys.every((key) => !!genreFlags.value[key])
   }
 
+  // ジャンルフラグの更新関数
   const updateGenreFlags = (keys: string[], value: boolean): void => {
     keys.forEach((key) => {
       genreFlags.value[key] = value
     })
   }
 
+  // ジャンルフラグをすべてtrueにする関数
   const removeGenreFlags = (): void => {
     Object.keys(genreFlags.value).forEach((key) => {
       genreFlags.value[key as GenreID] = true
@@ -76,6 +85,7 @@ export const useGenreFilter = (
     }
   }
 
+  // 展示会オプションのcomputedプロパティ
   const exhibitionOptions = computed<ExhibitionOptions[]>(() => {
     const list = exhibitions.value
     if (!list) return []

@@ -2,7 +2,7 @@ import { describe, it, expect, vi } from 'vitest'
 import { ref } from 'vue'
 
 import { useExhibitorListTransformer } from '@/composables/exhibitors/useExhibitorListTransformer'
-import type { Exhibitors, OverseasType } from '@/types'
+import type { Exhibitors, GenreID, OverseasType } from '@/types'
 
 // Mock utils
 vi.mock('@/utils/exhibitorList', () => ({
@@ -57,7 +57,7 @@ describe('useExhibitorListTransformer', () => {
     const options = {
       favorite: ref(false),
       myFavorites: ref([]),
-      genres: ref([]),
+      genres: ref(new Set<GenreID>()),
       overseas: ref(new Set<OverseasType>(['domestic', 'overseas'])),
       keyword: ref(''),
       sort: ref('search' as const),
@@ -74,7 +74,7 @@ describe('useExhibitorListTransformer', () => {
     const options = {
       favorite: ref(false),
       myFavorites: ref([]),
-      genres: ref(['genre1']),
+      genres: ref(new Set(['genre1'])),
       overseas: ref(new Set<OverseasType>(['domestic', 'overseas'])),
       keyword: ref(''),
       sort: ref('search' as const),
@@ -91,7 +91,7 @@ describe('useExhibitorListTransformer', () => {
     const options = {
       favorite: ref(false),
       myFavorites: ref([]),
-      genres: ref([]),
+      genres: ref(new Set<GenreID>()),
       overseas: ref(new Set<OverseasType>(['domestic', 'overseas'])),
       keyword: ref('Test'),
       sort: ref('search' as const),

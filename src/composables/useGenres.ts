@@ -16,6 +16,11 @@ export const useGenres = (src: string) => {
     return convertListToMap<Exhibition>(exhibitions.value)
   })
 
+  // 全ジャンルの数
+  const allGenreCount = computed(() => {
+    return genres.value ? genres.value.length : 0
+  })
+
   // ジャンルデータのMap
   const genresMap = computed<Record<GenreID, Genre>>(() => {
     if (!genres.value) return {}
@@ -78,6 +83,7 @@ export const useGenres = (src: string) => {
     exhibitionsMap,
     genresMap,
     genreLists,
+    allGenreCount,
     getExhibitionIDFromGenreID,
     getGenreNameFromID,
   }

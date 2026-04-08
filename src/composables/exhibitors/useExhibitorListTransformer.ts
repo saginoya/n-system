@@ -27,7 +27,7 @@ type ReadonlyRef<T> = {
 type Options = {
   favorite: MaybeRef<boolean>
   myFavorites: MaybeRef<Favorites>
-  genres: MaybeRef<GenreID[]>
+  genres: MaybeRef<Set<GenreID>>
   overseas: MaybeRef<Set<OverseasType>>
   keyword: MaybeRef<string | undefined>
   sort: MaybeRef<SortType>
@@ -75,8 +75,8 @@ export const useExhibitorListTransformer = (rawData: ReadonlyRef<Exhibitors>, op
     }
 
     // フィルタリング（ジャンル）
-    if (genres.value.length !== 0) {
-      result = filterByGenres(result, genres.value)
+    if (genres.value.size !== 0) {
+      result = filterByGenres(result, Array.from(genres.value))
     }
 
     // フィルタリング（海外・国内）

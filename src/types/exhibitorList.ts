@@ -64,3 +64,9 @@ export const EXHIBITOR_SEARCH_KEYS = [
 ] as const satisfies (keyof Exhibitor)[]
 
 export type ExhibitorSearchKey = (typeof EXHIBITOR_SEARCH_KEYS)[number]
+
+// 検索条件の形式
+export type Status = {
+  name: string
+  action: () => void
+}

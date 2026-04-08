@@ -3,7 +3,6 @@ import NCard from '@/components/entries/layouts/NCard.ce.vue'
 import NContainer1col from '@/components/entries/layouts/NContainer1col.ce.vue'
 import NContainerFlex from '@/components/entries/layouts/NContainerFlex.ce.vue'
 import NContainerGrid from '@/components/entries/layouts/NContainerGrid.ce.vue'
-import NChip from '@/components/entries/parts/NChip.ce.vue'
 import NTitle from '@/components/entries/parts/NTitle.ce.vue'
 import BtnMenu from '@/components/features/BtnMenu.vue'
 import ExhibitorProfile from '@/components/features/exhibitors/ExhibitorProfile.vue'
@@ -11,6 +10,7 @@ import InfoFavorite from '@/components/features/exhibitors/InfoFavorite.vue'
 import ListHeading from '@/components/features/exhibitors/ListHeading.vue'
 import ListItem from '@/components/features/exhibitors/ListItem.vue'
 import NotApplicable from '@/components/features/exhibitors/NotApplicable.vue'
+import StatusDisplay from '@/components/features/exhibitors/StatusDisplay.vue'
 import BtnBase from '@/components/ui/BtnBase.vue'
 import InputSearch from '@/components/ui/InputSearch.vue'
 import LoadingSpinner from '@/components/ui/LoadingSpinner.vue'
@@ -30,6 +30,7 @@ import {
   useStateOverseas,
   useStateSort,
 } from '@/composables/exhibitors'
+import { useStatusDisplay } from '@/composables/exhibitors/useStatusDisplay'
 import { useGenres } from '@/composables/useGenres'
 import { useLang } from '@/composables/useLang'
 import { useModal } from '@/composables/useModal'
@@ -55,9 +56,8 @@ const { lang, isJapanese } = useLang()
 // ジャンル
 // ------------------
 
-const { exhibitions, exhibitionsMap, genresMap, genreLists, getGenreNameFromID } = useGenres(
-  props.genreSrc,
-)
+const { exhibitions, exhibitionsMap, genresMap, genreLists, getGenreNameFromID, allGenreCount } =
+  useGenres(props.genreSrc)
 
 // ------------------
 // コアデータ
@@ -84,7 +84,7 @@ const { stateKeyword, removeStateKeyword } = useStateKeyword()
 const { stateFavorite } = useStateFavorite()
 
 // ジャンルの絞り込み状態
-const { stateGenres, updateStateGenres } = useStateGenres()
+const { stateGenres, updateStateGenres, removeStateGenres } = useStateGenres()
 
 // 海外・国内の絞り込み状態
 const {
@@ -155,8 +155,29 @@ const {
 // ジャンルによる絞り込み機能の制御
 // ------------------
 
-const { genreFlags, updateGenreFlags, removeGenreFlags, exhibitionOptions, isFilteringByGenre } =
-  useGenreFilter(exhibitions, genresMap, updateStateGenres, lang.value)
+const { genreFlags, updateGenreFlags, exhibitionOptions } = useGenreFilter(
+  exhibitions,
+  genresMap,
+  updateStateGenres,
+  lang.value,
+)
+
+// ------------------
+// 検索条件の状態表示スペースの制御
+// ------------------
+const { statusList } = useStatusDisplay({
+  isJapanese,
+  stateKeyword,
+  removeStateKeyword,
+  stateGenres,
+  allGenreCount,
+  removeStateGenres,
+  getGenreNameFromID,
+  isAllStateOverseas,
+  isOverseasActive,
+  isDomesticActive,
+  clearStateOverseas,
+})
 </script>
 
 <template>
@@ -251,30 +272,7 @@ const { genreFlags, updateGenreFlags, removeGenreFlags, exhibitionOptions, isFil
     </NContainerFlex>
 
     <!-- 状態の表示スペース -->
-    <NContainerFlex>
-      <NChip v-if="stateKeyword" color="primary" size="sm" :closable="removeStateKeyword">{{
-        stateKeyword
-      }}</NChip>
-      <NChip v-if="isFilteringByGenre" color="primary" size="sm" :closable="removeGenreFlags">
-        {{ isJapanese ? 'エリア条件設定中' : 'Setting area conditions' }}</NChip
-      >
-      <NChip
-        v-if="!isAllStateOverseas && isOverseasActive"
-        color="primary"
-        size="sm"
-        :closable="clearStateOverseas"
-      >
-        {{ isJapanese ? '海外' : 'Overseas' }}
-      </NChip>
-      <NChip
-        v-if="!isAllStateOverseas && isDomesticActive"
-        color="primary"
-        size="sm"
-        :closable="clearStateOverseas"
-      >
-        {{ isJapanese ? '国内' : 'Japanese' }}
-      </NChip>
-    </NContainerFlex>
+    <StatusDisplay :statusList="statusList"></StatusDisplay>
 
     <!-- メインの一覧カード -->
     <NCard>

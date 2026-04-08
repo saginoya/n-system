@@ -3,24 +3,27 @@ import { ref } from 'vue'
 import type { GenreID } from '@/types'
 
 /**
- * 検索フィルターの状態管理を行うComposable
+ * ジャンル選択状態の低レベル管理を行うComposable
+ *
+ * 役割: 選択されたジャンルIDのSetを管理する基本的な状態管理
+ * - Set<GenreID> で選択状態を保持
+ * - 他のフィルター機能でも再利用可能な汎用的な状態管理
+ * - UIロジックやビジネスロジックを含まない
  */
 export const useStateGenres = () => {
-  const stateGenres = ref<GenreID[]>([])
+  const stateGenres = ref<Set<GenreID>>(new Set([]))
 
   // ジャンルの更新関数
   const updateStateGenres = (values: GenreID[]): void => {
-    stateGenres.value = values
+    stateGenres.value = new Set(values)
   }
   // ジャンルの更新関数（追加）
   const addStateGenres = (value: GenreID): void => {
-    if (!stateGenres.value.includes(value)) {
-      stateGenres.value.push(value)
-    }
+    stateGenres.value.add(value)
   }
   // ジャンルの更新関数（削除）
   const removeStateGenres = (value: GenreID): void => {
-    stateGenres.value = stateGenres.value.filter((genre) => genre !== value)
+    stateGenres.value.delete(value)
   }
 
   return {
