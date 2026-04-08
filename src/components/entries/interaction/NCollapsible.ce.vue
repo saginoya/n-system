@@ -2,7 +2,6 @@
 import { ref } from 'vue'
 
 import IconArrowDown from '@/components/icons/IconArrowDown.vue'
-import IconArrowUp from '@/components/icons/IconArrowUp.vue'
 
 const props = withDefaults(
   defineProps<{
@@ -21,16 +20,20 @@ const toggle = () => {
 
 <template>
   <div
-    @click="toggle()"
-    class="relative overflow-hidden transition-[max-height] duration-300 ease-in-out cursor-pointer border-b-2 border-gray-100 hover:border-primary pb-1"
-    :style="{ maxHeight: open ? '999px' : '3rem' }"
+    class="relative overflow-hidden transition-[max-height] duration-300 ease-in-out pb-6"
+    :class="open ? 'max-h-250' : 'max-h-12'"
   >
     <slot />
-    <span
-      class="absolute bottom-0 right-0 bg-white/50 rounded-full p-0.5 flex justify-center items-center"
+    <button
+      type="button"
+      class="absolute bottom-0 inset-x-0 p-0.5 flex justify-center items-center h-6 border-b-2 border-white text-slate-400 hover:border-info hover:text-info"
+      :class="{ 'bg-linear-to-t from-white to-white/0': !open }"
+      @click="toggle()"
     >
-      <component :is="open ? IconArrowUp : IconArrowDown" class="" />
-    </span>
+      <span class="rounded-full bg-white">
+        <IconArrowDown class="duration-300" :class="{ 'rotate-180': open }" />
+      </span>
+    </button>
   </div>
 </template>
 
