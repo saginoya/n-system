@@ -75,9 +75,7 @@ export const useExhibitorListTransformer = (rawData: ReadonlyRef<Exhibitors>, op
     }
 
     // フィルタリング（ジャンル）
-    if (genres.value.size !== 0) {
-      result = filterByGenres(result, Array.from(genres.value))
-    }
+    result = filterByGenres(result, Array.from(genres.value))
 
     // フィルタリング（海外・国内）
     if (overseas.value.size < 2) {
