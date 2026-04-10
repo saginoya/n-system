@@ -32,25 +32,15 @@ export const useGenreFilter = (
   }
 
   const isGenreOn = (genreID: GenreID): boolean => {
-    // stateGenresが空の初期状態は「すべて選択」と同義なのでtrue扱い
-    if (stateGenres.value.size === 0) return true
     return stateGenres.value.has(genreID)
   }
 
   const commitSelected = (selected: Set<GenreID>) => {
-    const all = getAllGenreIDs()
-    // 「全選択」は Set を空で表現する
-    if (all.length > 0 && selected.size === all.length) {
-      updateStateGenres([])
-      return
-    }
     updateStateGenres(Array.from(selected))
   }
 
   const setGenreOn = (genreID: GenreID, value: boolean) => {
-    const all = getAllGenreIDs()
-    const current =
-      stateGenres.value.size === 0 ? new Set<GenreID>(all) : new Set<GenreID>(stateGenres.value)
+    const current = new Set<GenreID>(stateGenres.value)
 
     if (value) {
       current.add(genreID)
@@ -62,9 +52,7 @@ export const useGenreFilter = (
 
   // ジャンルフラグの更新関数（展示会単位など）
   const updateGenreFlags = (keys: readonly GenreID[], value: boolean): void => {
-    const all = getAllGenreIDs()
-    const current =
-      stateGenres.value.size === 0 ? new Set<GenreID>(all) : new Set<GenreID>(stateGenres.value)
+    const current = new Set<GenreID>(stateGenres.value)
 
     keys.forEach((key) => {
       if (value) current.add(key)
@@ -76,9 +64,7 @@ export const useGenreFilter = (
   // 絞り込みが行われているかの判定
   const isFilteringByGenre = computed<boolean>(() => {
     const all = getAllGenreIDs()
-    // stateGenres が空なら「全選択」扱いで絞り込みなし
-    if (stateGenres.value.size === 0) return false
-    return all.length > 0 && stateGenres.value.size < all.length
+    return all.length > 0 && stateGenres.value.size !== all.length
   })
 
   // 互換性/デバッグ用途: flags は状態ではなく導出値として提供

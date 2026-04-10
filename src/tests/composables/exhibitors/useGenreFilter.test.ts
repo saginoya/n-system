@@ -26,8 +26,8 @@ describe('useGenreFilter', () => {
     })
   }
 
-  it('初期化されること', () => {
-    const mockStateGenres = ref<Set<GenreID>>(new Set())
+  it('全ジャンルが選択されている状態を表現できること', () => {
+    const mockStateGenres = ref<Set<GenreID>>(new Set(['genre1', 'genre2']))
     const mockUpdateStateGenres = createUpdateStateGenres(mockStateGenres)
     const { genreFlags, isFilteringByGenre } = useGenreFilter(
       mockExhibitions,
@@ -41,8 +41,23 @@ describe('useGenreFilter', () => {
     expect(isFilteringByGenre.value).toBe(false)
   })
 
-  it('ジャンルフラグを更新できること', () => {
+  it('空Setは「未選択」を表すこと', () => {
     const mockStateGenres = ref<Set<GenreID>>(new Set())
+    const mockUpdateStateGenres = createUpdateStateGenres(mockStateGenres)
+    const { genreFlags, isFilteringByGenre } = useGenreFilter(
+      mockExhibitions,
+      mockGenresMap,
+      mockStateGenres,
+      mockUpdateStateGenres,
+      'ja',
+    )
+
+    expect(genreFlags.value).toEqual({ genre1: false, genre2: false })
+    expect(isFilteringByGenre.value).toBe(true)
+  })
+
+  it('ジャンルフラグを更新できること', () => {
+    const mockStateGenres = ref<Set<GenreID>>(new Set(['genre1', 'genre2']))
     const mockUpdateStateGenres = createUpdateStateGenres(mockStateGenres)
     const { updateGenreFlags, genreFlags } = useGenreFilter(
       mockExhibitions,
@@ -59,7 +74,7 @@ describe('useGenreFilter', () => {
   })
 
   it('フィルタリング状態を判定できること', () => {
-    const mockStateGenres = ref<Set<GenreID>>(new Set())
+    const mockStateGenres = ref<Set<GenreID>>(new Set(['genre1', 'genre2']))
     const mockUpdateStateGenres = createUpdateStateGenres(mockStateGenres)
     const { updateGenreFlags, isFilteringByGenre } = useGenreFilter(
       mockExhibitions,

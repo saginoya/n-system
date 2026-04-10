@@ -1,9 +1,9 @@
-import { computed } from 'vue'
+import { computed, ref, watchEffect } from 'vue'
 
 import { useGenres } from '@/composables/useGenres'
 import { useLang } from '@/composables/useLang'
 import { useModal } from '@/composables/useModal'
-import type { Exhibitor } from '@/types'
+import type { Exhibitor, GenreID } from '@/types'
 
 import { useStatusDisplay } from './useStatusDisplay'
 
@@ -49,6 +49,14 @@ export const useExhibitorsPage = (props: ExhibitorsPageProps, confirmRemove: Con
   const { stateFavorite } = useStateFavorite()
 
   const { stateGenres, updateStateGenres, removeStateGenres } = useStateGenres()
+  const didInitStateGenres = ref(false)
+  watchEffect(() => {
+    if (didInitStateGenres.value) return
+    const all = Object.keys(genresMap.value ?? {}) as GenreID[]
+    if (all.length === 0) return
+    updateStateGenres(all)
+    didInitStateGenres.value = true
+  })
 
   const {
     stateOverseas,
