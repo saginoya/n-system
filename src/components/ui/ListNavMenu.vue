@@ -40,7 +40,7 @@ defineProps<
       leave-to-class="transform scale-95 opacity-0"
     >
       <MenuItems
-        class="absolute right-0 mt-2 flex w-56 origin-top-right flex-col gap-1 bg-white px-2 py-3 shadow-lg ring-1 ring-black/5 focus:outline-none"
+        class="absolute right-0 mt-2 flex w-56 origin-top-right flex-col gap-1 bg-white px-2 py-3 shadow-lg ring-1 ring-black/5 focus:outline-none z-10"
       >
         <MenuItem v-for="path in children" :key="path" v-slot="{ active }">
           <ListNavItem :path :class="cn('text-slate-600', { ring: active })" />
