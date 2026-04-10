@@ -186,7 +186,7 @@ const { statusList } = useStatusDisplay({
     <NContainerFlex align-items="center" gap="2">
       <!-- キーワードフィルターのインプット -->
       <InputSearch
-        v-model="stateKeyword"
+        v-model.trim="stateKeyword"
         :datalist="genreLists[lang]"
         class-name="grow"
         :placeholder="isJapanese ? 'キーワードで検索' : 'Search by keyword'"
