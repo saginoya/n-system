@@ -158,6 +158,7 @@ const {
 const { genreFlags, updateGenreFlags, exhibitionOptions } = useGenreFilter(
   exhibitions,
   genresMap,
+  stateGenres,
   updateStateGenres,
   lang.value,
 )

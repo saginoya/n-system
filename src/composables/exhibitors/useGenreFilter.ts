@@ -22,7 +22,8 @@ type ReadonlyRef<T> = {
 export const useGenreFilter = (
   exhibitions: Ref<Exhibition[] | undefined>,
   genresMap: ReadonlyRef<Record<GenreID, Genre>>,
-  updateStateGenres: (genres: string[]) => void,
+  stateGenres: Ref<Set<GenreID>>,
+  updateStateGenres: (genres: GenreID[]) => void,
   lang: Lang,
 ) => {
   const genreFlags = ref<Record<GenreID, boolean>>({})
@@ -31,6 +32,18 @@ export const useGenreFilter = (
   const initGenreFlags = (keys: GenreID[]) => {
     keys.forEach((key) => {
       genreFlags.value[key] = true
+    })
+  }
+
+  const syncGenreFlagsFromStateGenres = (genres: Set<GenreID> | undefined) => {
+    if (!genresMap.value) return
+
+    const keys = Object.keys(genresMap.value) as GenreID[]
+    if (keys.length === 0) return
+
+    const isAllSelected = !genres || genres.size === 0
+    keys.forEach((key) => {
+      genreFlags.value[key] = isAllSelected ? true : genres.has(key)
     })
   }
 
@@ -92,14 +105,30 @@ export const useGenreFilter = (
     return list.map((exhibition) => convertToExhibitionOptions(exhibition, lang))
   })
 
-  // ジャンルのMapが更新されたら初期化
+  // ジャンルのMapが更新されたら外部のstateGenresを元に同期
   watch(
     genresMap,
-    (m) => {
-      if (!m) return
-      initGenreFlags(Object.keys(m) as GenreID[])
+    () => {
+      if (!genresMap.value) return
+      syncGenreFlagsFromStateGenres(stateGenres.value)
     },
     { immediate: true },
+  )
+
+  // 外部のstateGenresが変更されたら内部のgenreFlagsを同期
+  watch(
+    stateGenres,
+    (newSet) => {
+      if (!genresMap.value) return
+      const keys = Object.keys(genresMap.value) as GenreID[]
+      const shouldSync = keys.some((key) => {
+        const nextValue = newSet.size === 0 ? true : newSet.has(key)
+        return genreFlags.value[key] !== nextValue
+      })
+      if (!shouldSync) return
+      syncGenreFlagsFromStateGenres(newSet)
+    },
+    { deep: true },
   )
 
   // ジャンルの状態が更新されたら親コンポーネントの状態を更新
@@ -107,7 +136,7 @@ export const useGenreFilter = (
     genreFlags,
     () => {
       if (!genresMap.value) return
-      const newValues: string[] = []
+      const newValues: GenreID[] = []
       for (const key in genreFlags.value) {
         if (genreFlags.value[key]) {
           newValues.push(genresMap.value[key]!['id'])
