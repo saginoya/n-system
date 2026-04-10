@@ -39,7 +39,11 @@ describe('useFavorites', () => {
   })
 
   it('お気に入りを追加できること', () => {
-    const { setFavorite, myFavorites, numMyFavorites } = useFavorites(mockKey, mockLang, mockConfirm)
+    const { setFavorite, myFavorites, numMyFavorites } = useFavorites(
+      mockKey,
+      mockLang,
+      mockConfirm,
+    )
 
     setFavorite('1')
 
@@ -49,7 +53,11 @@ describe('useFavorites', () => {
   })
 
   it('お気に入りを削除できること', () => {
-    const { setFavorite, removeFavorite, myFavorites } = useFavorites(mockKey, mockLang, mockConfirm)
+    const { setFavorite, removeFavorite, myFavorites } = useFavorites(
+      mockKey,
+      mockLang,
+      mockConfirm,
+    )
 
     setFavorite('1')
     removeFavorite('1')

@@ -194,4 +194,3 @@ export const useExhibitorsPage = (props: ExhibitorsPageProps, confirmRemove: Con
     statusList,
   }
 }
-
