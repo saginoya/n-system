@@ -4,6 +4,7 @@ import IconArrowUp from '@/components/icons/IconArrowUp.vue'
 import IconBookmark from '@/components/icons/IconBookmark.vue'
 import IconBus from '@/components/icons/IconBus.vue'
 import IconCall from '@/components/icons/IconCall.vue'
+import IconCampaign from '@/components/icons/IconCampaign.vue'
 import IconCar from '@/components/icons/IconCar.vue'
 import IconCheck from '@/components/icons/IconCheck.vue'
 import IconChevronRight from '@/components/icons/IconChevronRight.vue'
@@ -32,6 +33,7 @@ export const iconMap = {
   bookmark: IconBookmark,
   bus: IconBus,
   call: IconCall,
+  campaign: IconCampaign,
   car: IconCar,
   check: IconCheck,
   'chevron-right': IconChevronRight,

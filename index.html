@@ -1,575 +1,507 @@
 <!doctype html>
 <html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>N-System</title>
-    <link rel="stylesheet" href="/css/n-system-variables.css" />
-  </head>
-  <body>
-    <noscript><iframe src="./noscript.html"></iframe></noscript>
-    <n-app json-path="/json/config.json">
-      <n-card>
-        <n-title lv="h2">サンプル</n-title>
-        <n-system-info></n-system-info>
-      </n-card>
 
-      <n-card>
-        <n-title>折りたたみ</n-title>
-        <n-collapsible>
-          <n-container-flex>
-            <n-chip color="info">チップ</n-chip><n-chip color="info">チップ</n-chip
-            ><n-chip color="info">チップ</n-chip><n-chip color="info">チップ</n-chip
-            ><n-chip color="info">チップ</n-chip><n-chip color="info">チップ</n-chip
-            ><n-chip color="info">チップ</n-chip><n-chip color="info">チップ</n-chip
-            ><n-chip color="info">チップ</n-chip><n-chip color="info">チップ</n-chip
-            ><n-chip color="info">チップ</n-chip><n-chip color="info">チップ</n-chip
-            ><n-chip color="info">チップ</n-chip><n-chip color="info">チップ</n-chip
-            ><n-chip color="info">チップ</n-chip><n-chip color="info">チップ</n-chip
-            ><n-chip color="info">チップ</n-chip><n-chip color="info">チップ</n-chip
-            ><n-chip color="info">チップ</n-chip><n-chip color="info">チップ</n-chip
-            ><n-chip color="info">チップ</n-chip>
-          </n-container-flex>
-        </n-collapsible>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>N-System</title>
+  <link rel="stylesheet" href="/css/n-system-variables.css" />
+</head>
 
-        <n-collapsible>
-          <p>
-            折りたたみの内容 折りたたみの内容 折りたたみの内容 折りたたみの内容 折りたたみの内容
-            折りたたみの内容 折りたたみの内容 折りたたみの内容 折りたたみの内容 折りたたみの内容
-            折りたたみの内容 折りたたみの内容 折りたたみの内容 折りたたみの内容 折りたたみの内容
-            折りたたみの内容 折りたたみの内容 折りたたみの内容 折りたたみの内容 折りたたみの内容
-            折りたたみの内容 折りたたみの内容 折りたたみの内容 折りたたみの内容 折りたたみの内容
-            折りたたみの内容 折りたたみの内容 折りたたみの内容 折りたたみの内容 折りたたみの内容
-            折りたたみの内容 折りたたみの内容 折りたたみの内容 折りたたみの内容 折りたたみの内容
-            折りたたみの内容 折りたたみの内容 折りたたみの内容 折りたたみの内容 折りたたみの内容
-            折りたたみの内容 折りたたみの内容 折りたたみの内容 折りたたみの内容 折りたたみの内容
-            折りたたみの内容 折りたたみの内容 折りたたみの内容 折りたたみの内容 折りたたみの内容
-            折りたたみの内容 折りたたみの内容
-          </p>
-        </n-collapsible>
-      </n-card>
+<body>
+  <noscript><iframe src="./noscript.html"></iframe></noscript>
+  <n-app json-path="/json/config.json">
+    <n-card>
+      <n-container-flex justify="between">
+        <div>
+          <n-title lv="h2">サンプル</n-title>
+          <n-system-info></n-system-info>
+        </div>
 
-      <n-card>
-        <n-title>画像バナー</n-title>
-        <n-image-banner
-          src="./public/images/banners/bnr-pre-registration.png"
-          alt="サンプルバナー"
-          width="600"
-          height="80"
-          href="./"
-          type="external"
-        ></n-image-banner>
-        <n-image-banner
-          src="./public/images/banners/bnr-pre-registration.png"
-          alt="サンプルバナー"
-          width="600"
-          height="80"
-          href="./"
-          type="pdf"
-          state="closing"
-        ></n-image-banner>
-      </n-card>
+        <n-tooltip-campaign>
+          <n-bulleted-list type="disc">
+            <li>みみず</li>
+            <li>おけら</li>
+            <li>あめんぼ</li>
+          </n-bulleted-list>
+        </n-tooltip-campaign>
+      </n-container-flex>
+    </n-card>
 
-      <n-card>
-        <n-title>ツールチップ</n-title>
-        <n-tooltip-info>
-          <b>内容の文章 location:top</b>
-        </n-tooltip-info>
-
-        <n-tooltip-info location="bottom">
-          <b>内容の文章 location:bottom</b>
-          <p>ああああああああああああああああああああああああああああああああああああああ</p>
-          <p>いいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいい</p>
-          <p>うううううううううううううううううう</p>
-          <p>ええええええええええええええええええええええええええええええええええ</p>
-          <p>おおおおおおおおおおおおおおおおおおおおおおおおお</p>
-        </n-tooltip-info>
-
-        <n-tooltip-info location="right" icon="question">
-          <b>内容の文章 location:right</b>
-          <p>あああああああああああああああああああああああああ</p>
-          <p>いいいいいいいいいいいいいいいいいいいいいいいいいいい</p>
-          <p>うううううううううううううううううう</p>
-          <p>えええええええええええええええええええええええええええええええええええええ</p>
-          <p>おおおおおおおおおおおおおおおおおおおおおおおおお</p>
-        </n-tooltip-info>
-
-        <n-tooltip-info location="left" label="information">
-          <b>内容の文章 location:left</b>
-        </n-tooltip-info>
-      </n-card>
-
-      <n-card>
-        <n-title lv="h2">テキスト</n-title>
-        <p><n-text as="strong">重要</n-text><n-text as="del">削除した</n-text></p>
-        <p>
-          <n-text size="sm">小さい</n-text><n-text size="base">ベースサイズ</n-text
-          ><n-text size="lg">大きい</n-text>
-        </p>
-        <p><n-text weight="bold">太い</n-text><n-text weight="light">細い</n-text></p>
-        <p>
-          <n-text as="p" align="center">中央よせ</n-text
-          ><n-text as="p" align="end">右（End）寄せ</n-text
-          ><n-text as="p" align="justify"
-            >今回は、”text-align :
-            justiry”を使用して綺麗に両端揃えにしてみようと思います。testとして123などの1byte文字もふんだんに混ぜたtextにしています。長い英単語の例として”Antidisestablishmentarianism”という単語があるそうです。意味は知りません。
-            さて、次のような長い数字も綺麗に両端揃えになってくれるでしょうか。999999999999999999999999999999999999999999</n-text
-          >
-        </p>
-        <p>
-          <n-text color="primary">Primary</n-text><n-text color="info">Info</n-text
-          ><n-text color="error">Error</n-text>
-        </p>
-      </n-card>
-
-      <n-card>
-        <n-title lv="h2">テーブル</n-title>
-        <table>
-          <thead>
-            <tr>
-              <th>列1</th>
-              <th>列2</th>
-              <th>列3</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>データ1</td>
-              <td>データ2</td>
-              <td>データ3</td>
-            </tr>
-            <tr>
-              <td>データ4</td>
-              <td>データ5</td>
-              <td>データ6</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <table>
-          <tbody>
-            <tr>
-              <th>列1</th>
-              <td>データ1</td>
-              <td>データ2</td>
-            </tr>
-            <tr>
-              <th>列2</th>
-              <td>データ3</td>
-              <td>データ4</td>
-            </tr>
-          </tbody>
-        </table>
-      </n-card>
-
-      <n-card>
-        <n-title>スケジュール</n-title>
-
-        <n-container-flex align-items="stretch" sp-direction-col>
-          <n-flow-card header="2025年12月上旬">
-            <p>出展社専用サイト発信</p>
-            <p>出展社マニュアル送付開始</p>
-          </n-flow-card>
-          <n-flow-card header="2025年12月19日">
-            <p>出展申込期限</p>
-          </n-flow-card>
-          <n-flow-card header="2026年2月27日まで">
-            <p>出展料金支払期限</p>
-          </n-flow-card>
-          <n-flow-card header="2026年3月中旬">
-            <p>小間図面発信開始</p>
-            <p>出展社情報入稿締切</p>
-          </n-flow-card>
-          <n-flow-card header="2026年3月下旬">
-            <p>各種提出書類提出締切</p>
-          </n-flow-card>
-          <n-flow-card header="2026年5月上旬">
-            <p>出展社情報発信開始</p>
-            <p>会場案内図発信開始</p>
-          </n-flow-card>
-          <n-flow-card last>
-            <span slot="header"> 5月18・19日 搬入<br />5月20～22日 会期<br />5月22日 搬出 </span>
-            <p>5月17日と5月23日は指定会社のみ</p>
-          </n-flow-card>
+    <n-card>
+      <n-title>折りたたみ</n-title>
+      <n-collapsible>
+        <n-container-flex>
+          <n-chip color="info">チップ</n-chip><n-chip color="info">チップ</n-chip><n-chip color="info">チップ</n-chip><n-chip
+            color="info">チップ</n-chip><n-chip color="info">チップ</n-chip><n-chip color="info">チップ</n-chip><n-chip
+            color="info">チップ</n-chip><n-chip color="info">チップ</n-chip><n-chip color="info">チップ</n-chip><n-chip
+            color="info">チップ</n-chip><n-chip color="info">チップ</n-chip><n-chip color="info">チップ</n-chip><n-chip
+            color="info">チップ</n-chip><n-chip color="info">チップ</n-chip><n-chip color="info">チップ</n-chip><n-chip
+            color="info">チップ</n-chip><n-chip color="info">チップ</n-chip><n-chip color="info">チップ</n-chip><n-chip
+            color="info">チップ</n-chip><n-chip color="info">チップ</n-chip><n-chip color="info">チップ</n-chip>
         </n-container-flex>
-      </n-card>
-      <n-card>
-        <n-nippo-profile></n-nippo-profile>
-      </n-card>
+      </n-collapsible>
 
-      <n-card>
-        <n-title>リンク・チップ</n-title>
-
-        <n-chip-stack items="NChips,2つめ,3つめ,一度に,aaa"></n-chip-stack>
-
-        <p>あいうえおかきくけこ<n-chip color="info">チップ</n-chip>さしすせそ</p>
+      <n-collapsible>
         <p>
-          あいうえおかきくけこ<n-chip color="info" variant="outlined" router-id="sample"
-            >アウトライン</n-chip
-          >さしすせそ
+          折りたたみの内容 折りたたみの内容 折りたたみの内容 折りたたみの内容 折りたたみの内容
+          折りたたみの内容 折りたたみの内容 折りたたみの内容 折りたたみの内容 折りたたみの内容
+          折りたたみの内容 折りたたみの内容 折りたたみの内容 折りたたみの内容 折りたたみの内容
+          折りたたみの内容 折りたたみの内容 折りたたみの内容 折りたたみの内容 折りたたみの内容
+          折りたたみの内容 折りたたみの内容 折りたたみの内容 折りたたみの内容 折りたたみの内容
+          折りたたみの内容 折りたたみの内容 折りたたみの内容 折りたたみの内容 折りたたみの内容
+          折りたたみの内容 折りたたみの内容 折りたたみの内容 折りたたみの内容 折りたたみの内容
+          折りたたみの内容 折りたたみの内容 折りたたみの内容 折りたたみの内容 折りたたみの内容
+          折りたたみの内容 折りたたみの内容 折りたたみの内容 折りたたみの内容 折りたたみの内容
+          折りたたみの内容 折りたたみの内容 折りたたみの内容 折りたたみの内容 折りたたみの内容
+          折りたたみの内容 折りたたみの内容
         </p>
-        <p>あいうえおかきくけこ<n-chip color="info" variant="text">テキスト</n-chip>さしすせそ</p>
-        <p>
-          あいうえおかきくけこ<n-chip color="info" href="./sample.html" type="internal"
-            >チップ</n-chip
-          >さしすせそ
-        </p>
-        <p>
-          あいうえおかきくけこ<n-link href="./sample.html" type="internal">リンク</n-link>さしすせそ
-        </p>
-        <p>あいうえおかきくけこ<n-link href="./sample.html" type="pdf">リンク</n-link>さしすせそ</p>
-        <n-link href="https://www.nippo.co.jp/" type="external"
-          >リンクテキストリンクテキストリンクテキストリンクテキスト</n-link
-        >
-        <n-link router-id="pdf">PDF</n-link>
-      </n-card>
+      </n-collapsible>
+    </n-card>
 
-      <n-card>
-        <n-title>ドロップダウン</n-title>
-        <n-disclosure>
-          <n-title slot="title" lv="h4">スロットのタイトル</n-title>
-          <ol>
-            <li>あいうえおかきくけこさしすせそたちつてと</li>
-            <li>あいうえおかきくけこさしすせそたちつてと</li>
-            <li>あいうえおかきくけこさしすせそたちつてと</li>
-            <li>あいうえおかきくけこさしすせそたちつてと</li>
-            <li>あいうえおかきくけこさしすせそたちつてと</li>
-            <li>あいうえおかきくけこさしすせそたちつてと</li>
-          </ol>
-        </n-disclosure>
+    <n-card>
+      <n-title>画像バナー</n-title>
+      <n-image-banner src="./public/images/banners/bnr-pre-registration.png" alt="サンプルバナー" width="600" height="80"
+        href="./" type="external"></n-image-banner>
+      <n-image-banner src="./public/images/banners/bnr-pre-registration.png" alt="サンプルバナー" width="600" height="80"
+        href="./" type="pdf" state="closing"></n-image-banner>
+    </n-card>
 
-        <n-disclosure title="ドロップダウン">
-          <ol>
-            <li>あいうえおかきくけこさしすせそたちつてと</li>
-            <li>あいうえおかきくけこさしすせそたちつてと</li>
-            <li>あいうえおかきくけこさしすせそたちつてと</li>
-            <li>あいうえおかきくけこさしすせそたちつてと</li>
-            <li>あいうえおかきくけこさしすせそたちつてと</li>
-            <li>あいうえおかきくけこさしすせそたちつてと</li>
-          </ol>
-        </n-disclosure>
+    <n-card>
+      <n-title>ツールチップ</n-title>
+      <n-tooltip-info>
+        <b>内容の文章 location:top</b>
+      </n-tooltip-info>
 
-        <n-disclosure title="デフォルトオープン" default-open>
-          <ol>
-            <li>あいうえおかきくけこさしすせそたちつてと</li>
-            <li>あいうえおかきくけこさしすせそたちつてと</li>
-            <li>あいうえおかきくけこさしすせそたちつてと</li>
-            <li>あいうえおかきくけこさしすせそたちつてと</li>
-            <li>あいうえおかきくけこさしすせそたちつてと</li>
-            <li>あいうえおかきくけこさしすせそたちつてと</li>
-          </ol>
-        </n-disclosure>
-      </n-card>
+      <n-tooltip-info location="bottom">
+        <b>内容の文章 location:bottom</b>
+        <p>ああああああああああああああああああああああああああああああああああああああ</p>
+        <p>いいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいい</p>
+        <p>うううううううううううううううううう</p>
+        <p>ええええええええええええええええええええええええええええええええええ</p>
+        <p>おおおおおおおおおおおおおおおおおおおおおおおおお</p>
+      </n-tooltip-info>
 
-      <n-card>
-        <n-title>コンテナー</n-title>
-        <n-container-flex justify="center" justify-md="end">
-          <span>要素</span>
-          <span>要素</span>
-          <span>要素</span>
-          <span>要素</span>
-          <span>要素</span>
-          <span>要素</span>
-          <span>要素</span>
-          <span>要素</span>
-          <span>要素</span>
-          <span>要素</span>
-          <span>要素</span>
-          <span>要素</span>
-          <span>要素</span>
-          <span>要素</span>
-        </n-container-flex>
-      </n-card>
+      <n-tooltip-info location="right" icon="question">
+        <b>内容の文章 location:right</b>
+        <p>あああああああああああああああああああああああああ</p>
+        <p>いいいいいいいいいいいいいいいいいいいいいいいいいいい</p>
+        <p>うううううううううううううううううう</p>
+        <p>えええええええええええええええええええええええええええええええええええええ</p>
+        <p>おおおおおおおおおおおおおおおおおおおおおおおおお</p>
+      </n-tooltip-info>
 
-      <n-card>
-        <n-title>リスト</n-title>
+      <n-tooltip-info location="left" label="information">
+        <b>内容の文章 location:left</b>
+      </n-tooltip-info>
+    </n-card>
 
-        <n-list>
-          <n-list-item-app
-            id="様式①-1"
-            data="application-01-1.xlsx"
-            data-type="Excel"
-            data-size="40KB"
-            show-header
-          >
-            <p>搬入・搬出車両カード申込書（作業予定計画書）</p>
-          </n-list-item-app>
-          <n-list-item-app
-            id="様式①-2"
-            data="application-01-2.xlsx"
-            data-type="Excel"
-            data-size="39KB"
-          >
-            <p>電気使用工事申込書（電灯・動力）</p>
-          </n-list-item-app>
-        </n-list>
+    <n-card>
+      <n-title lv="h2">テキスト</n-title>
+      <p><n-text as="strong">重要</n-text><n-text as="del">削除した</n-text></p>
+      <p>
+        <n-text size="sm">小さい</n-text><n-text size="base">ベースサイズ</n-text><n-text size="lg">大きい</n-text>
+      </p>
+      <p><n-text weight="bold">太い</n-text><n-text weight="light">細い</n-text></p>
+      <p>
+        <n-text as="p" align="center">中央よせ</n-text><n-text as="p" align="end">右（End）寄せ</n-text><n-text as="p"
+          align="justify">今回は、”text-align :
+          justiry”を使用して綺麗に両端揃えにしてみようと思います。testとして123などの1byte文字もふんだんに混ぜたtextにしています。長い英単語の例として”Antidisestablishmentarianism”という単語があるそうです。意味は知りません。
+          さて、次のような長い数字も綺麗に両端揃えになってくれるでしょうか。999999999999999999999999999999999999999999</n-text>
+      </p>
+      <p>
+        <n-text color="primary">Primary</n-text><n-text color="info">Info</n-text><n-text color="error">Error</n-text>
+      </p>
+    </n-card>
 
-        <n-list>
-          <n-list-item-3col
-            header="2024NEW環境展"
-            item1="605社"
-            item2="1,876小間"
-          ></n-list-item-3col>
-          <n-list-item-3col
-            header="2024地球温暖化防止展"
-            item1="109社"
-            item2="189小間"
-          ></n-list-item-3col>
-          <n-list-item-3col header="合計" item1="714社" item2="2,065小間"></n-list-item-3col>
-        </n-list>
-        <n-container-2col>
-          <n-list>
-            <n-list-item-komazu
-              header="東1～3ホール・屋外実演会場"
-              update="3月12日"
-              with-pit="https://www.n-expo.jp/past/n-expo2024/documents/for-exhibitors/komazumen-hall123-pit.pdf"
-              without-pit="https://www.n-expo.jp/past/n-expo2024/documents/for-exhibitors/komazumen-hall123.pdf"
-            ></n-list-item-komazu>
-            <n-list-item-komazu
-              header="東1ホール・屋外実演会場"
-              update="3月12日"
-              with-pit="https://www.n-expo.jp/past/n-expo2024/documents/for-exhibitors/komazumen-hall123-pit.pdf"
-              without-pit="https://www.n-expo.jp/past/n-expo2024/documents/for-exhibitors/komazumen-hall123.pdf"
-            ></n-list-item-komazu>
-            <n-list-item-komazu
-              header="東2ホール・屋外実演会場"
-              update="3月12日"
-              with-pit="https://www.n-expo.jp/past/n-expo2024/documents/for-exhibitors/komazumen-hall123-pit.pdf"
-              without-pit="https://www.n-expo.jp/past/n-expo2024/documents/for-exhibitors/komazumen-hall123.pdf"
-            ></n-list-item-komazu>
-          </n-list>
-          <n-list>
-            <n-list-item-komazu
-              header="東1～3ホール・屋外実演会場"
-              update="3月12日"
-              with-pit="https://www.n-expo.jp/past/n-expo2024/documents/for-exhibitors/komazumen-hall123-pit.pdf"
-              without-pit="https://www.n-expo.jp/past/n-expo2024/documents/for-exhibitors/komazumen-hall123.pdf"
-            ></n-list-item-komazu>
-            <n-list-item-komazu
-              header="東1ホール・屋外実演会場"
-              update="3月12日"
-              with-pit="https://www.n-expo.jp/past/n-expo2024/documents/for-exhibitors/komazumen-hall123-pit.pdf"
-              without-pit="https://www.n-expo.jp/past/n-expo2024/documents/for-exhibitors/komazumen-hall123.pdf"
-            ></n-list-item-komazu>
-            <n-list-item-komazu
-              header="東2ホール・屋外実演会場"
-              update="3月12日"
-              with-pit="https://www.n-expo.jp/past/n-expo2024/documents/for-exhibitors/komazumen-hall123-pit.pdf"
-              without-pit="https://www.n-expo.jp/past/n-expo2024/documents/for-exhibitors/komazumen-hall123.pdf"
-            ></n-list-item-komazu>
-          </n-list>
-        </n-container-2col>
-      </n-card>
+    <n-card>
+      <n-title lv="h2">テーブル</n-title>
+      <table>
+        <thead>
+          <tr>
+            <th>列1</th>
+            <th>列2</th>
+            <th>列3</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>データ1</td>
+            <td>データ2</td>
+            <td>データ3</td>
+          </tr>
+          <tr>
+            <td>データ4</td>
+            <td>データ5</td>
+            <td>データ6</td>
+          </tr>
+        </tbody>
+      </table>
 
-      <n-card variant="outlined" color="blue">
-        <n-title>ステッパー</n-title>
+      <table>
+        <tbody>
+          <tr>
+            <th>列1</th>
+            <td>データ1</td>
+            <td>データ2</td>
+          </tr>
+          <tr>
+            <th>列2</th>
+            <td>データ3</td>
+            <td>データ4</td>
+          </tr>
+        </tbody>
+      </table>
+    </n-card>
+
+    <n-card>
+      <n-title>スケジュール</n-title>
+
+      <n-container-flex align-items="stretch" sp-direction-col>
+        <n-flow-card header="2025年12月上旬">
+          <p>出展社専用サイト発信</p>
+          <p>出展社マニュアル送付開始</p>
+        </n-flow-card>
+        <n-flow-card header="2025年12月19日">
+          <p>出展申込期限</p>
+        </n-flow-card>
+        <n-flow-card header="2026年2月27日まで">
+          <p>出展料金支払期限</p>
+        </n-flow-card>
+        <n-flow-card header="2026年3月中旬">
+          <p>小間図面発信開始</p>
+          <p>出展社情報入稿締切</p>
+        </n-flow-card>
+        <n-flow-card header="2026年3月下旬">
+          <p>各種提出書類提出締切</p>
+        </n-flow-card>
+        <n-flow-card header="2026年5月上旬">
+          <p>出展社情報発信開始</p>
+          <p>会場案内図発信開始</p>
+        </n-flow-card>
+        <n-flow-card last>
+          <span slot="header"> 5月18・19日 搬入<br />5月20～22日 会期<br />5月22日 搬出 </span>
+          <p>5月17日と5月23日は指定会社のみ</p>
+        </n-flow-card>
+      </n-container-flex>
+    </n-card>
+    <n-card>
+      <n-nippo-profile></n-nippo-profile>
+    </n-card>
+
+    <n-card>
+      <n-title>リンク・チップ</n-title>
+
+      <n-chip-stack items="NChips,2つめ,3つめ,一度に,aaa"></n-chip-stack>
+
+      <p>あいうえおかきくけこ<n-chip color="info">チップ</n-chip>さしすせそ</p>
+      <p>
+        あいうえおかきくけこ<n-chip color="info" variant="outlined" router-id="sample">アウトライン</n-chip>さしすせそ
+      </p>
+      <p>あいうえおかきくけこ<n-chip color="info" variant="text">テキスト</n-chip>さしすせそ</p>
+      <p>
+        あいうえおかきくけこ<n-chip color="info" href="./sample.html" type="internal">チップ</n-chip>さしすせそ
+      </p>
+      <p>
+        あいうえおかきくけこ<n-link href="./sample.html" type="internal">リンク</n-link>さしすせそ
+      </p>
+      <p>あいうえおかきくけこ<n-link href="./sample.html" type="pdf">リンク</n-link>さしすせそ</p>
+      <n-link href="https://www.nippo.co.jp/" type="external">リンクテキストリンクテキストリンクテキストリンクテキスト</n-link>
+      <n-link router-id="pdf">PDF</n-link>
+    </n-card>
+
+    <n-card>
+      <n-title>ドロップダウン</n-title>
+      <n-disclosure>
+        <n-title slot="title" lv="h4">スロットのタイトル</n-title>
         <ol>
-          <n-list-item-stepper mark="1">
-            <n-title lv="h4">タイトル</n-title>
-            <p>
-              テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-            </p>
-            <p>
-              テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-            </p>
-            <p>
-              テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-            </p>
-          </n-list-item-stepper>
-          <n-list-item-stepper mark="2">
-            <n-title lv="h4">タイトル</n-title>
-          </n-list-item-stepper>
-          <n-list-item-stepper mark="3" last>
-            <p>
-              テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-            </p>
-            <p>
-              テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-            </p>
-            <p>
-              テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-            </p>
-          </n-list-item-stepper>
+          <li>あいうえおかきくけこさしすせそたちつてと</li>
+          <li>あいうえおかきくけこさしすせそたちつてと</li>
+          <li>あいうえおかきくけこさしすせそたちつてと</li>
+          <li>あいうえおかきくけこさしすせそたちつてと</li>
+          <li>あいうえおかきくけこさしすせそたちつてと</li>
+          <li>あいうえおかきくけこさしすせそたちつてと</li>
         </ol>
-      </n-card>
+      </n-disclosure>
 
-      <n-card>
-        <n-title>バナー</n-title>
-        <n-banner color="orange" size="w-full" href="./">w-full</n-banner>
-        <n-banner color="yellow" size="xs" href="./" type="pdf" note="補足説明">xs </n-banner>
-        <n-banner color="green" size="sm" href="./">sm</n-banner>
-        <n-banner color="blue" size="md" href="./" deadline="2025-03-28T23:59:59+09:00"
-          >md</n-banner
-        >
-        <n-banner color="indigo" size="lg" href="./" deadline="2225-03-28T10:00:00+09:00"
-          >lg</n-banner
-        >
-        <n-banner color="amber" size="xl" href="./">xl</n-banner>
-        <n-banner color="sky" size="md" href="./"
-          >あああああああああああああああああああああああああああああああああああああ</n-banner
-        >
-        <n-banner color="lime" size="md" variant="outlined" href="./"
-          >aaaaaaaa aaaaaaaaaaaaaaa aaaaaaaa aaaaaaaaaaaa aaaaaaaaaa aaaaaaaaaaa</n-banner
-        >
-        <n-banner color="info" size="md" variant="text" href="./">aaa</n-banner>
-      </n-card>
+      <n-disclosure title="ドロップダウン">
+        <ol>
+          <li>あいうえおかきくけこさしすせそたちつてと</li>
+          <li>あいうえおかきくけこさしすせそたちつてと</li>
+          <li>あいうえおかきくけこさしすせそたちつてと</li>
+          <li>あいうえおかきくけこさしすせそたちつてと</li>
+          <li>あいうえおかきくけこさしすせそたちつてと</li>
+          <li>あいうえおかきくけこさしすせそたちつてと</li>
+        </ol>
+      </n-disclosure>
 
-      <n-card>
-        <n-title-index>レベル2(インデックス)タイトル</n-title-index>
-        <n-title lv="h2">レベル2(ページ)タイトル Title</n-title>
-        <n-title note="※注釈をつけられます">レベル3タイトル Title</n-title>
-        <n-title lv="h4">レベル4タイトル Title</n-title>
-        <n-title lv="h5">レベル5タイトル Title</n-title>
-        <p>
-          テキストテキストテキストテキストテキスト<n-strong>強調強調</n-strong>テキストテキストテキストテキストテキストテキストテキストテキストテキスト
-        </p>
-        <n-annotation type="light">
-          <p>出典や引用</p>
-          <p>Sample text</p>
-        </n-annotation>
-        <n-annotation>
-          <p>注釈コンポーネント</p>
-          <p>注釈コンポーネント</p>
-        </n-annotation>
+      <n-disclosure title="デフォルトオープン" default-open>
+        <ol>
+          <li>あいうえおかきくけこさしすせそたちつてと</li>
+          <li>あいうえおかきくけこさしすせそたちつてと</li>
+          <li>あいうえおかきくけこさしすせそたちつてと</li>
+          <li>あいうえおかきくけこさしすせそたちつてと</li>
+          <li>あいうえおかきくけこさしすせそたちつてと</li>
+          <li>あいうえおかきくけこさしすせそたちつてと</li>
+        </ol>
+      </n-disclosure>
+    </n-card>
 
-        <n-annotation mark="※1">
-          <p>注釈コンポーネント</p>
-          <p>注釈コンポーネント</p>
-        </n-annotation>
-      </n-card>
+    <n-card>
+      <n-title>コンテナー</n-title>
+      <n-container-flex justify="center" justify-md="end">
+        <span>要素</span>
+        <span>要素</span>
+        <span>要素</span>
+        <span>要素</span>
+        <span>要素</span>
+        <span>要素</span>
+        <span>要素</span>
+        <span>要素</span>
+        <span>要素</span>
+        <span>要素</span>
+        <span>要素</span>
+        <span>要素</span>
+        <span>要素</span>
+        <span>要素</span>
+      </n-container-flex>
+    </n-card>
 
-      <n-card>
-        <n-title>メディアコンテナ</n-title>
-        <n-container-media
-          src="/images/photos/2024-01.png"
-          alt=""
-          width="250"
-          height="250"
-          left
-          cover
-          pdf="https://www.n-expo.jp/past/n-expo2024/documents/venture-corner.pdf"
-        >
-          <p>
-            新規事業や事業拡大に取り組むベンチャー企業、また新技術を支援する企業、それらを総合的にサポートする支援機関に焦点をあて、環境ビジネス事業の発展を推進する「ベンチャーコーナー」を展開します。
-          </p>
-          <p>
-            新規事業や事業拡大に取り組むベンチャー企業、また新技術を支援する企業、それらを総合的にサポートする支援機関に焦点をあて、環境ビジネス事業の発展を推進する「ベンチャーコーナー」を展開します。
-          </p>
-          <p>
-            新規事業や事業拡大に取り組むベンチャー企業、また新技術を支援する企業、それらを総合的にサポートする支援機関に焦点をあて、環境ビジネス事業の発展を推進する「ベンチャーコーナー」を展開します。
-          </p>
-          <p>
-            新規事業や事業拡大に取り組むベンチャー企業、また新技術を支援する企業、それらを総合的にサポートする支援機関に焦点をあて、環境ビジネス事業の発展を推進する「ベンチャーコーナー」を展開します。
-          </p>
-          <p>
-            新規事業や事業拡大に取り組むベンチャー企業、また新技術を支援する企業、それらを総合的にサポートする支援機関に焦点をあて、環境ビジネス事業の発展を推進する「ベンチャーコーナー」を展開します。
-          </p>
-          <ul>
-            <li>新規事業や事業拡大に取り組むベンチャー企業</li>
-            <li>新技術を支援する企業</li>
-            <li>ベンチャー企業、中小企業へ支援を行う団体</li>
-          </ul>
-        </n-container-media>
-        <n-container-2col>
-          <n-sheet color="gray" height="full">
-            <n-image src="/images/photos/2024-01.png" alt="" width="250" height="250" overlay>
-              <n-title>オーバーレイコンテンツ</n-title>
-              <p>あいうえお</p>
-            </n-image>
-          </n-sheet>
-          <div>
-            <p>bbbbbb</p>
-            <p>bbbbbb</p>
-            <p>bbbbbb</p>
-            <p>bbbbbb</p>
-            <p>bbbbbb</p>
-            <p>bbbbbb</p>
-            <p>bbbbbb</p>
-            <p>bbbbbb</p>
-            <p>bbbbbb</p>
-            <p>bbbbbb</p>
-            <p>bbbbbb</p>
-            <p>bbbbbb</p>
-            <p>bbbbbb</p>
-          </div>
-        </n-container-2col>
-        <n-image src="/images/photos/2024-01.png" alt="" width="250" height="250" overlay>
-          <n-title>オーバーレイコンテンツ</n-title>
-          <p>あいうえお</p>
-        </n-image>
-      </n-card>
+    <n-card>
+      <n-title>リスト</n-title>
 
-      <n-card>
-        <n-title>アラート</n-title>
-        <n-alert type="info">
-          <n-title lv="h4" current-color note="備考欄">タイトル</n-title>
-          <p>
-            あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
-          </p>
-          <p>かきくけこかきくけこかきくけこかきくけこかきくけこ</p>
-        </n-alert>
-        <n-alert type="warning">
-          <p>あいうえおあいうえおあいうえお</p>
-        </n-alert>
-      </n-card>
+      <n-list>
+        <n-list-item-app id="様式①-1" data="application-01-1.xlsx" data-type="Excel" data-size="40KB" show-header>
+          <p>搬入・搬出車両カード申込書（作業予定計画書）</p>
+        </n-list-item-app>
+        <n-list-item-app id="様式①-2" data="application-01-2.xlsx" data-type="Excel" data-size="39KB">
+          <p>電気使用工事申込書（電灯・動力）</p>
+        </n-list-item-app>
+      </n-list>
 
-      <n-card>
-        <n-title>新着情報</n-title>
+      <n-list>
+        <n-list-item-3col header="2024NEW環境展" item1="605社" item2="1,876小間"></n-list-item-3col>
+        <n-list-item-3col header="2024地球温暖化防止展" item1="109社" item2="189小間"></n-list-item-3col>
+        <n-list-item-3col header="合計" item1="714社" item2="2,065小間"></n-list-item-3col>
+      </n-list>
+      <n-container-2col>
         <n-list>
-          <n-list-item-2col
-            datetime="2025-06-16T16:00:00+09:00"
-            href="./sample.html"
-            type="internal"
-          >
-            <p>リンクのあるニュース</p>
-            <p>こんな感じ</p>
-          </n-list-item-2col>
-          <n-list-item-2col datetime="2024-07-11T16:00:00+09:00">
-            <p>公開版1.0.0リリース</p>
-            <p>沖縄パック2025サイト公開にあわせて</p>
-          </n-list-item-2col>
-          <n-list-item-2col datetime="2024-06-26T16:00:00+09:00">
-            <p>ベータ版0.2.2リリース</p>
-            <p>バナーページ開設</p>
-          </n-list-item-2col>
-          <n-list-item-2col datetime="2024-06-25T13:00:00+09:00">
-            <p>ベータ版0.2.1リリース</p>
-            <p>Configファイルのパスの設定仕様変更</p>
-            <p>クイックスタートページの開設</p>
-          </n-list-item-2col>
-          <n-list-item-2col datetime="2024-06-21T13:00:00+09:00">
-            <p>N-Systemのベータ版0.2.0リリース</p>
-            <p>2025沖縄パックサイトに導入</p>
-          </n-list-item-2col>
+          <n-list-item-komazu header="東1～3ホール・屋外実演会場" update="3月12日"
+            with-pit="https://www.n-expo.jp/past/n-expo2024/documents/for-exhibitors/komazumen-hall123-pit.pdf"
+            without-pit="https://www.n-expo.jp/past/n-expo2024/documents/for-exhibitors/komazumen-hall123.pdf"></n-list-item-komazu>
+          <n-list-item-komazu header="東1ホール・屋外実演会場" update="3月12日"
+            with-pit="https://www.n-expo.jp/past/n-expo2024/documents/for-exhibitors/komazumen-hall123-pit.pdf"
+            without-pit="https://www.n-expo.jp/past/n-expo2024/documents/for-exhibitors/komazumen-hall123.pdf"></n-list-item-komazu>
+          <n-list-item-komazu header="東2ホール・屋外実演会場" update="3月12日"
+            with-pit="https://www.n-expo.jp/past/n-expo2024/documents/for-exhibitors/komazumen-hall123-pit.pdf"
+            without-pit="https://www.n-expo.jp/past/n-expo2024/documents/for-exhibitors/komazumen-hall123.pdf"></n-list-item-komazu>
         </n-list>
-      </n-card>
+        <n-list>
+          <n-list-item-komazu header="東1～3ホール・屋外実演会場" update="3月12日"
+            with-pit="https://www.n-expo.jp/past/n-expo2024/documents/for-exhibitors/komazumen-hall123-pit.pdf"
+            without-pit="https://www.n-expo.jp/past/n-expo2024/documents/for-exhibitors/komazumen-hall123.pdf"></n-list-item-komazu>
+          <n-list-item-komazu header="東1ホール・屋外実演会場" update="3月12日"
+            with-pit="https://www.n-expo.jp/past/n-expo2024/documents/for-exhibitors/komazumen-hall123-pit.pdf"
+            without-pit="https://www.n-expo.jp/past/n-expo2024/documents/for-exhibitors/komazumen-hall123.pdf"></n-list-item-komazu>
+          <n-list-item-komazu header="東2ホール・屋外実演会場" update="3月12日"
+            with-pit="https://www.n-expo.jp/past/n-expo2024/documents/for-exhibitors/komazumen-hall123-pit.pdf"
+            without-pit="https://www.n-expo.jp/past/n-expo2024/documents/for-exhibitors/komazumen-hall123.pdf"></n-list-item-komazu>
+        </n-list>
+      </n-container-2col>
+    </n-card>
 
-      <n-breakpoint-switcher xl>
-        <n-fixed position="bottom">
-          <n-banner color="warning" size="xs" href="./"> 入場事前登録はこちら </n-banner>
-          <n-banner color="green" size="xs" href="./"> 10名様以上団体事前登録はこちら </n-banner>
-        </n-fixed>
+    <n-card variant="outlined" color="blue">
+      <n-title>ステッパー</n-title>
+      <ol>
+        <n-list-item-stepper mark="1">
+          <n-title lv="h4">タイトル</n-title>
+          <p>
+            テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+          </p>
+          <p>
+            テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+          </p>
+          <p>
+            テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+          </p>
+        </n-list-item-stepper>
+        <n-list-item-stepper mark="2">
+          <n-title lv="h4">タイトル</n-title>
+        </n-list-item-stepper>
+        <n-list-item-stepper mark="3" last>
+          <p>
+            テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+          </p>
+          <p>
+            テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+          </p>
+          <p>
+            テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+          </p>
+        </n-list-item-stepper>
+      </ol>
+    </n-card>
 
-        <n-fixed position="right" slot="xl">
-          <n-circular-banner color="warning" size="lg" router-id="top">
-            <n-container-1col gap="0" aline="center">
-              <n-text size="4xl">入場</n-text>
-              <n-text size="xl">事前登録</n-text>
-              <n-text>はこちら</n-text>
-            </n-container-1col>
-          </n-circular-banner>
-          <n-circular-banner color="green" size="lg" href="./" type="external">
-            <n-container-1col gap="0" aline="center">
-              <n-text size="md">10名様以上</n-text>
-              <n-text size="4xl">団体</n-text>
-              <n-text size="xl">事前登録</n-text>
-              <n-text>はこちら</n-text>
-            </n-container-1col>
-          </n-circular-banner>
-        </n-fixed>
-      </n-breakpoint-switcher>
-    </n-app>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+    <n-card>
+      <n-title>バナー</n-title>
+      <n-banner color="orange" size="w-full" href="./">w-full</n-banner>
+      <n-banner color="yellow" size="xs" href="./" type="pdf" note="補足説明">xs </n-banner>
+      <n-banner color="green" size="sm" href="./">sm</n-banner>
+      <n-banner color="blue" size="md" href="./" deadline="2025-03-28T23:59:59+09:00">md</n-banner>
+      <n-banner color="indigo" size="lg" href="./" deadline="2225-03-28T10:00:00+09:00">lg</n-banner>
+      <n-banner color="amber" size="xl" href="./">xl</n-banner>
+      <n-banner color="sky" size="md" href="./">あああああああああああああああああああああああああああああああああああああ</n-banner>
+      <n-banner color="lime" size="md" variant="outlined" href="./">aaaaaaaa aaaaaaaaaaaaaaa aaaaaaaa aaaaaaaaaaaa
+        aaaaaaaaaa aaaaaaaaaaa</n-banner>
+      <n-banner color="info" size="md" variant="text" href="./">aaa</n-banner>
+    </n-card>
+
+    <n-card>
+      <n-title-index>レベル2(インデックス)タイトル</n-title-index>
+      <n-title lv="h2">レベル2(ページ)タイトル Title</n-title>
+      <n-title note="※注釈をつけられます">レベル3タイトル Title</n-title>
+      <n-title lv="h4">レベル4タイトル Title</n-title>
+      <n-title lv="h5">レベル5タイトル Title</n-title>
+      <p>
+        テキストテキストテキストテキストテキスト<n-strong>強調強調</n-strong>テキストテキストテキストテキストテキストテキストテキストテキストテキスト
+      </p>
+      <n-annotation type="light">
+        <p>出典や引用</p>
+        <p>Sample text</p>
+      </n-annotation>
+      <n-annotation>
+        <p>注釈コンポーネント</p>
+        <p>注釈コンポーネント</p>
+      </n-annotation>
+
+      <n-annotation mark="※1">
+        <p>注釈コンポーネント</p>
+        <p>注釈コンポーネント</p>
+      </n-annotation>
+    </n-card>
+
+    <n-card>
+      <n-title>メディアコンテナ</n-title>
+      <n-container-media src="/images/photos/2024-01.png" alt="" width="250" height="250" left cover
+        pdf="https://www.n-expo.jp/past/n-expo2024/documents/venture-corner.pdf">
+        <p>
+          新規事業や事業拡大に取り組むベンチャー企業、また新技術を支援する企業、それらを総合的にサポートする支援機関に焦点をあて、環境ビジネス事業の発展を推進する「ベンチャーコーナー」を展開します。
+        </p>
+        <p>
+          新規事業や事業拡大に取り組むベンチャー企業、また新技術を支援する企業、それらを総合的にサポートする支援機関に焦点をあて、環境ビジネス事業の発展を推進する「ベンチャーコーナー」を展開します。
+        </p>
+        <p>
+          新規事業や事業拡大に取り組むベンチャー企業、また新技術を支援する企業、それらを総合的にサポートする支援機関に焦点をあて、環境ビジネス事業の発展を推進する「ベンチャーコーナー」を展開します。
+        </p>
+        <p>
+          新規事業や事業拡大に取り組むベンチャー企業、また新技術を支援する企業、それらを総合的にサポートする支援機関に焦点をあて、環境ビジネス事業の発展を推進する「ベンチャーコーナー」を展開します。
+        </p>
+        <p>
+          新規事業や事業拡大に取り組むベンチャー企業、また新技術を支援する企業、それらを総合的にサポートする支援機関に焦点をあて、環境ビジネス事業の発展を推進する「ベンチャーコーナー」を展開します。
+        </p>
+        <ul>
+          <li>新規事業や事業拡大に取り組むベンチャー企業</li>
+          <li>新技術を支援する企業</li>
+          <li>ベンチャー企業、中小企業へ支援を行う団体</li>
+        </ul>
+      </n-container-media>
+      <n-container-2col>
+        <n-sheet color="gray" height="full">
+          <n-image src="/images/photos/2024-01.png" alt="" width="250" height="250" overlay>
+            <n-title>オーバーレイコンテンツ</n-title>
+            <p>あいうえお</p>
+          </n-image>
+        </n-sheet>
+        <div>
+          <p>bbbbbb</p>
+          <p>bbbbbb</p>
+          <p>bbbbbb</p>
+          <p>bbbbbb</p>
+          <p>bbbbbb</p>
+          <p>bbbbbb</p>
+          <p>bbbbbb</p>
+          <p>bbbbbb</p>
+          <p>bbbbbb</p>
+          <p>bbbbbb</p>
+          <p>bbbbbb</p>
+          <p>bbbbbb</p>
+          <p>bbbbbb</p>
+        </div>
+      </n-container-2col>
+      <n-image src="/images/photos/2024-01.png" alt="" width="250" height="250" overlay>
+        <n-title>オーバーレイコンテンツ</n-title>
+        <p>あいうえお</p>
+      </n-image>
+    </n-card>
+
+    <n-card>
+      <n-title>アラート</n-title>
+      <n-alert type="info">
+        <n-title lv="h4" current-color note="備考欄">タイトル</n-title>
+        <p>
+          あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお
+        </p>
+        <p>かきくけこかきくけこかきくけこかきくけこかきくけこ</p>
+      </n-alert>
+      <n-alert type="warning">
+        <p>あいうえおあいうえおあいうえお</p>
+      </n-alert>
+    </n-card>
+
+    <n-card>
+      <n-title>新着情報</n-title>
+      <n-list>
+        <n-list-item-2col datetime="2025-06-16T16:00:00+09:00" href="./sample.html" type="internal">
+          <p>リンクのあるニュース</p>
+          <p>こんな感じ</p>
+        </n-list-item-2col>
+        <n-list-item-2col datetime="2024-07-11T16:00:00+09:00">
+          <p>公開版1.0.0リリース</p>
+          <p>沖縄パック2025サイト公開にあわせて</p>
+        </n-list-item-2col>
+        <n-list-item-2col datetime="2024-06-26T16:00:00+09:00">
+          <p>ベータ版0.2.2リリース</p>
+          <p>バナーページ開設</p>
+        </n-list-item-2col>
+        <n-list-item-2col datetime="2024-06-25T13:00:00+09:00">
+          <p>ベータ版0.2.1リリース</p>
+          <p>Configファイルのパスの設定仕様変更</p>
+          <p>クイックスタートページの開設</p>
+        </n-list-item-2col>
+        <n-list-item-2col datetime="2024-06-21T13:00:00+09:00">
+          <p>N-Systemのベータ版0.2.0リリース</p>
+          <p>2025沖縄パックサイトに導入</p>
+        </n-list-item-2col>
+      </n-list>
+    </n-card>
+
+    <n-breakpoint-switcher xl>
+      <n-fixed position="bottom">
+        <n-banner color="warning" size="xs" href="./"> 入場事前登録はこちら </n-banner>
+        <n-banner color="green" size="xs" href="./"> 10名様以上団体事前登録はこちら </n-banner>
+      </n-fixed>
+
+      <n-fixed position="right" slot="xl">
+        <n-circular-banner color="warning" size="lg" router-id="top">
+          <n-container-1col gap="0" aline="center">
+            <n-text size="4xl">入場</n-text>
+            <n-text size="xl">事前登録</n-text>
+            <n-text>はこちら</n-text>
+          </n-container-1col>
+        </n-circular-banner>
+        <n-circular-banner color="green" size="lg" href="./" type="external">
+          <n-container-1col gap="0" aline="center">
+            <n-text size="md">10名様以上</n-text>
+            <n-text size="4xl">団体</n-text>
+            <n-text size="xl">事前登録</n-text>
+            <n-text>はこちら</n-text>
+          </n-container-1col>
+        </n-circular-banner>
+      </n-fixed>
+    </n-breakpoint-switcher>
+  </n-app>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
 </html>
