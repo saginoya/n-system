@@ -12,12 +12,6 @@ Object.defineProperty(window, 'localStorage', {
   value: mockLocalStorage,
 })
 
-// Mock window.confirm
-const mockConfirm = vi.fn()
-Object.defineProperty(window, 'confirm', {
-  value: mockConfirm,
-})
-
 // Mock localStorageManager
 vi.mock('@/lib/localStorage', () => ({
   localStorageManager: vi.fn((key) => ({
@@ -29,6 +23,7 @@ vi.mock('@/lib/localStorage', () => ({
 describe('useFavorites', () => {
   const mockKey = 'test-favorites'
   const mockLang = 'ja' as const
+  const mockConfirm = vi.fn()
 
   beforeEach(() => {
     vi.clearAllMocks()
@@ -37,14 +32,14 @@ describe('useFavorites', () => {
   })
 
   it('初期状態が正しいこと', () => {
-    const { myFavorites, numMyFavorites } = useFavorites(mockKey, mockLang)
+    const { myFavorites, numMyFavorites } = useFavorites(mockKey, mockLang, mockConfirm)
 
     expect(myFavorites.value).toEqual([])
     expect(numMyFavorites.value).toBe(0)
   })
 
   it('お気に入りを追加できること', () => {
-    const { setFavorite, myFavorites, numMyFavorites } = useFavorites(mockKey, mockLang)
+    const { setFavorite, myFavorites, numMyFavorites } = useFavorites(mockKey, mockLang, mockConfirm)
 
     setFavorite('1')
 
@@ -54,7 +49,7 @@ describe('useFavorites', () => {
   })
 
   it('お気に入りを削除できること', () => {
-    const { setFavorite, removeFavorite, myFavorites } = useFavorites(mockKey, mockLang)
+    const { setFavorite, removeFavorite, myFavorites } = useFavorites(mockKey, mockLang, mockConfirm)
 
     setFavorite('1')
     removeFavorite('1')
@@ -64,7 +59,7 @@ describe('useFavorites', () => {
   })
 
   it('お気に入りに含まれているかチェックできること', () => {
-    const { setFavorite, includedFavorites } = useFavorites(mockKey, mockLang)
+    const { setFavorite, includedFavorites } = useFavorites(mockKey, mockLang, mockConfirm)
 
     setFavorite('1')
 

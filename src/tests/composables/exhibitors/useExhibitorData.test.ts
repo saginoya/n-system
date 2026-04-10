@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 
 import { useExhibitorData } from '@/composables/exhibitors/useExhibitorData'
+import type { Exhibitors } from '@/types'
 import { getJson } from '@/utils'
 import { convertJSONToExhibitorList } from '@/utils/exhibitorList'
 
@@ -39,7 +40,7 @@ describe('useExhibitorData', () => {
 
   it('データを正常にロードできること', async () => {
     const mockJson = [{ id: '1', name: 'Test' }]
-    const mockConverted = [
+    const mockConvertedBase = [
       {
         id: '1',
         name: 'Test',
@@ -48,17 +49,24 @@ describe('useExhibitorData', () => {
         koma: 'A-1',
         exhibition: 'ex1',
         genre: 'genre1',
-        genreName: 'Test Genre',
+        genreName: undefined,
         overseas: false,
         country: 'Japan',
         webSite: '',
         contents: 'Some content',
         sdgs: [],
       },
+    ] satisfies Exhibitors
+    const mockConverted = [
+      {
+        ...mockConvertedBase[0]!,
+        genreName: 'Test Genre',
+      },
     ]
 
     vi.mocked(getJson).mockResolvedValue(mockJson)
-    vi.mocked(convertJSONToExhibitorList).mockResolvedValue(mockConverted)
+    vi.mocked(convertJSONToExhibitorList).mockResolvedValue(mockConvertedBase)
+    mockGetGenreNameFromID.mockReturnValue('Test Genre')
 
     const { load, rawExhibitorList, isLoading, error } = useExhibitorData(
       mockSrc,
@@ -72,6 +80,7 @@ describe('useExhibitorData', () => {
     expect(getJson).toHaveBeenCalledWith(mockSrc)
     expect(convertJSONToExhibitorList).toHaveBeenCalledWith(mockJson, mockLang)
     expect(rawExhibitorList.value).toEqual(mockConverted)
+    expect(mockGetGenreNameFromID).toHaveBeenCalled()
     expect(isLoading.value).toBe(false)
     expect(error.value).toBeUndefined()
   })

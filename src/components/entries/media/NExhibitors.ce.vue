@@ -17,24 +17,7 @@ import LoadingSpinner from '@/components/ui/LoadingSpinner.vue'
 import ModalBase from '@/components/ui/ModalBase.vue'
 import SwitchBase from '@/components/ui/SwitchBase.vue'
 import TabsBase from '@/components/ui/TabsBase.vue'
-import {
-  useExhibitorData,
-  useExhibitorListTransformer,
-  useExhibitorProfile,
-  useFavorites,
-  useGenreFilter,
-  useHeading,
-  useStateFavorite,
-  useStateGenres,
-  useStateKeyword,
-  useStateOverseas,
-  useStateSort,
-} from '@/composables/exhibitors'
-import { useStatusDisplay } from '@/composables/exhibitors/useStatusDisplay'
-import { useGenres } from '@/composables/useGenres'
-import { useLang } from '@/composables/useLang'
-import { useModal } from '@/composables/useModal'
-import type { Exhibitor } from '@/types'
+import { useExhibitorsPage } from '@/composables/exhibitors/useExhibitorsPage'
 
 // ------------------
 // Props
@@ -46,139 +29,45 @@ const props = defineProps<{
   favoriteKey: string
 }>()
 
-// ------------------
-// 言語
-// ------------------
-
-const { lang, isJapanese } = useLang()
-
-// ------------------
-// ジャンル
-// ------------------
-
-const { exhibitions, exhibitionsMap, genresMap, genreLists, getGenreNameFromID, allGenreCount } =
-  useGenres(props.genreSrc)
-
-// ------------------
-// コアデータ
-// ------------------
-
-const { rawExhibitorList, numRawExhibitorList, isLoading } = useExhibitorData(
-  props.listSrc,
-  lang.value,
-  getGenreNameFromID,
-)
-
-// ------------------
-// ユーザー状態
-// ------------------
-
-// ソートの条件
-const { stateSort, updateStateSort, sortLabel, updateSortToOrder, updateSortToKoma } =
-  useStateSort()
-
-// キーワードの条件
-const { stateKeyword, removeStateKeyword } = useStateKeyword()
-
-// お気に入りの表示状態
-const { stateFavorite } = useStateFavorite()
-
-// ジャンルの絞り込み状態
-const { stateGenres, updateStateGenres, removeStateGenres } = useStateGenres()
-
-// 海外・国内の絞り込み状態
 const {
-  stateOverseas,
-  isAllStateOverseas,
-  isDomesticActive,
+  lang,
+  isJapanese,
+  exhibitionsMap,
+  genresMap,
+  genreLists,
+  numRawExhibitorList,
+  isLoading,
+  stateSort,
+  updateStateSort,
+  sortLabel,
+  updateSortToOrder,
+  updateSortToKoma,
+  stateKeyword,
+  stateFavorite,
   isOverseasActive,
+  isDomesticActive,
   addStateOverseas,
   removeStateOverseas,
-  clearStateOverseas,
-} = useStateOverseas()
-
-// ------------------
-// お気に入りの管理
-// ------------------
-
-const { myFavorites, numMyFavorites, switchFavorite, includedFavorites } = useFavorites(
-  props.favoriteKey,
-  lang.value,
-)
-
-// ------------------
-// フィルタロジック
-// ------------------
-
-const { exhibitorList, numExhibitorList } = useExhibitorListTransformer(rawExhibitorList, {
-  favorite: stateFavorite,
-  myFavorites: myFavorites,
-  genres: stateGenres,
-  overseas: stateOverseas,
-  keyword: stateKeyword,
-  sort: stateSort,
-})
-
-// ------------------
-// リストの小見出し
-// ------------------
-const { getHeading, showHeading } = useHeading(exhibitorList, stateSort)
-
-// ------------------
-// 出展社の詳細情報モーダル管理
-// ------------------
-const { visible, show, dismiss } = useModal()
-const { currentExhibitor, setCurrentExhibitor, resetCurrentExhibitor } =
-  useExhibitorProfile(exhibitionsMap)
-
-const showModal = (exhibitor: Exhibitor) => {
-  setCurrentExhibitor(exhibitor, lang.value)
-  show()
-}
-const dismissModal = () => {
-  resetCurrentExhibitor()
-
-  dismiss()
-}
-
-// ------------------
-// フィルターのモーダル
-// ------------------
-
-const {
-  visible: visibleFilterModal,
-  show: showFilterModal,
-  dismiss: dismissFilterModal,
-} = useModal()
-
-// ------------------
-// ジャンルによる絞り込み機能の制御
-// ------------------
-
-const { genreFlags, updateGenreFlags, exhibitionOptions } = useGenreFilter(
-  exhibitions,
-  genresMap,
-  stateGenres,
-  updateStateGenres,
-  lang.value,
-)
-
-// ------------------
-// 検索条件の状態表示スペースの制御
-// ------------------
-const { statusList } = useStatusDisplay({
-  isJapanese,
-  stateKeyword,
-  removeStateKeyword,
-  stateGenres,
-  allGenreCount,
-  removeStateGenres,
-  getGenreNameFromID,
-  isAllStateOverseas,
-  isOverseasActive,
-  isDomesticActive,
-  clearStateOverseas,
-})
+  numMyFavorites,
+  switchFavorite,
+  includedFavorites,
+  exhibitorList,
+  numExhibitorList,
+  getHeading,
+  showHeading,
+  visible,
+  currentExhibitor,
+  showModal,
+  dismissModal,
+  visibleFilterModal,
+  showFilterModal,
+  dismissFilterModal,
+  isGenreOn,
+  setGenreOn,
+  updateGenreFlags,
+  exhibitionOptions,
+  statusList,
+} = useExhibitorsPage(props, (message) => window.confirm(message))
 </script>
 
 <template>
@@ -258,7 +147,8 @@ const { statusList } = useStatusDisplay({
                 <SwitchBase
                   v-for="genreID in exhibition.genres"
                   :key="genreID"
-                  v-model="genreFlags[genreID]"
+                  :model-value="isGenreOn(genreID)"
+                  @update:model-value="(val) => setGenreOn(genreID, val)"
                   :label="genresMap[genreID]?.[isJapanese ? 'name' : 'nameEng'] ?? ''"
                   :color="exhibition.color"
                 ></SwitchBase>

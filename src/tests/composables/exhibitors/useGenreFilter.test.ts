@@ -19,11 +19,16 @@ const mockExhibitions = ref<Exhibition[]>([
   },
 ])
 
-const mockUpdateStateGenres = vi.fn()
-
 describe('useGenreFilter', () => {
+  const createUpdateStateGenres = (state: { value: Set<GenreID> }) => {
+    return vi.fn((genres: GenreID[]) => {
+      state.value = new Set(genres)
+    })
+  }
+
   it('初期化されること', () => {
     const mockStateGenres = ref<Set<GenreID>>(new Set())
+    const mockUpdateStateGenres = createUpdateStateGenres(mockStateGenres)
     const { genreFlags, isFilteringByGenre } = useGenreFilter(
       mockExhibitions,
       mockGenresMap,
@@ -38,6 +43,7 @@ describe('useGenreFilter', () => {
 
   it('ジャンルフラグを更新できること', () => {
     const mockStateGenres = ref<Set<GenreID>>(new Set())
+    const mockUpdateStateGenres = createUpdateStateGenres(mockStateGenres)
     const { updateGenreFlags, genreFlags } = useGenreFilter(
       mockExhibitions,
       mockGenresMap,
@@ -54,6 +60,7 @@ describe('useGenreFilter', () => {
 
   it('フィルタリング状態を判定できること', () => {
     const mockStateGenres = ref<Set<GenreID>>(new Set())
+    const mockUpdateStateGenres = createUpdateStateGenres(mockStateGenres)
     const { updateGenreFlags, isFilteringByGenre } = useGenreFilter(
       mockExhibitions,
       mockGenresMap,
@@ -69,6 +76,7 @@ describe('useGenreFilter', () => {
 
   it('外部のstateGenresの変更を同期できること', async () => {
     const mockStateGenres = ref<Set<GenreID>>(new Set(['genre1']))
+    const mockUpdateStateGenres = createUpdateStateGenres(mockStateGenres)
     const { genreFlags } = useGenreFilter(
       mockExhibitions,
       mockGenresMap,

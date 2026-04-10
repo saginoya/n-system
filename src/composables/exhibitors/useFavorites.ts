@@ -3,7 +3,9 @@ import { ref, computed, onMounted } from 'vue'
 import { localStorageManager } from '@/lib/localStorage'
 import type { Favorites, ExhibitorID, Lang } from '@/types'
 
-export const useFavorites = (key: string, lang: Lang) => {
+type ConfirmFn = (message: string) => boolean
+
+export const useFavorites = (key: string, lang: Lang, confirmRemove: ConfirmFn) => {
   type Value = string
 
   // ローカルストレージを利用する関数
@@ -38,13 +40,12 @@ export const useFavorites = (key: string, lang: Lang) => {
   }
 
   // お気に入りリストから削除
-  // あとで別のモジュールへ切り分ける可能性あり
   const msgRemove = {
     ja: 'お気に入り登録から解除しますか？',
     en: 'Do you want to unsubscribe from your favorites?',
   }
   const removeFavorite = (value: Value) => {
-    if (window.confirm(msgRemove[lang])) {
+    if (confirmRemove(msgRemove[lang])) {
       const index = myFavorites.value.indexOf(value)
       myFavorites.value.splice(index, 1)
       const arr = JSON.stringify(myFavorites.value)

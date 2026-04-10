@@ -1,4 +1,4 @@
-import { ref, computed, watch } from 'vue'
+import { computed } from 'vue'
 
 import type { Lang, Color, Genre, GenreID, Exhibition, ExhibitionID } from '@/types'
 
@@ -26,49 +26,67 @@ export const useGenreFilter = (
   updateStateGenres: (genres: GenreID[]) => void,
   lang: Lang,
 ) => {
-  const genreFlags = ref<Record<GenreID, boolean>>({})
+  const getAllGenreIDs = (): GenreID[] => {
+    if (!genresMap.value) return []
+    return Object.keys(genresMap.value) as GenreID[]
+  }
 
-  // ジャンルフラグの初期化関数
-  const initGenreFlags = (keys: GenreID[]) => {
+  const isGenreOn = (genreID: GenreID): boolean => {
+    // stateGenresが空の初期状態は「すべて選択」と同義なのでtrue扱い
+    if (stateGenres.value.size === 0) return true
+    return stateGenres.value.has(genreID)
+  }
+
+  const commitSelected = (selected: Set<GenreID>) => {
+    const all = getAllGenreIDs()
+    // 「全選択」は Set を空で表現する
+    if (all.length > 0 && selected.size === all.length) {
+      updateStateGenres([])
+      return
+    }
+    updateStateGenres(Array.from(selected))
+  }
+
+  const setGenreOn = (genreID: GenreID, value: boolean) => {
+    const all = getAllGenreIDs()
+    const current =
+      stateGenres.value.size === 0 ? new Set<GenreID>(all) : new Set<GenreID>(stateGenres.value)
+
+    if (value) {
+      current.add(genreID)
+    } else {
+      current.delete(genreID)
+    }
+    commitSelected(current)
+  }
+
+  // ジャンルフラグの更新関数（展示会単位など）
+  const updateGenreFlags = (keys: readonly GenreID[], value: boolean): void => {
+    const all = getAllGenreIDs()
+    const current =
+      stateGenres.value.size === 0 ? new Set<GenreID>(all) : new Set<GenreID>(stateGenres.value)
+
     keys.forEach((key) => {
-      genreFlags.value[key] = true
+      if (value) current.add(key)
+      else current.delete(key)
     })
-  }
-
-  const syncGenreFlagsFromStateGenres = (genres: Set<GenreID> | undefined) => {
-    if (!genresMap.value) return
-
-    const keys = Object.keys(genresMap.value) as GenreID[]
-    if (keys.length === 0) return
-
-    const isAllSelected = !genres || genres.size === 0
-    keys.forEach((key) => {
-      genreFlags.value[key] = isAllSelected ? true : genres.has(key)
-    })
-  }
-
-  // 指定されたジャンルIDのフラグがすべてtrueかの判定
-  const isTrueGenreFlags = (keys: string[]): boolean => {
-    return keys.every((key) => !!genreFlags.value[key])
-  }
-
-  // ジャンルフラグの更新関数
-  const updateGenreFlags = (keys: string[], value: boolean): void => {
-    keys.forEach((key) => {
-      genreFlags.value[key] = value
-    })
-  }
-
-  // ジャンルフラグをすべてtrueにする関数
-  const removeGenreFlags = (): void => {
-    Object.keys(genreFlags.value).forEach((key) => {
-      genreFlags.value[key as GenreID] = true
-    })
+    commitSelected(current)
   }
 
   // 絞り込みが行われているかの判定
   const isFilteringByGenre = computed<boolean>(() => {
-    return !Object.values(genreFlags.value).every(Boolean)
+    const all = getAllGenreIDs()
+    // stateGenres が空なら「全選択」扱いで絞り込みなし
+    if (stateGenres.value.size === 0) return false
+    return all.length > 0 && stateGenres.value.size < all.length
+  })
+
+  // 互換性/デバッグ用途: flags は状態ではなく導出値として提供
+  const genreFlags = computed<Record<GenreID, boolean>>(() => {
+    const all = getAllGenreIDs()
+    const next: Record<GenreID, boolean> = {} as Record<GenreID, boolean>
+    all.forEach((id) => (next[id] = isGenreOn(id)))
+    return next
   })
 
   // 展示会・エリアごとのジャンルの絞り込み条件のためのオブジェクト配列
@@ -87,7 +105,7 @@ export const useGenreFilter = (
       lang === 'ja'
         ? `${exhibition['name']}のすべてのエリア`
         : `All Areas of ${exhibition['nameEng']}`
-    const isOn = computed(() => isTrueGenreFlags(exhibition.genres))
+    const isOn = computed(() => exhibition.genres.every((id) => isGenreOn(id)))
 
     return {
       id,
@@ -105,55 +123,13 @@ export const useGenreFilter = (
     return list.map((exhibition) => convertToExhibitionOptions(exhibition, lang))
   })
 
-  // ジャンルのMapが更新されたら外部のstateGenresを元に同期
-  watch(
-    genresMap,
-    () => {
-      if (!genresMap.value) return
-      syncGenreFlagsFromStateGenres(stateGenres.value)
-    },
-    { immediate: true },
-  )
-
-  // 外部のstateGenresが変更されたら内部のgenreFlagsを同期
-  watch(
-    stateGenres,
-    (newSet) => {
-      if (!genresMap.value) return
-      const keys = Object.keys(genresMap.value) as GenreID[]
-      const shouldSync = keys.some((key) => {
-        const nextValue = newSet.size === 0 ? true : newSet.has(key)
-        return genreFlags.value[key] !== nextValue
-      })
-      if (!shouldSync) return
-      syncGenreFlagsFromStateGenres(newSet)
-    },
-    { deep: true },
-  )
-
-  // ジャンルの状態が更新されたら親コンポーネントの状態を更新
-  watch(
-    genreFlags,
-    () => {
-      if (!genresMap.value) return
-      const newValues: GenreID[] = []
-      for (const key in genreFlags.value) {
-        if (genreFlags.value[key]) {
-          newValues.push(genresMap.value[key]!['id'])
-        }
-      }
-      updateStateGenres(newValues)
-    },
-    { deep: true },
-  )
-
   return {
+    // 互換性/デバッグ用途（UIは基本 isGenreOn/setGenreOn を使用）
     genreFlags,
-    initGenreFlags,
-    isTrueGenreFlags,
-    updateGenreFlags,
-    removeGenreFlags,
     isFilteringByGenre,
+    isGenreOn,
+    setGenreOn,
+    updateGenreFlags,
     exhibitionOptions,
   }
 }
