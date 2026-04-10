@@ -26,7 +26,7 @@ const toggle = () => {
     <slot />
     <button
       type="button"
-      class="absolute bottom-0 inset-x-0 p-0.5 flex justify-center items-center h-6 border-b-2 border-white text-slate-400 hover:border-info hover:text-info"
+      class="absolute bottom-0 inset-x-0 p-0.5 flex justify-center items-center h-6 border-b-2 border-gray-100 text-slate-400 hover:border-info hover:text-info"
       :class="{ 'bg-linear-to-t from-white to-white/0': !open }"
       @click="toggle()"
     >
