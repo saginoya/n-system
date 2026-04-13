@@ -73,42 +73,48 @@ const {
 <template>
   <NContainer1col>
     <!-- 検索ツールバー -->
-    <NContainerFlex align-items="center" gap="2">
-      <!-- キーワードフィルターのインプット -->
-      <InputSearch
-        v-model.trim="stateKeyword"
-        :datalist="genreLists[lang]"
-        class-name="grow"
-        :placeholder="isJapanese ? 'キーワードで検索' : 'Search by keyword'"
-        @update:model-value="stateKeyword ? updateStateSort('search') : updateStateSort('order')"
-      ></InputSearch>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+      <!-- フォーム送信のデフォルト動作を無効化 -->
+      <form @submit.prevent class="col-span-2">
+        <InputSearch
+          v-model.trim="stateKeyword"
+          :datalist="genreLists[lang]"
+          :placeholder="isJapanese ? 'キーワードで検索' : 'Search by keyword'"
+          @update:model-value="stateKeyword ? updateStateSort('search') : updateStateSort('order')"
+        ></InputSearch>
+      </form>
 
-      <NContainerFlex justify="center" class="w-full flex-none sm:w-auto">
-        <!-- フィルターボタン -->
-        <BtnBase color="primary" variant="text" prepend-icon="filter" :onClick="showFilterModal">
-          {{ isJapanese ? '絞り込み検索' : 'Filter' }}
-        </BtnBase>
+      <!-- フィルターボタン -->
+      <BtnBase
+        color="primary"
+        variant="text"
+        prepend-icon="filter"
+        class="w-full"
+        :onClick="showFilterModal"
+      >
+        {{ isJapanese ? '絞り込み検索' : 'Filter' }}
+      </BtnBase>
 
-        <!-- ソートボタン -->
-        <BtnMenu
-          :label="sortLabel[lang][stateSort]"
-          color="primary"
-          variant="text"
-          prepend-icon="sort"
-          :children="[
-            {
-              color: 'primary',
-              label: sortLabel[lang].order,
-              onClick: updateSortToOrder,
-            },
-            {
-              color: 'primary',
-              label: sortLabel[lang].koma,
-              onClick: updateSortToKoma,
-            },
-          ]"
-        />
-      </NContainerFlex>
+      <!-- ソートボタン -->
+      <BtnMenu
+        :label="sortLabel[lang][stateSort]"
+        color="primary"
+        variant="text"
+        prepend-icon="sort"
+        class-name="w-full"
+        :children="[
+          {
+            color: 'primary',
+            label: sortLabel[lang].order,
+            onClick: updateSortToOrder,
+          },
+          {
+            color: 'primary',
+            label: sortLabel[lang].koma,
+            onClick: updateSortToKoma,
+          },
+        ]"
+      />
 
       <!-- フィルターのモーダル -->
       <ModalBase :visible="visibleFilterModal" :close-action="dismissFilterModal">
@@ -160,7 +166,7 @@ const {
           <BtnBase color="gray" variant="text" :onClick="dismissFilterModal">Close</BtnBase>
         </template>
       </ModalBase>
-    </NContainerFlex>
+    </div>
 
     <!-- 状態の表示スペース -->
     <StatusDisplay :statusList="statusList"></StatusDisplay>
