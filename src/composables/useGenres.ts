@@ -38,6 +38,11 @@ export const useGenres = (src: string) => {
     }
   })
 
+  // ジャンルIDのリスト
+  const genreIDs = computed<GenreID[]>(() => {
+    return Object.keys(genresMap.value) as GenreID[]
+  })
+
   onMounted(async () => {
     const data: GenreJson = await getJson(src)
     exhibitions.value = data.exhibitions
@@ -63,7 +68,9 @@ export const useGenres = (src: string) => {
   // ジャンルIDからジャンル名を返す関数
   const getGenreNameFromID = (value: GenreID, lang: Lang): string => {
     if (!genresMap.value) return ''
-    return genresMap.value[value]![lang === 'ja' ? 'name' : 'nameEng']
+    const genre = genresMap.value[value]
+    if (!genre) return ''
+    return genre[lang === 'ja' ? 'name' : 'nameEng']
   }
 
   // リストをMapに変換する関数
@@ -84,6 +91,7 @@ export const useGenres = (src: string) => {
     genresMap,
     genreLists,
     allGenreCount,
+    genreIDs,
     getExhibitionIDFromGenreID,
     getGenreNameFromID,
   }

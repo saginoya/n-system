@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { ref, watch, type Ref } from 'vue'
 
 import type { GenreID } from '@/types'
 
@@ -10,8 +10,8 @@ import type { GenreID } from '@/types'
  * - 他のフィルター機能でも再利用可能な汎用的な状態管理
  * - UIロジックやビジネスロジックを含まない
  */
-export const useStateGenres = () => {
-  const stateGenres = ref<Set<GenreID>>(new Set([]))
+export const useStateGenres = (initValues: Ref<GenreID[]>) => {
+  const stateGenres = ref<Set<GenreID>>(new Set(initValues.value))
 
   // ジャンルの更新関数
   const updateStateGenres = (values: GenreID[]): void => {
@@ -26,10 +26,21 @@ export const useStateGenres = () => {
     stateGenres.value.delete(value)
   }
 
+  // 初期値にリセットする関数
+  const clearStateGenres = (): void => {
+    stateGenres.value = new Set(initValues.value)
+  }
+
+  // 初期値の変更を監視してstateGenresを更新
+  watch(initValues, (newValues) => {
+    stateGenres.value = new Set(newValues)
+  })
+
   return {
     stateGenres,
     updateStateGenres,
     addStateGenres,
     removeStateGenres,
+    clearStateGenres,
   }
 }

@@ -1,9 +1,9 @@
-import { computed, ref, watchEffect } from 'vue'
+import { computed } from 'vue'
 
 import { useGenres } from '@/composables/useGenres'
 import { useLang } from '@/composables/useLang'
 import { useModal } from '@/composables/useModal'
-import type { Exhibitor, GenreID } from '@/types'
+import type { Exhibitor } from '@/types'
 
 import { useStatusDisplay } from './useStatusDisplay'
 
@@ -32,8 +32,15 @@ export type ExhibitorsPageProps = {
 export const useExhibitorsPage = (props: ExhibitorsPageProps, confirmRemove: ConfirmFn) => {
   const { lang, isJapanese } = useLang()
 
-  const { exhibitions, exhibitionsMap, genresMap, genreLists, getGenreNameFromID, allGenreCount } =
-    useGenres(props.genreSrc)
+  const {
+    exhibitions,
+    exhibitionsMap,
+    genresMap,
+    genreLists,
+    getGenreNameFromID,
+    allGenreCount,
+    genreIDs,
+  } = useGenres(props.genreSrc)
 
   const { rawExhibitorList, numRawExhibitorList, isLoading, error, load } = useExhibitorData(
     props.listSrc,
@@ -48,15 +55,8 @@ export const useExhibitorsPage = (props: ExhibitorsPageProps, confirmRemove: Con
 
   const { stateFavorite } = useStateFavorite()
 
-  const { stateGenres, updateStateGenres, removeStateGenres } = useStateGenres()
-  const didInitStateGenres = ref(false)
-  watchEffect(() => {
-    if (didInitStateGenres.value) return
-    const all = Object.keys(genresMap.value ?? {}) as GenreID[]
-    if (all.length === 0) return
-    updateStateGenres(all)
-    didInitStateGenres.value = true
-  })
+  const { stateGenres, updateStateGenres, removeStateGenres, clearStateGenres } =
+    useStateGenres(genreIDs)
 
   const {
     stateOverseas,
@@ -115,6 +115,7 @@ export const useExhibitorsPage = (props: ExhibitorsPageProps, confirmRemove: Con
     stateGenres,
     allGenreCount,
     removeStateGenres,
+    clearStateGenres,
     getGenreNameFromID,
     isAllStateOverseas,
     isOverseasActive,
@@ -157,6 +158,7 @@ export const useExhibitorsPage = (props: ExhibitorsPageProps, confirmRemove: Con
     stateGenres,
     updateStateGenres,
     removeStateGenres,
+    clearStateGenres,
 
     stateOverseas,
     isAllStateOverseas,
