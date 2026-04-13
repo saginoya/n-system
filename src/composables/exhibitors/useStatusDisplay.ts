@@ -66,8 +66,10 @@ const createLocationStatus = (options: Options): Status[] => {
 // ジャンルステータスを生成
 const createGenreStatuses = (options: Options): Status[] => {
   const { stateGenres, allGenreCount } = options
+  // ジャンルがすべて選択されている場合
   if (stateGenres.value.size >= allGenreCount.value) return []
 
+  // ジャンルが1つも選択されていない場合
   if (stateGenres.value.size === 0) {
     return [
       {
@@ -77,6 +79,18 @@ const createGenreStatuses = (options: Options): Status[] => {
     ]
   }
 
+  // ジャンルが1つだけ選択されている場合（アクションが変わる）
+  if (stateGenres.value.size === 1) {
+    const genreID = Array.from(stateGenres.value)[0]
+    return [
+      {
+        name: options.getGenreNameFromID(genreID, getLang(options)) ?? genreID,
+        action: options.clearStateGenres,
+      },
+    ]
+  }
+
+  // ジャンルが複数選択されている場合
   return Array.from(stateGenres.value).map((genreID) => ({
     name: options.getGenreNameFromID(genreID, getLang(options)) ?? genreID,
     action: () => options.removeStateGenres(genreID),
