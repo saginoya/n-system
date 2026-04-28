@@ -1,6 +1,6 @@
 {
   "name": "n-system",
-  "version": "3.4.5",
+  "version": "3.4.6",
   "private": true,
   "type": "module",
   "scripts": {
@@ -10,13 +10,13 @@
     "test": "vitest --run",
     "test:watch": "vitest",
     "build-only": "vite build",
-    "type-check": "vue-tsc --build",
+    "typecheck": "vue-tsc --build",
     "lint": "eslint . --fix",
     "format": "prettier --write ."
   },
   "dependencies": {
     "@headlessui/vue": "^1.7.23",
-    "dompurify": "^3.3.3",
+    "dompurify": "^3.4.1",
     "fuse.js": "^7.3.0",
     "marked": "^18.0.0",
     "typescript": "^6.0.2",
