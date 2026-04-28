@@ -92,7 +92,7 @@ const {
         class="w-full"
         :onClick="showFilterModal"
       >
-        {{ isJapanese ? '絞り込み検索' : 'Filter' }}
+        {{ isJapanese ? '絞り込み' : 'Filter' }}
       </BtnBase>
 
       <!-- ソートボタン -->
@@ -119,7 +119,6 @@ const {
       <!-- フィルターのモーダル -->
       <ModalBase :visible="visibleFilterModal" :close-action="dismissFilterModal">
         <NContainer1col gap="8">
-          <NTitle>{{ isJapanese ? '絞り込み検索' : 'Filter' }}</NTitle>
           <NContainer1col gap="2">
             <NTitle lv="h4">{{ isJapanese ? '所在地' : 'Location' }}</NTitle>
             <NContainerGrid cols="2" gap="2">
@@ -173,7 +172,7 @@ const {
 
     <!-- メインの一覧カード -->
     <NCard>
-      <!-- お気に入り登録切り替えタブ -->
+      <!-- お気に入り切り替えタブ -->
       <NContainerFlex justify="between">
         <NContainerFlex align-items="center" gap="2">
           <TabsBase
@@ -182,7 +181,7 @@ const {
             :values="[false, true]"
             :labels="
               lang === 'ja'
-                ? ['すべて', `お気に入り登録のみ(${numMyFavorites})`]
+                ? ['すべて', `お気に入り｜${numMyFavorites}件`]
                 : ['Show All', `Show only favorites (${numMyFavorites})`]
             "
             color="success"
@@ -194,8 +193,8 @@ const {
 
         <!-- フィルター後のリストの件数表示 -->
         <p>
-          {{ lang === 'ja' ? '表示中の件数' : 'Search Result' }}: {{ numExhibitorList }} /
-          {{ numRawExhibitorList }}
+          {{ lang === 'ja' ? '表示中' : 'Result' }}: {{ numExhibitorList }} /
+          {{ numRawExhibitorList }}{{ lang === 'ja' ? '件' : ' items' }}
         </p>
       </NContainerFlex>
 

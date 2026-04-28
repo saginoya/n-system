@@ -41,7 +41,7 @@ export const useFavorites = (key: string, lang: Lang, confirmRemove: ConfirmFn) 
 
   // お気に入りリストから削除
   const msgRemove = {
-    ja: 'お気に入り登録から解除しますか？',
+    ja: 'お気に入りから解除しますか？',
     en: 'Do you want to unsubscribe from your favorites?',
   }
   const removeFavorite = (value: Value) => {

@@ -13,11 +13,11 @@ defineProps<{
   <NContainer1col class="py-4">
     <template v-if="lang === 'ja'">
       <NTitle>該当する出展社はありませんでした</NTitle>
-      <p>検索条件をご確認ください。</p>
+      <p>検索の条件をご確認ください。</p>
       <NBulletedList>
         <li>キーワード検索に意図しない文字が入力されていませんか？</li>
         <li>意図しない絞り込み条件が設定されていませんか？</li>
-        <li>お気に入り登録は★アイコンで登録した出展社が表示されます。</li>
+        <li>お気に入りは★アイコンで登録した出展社が表示されます。</li>
         <li>それぞれの検索条件は重複します。</li>
       </NBulletedList>
     </template>
